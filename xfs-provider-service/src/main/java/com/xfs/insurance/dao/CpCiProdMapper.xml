@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_CI_PROD" >
+<!-- Result Map-->
+<resultMap id="result_map_CP_CI_PROD" type="com.xfs.insurance.model.CpCiProd" >
+	<result column="id" property="id"/>
+	<result column="ci_code" property="ciCode"/>
+	<result column="sales" property="sales"/>
+	<result column="orderby" property="orderby"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+
+<!-- cp_ci_prod table all fields -->
+<sql id="Base_Column_List" >
+	 id,ci_code,sales,orderby,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="ciCode != null" >and ci_code = #{ciCode}</if>
+	<if test="sales != null" >and sales = #{sales}</if>
+	<if test="orderby != null" >and orderby = #{orderby}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="ciCode != null">AND ci_code = #{ciCode}</if>
+    <if test="sales != null">AND sales = #{sales}</if>
+    <if test="orderby != null">AND orderby = #{orderby}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_CI_PROD" parameterType="Object" >
+  INSERT INTO CP_CI_PROD (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="ciCode != null ">,ci_code</if>
+	<if test="sales != null ">,sales</if>
+	<if test="orderby != null ">,orderby</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="ciCode != null ">,#{ciCode}</if>
+	<if test="sales != null ">,#{sales}</if>
+	<if test="orderby != null ">,#{orderby}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->
+<update id="UpdateCP_CI_PROD" parameterType="Object" >
+UPDATE CP_CI_PROD
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="ciCode != null ">,ci_code=#{ciCode}</if>
+	<if test="sales != null ">,sales=#{sales}</if>
+	<if test="orderby != null ">,orderby=#{orderby}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="DeleteCP_CI_PROD">DELETE FROM CP_CI_PROD WHERE ID=#{id}</delete>
+<!-- 协作平台商保信息 列表总数-->
+<select id="CountFindAllCP_CI_PROD" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_CI_PROD</select>
+<select id="CountCP_CI_PROD" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_CI_PROD WHERE ID=#{id}</select>
+<!-- 根据id查询 协作平台商保信息 -->
+<select id="FindByPK" resultMap="result_map_CP_CI_PROD" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_CI_PROD WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  协作平台商保信息 -->
+<select id="FreeFindCP_CI_PROD" resultMap="result_map_CP_CI_PROD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_CI_PROD
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  协作平台商保信息 记录数 -->
+<select id="CountFreeFindCP_CI_PROD" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_CI_PROD
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  协作平台商保信息 -->
+<select id="FreeFindCP_CI_PRODOrdered" resultMap="result_map_CP_CI_PROD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_CI_PROD
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/21 15:45:17 ** -->
+<!-- ************************************************************************ -->
+	<select id="findCiProd" parameterType="Object" resultType="com.xfs.insurance.dto.CpCiProdDetail">
+		select bmi.item_name, bcp.suit_crowd, bmi.item_id, bcp.charge_way
+		from cp_ci_prod ccp
+		inner join bs_ci_product bcp on bcp.mall_item_id = ccp.ci_code
+		inner join bs_mall_item bmi on bmi.item_id = ccp.ci_code and bmi.dr = 0
+		where ccp.dr =0 order by ccp.orderby limit 4
+	</select>
+	<select id="findCiScheme" resultType="com.xfs.insurance.dto.CiScheme" parameterType="Object">
+		select * from bs_ci_scheme
+		where mall_item_id in
+		<foreach collection="list" open="(" close=")" separator="," item="item">
+			#{item}
+		</foreach>
+		order by mall_item_id, agent_price
+	</select>
+	<select id="findCiProdById" parameterType="Integer" resultType="com.xfs.insurance.dto.CpCiProdDetail">
+		select ccp.sales,ci.show_name as insurer_name, bcp.*, bmi.*
+		from cp_ci_prod ccp
+		inner join bs_ci_product bcp on bcp.mall_item_id = ccp.ci_code
+		inner join bs_mall_item bmi on bmi.item_id = ccp.ci_code and bmi.dr = 0
+		left join bs_ci_insurer ci on ci.id = bcp.insurer_id
+		where ccp.ci_code = #{id}
+	</select>
+	<update id="addProdSales" parameterType="Object" >
+		update cp_ci_prod
+		set sales = sales + #{add}
+		where ci_code = #{ciCode}
+	</update>
+
+</mapper>   

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="WX_CLASSROOM_SHARE" > 
+<!-- Result Map-->
+<resultMap id="result_map_WX_CLASSROOM_SHARE" type="com.xfs.wxclassroom.dto.WxClassroomShare" >
+	<result column="share_id" property="shareId"/>
+	<result column="class_id" property="classId"/>
+	<result column="openid" property="openid"/>
+	<result column="class_name" property="className"/>
+	<result column="wx_nikename" property="wxNikename"/>
+	<result column="share_times" property="shareTimes"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="file_qrcode" property="fileQrcode"/>
+</resultMap>
+
+	<!-- wx_classroom_share table all fields -->
+	<sql id="Base_Column_List" >
+	 share_id,class_id,openid,class_name,wx_nikename,share_times,create_dt,modify_dt,file_qrcode
+</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="shareId != null" >and share_id = #{shareId}</if>
+			<if test="classId != null" >and class_id = #{classId}</if>
+			<if test="openid != null" >and openid = #{openid}</if>
+			<if test="className != null" >and class_name = #{className}</if>
+			<if test="wxNikename != null" >and wx_nikename = #{wxNikename}</if>
+			<if test="shareTimes != null" >and share_times = #{shareTimes}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="fileQrcode != null" >and file_qrcode = #{fileQrcode}</if>
+		</trim>
+	</sql>
+
+	<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+	<sql id="Example_Where_Clause2">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="shareId != null">AND share_id like '%${shareId}%'</if>
+			<if test="classId != null">AND class_id like '%${classId}%'</if>
+			<if test="openid != null">AND openid like '%${openid}%'</if>
+			<if test="openidEq != null">AND openid = #{openidEq}</if>
+			<if test="className != null">AND class_name like '%${className}%'</if>
+			<if test="classNameEq != null">AND class_name = #{classNameEq}</if>
+			<if test="wxNikename != null">AND wx_nikename like '%${wxNikename}%'</if>
+			<if test="wxNikenameEq != null">AND wx_nikename = #{wxNikenameEq}</if>
+			<if test="shareTimes != null">AND share_times like '%${shareTimes}%'</if>
+			<if test="createDt != null">AND create_dt = #{createDt}</if>
+			<if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+			<if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+			<if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+			<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+			<if test="fileQrcode != null">AND file_qrcode like '%${fileQrcode}%'</if>
+			<if test="fileQrcodeEq != null">AND file_qrcode = #{fileQrcodeEq}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertWX_CLASSROOM_SHARE" parameterType="Object" >
+		INSERT INTO WX_CLASSROOM_SHARE (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="shareId != null ">,share_id</if>
+			<if test="classId != null ">,class_id</if>
+			<if test="openid != null ">,openid</if>
+			<if test="className != null ">,class_name</if>
+			<if test="wxNikename != null ">,wx_nikename</if>
+			<if test="shareTimes != null ">,share_times</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="fileQrcode != null ">,file_qrcode</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="shareId != null ">,#{shareId}</if>
+			<if test="classId != null ">,#{classId}</if>
+			<if test="openid != null ">,#{openid}</if>
+			<if test="className != null ">,#{className}</if>
+			<if test="wxNikename != null ">,#{wxNikename}</if>
+			<if test="shareTimes != null ">,#{shareTimes}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="fileQrcode != null ">,#{fileQrcode}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="shareId">
+			SELECT LAST_INSERT_ID() AS SHARE_ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateWX_CLASSROOM_SHARE" parameterType="Object" >
+		UPDATE WX_CLASSROOM_SHARE
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="shareId != null ">,share_id=#{shareId}</if>
+			<if test="classId != null ">,class_id=#{classId}</if>
+			<if test="openid != null ">,openid=#{openid}</if>
+			<if test="className != null ">,class_name=#{className}</if>
+			<if test="wxNikename != null ">,wx_nikename=#{wxNikename}</if>
+			<if test="shareTimes != null ">,share_times=#{shareTimes}+1</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="fileQrcode != null ">,file_qrcode=#{fileQrcode}</if>
+		</trim>
+		WHERE SHARE_ID=#{shareId}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteWX_CLASSROOM_SHARE">DELETE FROM WX_CLASSROOM_SHARE WHERE SHARE_ID=#{shareId}</delete>
+	<!-- 课程分享表 列表总数-->
+	<select id="CountFindAllWX_CLASSROOM_SHARE" resultType="java.lang.Integer">SELECT count(1) as value FROM WX_CLASSROOM_SHARE</select>
+	<select id="CountWX_CLASSROOM_SHARE" resultType="java.lang.Integer">SELECT count(1) as value FROM WX_CLASSROOM_SHARE WHERE SHARE_ID=#{shareId}</select>
+	<!-- 根据id查询 课程分享表 -->
+	<select id="FindByPK" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM WX_CLASSROOM_SHARE WHERE SHARE_ID=#{shareId}</select>
+
+	<!-- 根据各字段条件带模糊查询  课程分享表 -->
+	<select id="FreeFindWX_CLASSROOM_SHARE" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM WX_CLASSROOM_SHARE
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带模糊查询  课程分享表 记录数 -->
+	<select id="CountFreeFindWX_CLASSROOM_SHARE" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM WX_CLASSROOM_SHARE
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带排序  课程分享表 -->
+	<select id="FreeFindWX_CLASSROOM_SHAREOrdered" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM WX_CLASSROOM_SHARE
+		<include refid="Example_Where_Clause2" />
+		ORDER BY ${_orderBy}
+	</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/08/29 15:20:42 ** -->
+<!-- ************************************************************************ -->
+
+
+	<select id="findByClassroomId" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">
+
+		SELECT
+		 cc.wx_nikename,
+		  cc.share_times,
+		 cc.class_id,
+		 cc.file_qrcode,
+		 cc.class_name,
+		 cc.create_dt,
+		 tt.headimgurl,
+		 cc.modify_dt
+		FROM
+		 WX_CLASSROOM_SHARE AS cc
+		INNER JOIN (
+		 SELECT
+		  u.headimgurl,
+		  ss.class_id,
+		  u.nickname
+		 FROM
+		  wx_user AS u,
+		  wx_classroom_share AS ss
+		 WHERE
+		  u.openid = ss.openid
+		 AND ss.class_id = #{class_id}
+		) AS tt ON cc.wx_nikename= tt.nickname and cc.class_id=#{class_id}
+		ORDER BY share_times DESC
+	</select>
+	<update id="UpdateTimesWX_CLASSROOM_SHARE" parameterType="Object" >
+		update wx_classroom_share  set share_times=#{shareTimes}+1 where share_id=#{shareId};
+	</update>
+	<select id="FindByClassIdOpenid" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM WX_CLASSROOM_SHARE WHERE openid=#{openid} and class_id=#{classId}</select>
+
+
+	<select id="_findByClassroomId" resultMap="result_map_WX_CLASSROOM_SHARE" parameterType="Object">
+
+		SELECT
+		cc.wx_nikename,
+		cc.share_times,
+		cc.class_id ,
+		cc.file_qrcode,
+		cc.class_name,
+		cc.create_dt,
+		tt.headimgurl,
+		cc.modify_dt
+		FROM
+		WX_CLASSROOM_SHARE AS cc
+		INNER JOIN (
+		SELECT
+		u.headimgurl,
+		ss.class_id,
+		u.nickname
+		FROM
+		wx_user AS u,
+		wx_classroom_share AS ss
+		WHERE
+		u.openid = ss.openid
+		AND ss.class_id =#{classId}
+		) AS tt ON cc.wx_nikename= tt.nickname and cc.class_id=#{classId}
+		ORDER BY share_times DESC
+	</select>
+</mapper>   

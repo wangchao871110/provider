@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_UPLOADFILE" > 
+<!-- Result Map-->
+<resultMap id="result_map_SYS_UPLOADFILE" type="com.xfs.base.model.SysUploadfile" >
+	<result column="id" property="id"/>
+	<result column="filename" property="filename"/>
+	<result column="savename" property="savename"/>
+	<result column="filepath" property="filepath"/>
+	<result column="filesize" property="filesize"/>
+	<result column="createts" property="createts"/>
+	<result column="createuser" property="createuser"/>
+	<result column="updatets" property="updatets"/>
+	<result column="updateuser" property="updateuser"/>
+	<result column="userName" property="userName"/>
+	<result column="ownerid" property="ownerid"/>
+</resultMap>
+       
+<!-- sys_uploadfile table all fields -->
+<sql id="Base_Column_List" >
+	 id,filename,savename,filepath,filesize,createts,createuser,updatets,updateuser,ownerid
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="filename != null" >and filename = #{filename}</if>
+	<if test="savename != null" >and savename = #{savename}</if>
+	<if test="filepath != null" >and filepath = #{filepath}</if>
+	<if test="filesize != null" >and filesize = #{filesize}</if>
+	<if test="createts != null" >and createts = #{createts}</if>
+	<if test="createuser != null" >and createuser = #{createuser}</if>
+	<if test="updatets != null" >and updatets = #{updatets}</if>
+	<if test="updateuser != null" >and updateuser = #{updateuser}</if>
+	<if test="ownerid != null" >and ownerid = #{ownerid}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="filename != null">AND filename like '%${filename}%'</if>
+    <if test="filenameEq != null">AND filename = #{filenameEq}</if>
+    <if test="savename != null">AND savename like '%${savename}%'</if>
+    <if test="savenameEq != null">AND savename = #{savenameEq}</if>
+    <if test="filepath != null">AND filepath like '%${filepath}%'</if>
+    <if test="filepathEq != null">AND filepath = #{filepathEq}</if>
+    <if test="filesize != null">AND filesize like '%${filesize}%'</if>
+    <if test="filesizeEq != null">AND filesize = #{filesizeEq}</if>
+    <if test="createts != null">AND createts = #{createts}</if>
+    <if test="createtsFrom != null">AND createts&gt;=#{createtsFrom}</if>
+	<if test="createtsTo != null">AND createts&lt;=#{createtsTo}</if>
+    <if test="createuser != null">AND createuser like '%${createuser}%'</if>
+    <if test="updatets != null">AND updatets = #{updatets}</if>
+    <if test="updatetsFrom != null">AND updatets&gt;=#{updatetsFrom}</if>
+	<if test="updatetsTo != null">AND updatets&lt;=#{updatetsTo}</if>
+    <if test="updateuser != null">AND updateuser like '%${updateuser}%'</if>
+	<if test="ownerid != null">AND ownerid = #{ownerid}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSYS_UPLOADFILE" parameterType="Object" >
+  INSERT INTO SYS_UPLOADFILE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="filename != null ">,filename</if>
+	<if test="savename != null ">,savename</if>
+	<if test="filepath != null ">,filepath</if>
+	<if test="filesize != null ">,filesize</if>
+	<if test="createts != null ">,createts</if>
+	<if test="createuser != null ">,createuser</if>
+	<if test="updatets != null ">,updatets</if>
+	<if test="updateuser != null ">,updateuser</if>
+	<if test="ownerid != null ">,ownerid</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="filename != null ">,#{filename}</if>
+	<if test="savename != null ">,#{savename}</if>
+	<if test="filepath != null ">,#{filepath}</if>
+	<if test="filesize != null ">,#{filesize}</if>
+	<if test="createts != null ">,#{createts}</if>
+	<if test="createuser != null ">,#{createuser}</if>
+	<if test="updatets != null ">,#{updatets}</if>
+	<if test="updateuser != null ">,#{updateuser}</if>
+	<if test="ownerid != null ">,#{ownerid}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSYS_UPLOADFILE" parameterType="Object" >
+UPDATE SYS_UPLOADFILE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="filename != null ">,filename=#{filename}</if>
+	<if test="savename != null ">,savename=#{savename}</if>
+	<if test="filepath != null ">,filepath=#{filepath}</if>
+	<if test="filesize != null ">,filesize=#{filesize}</if>
+	<if test="createts != null ">,createts=#{createts}</if>
+	<if test="createuser != null ">,createuser=#{createuser}</if>
+	<if test="updatets != null ">,updatets=#{updatets}</if>
+	<if test="updateuser != null ">,updateuser=#{updateuser}</if>
+	<if test="ownerid != null ">,ownerid=#{ownerid}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSYS_UPLOADFILE">DELETE FROM SYS_UPLOADFILE WHERE ID=#{id}</delete>
+<!-- 文件上传表 列表总数-->
+<select id="CountFindAllSYS_UPLOADFILE" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_UPLOADFILE</select>
+<select id="CountSYS_UPLOADFILE" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_UPLOADFILE WHERE ID=#{id}</select>
+<!-- 根据id查询 文件上传表 -->
+<select id="FindByPK" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SYS_UPLOADFILE
+	WHERE ID=#{id} <if test="createuser != null ">and createuser=#{createuser}</if></select>
+
+<!-- 根据savename查询mongodb 文件上传表 -->
+<select id="findBySaveName" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" />
+	FROM SYS_UPLOADFILE
+	WHERE savename=#{savename}
+</select>
+
+<!-- 根据各字段条件带模糊查询  文件上传表 -->
+<select id="FreeFindSYS_UPLOADFILE" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SYS_UPLOADFILE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  文件上传表 记录数 -->
+<select id="CountFreeFindSYS_UPLOADFILE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SYS_UPLOADFILE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  文件上传表 -->
+<select id="FreeFindSYS_UPLOADFILEOrdered" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" />,su.user_name as userName FROM SYS_UPLOADFILE sfile
+	left join sys_user su on su.`user_id` = sfile.`createuser`
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                  ** quanjiahua,2015/12/09 16:13:49 ** -->
+<!-- ************************************************************************ -->
+
+	<select id="findSysUploadfile" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">SELECT <include refid="Base_Column_List" />FROM SYS_UPLOADFILE
+		<include refid="Example_Where_Clause" /></select>
+
+	<select id="FreeFindSYS_UPLOADFILE_By_IDS" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SYS_UPLOADFILE
+		where id in
+		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+
+	<select id="findSysUploadfileByFilePath" resultMap="result_map_SYS_UPLOADFILE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" />FROM SYS_UPLOADFILE
+		where filepath LIKE #{filepath} ORDER BY createts DESC LIMIT 0,1
+	</select>
+
+</mapper>   

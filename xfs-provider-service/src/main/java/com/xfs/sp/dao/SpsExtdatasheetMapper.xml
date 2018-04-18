@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_EXTDATASHEET" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_EXTDATASHEET" type="com.xfs.sp.model.SpsExtdatasheet" >
+	<result column="id" property="id"/>
+	<result column="exttab_id" property="exttabId"/>
+	<result column="name" property="name"/>
+</resultMap>
+       
+<!-- sps_extdatasheet table all fields -->
+<sql id="Base_Column_List" >
+	 id,exttab_id,name
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="exttabId != null" >and exttab_id = #{exttabId}</if>
+	<if test="name != null" >and name = #{name}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="exttabId != null">AND exttab_id = '${exttabId}'</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_EXTDATASHEET" parameterType="Object" >
+  INSERT INTO SPS_EXTDATASHEET (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="exttabId != null ">,exttab_id</if>
+	<if test="name != null ">,name</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="exttabId != null ">,#{exttabId}</if>
+	<if test="name != null ">,#{name}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_EXTDATASHEET" parameterType="Object" >
+UPDATE SPS_EXTDATASHEET 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="exttabId != null ">,exttab_id=#{exttabId}</if>
+	<if test="name != null ">,name=#{name}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_EXTDATASHEET">DELETE FROM SPS_EXTDATASHEET WHERE ID=#{id}</delete>
+<!-- 服务商数据Sheet表 列表总数-->
+<select id="CountFindAllSPS_EXTDATASHEET" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_EXTDATASHEET</select>
+<select id="CountSPS_EXTDATASHEET" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_EXTDATASHEET WHERE ID=#{id}</select>
+<!-- 根据id查询 服务商数据Sheet表 -->
+<select id="FindByPK" resultMap="result_map_SPS_EXTDATASHEET" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_EXTDATASHEET WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  服务商数据Sheet表 -->
+<select id="FreeFindSPS_EXTDATASHEET" resultMap="result_map_SPS_EXTDATASHEET" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_EXTDATASHEET 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  服务商数据Sheet表 记录数 -->
+<select id="CountFreeFindSPS_EXTDATASHEET" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_EXTDATASHEET 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  服务商数据Sheet表 -->
+<select id="FreeFindSPS_EXTDATASHEETOrdered" resultMap="result_map_SPS_EXTDATASHEET" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_EXTDATASHEET 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/05/17 19:55:26 ** -->
+<!-- ************************************************************************ -->
+<!-- 根据各字段条件带排序  服务商数据Sheet表 -->
+<select id="FindExcelSheetByExcelId" resultMap="result_map_SPS_EXTDATASHEET" parameterType="Integer">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_EXTDATASHEET 
+	where exttab_id =#{excelId}
+</select>
+
+
+
+</mapper>   

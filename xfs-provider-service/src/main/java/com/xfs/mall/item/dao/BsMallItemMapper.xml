@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_MALL_ITEM" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_MALL_ITEM" type="com.xfs.mall.item.model.BsMallItem" >
+	<result column="item_id" property="itemId"/>
+	<result column="area_id" property="areaId"/>
+	<result column="category_id" property="categoryId"/>
+	<result column="item_name" property="itemName"/>
+	<result column="isrequired" property="isrequired"/>
+	<result column="content" property="content"/>
+	<result column="per_month" property="perMonth"/>
+	<result column="per_month_price" property="perMonthPrice"/>
+	<result column="once" property="once"/>
+	<result column="once_price" property="oncePrice"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="area_name" property="areaName"/>
+	<result column="category_name" property="categoryName"/>
+	<result column="pid" property="pid"/>
+</resultMap>
+       
+<!-- bs_mall_item table all fields -->
+<sql id="Base_Column_List" >
+	 item_id,area_id,category_id,item_name,isrequired,content,per_month,per_month_price,once,once_price,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="itemId != null" >and item_id = #{itemId}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="categoryId != null" >and category_id = #{categoryId}</if>
+	<if test="itemName != null" >and item_name = #{itemName}</if>
+	<if test="isrequired != null" >and isrequired = #{isrequired}</if>
+	<if test="content != null" >and content = #{content}</if>
+	<if test="perMonth != null" >and per_month = #{perMonth}</if>
+	<if test="perMonthPrice != null" >and per_month_price = #{perMonthPrice}</if>
+	<if test="once != null" >and once = #{once}</if>
+	<if test="oncePrice != null" >and once_price = #{oncePrice}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="itemId != null">AND item_id = '${itemId}'</if>
+    <if test="areaId != null">AND area_id = '${areaId}'</if>
+    <if test="categoryId != null">AND category_id = '${categoryId}'</if>
+    <if test="itemName != null">AND item_name like '%${itemName}%'</if>
+    <if test="itemNameEq != null">AND item_name = #{itemNameEq}</if>
+    <if test="isrequired != null">AND isrequired like '%${isrequired}%'</if>
+    <if test="isrequiredEq != null">AND isrequired = #{isrequiredEq}</if>
+    <if test="content != null">AND content like '%${content}%'</if>
+    <if test="contentEq != null">AND content = #{contentEq}</if>
+    <if test="perMonth != null">AND per_month like '%${perMonth}%'</if>
+    <if test="perMonthEq != null">AND per_month = #{perMonthEq}</if>
+    <if test="perMonthPrice != null">AND per_month_price like '%${perMonthPrice}%'</if>
+    <if test="once != null">AND once like '%${once}%'</if>
+    <if test="onceEq != null">AND once = #{onceEq}</if>
+    <if test="oncePrice != null">AND once_price like '%${oncePrice}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_MALL_ITEM" parameterType="Object" >
+  INSERT INTO BS_MALL_ITEM (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="itemId != null ">,item_id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="categoryId != null ">,category_id</if>
+	<if test="itemName != null ">,item_name</if>
+	<if test="isrequired != null ">,isrequired</if>
+	<if test="content != null ">,content</if>
+	<if test="perMonth != null ">,per_month</if>
+	<if test="perMonthPrice != null ">,per_month_price</if>
+	<if test="once != null ">,once</if>
+	<if test="oncePrice != null ">,once_price</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="itemId != null ">,#{itemId}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="categoryId != null ">,#{categoryId}</if>
+	<if test="itemName != null ">,#{itemName}</if>
+	<if test="isrequired != null ">,#{isrequired}</if>
+	<if test="content != null ">,#{content}</if>
+	<if test="perMonth != null ">,#{perMonth}</if>
+	<if test="perMonthPrice != null ">,#{perMonthPrice}</if>
+	<if test="once != null ">,#{once}</if>
+	<if test="oncePrice != null ">,#{oncePrice}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="itemId">
+	SELECT LAST_INSERT_ID() AS ITEM_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_MALL_ITEM" parameterType="Object" >
+UPDATE BS_MALL_ITEM 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="itemId != null ">,item_id=#{itemId}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="categoryId != null ">,category_id=#{categoryId}</if>
+	<if test="itemName != null ">,item_name=#{itemName}</if>
+	<if test="isrequired != null ">,isrequired=#{isrequired}</if>
+	<if test="content != null ">,content=#{content}</if>
+	<if test="perMonth != null ">,per_month=#{perMonth}</if>
+	<if test="perMonthPrice != null ">,per_month_price=#{perMonthPrice}</if>
+	<if test="once != null ">,once=#{once}</if>
+	<if test="oncePrice != null ">,once_price=#{oncePrice}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ITEM_ID=#{itemId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_MALL_ITEM">DELETE FROM BS_MALL_ITEM WHERE ITEM_ID=#{itemId}</delete>
+<!-- bs_mall_item 列表总数-->
+<select id="CountFindAllBS_MALL_ITEM" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_ITEM</select>
+<select id="CountBS_MALL_ITEM" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_ITEM WHERE ITEM_ID=#{itemId}</select>
+<!-- 根据id查询 bs_mall_item -->
+<select id="FindByPK" resultMap="result_map_BS_MALL_ITEM" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM WHERE ITEM_ID=#{itemId}</select>
+
+<!-- 根据各字段条件带模糊查询  bs_mall_item -->
+<select id="FreeFindBS_MALL_ITEM" resultMap="result_map_BS_MALL_ITEM" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  bs_mall_item 记录数 -->
+<select id="CountFreeFindBS_MALL_ITEM" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_MALL_ITEM 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  bs_mall_item -->
+<select id="FreeFindBS_MALL_ITEMOrdered" resultMap="result_map_BS_MALL_ITEM" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/07 11:08:15 ** -->
+<!-- ************************************************************************ -->
+
+
+	<select id="findMALL_ITEM_WITHOUT_CI" resultMap="result_map_BS_MALL_ITEM" parameterType="Object">
+		select <include refid="Base_Column_List" />
+		from bs_mall_item
+		where category_id in (select category_id
+		from bs_mall_item_category t
+		where (t.category_type not in ('CI', 'CIGROUP') or t.category_type is null) and t.dr = 0
+		<if test="categoryId != null">and  (t.pid = #{categoryId} or t.category_id = #{categoryId})</if>)
+
+		and dr = 0 and per_month = 'Y'
+		order by create_by desc
+	</select>
+
+
+	<select id="BS_FreeFindBS_MALL_ITEM" resultMap="result_map_BS_MALL_ITEM" parameterType="Object">
+
+		select ba.name  as area_name, bc.category_name,bc.pid,bmi.*
+		from bs_mall_item  bmi
+		left join bs_mall_item_category bc on bmi.category_id = bc.category_id
+		left join bs_area ba on bmi.area_id = ba.area_id
+		where ifnull(bc.category_type, 'default') != 'CI'
+		<if test="dr !=null">and bmi.dr=#{dr}</if>
+		<if test="itemId !=null">and item_id = #{itemId}</if>
+		<if test="itemNameEq !=null">and item_name like '%${itemNameEq}%'</if>
+		<if test="areaId !=null">and bmi.item_id in (select item_id from BS_MALL_ITEMAREA where area_id = #{areaId})</if>
+		order by bmi.create_dt desc
+	</select>
+	<!-- 服务项目总条数查询  bs_mall_item 记录数 -->
+	<select id="BS_CountFreeFindBS_MALL_ITEM" resultType="java.lang.Integer">
+		select count(1) as value
+		from bs_mall_item  bmi
+		left join bs_mall_item_category bc on bmi.category_id = bc.category_id
+		left join bs_area ba on bmi.area_id = ba.area_id
+		where ifnull(bc.category_type, 'default') != 'CI'
+		<if test="dr !=null">and bmi.dr=#{dr}</if>
+		<if test="itemId !=null">and item_id = #{itemId}</if>
+		<if test="itemNameEq !=null">and item_name like '%${itemNameEq}%'</if>
+		<if test="areaId !=null">and bmi.item_id in (select item_id from BS_MALL_ITEMAREA where area_id = #{areaId})</if>
+	</select>
+
+
+
+
+
+
+</mapper>   

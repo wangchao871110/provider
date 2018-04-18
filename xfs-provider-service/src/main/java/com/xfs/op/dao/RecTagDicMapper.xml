@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="REC_TAG_DIC" > 
+<!-- Result Map-->
+<resultMap id="result_map_REC_TAG_DIC" type="com.xfs.op.model.RecTagDic" >
+	<result column="id" property="id"/>
+	<result column="tag_name" property="tagName"/>
+	<result column="type" property="type"/>
+	<result column="parent_id" property="parentId"/>
+	<result column="parent_name" property="parentName"/>
+	<result column="path" property="path"/>
+	<result column="is_new" property="isNew"/>
+	<result column="order_by" property="orderBy"/>
+</resultMap>
+       
+<!-- rec_tag_dic table all fields -->
+<sql id="Base_Column_List" >
+	 id,tag_name,type,parent_id,parent_name,path,is_new
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="tagName != null" >and tag_name = #{tagName}</if>
+	<if test="type != null" >and type = #{type}</if>
+	<if test="parentId != null" >and parent_id = #{parentId}</if>
+	<if test="parentName != null" >and parent_name = #{parentName}</if>
+	<if test="path != null" >and path = #{path}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id like '%${id}%'</if>
+    <if test="tagName != null">AND tag_name like '%${tagName}%'</if>
+    <if test="tagNameEq != null">AND tag_name = #{tagNameEq}</if>
+    <if test="type != null">AND type like '%${type}%'</if>
+    <if test="typeEq != null">AND type = #{typeEq}</if>
+    <if test="parentId != null">AND parent_id like '%${parentId}%'</if>
+    <if test="parentName != null">AND parent_name like '%${parentName}%'</if>
+    <if test="parentNameEq != null">AND parent_name = #{parentNameEq}</if>
+    <if test="path != null">AND path like '%${path}%'</if>
+    <if test="pathEq != null">AND path = #{pathEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertREC_TAG_DIC" parameterType="Object" >
+  INSERT INTO REC_TAG_DIC (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="tagName != null ">,tag_name</if>
+	<if test="type != null ">,type</if>
+	<if test="parentId != null ">,parent_id</if>
+	<if test="parentName != null ">,parent_name</if>
+	<if test="path != null ">,path</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="tagName != null ">,#{tagName}</if>
+	<if test="type != null ">,#{type}</if>
+	<if test="parentId != null ">,#{parentId}</if>
+	<if test="parentName != null ">,#{parentName}</if>
+	<if test="path != null ">,#{path}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateREC_TAG_DIC" parameterType="Object" >
+UPDATE REC_TAG_DIC 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="tagName != null ">,tag_name=#{tagName}</if>
+	<if test="type != null ">,type=#{type}</if>
+	<if test="parentId != null ">,parent_id=#{parentId}</if>
+	<if test="parentName != null ">,parent_name=#{parentName}</if>
+	<if test="path != null ">,path=#{path}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteREC_TAG_DIC">DELETE FROM REC_TAG_DIC WHERE ID=#{id}</delete>
+<!-- 新闻标签 列表总数-->
+<select id="CountFindAllREC_TAG_DIC" resultType="java.lang.Integer">SELECT count(1) as value FROM REC_TAG_DIC</select>
+<select id="CountREC_TAG_DIC" resultType="java.lang.Integer">SELECT count(1) as value FROM REC_TAG_DIC WHERE ID=#{id}</select>
+<!-- 根据id查询 新闻标签 -->
+<select id="FindByPK" resultMap="result_map_REC_TAG_DIC" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM REC_TAG_DIC WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  新闻标签 -->
+<select id="FreeFindREC_TAG_DIC" resultMap="result_map_REC_TAG_DIC" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM REC_TAG_DIC 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  新闻标签 记录数 -->
+<select id="CountFreeFindREC_TAG_DIC" resultType="java.lang.Integer">
+SELECT count(1) as value FROM REC_TAG_DIC 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  新闻标签 -->
+<select id="FreeFindREC_TAG_DICOrdered" resultMap="result_map_REC_TAG_DIC" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM REC_TAG_DIC 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2017/02/23 11:11:05 ** -->
+<!-- ************************************************************************ -->
+
+	<!-- 通过多类型查询标签 -->
+	<select id="FindTagByTypes" resultMap="result_map_REC_TAG_DIC" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM REC_TAG_DIC
+		WHERE type in (${types})
+	</select>
+
+	<!-- 查询用户分类 -->
+	<select id="FindUserTagById" resultMap="result_map_REC_TAG_DIC" parameterType="Object">
+		select t.*,ut.order_by FROM rec_tag_dic t LEFT JOIN rec_user_tag ut ON t.id=ut.tag_id AND t.type in('MIX','HEAD')  where ut.user_id=#{userId}
+		<if test="watch != null">
+            and ut.watch = #{watch}
+        </if>
+        ORDER  by ut.order_by
+	</select>
+
+</mapper>   

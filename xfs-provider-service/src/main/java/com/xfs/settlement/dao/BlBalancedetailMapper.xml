@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BL_BALANCEDETAIL" > 
+<!-- Result Map-->
+<resultMap id="result_map_BL_BALANCEDETAIL" type="com.xfs.settlement.model.BlBalancedetail" >
+	<result column="id" property="id"/>
+	<result column="owner" property="owner"/>
+	<result column="order_id" property="orderId"/>
+	<result column="owner_type" property="ownerType"/>
+	<result column="balance" property="balance"/>
+	<result column="amount" property="amount"/>
+	<result column="trade_type" property="tradeType"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="ts" property="ts"/>
+</resultMap>
+       
+<!-- bl_balancedetail table all fields -->
+<sql id="Base_Column_List" >
+	 id,owner,owner_type,order_id,balance,amount,trade_type,create_by,create_dt,modify_by,modify_dt,dr,ts
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="orderId != null" >and order_id = #{orderId}</if>
+	<if test="owner != null" >and owner = #{owner}</if>
+	<if test="ownerType != null" >and owner_type = #{ownerType}</if>
+	<if test="balance != null" >and balance = #{balance}</if>
+	<if test="amount != null" >and amount = #{amount}</if>
+	<if test="tradeType != null" >and trade_type = #{tradeType}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="ts != null" >and ts = #{ts}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="orderId != null">AND order_id like '%${orderId}%'</if>
+    <if test="orderIdEq != null">AND order_id = #{orderIdEq}</if>
+    <if test="owner != null">AND owner = #{owner}</if>
+	<if test="orderId != null" >and order_id = #{orderId}</if>
+    <if test="ownerType != null">AND owner_type like '%${ownerType}%'</if>
+    <if test="ownerTypeEq != null">AND owner_type = #{ownerTypeEq}</if>
+    <if test="balance != null">AND balance like '%${balance}%'</if>
+    <if test="amount != null">AND amount like '%${amount}%'</if>
+    <if test="tradeType != null">AND trade_type like '%${tradeType}%'</if>
+    <if test="tradeTypeEq != null">AND trade_type = #{tradeTypeEq}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+    <if test="ts != null">AND ts like '%${ts}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBL_BALANCEDETAIL" parameterType="Object" >
+  INSERT INTO BL_BALANCEDETAIL (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="owner != null ">,owner</if>
+	<if test="orderId != null" >,order_id</if>
+	<if test="ownerType != null ">,owner_type</if>
+	<if test="balance != null ">,balance</if>
+	<if test="amount != null ">,amount</if>
+	<if test="tradeType != null ">,trade_type</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="ts != null ">,ts</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="owner != null ">,#{owner}</if>
+	<if test="orderId != null" >,#{orderId}</if>
+	<if test="ownerType != null ">,#{ownerType}</if>
+	<if test="balance != null ">,#{balance}</if>
+	<if test="amount != null ">,#{amount}</if>
+	<if test="tradeType != null ">,#{tradeType}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="ts != null ">,#{ts}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBL_BALANCEDETAIL" parameterType="Object" >
+UPDATE BL_BALANCEDETAIL 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="owner != null ">,owner=#{owner}</if>
+	<if test="orderId != null" >,order_id#{orderId}</if>
+	<if test="ownerType != null ">,owner_type=#{ownerType}</if>
+	<if test="balance != null ">,balance=#{balance}</if>
+	<if test="amount != null ">,amount=#{amount}</if>
+	<if test="tradeType != null ">,trade_type=#{tradeType}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="ts != null ">,ts=#{ts}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBL_BALANCEDETAIL">DELETE FROM BL_BALANCEDETAIL WHERE ID=#{id}</delete>
+<!-- 任务单历史 列表总数-->
+<select id="CountFindAllBL_BALANCEDETAIL" resultType="java.lang.Integer">SELECT count(1) as value FROM BL_BALANCEDETAIL</select>
+<select id="CountBL_BALANCEDETAIL" resultType="java.lang.Integer">SELECT count(1) as value FROM BL_BALANCEDETAIL WHERE ID=#{id}</select>
+<!-- 根据id查询 任务单历史 -->
+<select id="FindByPK" resultMap="result_map_BL_BALANCEDETAIL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BL_BALANCEDETAIL WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  任务单历史 -->
+<select id="FreeFindBL_BALANCEDETAIL" resultMap="result_map_BL_BALANCEDETAIL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BL_BALANCEDETAIL 
+	 <include refid="Example_Where_Clause2" />
+	ORDER BY create_dt DESC
+</select>
+<!-- 根据各字段条件带模糊查询  任务单历史 记录数 -->
+<select id="CountFreeFindBL_BALANCEDETAIL" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BL_BALANCEDETAIL 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  任务单历史 -->
+<select id="FreeFindBL_BALANCEDETAILOrdered" resultMap="result_map_BL_BALANCEDETAIL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BL_BALANCEDETAIL 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/08/12 14:54:01 ** -->
+<!-- ************************************************************************ -->
+
+	<!-- 获取详情 -->
+	<select id="QUERY_DETAIL_BY_ID" resultType="java.util.Map" parameterType="Object">
+		SELECT vo.*,bl.balance,bl.amount as bamount,bl.trade_type FROM bl_balancedetail bl
+		INNER JOIN bl_pay_voucher vo ON bl.order_id = vo.order_id AND  bl.id = #{id} AND bl.owner = #{owner} AND  bl.owner_type = 'CORP'
+	</select>
+
+
+	<select id="queryBalanceDetailList" resultType="java.util.Map" parameterType="Object">
+		SELECT bl.*,vo.outer_trade_no,vo.order_id,vo.id as vo_id,vo.pay_type,vo.product_intro FROM bl_balancedetail bl
+		INNER JOIN bl_pay_voucher vo ON bl.order_id = vo.order_id AND bl.owner = #{owner} AND  bl.owner_type = 'CORP' AND IFNULL(bl.dr,0) = 0
+		ORDER BY bl.create_dt DESC
+	</select>
+
+	<select id="queryBalanceDetailCount" resultType="java.lang.Integer" parameterType="Object">
+		SELECT count(1) as value FROM bl_balancedetail bl
+		INNER JOIN bl_pay_voucher vo ON bl.order_id = vo.order_id AND bl.owner = #{owner} AND  bl.owner_type = 'CORP' AND IFNULL(bl.dr,0) = 0
+		ORDER BY bl.create_dt DESC
+	</select>
+
+
+</mapper>   

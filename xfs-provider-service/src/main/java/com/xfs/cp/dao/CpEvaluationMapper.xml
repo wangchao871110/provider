@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_EVALUATION" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_EVALUATION" type="com.xfs.cp.model.CpEvaluation" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="sp_id_by" property="spIdBy"/>
+	<result column="order_id" property="orderId"/>
+	<result column="cooperation_star" property="cooperationStar"/>
+	<result column="profession_num" property="professionNum"/>
+	<result column="attitude_num" property="attitudeNum"/>
+	<result column="efficiency_num" property="efficiencyNum"/>
+	<result column="power_num" property="powerNum"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="type" property="type"/>
+	<result column="anonymous" property="anonymous"/>
+	<result column="content" property="content"/>
+	<result column="stage" property="stage"/>
+</resultMap>
+       
+<!-- cp_evaluation table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,sp_id_by,order_id,cooperation_star,profession_num,attitude_num,efficiency_num,power_num,create_by,create_dt,modify_by,modify_dt,dr,type,anonymous,content,stage
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="spIdBy != null" >and sp_id_by = #{spIdBy}</if>
+	<if test="orderId != null" >and order_id = #{orderId}</if>
+	<if test="cooperationStar != null" >and cooperation_star = #{cooperationStar}</if>
+	<if test="professionNum != null" >and profession_num = #{professionNum}</if>
+	<if test="attitudeNum != null" >and attitude_num = #{attitudeNum}</if>
+	<if test="efficiencyNum != null" >and efficiency_num = #{efficiencyNum}</if>
+	<if test="powerNum != null" >and power_num = #{powerNum}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="type != null" >and type = #{type}</if>
+	<if test="anonymous != null" >and anonymous = #{anonymous}</if>
+	<if test="content != null" >and content = #{content}</if>
+	<if test="stage != null" >and stage = #{stage}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = #{spId}</if>
+    <if test="spIdBy != null">AND sp_id_by = #{spIdBy}</if>
+    <if test="orderId != null">AND order_id = #{orderId}</if>
+    <if test="cooperationStar != null">AND cooperation_star like '%${cooperationStar}%'</if>
+    <if test="professionNum != null">AND profession_num like '%${professionNum}%'</if>
+    <if test="attitudeNum != null">AND attitude_num like '%${attitudeNum}%'</if>
+    <if test="efficiencyNum != null">AND efficiency_num like '%${efficiencyNum}%'</if>
+    <if test="powerNum != null">AND power_num like '%${powerNum}%'</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+    <if test="type != null" >and type = #{type}</if>
+	<if test="anonymous != null" >and anonymous = #{anonymous}</if>
+	<if test="content != null" >and content = #{content}</if>
+	<if test="stage != null" >and stage = #{stage}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_EVALUATION" parameterType="Object" >
+  INSERT INTO CP_EVALUATION (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="spIdBy != null ">,sp_id_by</if>
+	<if test="orderId != null ">,order_id</if>
+	<if test="cooperationStar != null ">,cooperation_star</if>
+	<if test="professionNum != null ">,profession_num</if>
+	<if test="attitudeNum != null ">,attitude_num</if>
+	<if test="efficiencyNum != null ">,efficiency_num</if>
+	<if test="powerNum != null ">,power_num</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="type != null" >,type</if>
+	<if test="anonymous != null" >,anonymous</if>
+	<if test="content != null" >,content</if>
+	<if test="stage != null" >,stage</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="spIdBy != null ">,#{spIdBy}</if>
+	<if test="orderId != null ">,#{orderId}</if>
+	<if test="cooperationStar != null ">,#{cooperationStar}</if>
+	<if test="professionNum != null ">,#{professionNum}</if>
+	<if test="attitudeNum != null ">,#{attitudeNum}</if>
+	<if test="efficiencyNum != null ">,#{efficiencyNum}</if>
+	<if test="powerNum != null ">,#{powerNum}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="type != null" >,#{type}</if>
+	<if test="anonymous != null" >,#{anonymous}</if>
+	<if test="content != null" >,#{content}</if>
+	<if test="stage != null" >,#{stage}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_EVALUATION" parameterType="Object" >
+UPDATE CP_EVALUATION 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="spIdBy != null ">,sp_id_by=#{spIdBy}</if>
+	<if test="orderId != null ">,order_id=#{orderId}</if>
+	<if test="cooperationStar != null ">,cooperation_star=#{cooperationStar}</if>
+	<if test="professionNum != null ">,profession_num=#{professionNum}</if>
+	<if test="attitudeNum != null ">,attitude_num=#{attitudeNum}</if>
+	<if test="efficiencyNum != null ">,efficiency_num=#{efficiencyNum}</if>
+	<if test="powerNum != null ">,power_num=#{powerNum}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="type != null" >,type=#{type}</if>
+	<if test="anonymous != null" >,anonymous=#{anonymous}</if>
+	<if test="content != null" >,content=#{content}</if>
+	<if test="stage != null" >,stage=#{stage}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_EVALUATION">DELETE FROM CP_EVALUATION WHERE ID=#{id}</delete>
+<!-- 评价表 列表总数-->
+<select id="CountFindAllCP_EVALUATION" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_EVALUATION</select>
+<select id="CountCP_EVALUATION" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_EVALUATION WHERE ID=#{id}</select>
+<!-- 根据id查询 评价表 -->
+<select id="FindByPK" resultMap="result_map_CP_EVALUATION" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_EVALUATION WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  评价表 -->
+<select id="FreeFindCP_EVALUATION" resultMap="result_map_CP_EVALUATION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_EVALUATION 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  评价表 记录数 -->
+<select id="CountFreeFindCP_EVALUATION" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_EVALUATION 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  评价表 -->
+<select id="FreeFindCP_EVALUATIONOrdered" resultMap="result_map_CP_EVALUATION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_EVALUATION 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/12 15:26:26 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 根据服务商ID获取用户点评和合作满意度 -->
+<select id="findEvaluation" resultMap="result_map_CP_EVALUATION" parameterType="Object">
+	SELECT convert( IFNULL(AVG(e.cooperation_star),0),decimal) as cooperation_star
+		,convert( IFNULL(AVG(e.profession_num),0),decimal) as profession_num
+		,convert( IFNULL(AVG(e.attitude_num),0),decimal) as attitude_num
+		,convert( IFNULL(AVG(e.efficiency_num),0),decimal) as efficiency_num
+		,convert( IFNULL(AVG(e.power_num),0),decimal) as power_num
+	FROM CP_EVALUATION e where e.sp_id_by=#{spIdBy}
+</select>
+
+	<!--关联查询双方服务商评价投诉信息 -->
+	<select id="FreeFindAccount_Manage" resultType="Map" parameterType="Object">
+		SELECT
+		ce.id,
+		ce.type,
+		ce.order_id,
+		ce.create_dt,
+		ce.profession_num,
+		ce.profession_num,
+		ce.attitude_num,
+		ce.efficiency_num,
+		ce.power_num,
+		ce.content,
+		co.order_id AS cporderId,
+		csa.`name` AS aname,
+		csb.`name` AS bname
+		FROM
+		cp_evaluation AS ce
+		LEFT JOIN cp_order AS co ON ce.order_id = co.id
+		AND co.dr = 0
+		LEFT JOIN cp_service AS csa ON ce.sp_id = csa.saas_sp_id
+		AND csa.dr = 0
+		LEFT JOIN cp_service AS csb ON ce.sp_id_by = csb.saas_sp_id
+		AND csb.dr = 0
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="cporderId != null">AND (co.order_id like '%${cporderId}%' or csa.name like '%${cporderId}%' OR csb.name like '%${cporderId}%')</if>
+			<if test="type != null" >and ce.type = #{type}</if>
+			<if test="orderId != null" >and ce.order_id = #{orderId}</if>
+			<if test="id != null" >and ce.id = #{id}</if>
+			<if test="stage != null" >and ce.stage = #{stage}</if>
+			<if test="createDtFrom != null">AND ce.create_dt&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND ce.create_dt&lt;=concat(substring(#{createDtTo},1,10),' ','23:59:59')</if>
+			AND ce.dr=0
+			ORDER BY ce.create_dt DESC
+		</trim>
+	</select>
+
+
+	<!--关联查询双方服务商评价投诉信息数量 -->
+	<select id="FreeFindAccount_Count" resultType="java.lang.Integer">
+		SELECT
+		count(1)
+		FROM
+		cp_evaluation AS ce
+		LEFT JOIN cp_order AS co ON ce.order_id = co.id
+		AND co.dr = 0
+		LEFT JOIN cp_service AS csa ON ce.sp_id = csa.saas_sp_id
+		AND csa.dr = 0
+		LEFT JOIN cp_service AS csb ON ce.sp_id_by = csb.saas_sp_id
+		AND csb.dr = 0
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="cporderId != null">AND (co.order_id like '%${cporderId}%' or csa.name like '%${cporderId}%' OR csb.name like '%${cporderId}%')</if>
+			<if test="type != null" >and ce.type = #{type}</if>
+			<if test="id != null" >and ce.id = #{id}</if>
+			<if test="orderId != null" >and ce.order_id = #{orderId}</if>
+			<if test="stage != null" >and ce.stage = #{stage}</if>
+			<if test="createDtFrom != null">AND ce.create_dt&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND ce.create_dt&lt;=concat(substring(#{createDtTo},1,10),' ','23:59:59')</if>
+			AND ce.dr=0
+		</trim>
+	</select>
+
+</mapper>   

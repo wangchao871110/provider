@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_OL_MATERIAL" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_OL_MATERIAL" type="com.xfs.openlist.model.SpsOlMaterial" >
+	<result column="rel_id" property="relId"/>
+	<result column="ol_id" property="olId"/>
+	<result column="material_id" property="materialId"/>
+	<result column="rank" property="rank"/>
+</resultMap>
+       
+<!-- sps_ol_material table all fields -->
+<sql id="Base_Column_List" >
+	 rel_id,ol_id,material_id,rank
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="relId != null" >and rel_id = #{relId}</if>
+	<if test="olId != null" >and ol_id = #{olId}</if>
+	<if test="materialId != null" >and material_id = #{materialId}</if>
+	<if test="rank != null" >and rank = #{rank}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="relId != null">AND rel_id = '${relId}'</if>
+    <if test="olId != null">AND ol_id = #{olId}</if>
+    <if test="materialId != null">AND material_id = '${materialId}'</if>
+    <if test="rank != null">AND rank like '%${rank}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_OL_MATERIAL" parameterType="Object" >
+  INSERT INTO SPS_OL_MATERIAL (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="relId != null ">,rel_id</if>
+	<if test="olId != null ">,ol_id</if>
+	<if test="materialId != null ">,material_id</if>
+	<if test="rank != null ">,rank</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="relId != null ">,#{relId}</if>
+	<if test="olId != null ">,#{olId}</if>
+	<if test="materialId != null ">,#{materialId}</if>
+	<if test="rank != null ">,#{rank}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="relId">
+	SELECT LAST_INSERT_ID() AS REL_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_OL_MATERIAL" parameterType="Object" >
+UPDATE SPS_OL_MATERIAL 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="relId != null ">,rel_id=#{relId}</if>
+	<if test="olId != null ">,ol_id=#{olId}</if>
+	<if test="materialId != null ">,material_id=#{materialId}</if>
+	<if test="rank != null ">,rank=#{rank}</if>
+  </trim>
+WHERE REL_ID=#{relId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_OL_MATERIAL">DELETE FROM SPS_OL_MATERIAL WHERE REL_ID=#{relId}</delete>
+<!-- openlist材料 列表总数-->
+<select id="CountFindAllSPS_OL_MATERIAL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_OL_MATERIAL</select>
+<select id="CountSPS_OL_MATERIAL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_OL_MATERIAL WHERE REL_ID=#{relId}</select>
+<!-- 根据id查询 openlist材料 -->
+<select id="FindByPK" resultMap="result_map_SPS_OL_MATERIAL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_OL_MATERIAL WHERE REL_ID=#{relId}</select>
+
+<!-- 根据各字段条件带模糊查询  openlist材料 -->
+<select id="FreeFindSPS_OL_MATERIAL" resultMap="result_map_SPS_OL_MATERIAL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_OL_MATERIAL 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  openlist材料 记录数 -->
+<select id="CountFreeFindSPS_OL_MATERIAL" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_OL_MATERIAL 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  openlist材料 -->
+<select id="FreeFindSPS_OL_MATERIALOrdered" resultMap="result_map_SPS_OL_MATERIAL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_OL_MATERIAL 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/04/09 16:45:56 ** -->
+<!-- ************************************************************************ -->
+
+<select id="FindSPS_OL_MATERIAL" resultType="java.util.Map" parameterType="Object">
+	SELECT am.* FROM `sps_ol_material` om
+		INNER JOIN `sps_areamaterial` am ON (om.`material_id` = am.`material_id`)
+		WHERE om.`ol_id` = #{olId} ORDER BY am.`material_type` DESC, om.`rel_id` ASC;
+</select>
+
+<delete id="DeleteSPS_OL_MATERIAL_BY_OLID">DELETE FROM SPS_OL_MATERIAL WHERE OL_ID=#{olId}</delete>
+
+<select id="CountSPS_OL_MATERIAL_For_Check" resultType="java.lang.Integer" parameterType="Object">
+	SELECT COUNT(1) FROM sps_ol_material WHERE  material_id = #{materialId}
+	<if test="olId != null "> AND ol_id != #{olId}</if>
+</select>
+
+</mapper>   

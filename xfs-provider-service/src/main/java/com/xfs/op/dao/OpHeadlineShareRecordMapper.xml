@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OP_HEADLINE_SHARE_RECORD" > 
+<!-- Result Map-->
+<resultMap id="result_map_OP_HEADLINE_SHARE_RECORD" type="com.xfs.op.model.OpHeadlineShareRecord" >
+	<result column="id" property="id"/>
+	<result column="share_user_id" property="shareUserId"/>
+	<result column="audience_ids" property="audienceIds"/>
+	<result column="content_id" property="contentId"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="create_by" property="createBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- op_headline_share_record table all fields -->
+<sql id="Base_Column_List" >
+	 id,share_user_id,content_id,audience_ids,create_dt,create_by,modify_dt,modify_by,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="shareUserId != null" >and share_user_id = #{shareUserId}</if>
+	<if test="audienceIds != null" >and audience_ids = #{audienceIds}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="shareUserId != null">AND share_user_id = #{shareUserId}</if>
+    <if test="audienceIds != null">AND audience_ids like '%${audienceIds}%'</if>
+    <if test="contentId != null">AND content_id = #{contentId}</if>
+  	<if test="audienceIdsEq != null">AND audience_ids = #{audienceIdsEq}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="modifyBy != null">AND modify_by like '%${modifyBy}%'</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertOP_HEADLINE_SHARE_RECORD" parameterType="Object" >
+  INSERT INTO OP_HEADLINE_SHARE_RECORD (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="shareUserId != null ">,share_user_id</if>
+  	<if test="contentId != null ">,content_id</if>
+	<if test="audienceIds != null ">,audience_ids</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="shareUserId != null ">,#{shareUserId}</if>
+  	<if test="contentId != null ">,#{contentId}</if>
+	<if test="audienceIds != null ">,#{audienceIds}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateOP_HEADLINE_SHARE_RECORD" parameterType="Object" >
+UPDATE OP_HEADLINE_SHARE_RECORD 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="shareUserId != null ">,share_user_id=#{shareUserId}</if>
+  	<if test="contentId != null ">,content_id=#{contentId}</if>
+	<if test="audienceIds != null ">,audience_ids=#{audienceIds}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteOP_HEADLINE_SHARE_RECORD">DELETE FROM OP_HEADLINE_SHARE_RECORD WHERE ID=#{id}</delete>
+<!-- 头条分享记录 列表总数-->
+<select id="CountFindAllOP_HEADLINE_SHARE_RECORD" resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HEADLINE_SHARE_RECORD</select>
+<select id="CountOP_HEADLINE_SHARE_RECORD" resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HEADLINE_SHARE_RECORD WHERE ID=#{id}</select>
+<!-- 根据id查询 头条分享记录 -->
+<select id="FindByPK" resultMap="result_map_OP_HEADLINE_SHARE_RECORD" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM OP_HEADLINE_SHARE_RECORD WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  头条分享记录 -->
+<select id="FreeFindOP_HEADLINE_SHARE_RECORD" resultMap="result_map_OP_HEADLINE_SHARE_RECORD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM OP_HEADLINE_SHARE_RECORD 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  头条分享记录 记录数 -->
+<select id="CountFreeFindOP_HEADLINE_SHARE_RECORD" resultType="java.lang.Integer">
+SELECT count(1) as value FROM OP_HEADLINE_SHARE_RECORD 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  头条分享记录 -->
+<select id="FreeFindOP_HEADLINE_SHARE_RECORDOrdered" resultMap="result_map_OP_HEADLINE_SHARE_RECORD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM OP_HEADLINE_SHARE_RECORD 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2017/03/09 10:56:41 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

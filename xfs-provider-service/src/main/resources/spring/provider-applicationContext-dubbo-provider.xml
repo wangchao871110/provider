@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样  -->
+    <dubbo:application name="xfs-provider" owner="zhangyan"/>
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <dubbo:registry protocol="zookeeper" address="${zk.address}"/>
+
+    <!--建议由服务提供方设置超时，因为一个方法需要执行多长时间，服务提供方更清楚，如果一个消费方同时引用多个服务，就不需要关心每个服务的超时设置 -->
+    <dubbo:provider timeout="6000"/>
+
+    <!-- 订单操作接口 -->
+    <dubbo:service interface="com.xfs.order.service.IOrderService"
+                   ref="orderService" version="1.0" owner="zhangyan" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.order.service.IBaseTestDubboService"
+                   ref="baseTestDubboService" version="1.0" owner="zhangyan" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.order.service.IBaseTestDubbo2Service"
+                   ref="baseTestDubbo2Service" version="1.0" owner="zhangyan" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpAccountService"
+                   ref="cpAccountService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpAreaService"
+                   ref="cpAreaService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpAttentionService"
+                   ref="cpAttentionService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpBusinessService"
+                   ref="cpBusinessService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpCustomerPhoneService"
+                   ref="cpCustomerPhoneService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpEvaluationService"
+                   ref="cpEvaluationService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpImpressLogService"
+                   ref="cpImpressLogService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpImpressService"
+                   ref="cpImpressService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpIndustryService"
+                   ref="cpIndustryService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpNoteService"
+                   ref="cpNoteService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpOrderLogService"
+                   ref="cpOrderLogService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpRemarkLogService"
+                   ref="cpRemarkLogService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpPackageService"
+                   ref="cpPackageService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpQuotedPriceService"
+                   ref="cpQuotedPriceService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpRelationService"
+                   ref="cpRelationService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+    <dubbo:service interface="com.xfs.cp.service.CpServiceService"
+                   ref="cpServiceService" version="1.0" owner="zhaofalei" timeout="5000"/>
+
+
+    <!-- -->
+    <dubbo:service interface="com.xfs.base.service.SysUploadfileService" ref="sysUploadfileService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bs.service.LoginService" ref="loginService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.CmContractAttService" ref="cmContractAttService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.CsRegistHistoryService" ref="csRegistHistoryService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.SpsTaskHistoryService" ref="spsTaskHistoryService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.MoonUserTicketService" ref="moonUserTicketService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTaskBotCrawlerService" ref="spsTaskBotCrawlerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsFeeEmponcedetailService" ref="spsFeeEmponcedetailService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.timer.service.ITaskTriggerService" ref="iTaskTriggerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.report.service.BsSeachService" ref="bsSeachService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bs.service.BsEcontractApplyService" ref="bsEcontractApplyService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.timer.service.ITaskJobService" ref="iTaskJobService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsAccountRatioService" ref="spsAccountRatioService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SpsExtdataService" ref="spsExtdataService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bs.service.SysNotificationService" ref="sysNotificationService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.corp.service.CmEmployeeInsuranceService" ref="cmEmployeeInsuranceService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <!--<dubbo:service interface="com.xfs.order.service.IBaseTestDubbo2Service" ref="IBaseTestDubbo2Service" version="1.0"-->
+                   <!--owner="zhaofalei" timeout="5000"/>-->
+    <dubbo:service interface="com.xfs.base.service.CsQuestionnaireService" ref="csQuestionnaireService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsQuestionAnswerService" ref="bsQuestionAnswerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysFunctionService" ref="sysFunctionService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsQuestionService" ref="bsQuestionService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.timer.service.TaskBotAnalysisService" ref="taskBotAnalysisService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BsArearatioverService" ref="bsArearatioverService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsChannelUserService" ref="bsChannelUserService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.SpsCiAgentPriceService" ref="spsCiAgentPriceService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.BsCiProductService" ref="bsCiProductService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.score.service.BdScoreDimensionService" ref="bdScoreDimensionService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BdBsareatypeService" ref="bdBsareatypeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.UserService" ref="userService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SecWxService" ref="secWxService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BdInsuranceareaService" ref="bdInsuranceareaService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsSocialsecurityService" ref="spsSocialsecurityService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsAreamaterialService" ref="spsAreamaterialService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsEmpActualdetailService" ref="spsEmpActualdetailService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.timer.service.ITaskService" ref="iTaskService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.corp.service.CmEmployeeService" ref="cmEmployeeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsChannelService" ref="bsChannelService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysRelRoleFuncService" ref="sysRelRoleFuncService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sps.service.TaskDataParseInterface" ref="taskDataParseInterface" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.BdBillruleService" ref="bdBillruleService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.wxclassroom.service.WxClassroomShareService" ref="wxClassroomShareService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.SpsTaskService" ref="spsTaskService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdLotteryRuleService" ref="bdLotteryRuleService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdLotteryPoolService" ref="bdLotteryPoolService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayAccountService" ref="blPayAccountService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsBillitemService" ref="spsBillitemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BdBstypeService" ref="bdBstypeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsAccountinfoService" ref="spsAccountinfoService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.SpsBatchChangeRatioService" ref="spsBatchChangeRatioService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayVoucherService" ref="blPayVoucherService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdLotteryRecordService" ref="bdLotteryRecordService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsServiceareaService" ref="spsServiceareaService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.CpCiProdService" ref="cpCiProdService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayVoucherhistoryService" ref="blPayVoucherhistoryService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTsOpresultService" ref="spsTsOpresultService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTsAutoStepService" ref="spsTsAutoStepService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsOlAreaauthService" ref="spsOlAreaauthService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.SpsCiOrderService" ref="spsCiOrderService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdActivityJoinRecordService" ref="bdActivityJoinRecordService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.MoonUserService" ref="moonUserService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysUserService" ref="sysUserService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SpsExtdataheadService" ref="spsExtdataheadService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTsAutoPageService" ref="spsTsAutoPageService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsAreaService" ref="bsAreaService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.score.service.BdScoreCollectionService" ref="bdScoreCollectionService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.wxclassroom.service.WxUserService" ref="wxUserService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.BsCiGroupService" ref="bsCiGroupService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsOlEmpbusinessService" ref="spsOlEmpbusinessService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.score.service.BdScoreItemDetailService" ref="bdScoreItemDetailService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsChangedocService" ref="spsChangedocService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsAreabusiService" ref="bsAreabusiService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTaskBotService" ref="spsTaskBotService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.corp.service.CmDepartmentService" ref="cmDepartmentService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayChannelService" ref="blPayChannelService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsFeeCorponceService" ref="spsFeeCorponceService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.AdminService" ref="adminService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysFunctionDataService" ref="sysFunctionDataService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.CmContractAttitemService" ref="cmContractAttitemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysMailtemplateService" ref="sysMailtemplateService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <!--<dubbo:service interface="com.xfs.order.service.IBaseTestDubboService" ref="IBaseTestDubboService" version="1.0"-->
+                   <!--owner="zhaofalei" timeout="5000"/>-->
+    <dubbo:service interface="com.xfs.business.service.BsArearatioscopeService" ref="bsArearatioscopeService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysDictitemService" ref="sysDictitemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.fastlist.service.FastListService" ref="fastListService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsFeeEmponceService" ref="spsFeeEmponceService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.corp.service.CmCorpService" ref="cmCorpService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysTenantparamlistService" ref="sysTenantparamlistService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SpsExtdatasheetService" ref="spsExtdatasheetService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BdEvaluationService" ref="bdEvaluationService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsEmpActualService" ref="spsEmpActualService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BdBusinessfieldService" ref="bdBusinessfieldService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BdInsuranceService" ref="bdInsuranceService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpServiceService" ref="spServiceService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.order.service.IOrderService" ref="iOrderService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.BsCiGroupItemService" ref="bsCiGroupItemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdUserPrizeService" ref="bdUserPrizeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpCmRelationService" ref="spCmRelationService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsSchemeEmpService" ref="spsSchemeEmpService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <!--<dubbo:service interface="com.xfs.base.service.Bs<dubbo:service interface=" companyInfoService" ref="-->
+    <!--cpCustomerPhoneService" version="1.0" owner="zhaofalei" timeout="5000" />-->
+    <dubbo:service interface="com.xfs.business.service.BdBstypeareafieldService" ref="bdBstypeareafieldService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sps.service.QssFileService" ref="qssFileService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysLogsService" ref="sysLogsService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayBusinessrelService" ref="blPayBusinessrelService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bs.service.BsSaasfeestandardService" ref="bsSaasfeestandardService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlPayBusinessService" ref="blPayBusinessService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysFunctionCrudService" ref="sysFunctionCrudService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BsArearatioService" ref="bsArearatioService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTsCitycodeService" ref="spsTsCitycodeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysFunctionCategoryService" ref="sysFunctionCategoryService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysDictionaryService" ref="sysDictionaryService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.BsCiInsurerService" ref="bsCiInsurerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysMessageService" ref="sysMessageService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsOlMaterialService" ref="spsOlMaterialService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsBillService" ref="spsBillService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.wxclassroom.service.WxClassroomService" ref="wxClassroomService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsBillMarginService" ref="spsBillMarginService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.TaskProgressService" ref="taskProgressService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdLotteryService" ref="bdLotteryService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsAccountService" ref="spsAccountService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsOlCorpsetService" ref="spsOlCorpsetService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsSchemeItemService" ref="spsSchemeItemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.CpCiOrderService" ref="cpCiOrderService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.insurance.service.BsCiSchemeService" ref="bsCiSchemeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.ts.service.SpsTsPersonFlowService" ref="spsTsPersonFlowService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysRoleService" ref="sysRoleService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsBillDetailService" ref="spsBillDetailService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BdPrizeService" ref="bdPrizeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.BdBstypefieldService" ref="bdBstypefieldService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.CmContractService" ref="cmContractService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bs.service.MonitorExplainService" ref="monitorExplainService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.CmContractSignService" ref="cmContractSignService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.SysUserRoleService" ref="sysUserRoleService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.openlist.service.SpsOlService" ref="spsOlService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlBalanceService" ref="blBalanceService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.BsChannelOrgService" ref="bsChannelOrgService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.SpsFixedpointhospitalService" ref="spsFixedpointhospitalService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.score.service.BdScoreItemService" ref="bdScoreItemService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.score.service.BdScoreDimensionDetailService" ref="bdScoreDimensionDetailService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.MoonTicketService" ref="moonTicketService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.bill.service.SpsBillEmpService" ref="spsBillEmpService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.settlement.service.BlBalancedetailService" ref="blBalancedetailService"
+                   version="1.0" owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.sp.service.SpsSchemeService" ref="spsSchemeService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.corp.service.BsCompanyInfoService" ref="bsCompanyInfoService"
+     version="1.0" owner="zhaofalei" timeout="5000" />
+    <dubbo:service interface="com.xfs.bs.service.BsSppayrecordService" ref="bsSppayrecordService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.activity.service.BsMallBannerService" ref="bsMallBannerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.business.service.CalcScore" ref="calcScore" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.timer.service.TaskBotCrawlerService" ref="taskBotCrawlerService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.base.service.SysTenantparamService" ref="sysTenantparamService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+    <dubbo:service interface="com.xfs.user.service.ServiceLoginService" ref="serviceLoginService" version="1.0"
+                   owner="zhaofalei" timeout="5000"/>
+
+
+</beans>

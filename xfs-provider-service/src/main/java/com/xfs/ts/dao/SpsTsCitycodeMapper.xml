@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_TS_CITYCODE" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_TS_CITYCODE" type="com.xfs.ts.model.SpsTsCitycode" >
+	<result column="id" property="id"/>
+	<result column="area_id" property="areaId"/>
+	<result column="city_code" property="cityCode"/>
+	<result column="insuranceloginurl" property="insuranceloginurl"/>
+	<result column="fundloginurl" property="fundloginurl"/>
+	<result column="insurancetypes" property="insurancetypes"/>
+	<result column="fundtypes" property="fundtypes"/>
+	<result column="ukey_type" property="ukeyType"/>
+	<result column="areaName" property="areaName"/>
+</resultMap>
+       
+<!-- sps_ts_citycode table all fields -->
+<sql id="Base_Column_List" >
+	 id,area_id,city_code,insuranceloginurl,fundloginurl,insurancetypes,fundtypes,ukey_type
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="cityCode != null" >and city_code = #{cityCode}</if>
+	<if test="insuranceloginurl != null" >and insuranceloginurl = #{insuranceloginurl}</if>
+	<if test="fundloginurl != null" >and fundloginurl = #{fundloginurl}</if>
+	<if test="insurancetypes != null" >and insurancetypes = #{insurancetypes}</if>
+	<if test="fundtypes != null" >and fundtypes = #{fundtypes}</if>
+    <if test="ukeyType != null" >and ukey_type = #{ukeyType}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="areaId != null">AND area_id = '${areaId}'</if>
+    <if test="cityCode != null">AND city_code like '%${cityCode}%'</if>
+    <if test="cityCodeEq != null">AND city_code = #{cityCodeEq}</if>
+    <if test="insuranceloginurl != null">AND insuranceloginurl like '%${insuranceloginurl}%'</if>
+    <if test="insuranceloginurlEq != null">AND insuranceloginurl = #{insuranceloginurlEq}</if>
+    <if test="fundloginurl != null">AND fundloginurl like '%${fundloginurl}%'</if>
+    <if test="fundloginurlEq != null">AND fundloginurl = #{fundloginurlEq}</if>
+    <if test="insurancetypes != null">AND insurancetypes like '%${insurancetypes}%'</if>
+    <if test="insurancetypesEq != null">AND insurancetypes = #{insurancetypesEq}</if>
+    <if test="fundtypes != null">AND fundtypes like '%${fundtypes}%'</if>
+    <if test="fundtypesEq != null">AND fundtypes = #{fundtypesEq}</if>
+	<if test="ukeyType != null">AND ukey_type = #{ukeyType}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_TS_CITYCODE" parameterType="Object" >
+  INSERT INTO SPS_TS_CITYCODE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="cityCode != null ">,city_code</if>
+	<if test="insuranceloginurl != null ">,insuranceloginurl</if>
+	<if test="fundloginurl != null ">,fundloginurl</if>
+	<if test="insurancetypes != null ">,insurancetypes</if>
+	<if test="fundtypes != null ">,fundtypes</if>
+	<if test="ukeyType != null ">,ukey_type</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="cityCode != null ">,#{cityCode}</if>
+	<if test="insuranceloginurl != null ">,#{insuranceloginurl}</if>
+	<if test="fundloginurl != null ">,#{fundloginurl}</if>
+	<if test="insurancetypes != null ">,#{insurancetypes}</if>
+	<if test="fundtypes != null ">,#{fundtypes}</if>
+	<if test="ukeyType != null ">,#{ukeyType}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_TS_CITYCODE" parameterType="Object" >
+UPDATE SPS_TS_CITYCODE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="cityCode != null ">,city_code=#{cityCode}</if>
+	<if test="insuranceloginurl != null ">,insuranceloginurl=#{insuranceloginurl}</if>
+	<if test="fundloginurl != null ">,fundloginurl=#{fundloginurl}</if>
+	<if test="insurancetypes != null ">,insurancetypes=#{insurancetypes}</if>
+	<if test="fundtypes != null ">,fundtypes=#{fundtypes}</if>
+	<if test="ukeyType != null ">,ukey_type=#{ukeyType}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_TS_CITYCODE">DELETE FROM SPS_TS_CITYCODE WHERE ID=#{id}</delete>
+<!-- 城市业务类型配置 列表总数-->
+<select id="CountFindAllSPS_TS_CITYCODE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_CITYCODE</select>
+<select id="CountSPS_TS_CITYCODE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_CITYCODE WHERE ID=#{id}</select>
+<!-- 根据id查询 城市业务类型配置 -->
+<select id="FindByPK" resultMap="result_map_SPS_TS_CITYCODE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_TS_CITYCODE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  城市业务类型配置 -->
+<select id="FreeFindSPS_TS_CITYCODE" resultMap="result_map_SPS_TS_CITYCODE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_CITYCODE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  城市业务类型配置 记录数 -->
+<select id="CountFreeFindSPS_TS_CITYCODE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_TS_CITYCODE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  城市业务类型配置 -->
+<select id="FreeFindSPS_TS_CITYCODEOrdered" resultMap="result_map_SPS_TS_CITYCODE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_CITYCODE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/07/12 13:39:03 ** -->
+<!-- ************************************************************************ -->
+
+
+<select id="getSpsTsCitycodeByAreaId" parameterType="Object" resultMap="result_map_SPS_TS_CITYCODE">
+	SELECT stc.*,ba.`name` as areaName FROM sps_ts_citycode stc JOIN bs_area ba ON stc.area_id = ba.`code` WHERE ba.`area_id`=${areaId}
+</select>
+
+<select id="getSpsTsCitycode" parameterType="Object" resultType="java.util.Map" >
+	SELECT stc.ukey_type,ba.area_id,ba.`name` as area_name FROM sps_ts_citycode stc JOIN bs_area ba ON stc.area_id = ba.`code`
+</select>
+
+</mapper>   

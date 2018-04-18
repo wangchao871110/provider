@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_SERVICE_HISTORY">
+    <!-- Result Map-->
+    <resultMap id="result_map_CP_SERVICE_HISTORY" type="com.xfs.cp.model.CpServiceHistory">
+        <result column="id" property="id"/>
+        <result column="years" property="years"/>
+        <result column="month" property="month"/>
+        <result column="cp_service_id" property="cpServiceId"/>
+        <result column="saas_sp_id" property="saasSpId"/>
+        <result column="name" property="name"/>
+        <result column="cp_address" property="cpAddress"/>
+        <result column="short_name" property="shortName"/>
+        <result column="emp_num" property="empNum"/>
+        <result column="service_num" property="serviceNum"/>
+        <result column="telephone" property="telephone"/>
+        <result column="mobile" property="mobile"/>
+        <result column="email" property="email"/>
+        <result column="fax" property="fax"/>
+        <result column="isca" property="isca"/>
+        <result column="isdeposit" property="isdeposit"/>
+        <result column="all_ranking" property="allRanking"/>
+        <result column="city_ranking" property="cityRanking"/>
+        <result column="dev_index" property="devIndex"/>
+        <result column="dev_index_old" property="devIndexOld"/>
+        <result column="browse_num" property="browseNum"/>
+        <result column="attention_num" property="attentionNum"/>
+        <result column="industry_num" property="industryNum"/>
+        <result column="service_logo" property="serviceLogo"/>
+        <result column="description" property="description"/>
+        <result column="service_area" property="serviceArea"/>
+        <result column="service_area_name" property="serviceAreaName"/>
+        <result column="service_area_num" property="serviceAreaNum"/>
+        <result column="advantage" property="advantage"/>
+        <result column="customer_type" property="customerType"/>
+        <result column="certificate" property="certificate"/>
+        <result column="ceo_name" property="ceoName"/>
+        <result column="ceo_logo" property="ceoLogo"/>
+        <result column="ceo_description" property="ceoDescription"/>
+        <result column="office_img" property="officeImg"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_dt" property="createDt"/>
+        <result column="modify_by" property="modifyBy"/>
+        <result column="modify_dt" property="modifyDt"/>
+        <result column="dr" property="dr"/>
+        <result column="registered_gov" property="registeredGov"/>
+        <result column="established_time" property="establishedTime"/>
+        <result column="registered_capital" property="registeredCapital"/>
+        <result column="busi_license_num" property="busiLicenseNum"/>
+        <result column="org_code" property="orgCode"/>
+        <result column="comany_type" property="comanyType"/>
+        <result column="legal_psn" property="legalPsn"/>
+        <result column="busi_scope" property="busiScope"/>
+        <result column="busi_stasus" property="busiStasus"/>
+        <result column="weburl" property="weburl"/>
+        <result column="customer_num" property="customerNum"/>
+        <result column="partners" property="partners"/>
+        <result column="addresses_register" property="addressesRegister"/>
+        <result column="start_date" property="startDate"/>
+        <result column="check_date" property="checkDate"/>
+        <result column="address_detail" property="addressDetail"/>
+        <result column="dispatch_ca" property="dispatchCa"/>
+        <result column="hr_ca" property="hrCa"/>
+        <result column="busi_license_file" property="busiLicenseFile"/>
+        <result column="isfirst" property="isfirst"/>
+        <result column="isuse" property="isuse"/>
+        <result column="stop_content" property="stopContent"/>
+        <result column="isrob" property="isrob"/>
+        <result column="custom_index" property="customIndex"/>
+    </resultMap>
+
+    <!-- cp_service_history table all fields -->
+    <sql id="Base_Column_List">
+	 id,years,month,cp_service_id,saas_sp_id,name,cp_address,short_name,emp_num,service_num,telephone,mobile,email,fax,isca,isdeposit,all_ranking,
+	 city_ranking,dev_index,dev_index_old,browse_num,attention_num,industry_num,service_logo,description,service_area,service_area_name,
+	 service_area_num,advantage,customer_type,certificate,ceo_name,ceo_logo,ceo_description,office_img,create_by,create_dt,modify_by,modify_dt,
+	 dr,registered_gov,established_time,registered_capital,busi_license_num,org_code,comany_type,legal_psn,busi_scope,busi_stasus,weburl,
+	 customer_num,partners,addresses_register,start_date,check_date,address_detail,dispatch_ca,hr_ca,busi_license_file,isfirst,isuse,stop_content,
+	 isrob,custom_index
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">and id = #{id}</if>
+            <if test="years != null">and years = #{years}</if>
+            <if test="month != null">and month = #{month}</if>
+            <if test="cpServiceId != null">and cp_service_id = #{cpServiceId}</if>
+            <if test="saasSpId != null">and saas_sp_id = #{saasSpId}</if>
+            <if test="name != null">and name = #{name}</if>
+            <if test="cpAddress != null">and cp_address = #{cpAddress}</if>
+            <if test="shortName != null">and short_name = #{shortName}</if>
+            <if test="empNum != null">and emp_num = #{empNum}</if>
+            <if test="serviceNum != null">and service_num = #{serviceNum}</if>
+            <if test="telephone != null">and telephone = #{telephone}</if>
+            <if test="mobile != null">and mobile = #{mobile}</if>
+            <if test="email != null">and email = #{email}</if>
+            <if test="fax != null">and fax = #{fax}</if>
+            <if test="isca != null">and isca = #{isca}</if>
+            <if test="isdeposit != null">and isdeposit = #{isdeposit}</if>
+            <if test="allRanking != null">and all_ranking = #{allRanking}</if>
+            <if test="cityRanking != null">and city_ranking = #{cityRanking}</if>
+            <if test="devIndex != null">and dev_index = #{devIndex}</if>
+            <if test="devIndexOld != null">and dev_index_old = #{devIndexOld}</if>
+            <if test="browseNum != null">and browse_num = #{browseNum}</if>
+            <if test="attentionNum != null">and attention_num = #{attentionNum}</if>
+            <if test="industryNum != null">and industry_num = #{industryNum}</if>
+            <if test="serviceLogo != null">and service_logo = #{serviceLogo}</if>
+            <if test="description != null">and description = #{description}</if>
+            <if test="serviceArea != null">and service_area = #{serviceArea}</if>
+            <if test="serviceAreaName != null">and service_area_name = #{serviceAreaName}</if>
+            <if test="serviceAreaNum != null">and service_area_num = #{serviceAreaNum}</if>
+            <if test="advantage != null">and advantage = #{advantage}</if>
+            <if test="customerType != null">and customer_type = #{customerType}</if>
+            <if test="certificate != null">and certificate = #{certificate}</if>
+            <if test="ceoName != null">and ceo_name = #{ceoName}</if>
+            <if test="ceoLogo != null">and ceo_logo = #{ceoLogo}</if>
+            <if test="ceoDescription != null">and ceo_description = #{ceoDescription}</if>
+            <if test="officeImg != null">and office_img = #{officeImg}</if>
+            <if test="createBy != null">and create_by = #{createBy}</if>
+            <if test="createDt != null">and create_dt = #{createDt}</if>
+            <if test="modifyBy != null">and modify_by = #{modifyBy}</if>
+            <if test="modifyDt != null">and modify_dt = #{modifyDt}</if>
+            <if test="dr != null">and dr = #{dr}</if>
+            <if test="registeredGov != null">and registered_gov = #{registeredGov}</if>
+            <if test="establishedTime != null">and established_time = #{establishedTime}</if>
+            <if test="registeredCapital != null">and registered_capital = #{registeredCapital}</if>
+            <if test="busiLicenseNum != null">and busi_license_num = #{busiLicenseNum}</if>
+            <if test="orgCode != null">and org_code = #{orgCode}</if>
+            <if test="comanyType != null">and comany_type = #{comanyType}</if>
+            <if test="legalPsn != null">and legal_psn = #{legalPsn}</if>
+            <if test="busiScope != null">and busi_scope = #{busiScope}</if>
+            <if test="busiStasus != null">and busi_stasus = #{busiStasus}</if>
+            <if test="weburl != null">and weburl = #{weburl}</if>
+            <if test="customerNum != null">and customer_num = #{customerNum}</if>
+            <if test="partners != null">and partners = #{partners}</if>
+            <if test="addressesRegister != null">and addresses_register = #{addressesRegister}</if>
+            <if test="startDate != null">and start_date = #{startDate}</if>
+            <if test="checkDate != null">and check_date = #{checkDate}</if>
+            <if test="addressDetail != null">and address_detail = #{addressDetail}</if>
+            <if test="dispatchCa != null">and dispatch_ca = #{dispatchCa}</if>
+            <if test="hrCa != null">and hr_ca = #{hrCa}</if>
+            <if test="busiLicenseFile != null">and busi_license_file = #{busiLicenseFile}</if>
+            <if test="isfirst != null">and isfirst = #{isfirst}</if>
+            <if test="isuse != null">and isuse = #{isuse}</if>
+            <if test="stopContent != null">and stop_content = #{stopContent}</if>
+            <if test="isrob != null">and isrob = #{isrob}</if>
+            <if test="customIndex != null">and custom_index = #{customIndex}</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertCP_SERVICE_HISTORY" parameterType="Object">
+        INSERT INTO CP_SERVICE_HISTORY (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="years != null ">,years</if>
+            <if test="month != null ">,month</if>
+            <if test="cpServiceId != null ">,cp_service_id</if>
+            <if test="saasSpId != null ">,saas_sp_id</if>
+            <if test="name != null ">,name</if>
+            <if test="cpAddress != null ">,cp_address</if>
+            <if test="shortName != null ">,short_name</if>
+            <if test="empNum != null ">,emp_num</if>
+            <if test="serviceNum != null ">,service_num</if>
+            <if test="telephone != null ">,telephone</if>
+            <if test="mobile != null ">,mobile</if>
+            <if test="email != null ">,email</if>
+            <if test="fax != null ">,fax</if>
+            <if test="isca != null ">,isca</if>
+            <if test="isdeposit != null ">,isdeposit</if>
+            <if test="allRanking != null ">,all_ranking</if>
+            <if test="cityRanking != null ">,city_ranking</if>
+            <if test="devIndex != null ">,dev_index</if>
+            <if test="devIndexOld != null ">,dev_index_old</if>
+            <if test="browseNum != null ">,browse_num</if>
+            <if test="attentionNum != null ">,attention_num</if>
+            <if test="industryNum != null ">,industry_num</if>
+            <if test="serviceLogo != null ">,service_logo</if>
+            <if test="description != null ">,description</if>
+            <if test="serviceArea != null ">,service_area</if>
+            <if test="serviceAreaName != null ">,service_area_name</if>
+            <if test="serviceAreaNum != null ">,service_area_num</if>
+            <if test="advantage != null ">,advantage</if>
+            <if test="customerType != null ">,customer_type</if>
+            <if test="certificate != null ">,certificate</if>
+            <if test="ceoName != null ">,ceo_name</if>
+            <if test="ceoLogo != null ">,ceo_logo</if>
+            <if test="ceoDescription != null ">,ceo_description</if>
+            <if test="officeImg != null ">,office_img</if>
+            <if test="createBy != null ">,create_by</if>
+            <if test="createDt != null ">,create_dt</if>
+            <if test="modifyBy != null ">,modify_by</if>
+            <if test="modifyDt != null ">,modify_dt</if>
+            <if test="dr != null ">,dr</if>
+            <if test="registeredGov != null ">,registered_gov</if>
+            <if test="establishedTime != null ">,established_time</if>
+            <if test="registeredCapital != null ">,registered_capital</if>
+            <if test="busiLicenseNum != null ">,busi_license_num</if>
+            <if test="orgCode != null ">,org_code</if>
+            <if test="comanyType != null ">,comany_type</if>
+            <if test="legalPsn != null ">,legal_psn</if>
+            <if test="busiScope != null ">,busi_scope</if>
+            <if test="busiStasus != null ">,busi_stasus</if>
+            <if test="weburl != null ">,weburl</if>
+            <if test="customerNum != null ">,customer_num</if>
+            <if test="partners != null ">,partners</if>
+            <if test="addressesRegister != null ">,addresses_register</if>
+            <if test="startDate != null ">,start_date</if>
+            <if test="checkDate != null ">,check_date</if>
+            <if test="addressDetail != null ">,address_detail</if>
+            <if test="dispatchCa != null ">,dispatch_ca</if>
+            <if test="hrCa != null ">,hr_ca</if>
+            <if test="busiLicenseFile != null ">,busi_license_file</if>
+            <if test="isfirst != null ">,isfirst</if>
+            <if test="isuse != null ">,isuse</if>
+            <if test="stopContent != null ">,stop_content</if>
+            <if test="isrob != null ">,isrob</if>
+            <if test="customIndex != null ">,custom_index</if>
+        </trim>
+        ) VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="years != null ">,#{years}</if>
+            <if test="month != null ">,#{month}</if>
+            <if test="cpServiceId != null ">,#{cpServiceId}</if>
+            <if test="saasSpId != null ">,#{saasSpId}</if>
+            <if test="name != null ">,#{name}</if>
+            <if test="cpAddress != null ">,#{cpAddress}</if>
+            <if test="shortName != null ">,#{shortName}</if>
+            <if test="empNum != null ">,#{empNum}</if>
+            <if test="serviceNum != null ">,#{serviceNum}</if>
+            <if test="telephone != null ">,#{telephone}</if>
+            <if test="mobile != null ">,#{mobile}</if>
+            <if test="email != null ">,#{email}</if>
+            <if test="fax != null ">,#{fax}</if>
+            <if test="isca != null ">,#{isca}</if>
+            <if test="isdeposit != null ">,#{isdeposit}</if>
+            <if test="allRanking != null ">,#{allRanking}</if>
+            <if test="cityRanking != null ">,#{cityRanking}</if>
+            <if test="devIndex != null ">,#{devIndex}</if>
+            <if test="devIndexOld != null ">,#{devIndexOld}</if>
+            <if test="browseNum != null ">,#{browseNum}</if>
+            <if test="attentionNum != null ">,#{attentionNum}</if>
+            <if test="industryNum != null ">,#{industryNum}</if>
+            <if test="serviceLogo != null ">,#{serviceLogo}</if>
+            <if test="description != null ">,#{description}</if>
+            <if test="serviceArea != null ">,#{serviceArea}</if>
+            <if test="serviceAreaName != null ">,#{serviceAreaName}</if>
+            <if test="serviceAreaNum != null ">,#{serviceAreaNum}</if>
+            <if test="advantage != null ">,#{advantage}</if>
+            <if test="customerType != null ">,#{customerType}</if>
+            <if test="certificate != null ">,#{certificate}</if>
+            <if test="ceoName != null ">,#{ceoName}</if>
+            <if test="ceoLogo != null ">,#{ceoLogo}</if>
+            <if test="ceoDescription != null ">,#{ceoDescription}</if>
+            <if test="officeImg != null ">,#{officeImg}</if>
+            <if test="createBy != null ">,#{createBy}</if>
+            <if test="createDt != null ">,#{createDt}</if>
+            <if test="modifyBy != null ">,#{modifyBy}</if>
+            <if test="modifyDt != null ">,#{modifyDt}</if>
+            <if test="dr != null ">,#{dr}</if>
+            <if test="registeredGov != null ">,#{registeredGov}</if>
+            <if test="establishedTime != null ">,#{establishedTime}</if>
+            <if test="registeredCapital != null ">,#{registeredCapital}</if>
+            <if test="busiLicenseNum != null ">,#{busiLicenseNum}</if>
+            <if test="orgCode != null ">,#{orgCode}</if>
+            <if test="comanyType != null ">,#{comanyType}</if>
+            <if test="legalPsn != null ">,#{legalPsn}</if>
+            <if test="busiScope != null ">,#{busiScope}</if>
+            <if test="busiStasus != null ">,#{busiStasus}</if>
+            <if test="weburl != null ">,#{weburl}</if>
+            <if test="customerNum != null ">,#{customerNum}</if>
+            <if test="partners != null ">,#{partners}</if>
+            <if test="addressesRegister != null ">,#{addressesRegister}</if>
+            <if test="startDate != null ">,#{startDate}</if>
+            <if test="checkDate != null ">,#{checkDate}</if>
+            <if test="addressDetail != null ">,#{addressDetail}</if>
+            <if test="dispatchCa != null ">,#{dispatchCa}</if>
+            <if test="hrCa != null ">,#{hrCa}</if>
+            <if test="busiLicenseFile != null ">,#{busiLicenseFile}</if>
+            <if test="isfirst != null ">,#{isfirst}</if>
+            <if test="isuse != null ">,#{isuse}</if>
+            <if test="stopContent != null ">,#{stopContent}</if>
+            <if test="isrob != null ">,#{isrob}</if>
+            <if test="customIndex != null ">,#{customIndex}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateCP_SERVICE_HISTORY" parameterType="Object">
+        UPDATE CP_SERVICE_HISTORY
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="years != null ">,years=#{years}</if>
+            <if test="month != null ">,month=#{month}</if>
+            <if test="cpServiceId != null ">,cp_service_id=#{cpServiceId}</if>
+            <if test="saasSpId != null ">,saas_sp_id=#{saasSpId}</if>
+            <if test="name != null ">,name=#{name}</if>
+            <if test="cpAddress != null ">,cp_address=#{cpAddress}</if>
+            <if test="shortName != null ">,short_name=#{shortName}</if>
+            <if test="empNum != null ">,emp_num=#{empNum}</if>
+            <if test="serviceNum != null ">,service_num=#{serviceNum}</if>
+            <if test="telephone != null ">,telephone=#{telephone}</if>
+            <if test="mobile != null ">,mobile=#{mobile}</if>
+            <if test="email != null ">,email=#{email}</if>
+            <if test="fax != null ">,fax=#{fax}</if>
+            <if test="isca != null ">,isca=#{isca}</if>
+            <if test="isdeposit != null ">,isdeposit=#{isdeposit}</if>
+            <if test="allRanking != null ">,all_ranking=#{allRanking}</if>
+            <if test="cityRanking != null ">,city_ranking=#{cityRanking}</if>
+            <if test="devIndex != null ">,dev_index=#{devIndex}</if>
+            <if test="devIndexOld != null ">,dev_index_old=#{devIndexOld}</if>
+            <if test="browseNum != null ">,browse_num=#{browseNum}</if>
+            <if test="attentionNum != null ">,attention_num=#{attentionNum}</if>
+            <if test="industryNum != null ">,industry_num=#{industryNum}</if>
+            <if test="serviceLogo != null ">,service_logo=#{serviceLogo}</if>
+            <if test="description != null ">,description=#{description}</if>
+            <if test="serviceArea != null ">,service_area=#{serviceArea}</if>
+            <if test="serviceAreaName != null ">,service_area_name=#{serviceAreaName}</if>
+            <if test="serviceAreaNum != null ">,service_area_num=#{serviceAreaNum}</if>
+            <if test="advantage != null ">,advantage=#{advantage}</if>
+            <if test="customerType != null ">,customer_type=#{customerType}</if>
+            <if test="certificate != null ">,certificate=#{certificate}</if>
+            <if test="ceoName != null ">,ceo_name=#{ceoName}</if>
+            <if test="ceoLogo != null ">,ceo_logo=#{ceoLogo}</if>
+            <if test="ceoDescription != null ">,ceo_description=#{ceoDescription}</if>
+            <if test="officeImg != null ">,office_img=#{officeImg}</if>
+            <if test="createBy != null ">,create_by=#{createBy}</if>
+            <if test="createDt != null ">,create_dt=#{createDt}</if>
+            <if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+            <if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+            <if test="dr != null ">,dr=#{dr}</if>
+            <if test="registeredGov != null ">,registered_gov=#{registeredGov}</if>
+            <if test="establishedTime != null ">,established_time=#{establishedTime}</if>
+            <if test="registeredCapital != null ">,registered_capital=#{registeredCapital}</if>
+            <if test="busiLicenseNum != null ">,busi_license_num=#{busiLicenseNum}</if>
+            <if test="orgCode != null ">,org_code=#{orgCode}</if>
+            <if test="comanyType != null ">,comany_type=#{comanyType}</if>
+            <if test="legalPsn != null ">,legal_psn=#{legalPsn}</if>
+            <if test="busiScope != null ">,busi_scope=#{busiScope}</if>
+            <if test="busiStasus != null ">,busi_stasus=#{busiStasus}</if>
+            <if test="weburl != null ">,weburl=#{weburl}</if>
+            <if test="customerNum != null ">,customer_num=#{customerNum}</if>
+            <if test="partners != null ">,partners=#{partners}</if>
+            <if test="addressesRegister != null ">,addresses_register=#{addressesRegister}</if>
+            <if test="startDate != null ">,start_date=#{startDate}</if>
+            <if test="checkDate != null ">,check_date=#{checkDate}</if>
+            <if test="addressDetail != null ">,address_detail=#{addressDetail}</if>
+            <if test="dispatchCa != null ">,dispatch_ca=#{dispatchCa}</if>
+            <if test="hrCa != null ">,hr_ca=#{hrCa}</if>
+            <if test="busiLicenseFile != null ">,busi_license_file=#{busiLicenseFile}</if>
+            <if test="isfirst != null ">,isfirst=#{isfirst}</if>
+            <if test="isuse != null ">,isuse=#{isuse}</if>
+            <if test="stopContent != null ">,stop_content=#{stopContent}</if>
+            <if test="isrob != null ">,isrob=#{isrob}</if>
+            <if test="customIndex != null ">,custom_index=#{customIndex}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteCP_SERVICE_HISTORY">DELETE FROM CP_SERVICE_HISTORY WHERE ID=#{id}</delete>
+    <!-- 备注表 列表总数-->
+    <select id="CountFindAllCP_SERVICE_HISTORY"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM CP_SERVICE_HISTORY</select>
+    <select id="CountCP_SERVICE_HISTORY"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM CP_SERVICE_HISTORY WHERE ID=#{id}</select>
+    <!-- 根据id查询 备注表 -->
+    <select id="FindByPK" resultMap="result_map_CP_SERVICE_HISTORY" parameterType="Object">SELECT
+        <include refid="Base_Column_List"/>
+        FROM CP_SERVICE_HISTORY WHERE ID=#{pk}
+    </select>
+
+    <!-- 根据各字段条件带查询  备注表 -->
+    <select id="FreeFindCP_SERVICE_HISTORY" resultMap="result_map_CP_SERVICE_HISTORY" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM CP_SERVICE_HISTORY
+        <include refid="Example_Where_Clause"/>
+    </select>
+    <!-- 根据各字段条件带查询  备注表 记录数 -->
+    <select id="CountFreeFindCP_SERVICE_HISTORY" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM CP_SERVICE_HISTORY
+        <include refid="Example_Where_Clause"/>
+    </select>
+    <!-- 根据各字段条件带排序  备注表 -->
+    <select id="FreeFindCP_SERVICE_HISTORYOrdered" resultMap="result_map_CP_SERVICE_HISTORY" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM CP_SERVICE_HISTORY
+        <include refid="Example_Where_Clause"/>
+        ORDER BY ${_orderBy}
+    </select>
+
+    <!-- *****************************  温馨提示：  ***************************** -->
+    <!-- **                                                                    ** -->
+    <!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+    <!-- **                                             ** 2017/01/05 14:51:32 ** -->
+    <!-- ************************************************************************ -->
+
+
+
+       <!--备份cp_service表 -->
+    <insert id="BACKUPS_FOR_CP_SERVICE" parameterType="Object">
+		INSERT INTO cp_service_history (
+ cp_service_id,
+ saas_sp_id,
+ NAME,
+ cp_address,
+ short_name,
+ emp_num,
+ service_num,
+ telephone,
+ mobile,
+ email,
+ fax,
+ isca,
+ isdeposit,
+ all_ranking,
+ city_ranking,
+ dev_index,
+ dev_index_old,
+ browse_num,
+ attention_num,
+ industry_num,
+ service_logo,
+ description,
+ service_area,
+ service_area_name,
+ service_area_num,
+ advantage,
+ customer_type,
+ certificate,
+ ceo_name,
+ ceo_logo,
+ ceo_description,
+ office_img,
+ create_by,
+ create_dt,
+ modify_by,
+ modify_dt,
+ dr,
+ registered_gov,
+ established_time,
+ registered_capital,
+ busi_license_num,
+ org_code,
+ comany_type,
+ legal_psn,
+ busi_scope,
+ busi_stasus,
+ weburl,
+ customer_num,
+ partners,
+ addresses_register,
+ start_date,
+ check_date,
+ address_detail,
+ dispatch_ca,
+ hr_ca,
+ busi_license_file,
+ isfirst,
+ isuse,
+ stop_content,
+ isrob,
+ custom_index,
+ years,
+ month
+) SELECT
+
+ id,
+ saas_sp_id,
+ NAME,
+ cp_address,
+ short_name,
+ emp_num,
+ service_num,
+ telephone,
+ mobile,
+ email,
+ fax,
+ isca,
+ isdeposit,
+ all_ranking,
+ city_ranking,
+ dev_index,
+ dev_index_old,
+ browse_num,
+ attention_num,
+ industry_num,
+ service_logo,
+ description,
+ service_area,
+ service_area_name,
+ service_area_num,
+ advantage,
+ customer_type,
+ certificate,
+ ceo_name,
+ ceo_logo,
+ ceo_description,
+ office_img,
+ create_by,
+ create_dt,
+ modify_by,
+ modify_dt,
+ dr,
+ registered_gov,
+ established_time,
+ registered_capital,
+ busi_license_num,
+ org_code,
+ comany_type,
+ legal_psn,
+ busi_scope,
+ busi_stasus,
+ weburl,
+ customer_num,
+ partners,
+ addresses_register,
+ start_date,
+ check_date,
+ address_detail,
+ dispatch_ca,
+ hr_ca,
+ busi_license_file,
+ isfirst,
+ isuse,
+ stop_content,
+ isrob,
+ custom_index,
+ <if test="thisMonth==1">(YEAR(NOW())-1),12</if>
+        <if test="thisMonth!=1">YEAR(NOW()),
+            (MONTH(NOW())-1)</if>
+FROM
+ cp_service
+
+</insert>
+    <!-- 查询年份，月份 -->
+    <select id="findYearOrMonth" resultMap="result_map_CP_SERVICE_HISTORY" parameterType="Object">
+        SELECT
+        id,
+        years,
+        month
+        FROM CP_SERVICE_HISTORY
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="years != null">and years = #{years}</if>
+            <if test="month != null">and month = #{month}</if>
+        </trim>
+        <if test="years==null">
+            GROUP BY years
+            ORDER BY years DESC
+
+        </if>
+        <if test="years!=null">
+            GROUP BY month
+            ORDER BY month DESC
+
+        </if>
+    </select>
+
+
+    <select id="findRankingPageCount" resultType="java.lang.Integer">
+    SELECT count(t.value) as value
+        FROM(
+        SELECT count(1) as value
+        FROM (select cp.*,sum(IFNULL(coa.price,0)) as a_price
+        FROM cp_service_history cp
+        left join cp_order coa on cp.cp_service_id = coa.a_sp_id and coa.ispay=1
+        where cp.dr=0 and cp.isuse=1
+        <if test="years != null"> and cp.years = #{years}</if>
+        <if test="month != null"> and cp.month = #{month}</if>
+        group by cp.cp_service_id)cp
+        left join cp_order cob on cp.cp_service_id = cob.b_sp_id and cob.please_status=1
+        left join sps_mall_info mi on cp.cp_service_id = mi.sp_id
+        where 1=1
+        and cp.dr=0 and cp.isuse=1
+        <if test="categoryId != null and categoryId != '' and categoryId != 0">
+            and cp.cp_service_id in (select distinct b.sp_id from CP_BUSINESS b where b.business_id=#{categoryId} and b.dr=0)
+        </if>
+        <if test="name != null and name != ''">AND cp.name like '%${name}%'</if>
+        <if test="serviceArea != null and serviceArea != '' and  serviceArea != 0">AND (cp.service_area  like '%${serviceArea}%' or cp.cp_address  like '%${serviceArea}%')</if>
+        <if test="startTime != null and startTime != ''"><![CDATA[AND cp.established_time >= #{startTime}]]></if>
+        <if test="endTime != null and endTime != ''"><![CDATA[AND cp.established_time <= #{endTime}]]></if>
+        GROUP BY cp.cp_service_id
+        )t
+    </select>
+    <!-- 根据各字段条件带模糊查询  协作服务商排行榜 -->
+    <select id="findRankingPage" resultMap="result_map_CP_SERVICE_HISTORY" parameterType="Object">
+        SELECT
+        (
+        SELECT c.devindex as value
+        FROM ( SELECT p.cp_service_id, @rowno:=@rowno+1 as devindex FROM cp_service_history p,(select @rowno:=0) r
+        where 1=1 and p.dr=0 and p.isuse=1
+        <if test="serviceArea != null and serviceArea != '' and  serviceArea != 0"> and (p.service_area  like '%${serviceArea}%' or p.cp_address  like '%${serviceArea}%')</if>
+        <if test="years != null"> and p.years = #{years}</if>
+        <if test="month != null"> and p.month = #{month}</if>
+        ORDER BY p.dev_index DESC ) AS c
+        where cp.cp_service_id= c.cp_service_id
+        ) as all_ranking,
+        cp.cp_service_id AS id, cp.name,cp.dev_index,cp.established_time,cp.registered_capital,cp.service_area,cp.service_area_name
+        ,cp.cp_address,cp.industry_num,cp.isca,cp.service_logo,cp.isuse,cp.browse_num,cp.attention_num
+        ,cp.registered_gov,cp.cp_address,cp.busi_license_num,cp.org_code,cp.comany_type,cp.legal_psn
+        ,cp.dev_index_old,ROUND(cp.a_price+sum(IFNULL(cob.price,0)),2) as price,mi.risk_margin
+        from (select cp.*,sum(IFNULL(coa.price,0)) as a_price
+        FROM CP_SERVICE_HISTORY cp
+        left join cp_order coa on cp.cp_service_id = coa.a_sp_id and coa.ispay=1
+        where cp.dr=0 and cp.isuse=1
+        <if test="years != null"> and cp.years = #{years}</if>
+        <if test="month != null"> and cp.month = #{month}</if>
+        group by cp.cp_service_id)cp
+        left join cp_order cob on cp.cp_service_id = cob.b_sp_id and cob.please_status=1
+        left join sps_mall_info mi on cp.cp_service_id = mi.sp_id
+        where 1=1
+        and cp.dr=0 and cp.isuse=1
+        <if test="categoryId != null and categoryId != '' and categoryId != 0">
+            and cp.cp_service_id in (select distinct b.sp_id from CP_BUSINESS b where b.business_id=#{categoryId} and b.dr=0)
+        </if>
+        <if test="name != null and name != ''">AND cp.name like '%${name}%'</if>
+        <if test="serviceArea != null and serviceArea != '' and  serviceArea != 0">AND (cp.service_area  like '%${serviceArea}%' or cp.cp_address  like '%${serviceArea}%')</if>
+        <if test="startTime != null and startTime != ''"><![CDATA[AND cp.established_time >= #{startTime}]]></if>
+        <if test="endTime != null and endTime != ''"><![CDATA[AND cp.established_time <= #{endTime}]]></if>
+        GROUP BY cp.cp_service_id
+        <if test="orderBy != null and orderBy != ''">
+            order by ${orderBy}
+        </if>
+
+    </select>
+</mapper>   

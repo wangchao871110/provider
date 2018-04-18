@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SEARCH_INSURANCE">
+
+    <!--获取用户信息-->
+    <select id="getUserInfo" parameterType="Map" resultType="Map">
+		SELECT  * from MC_USER
+		WHERE LEFT(create_time,10) = #{date}
+	</select>
+
+    <!--获取订单信息-->
+    <select id="getOrderInfo" parameterType="Map" resultType="Map">
+		SELECT *  FROM (
+		SELECT usr.mdn, ord.id as ordId,ord.create_dt as createDt,pay.order_code  as ordCode,pay.pay_user as payUser,pay.pay_date as payDate,
+		(case ser.price_type  when 'SINGLE_PRICE'  then '60.00' ELSE ser.service_price end )  as serPrice,ser.id as serviceId ,usr.mdn as cusCode,
+		usr.create_time  as createDate
+		FROM mc_mall_order  ord
+		LEFT JOIN mc_mall_payment  pay on pay.order_id = ord.id
+		LEFT JOIN mc_mall_service ser on ser.id = ord.service_id
+		LEFT JOIN mc_user  usr on  usr.id = ord.user_id
+		WHERE  LEFT(ord.create_dt,10) = #{date}
+		and ord.pay_state=2
+		ORDER BY serPrice desc
+		) t
+		WHERE t. serPrice &lt;&gt; 0;
+
+
+
+	</select>
+
+
+	<!--获取订单信息-->
+	<select id="getAllOrderUserId" parameterType="Map" resultType="Map">
+		SELECT  usr.id as id , usr.mdn , min(usr.create_time) as createDate ,ord.create_dt as ordTime
+		FROM mc_mall_order  ord
+		LEFT JOIN mc_mall_payment  pay on pay.order_id = ord.id
+		LEFT JOIN mc_mall_service ser on ser.id = ord.service_id
+		LEFT JOIN mc_user  usr on  usr.id = ord.user_id
+		WHERE  ord.pay_state=2
+		AND  LEFT(ord.create_dt,10) = #{date}
+		GROUP BY usr.mdn
+
+	</select>
+
+
+
+</mapper>   

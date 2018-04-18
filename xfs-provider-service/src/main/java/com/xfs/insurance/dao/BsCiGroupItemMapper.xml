@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_CI_GROUP_ITEM" >
+<!-- Result Map-->
+<resultMap id="result_map_BS_CI_GROUP_ITEM" type="com.xfs.insurance.model.BsCiGroupItem" >
+	<result column="group_item_id" property="groupItemId"/>
+	<result column="group_id" property="groupId"/>
+	<result column="mall_item_id" property="mallItemId"/>
+</resultMap>
+
+<!-- bs_ci_group_item table all fields -->
+<sql id="Base_Column_List" >
+	 group_item_id,group_id,mall_item_id
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="groupItemId != null" >and group_item_id = #{groupItemId}</if>
+	<if test="groupId != null" >and group_id = #{groupId}</if>
+	<if test="mallItemId != null" >and mall_item_id = #{mallItemId}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="groupItemId != null">AND group_item_id = #{groupItemId}</if>
+    <if test="groupId != null">AND group_id = #{groupId}</if>
+    <if test="mallItemId != null">AND mall_item_id = #{mallItemId}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_CI_GROUP_ITEM" parameterType="Object" >
+  INSERT INTO BS_CI_GROUP_ITEM (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="groupItemId != null ">,group_item_id</if>
+	<if test="groupId != null ">,group_id</if>
+	<if test="mallItemId != null ">,mall_item_id</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="groupItemId != null ">,#{groupItemId}</if>
+	<if test="groupId != null ">,#{groupId}</if>
+	<if test="mallItemId != null ">,#{mallItemId}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="groupItemId">
+	SELECT LAST_INSERT_ID() AS GROUP_ITEM_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->
+<update id="UpdateBS_CI_GROUP_ITEM" parameterType="Object" >
+UPDATE BS_CI_GROUP_ITEM
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="groupItemId != null ">,group_item_id=#{groupItemId}</if>
+	<if test="groupId != null ">,group_id=#{groupId}</if>
+	<if test="mallItemId != null ">,mall_item_id=#{mallItemId}</if>
+  </trim>
+WHERE GROUP_ITEM_ID=#{groupItemId}
+</update>
+
+<!-- 删除记录 -->
+<delete id="DeleteBS_CI_GROUP_ITEM">DELETE FROM BS_CI_GROUP_ITEM WHERE GROUP_ITEM_ID=#{groupItemId}</delete>
+<!-- 组合险条目 列表总数-->
+<select id="CountFindAllBS_CI_GROUP_ITEM" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CI_GROUP_ITEM</select>
+<select id="CountBS_CI_GROUP_ITEM" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CI_GROUP_ITEM WHERE GROUP_ITEM_ID=#{groupItemId}</select>
+<!-- 根据id查询 组合险条目 -->
+<select id="FindByPK" resultMap="result_map_BS_CI_GROUP_ITEM" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_CI_GROUP_ITEM WHERE GROUP_ITEM_ID=#{groupItemId}</select>
+
+<!-- 根据各字段条件带模糊查询  组合险条目 -->
+<select id="FreeFindBS_CI_GROUP_ITEM" resultMap="result_map_BS_CI_GROUP_ITEM" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CI_GROUP_ITEM
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  组合险条目 记录数 -->
+<select id="CountFreeFindBS_CI_GROUP_ITEM" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_CI_GROUP_ITEM
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  组合险条目 -->
+<select id="FreeFindBS_CI_GROUP_ITEMOrdered" resultMap="result_map_BS_CI_GROUP_ITEM" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CI_GROUP_ITEM
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/06 18:33:04 ** -->
+<!-- ************************************************************************ -->
+
+<select id="findGroupItemDetail" resultType="com.xfs.insurance.dto.CiProduct" parameterType="Object">
+	select mi.item_name, mi.item_id, mi.category_id, mi.dr, cp.*, mic.category_type
+	from bs_ci_group_item cgi, bs_mall_item mi
+	left join bs_ci_product cp on (cp.mall_item_id = mi.item_id)
+	left join bs_mall_item_category mic on mic.category_id = mi.category_id
+	where mi.item_id = cgi.mall_item_id and cgi.group_id = #{groupId}
+</select>
+<delete id="delGroupItems" parameterType="Object">
+	delete from bs_ci_group_item where group_id = #{groupId}
+</delete>
+    <select id="findAllGroupItemDetail" resultType="com.xfs.insurance.dto.CiProduct" parameterType="Object">
+        select cgi.group_id, mi.item_id, mi.item_name, mi.per_month_price, cp.*, ci.show_name as insurer_name,
+        mpi.price as sale_price, mic.category_name, mic.category_type, cs.price, cs.agent_price
+        from bs_ci_group_item cgi inner join bs_ci_group cg on cg.group_id = cgi.group_id and cg.dr = 0
+        inner join bs_mall_item mi on mi.item_id = cgi.mall_item_id and mi.dr = 0
+        left join bs_ci_product cp on mi.item_id = cp.mall_item_id
+        left join bs_mall_item_category mic on mic.category_id = mi.category_id
+        left join bs_ci_scheme cs on mi.item_id = cs.mall_item_id
+        left join bs_ci_insurer ci on cp.insurer_id = ci.id
+        left join sps_mall_product_item mpi on mpi.item_id = mi.item_id and mpi.product_id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>   

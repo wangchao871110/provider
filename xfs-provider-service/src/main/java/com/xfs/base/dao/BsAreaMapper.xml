@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_AREA" >
+<!-- Result Map-->
+<resultMap id="result_map_BS_AREA" type="com.xfs.base.model.BsArea" >
+	<result column="area_id" property="areaId"/>
+	<result column="code" property="code"/>
+	<result column="name" property="name"/>
+	<result column="fullname" property="fullname"/>
+	<result column="parent" property="parent"/>
+	<result column="remark" property="remark"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="belong_city" property="belongCity"/>
+	<result column="pinyin" property="pinyin"/>
+	<result column="areacode" property="areacode"/>
+	<result column="belong_province" property="belongProvince"/>
+</resultMap>
+
+<!-- bs_area table all fields -->
+<sql id="Base_Column_List" >
+	 area_id,code,name,fullname,parent,remark,create_by,create_dt,modify_by,modify_dt,belong_city,area_type,catetory,pinyin,areacode,belong_province
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="code != null" >and code = #{code}</if>
+	<if test="name != null" >and name = #{name}</if>
+	<if test="fullname != null" >and fullname = #{fullname}</if>
+	<if test="parent != null" >and parent = #{parent}</if>
+	<if test="remark != null" >and remark = #{remark}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="pinyin != null" >and pinyin = #{pinyin}</if>
+	<if test="belongProvince != null" >and belong_province = #{belongProvince}</if>
+    <if test="areaType != null" >and area_type = #{areaType}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="areaId != null">AND area_id = '${areaId}'</if>
+    <if test="code != null">AND code like '%${code}%'</if>
+    <if test="codeEq != null">AND code = #{codeEq}</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+    <if test="fullname != null">AND fullname like '%${fullname}%'</if>
+    <if test="fullnameEq != null">AND fullname = #{fullnameEq}</if>
+    <if test="parent != null">AND parent like '%${parent}%'</if>
+    <if test="remark != null">AND remark like '%${remark}%'</if>
+    <if test="remarkEq != null">AND remark = #{remarkEq}</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+      <if test="pinyin != null" >and pinyin = #{pinyin}</if>
+      <if test="belongProvince != null" >and belongProvince = #{belong_province}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_AREA" parameterType="Object" >
+  INSERT INTO BS_AREA (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="areaId != null ">,area_id</if>
+	<if test="code != null ">,code</if>
+	<if test="name != null ">,name</if>
+	<if test="fullname != null ">,fullname</if>
+	<if test="parent != null ">,parent</if>
+	<if test="remark != null ">,remark</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="belongProvince != null ">,belong_province</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="code != null ">,#{code}</if>
+	<if test="name != null ">,#{name}</if>
+	<if test="fullname != null ">,#{fullname}</if>
+	<if test="parent != null ">,#{parent}</if>
+	<if test="remark != null ">,#{remark}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="belongProvince != null ">,#{belongProvince}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="areaId">
+	SELECT LAST_INSERT_ID() AS AREA_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->
+<update id="UpdateBS_AREA" parameterType="Object" >
+UPDATE BS_AREA
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="code != null ">,code=#{code}</if>
+	<if test="name != null ">,name=#{name}</if>
+	<if test="fullname != null ">,fullname=#{fullname}</if>
+	<if test="parent != null ">,parent=#{parent}</if>
+	<if test="remark != null ">,remark=#{remark}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="pinyin != null ">,pinyin=#{pinyin}</if>
+	<if test="belongProvince != null ">,belong_province=#{belongProvince}</if>
+  </trim>
+WHERE AREA_ID=#{areaId}
+</update>
+
+<!-- 删除记录 -->
+<delete id="DeleteBS_AREA">DELETE FROM BS_AREA WHERE AREA_ID=#{areaId}</delete>
+<!-- 地区 列表总数-->
+<select id="CountFindAllBS_AREA" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREA</select>
+<select id="CountBS_AREA" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREA WHERE AREA_ID=#{areaId}</select>
+<!-- 根据id查询 地区 -->
+<select id="FindByPK" resultMap="result_map_BS_AREA" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_AREA WHERE AREA_ID=#{areaId}</select>
+
+<!-- 根据各字段条件带模糊查询  地区 -->
+<select id="FreeFindBS_AREA" resultMap="result_map_BS_AREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREA
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  地区 记录数 -->
+<select id="CountFreeFindBS_AREA" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_AREA
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  地区 -->
+<select id="FreeFindBS_AREAOrdered" resultMap="result_map_BS_AREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREA
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/04/08 14:31:55 ** -->
+<!-- ************************************************************************ -->
+
+
+	<!-- 根据各字段条件精确查询  地区 -->
+	<select id="FreeFindBS_AREAEq" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BS_AREA
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<!-- 获取所有城市按城市编码排序 -->
+	<select id="FreeFindBS_AREA_ALL" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BS_AREA
+		ORDER  BY  code ASC
+	</select>
+
+	<!-- 根据区域ID获取区域以及区域下的区县 -->
+	<select id="FreeFindOL_AreaAuthList" resultMap="result_map_BS_AREA" >
+		SELECT <include refid="Base_Column_List" /> FROM BS_AREA WHERE
+		area_id IN
+		<foreach item="item" index="index" collection="areas" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		OR
+		parent IN
+		<foreach item="item" index="index" collection="areas" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		ORDER  BY area_id ASC,parent ASC
+	</select>
+	<!-- 获取所支持的区域-->
+	<select id="FreeFindOL_Support_Areas" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BS_AREA
+		WHERE remark = '1'
+		ORDER  BY area_id ASC,parent ASC
+	</select>
+	<resultMap id="mapType" type="java.util.Map">
+	</resultMap>
+	<select id="findBsAreasByBsType" resultMap="mapType" parameterType="Object">
+		SELECT ba.* FROM bs_area ba JOIN bd_bsareatype bb ON
+		ba.area_id = bb.area_id WHERE bb.bstype_id = #{bsType}
+		ORDER BY ba.create_dt desc;
+	</select>
+
+	<select id="getBsAreaList" resultMap="result_map_BS_AREA" parameterType="Object">
+		  SELECT <include refid="Base_Column_List" /> FROM bs_area WHERE area_type ='PROVINCE' or area_type ='CITY'
+	</select>
+
+	<select id="getBsAreaTree" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT * FROM bs_area WHERE area_type != 'DISTRICT' ORDER BY code ASC,areacode ASC
+	</select>
+
+	<select id="findAllBsAreaCity" resultMap="result_map_BS_AREA" parameterType="Object">
+		select * from  bs_area WHERE  area_type='CITY';
+	</select>
+	<!-- 根据产品ID获取区域-->
+	<select id="FindAreaByProductId" resultMap="result_map_BS_AREA" parameterType="java.lang.Integer">
+		SELECT mpa.area_id,ba.name
+		FROM sps_mall_productarea mpa ,bs_area ba 
+		where mpa.product_id=#{productId} 
+		and ba.area_id=mpa.area_id;
+	</select>
+	
+	<!-- 根据订单ID获取区域-->
+	<select id="findAreaByOrderId" resultMap="result_map_BS_AREA" parameterType="java.lang.Integer">
+		SELECT DISTINCT mpa.area_id,ba.name
+		FROM sps_mall_order_area mpa ,bs_area ba 
+		where mpa.order_id=#{orderId} 
+		and ba.area_id=mpa.area_id;
+	</select>
+
+	<select id="queryAreaProvince" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT ccc.* FROM (SELECT * FROM bs_area WHERE parent = 0 ORDER BY areacode) as ccc INNER JOIN (SELECT aaa.* FROM (SELECT * from bs_area WHERE area_type = 'CITY' ORDER BY areacode) as aaa INNER JOIN (SELECT * from bs_arearatio GROUP BY area_id) bbb ON aaa.area_id = bbb.area_id
+GROUP BY aaa.belong_province ORDER BY aaa.areacode )as ddd ON ccc.area_id = ddd.belong_province
+	</select>
+
+	<select id="queryAreasCity" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT aaa.area_id,aaa.name FROM (SELECT * from bs_area WHERE area_type = 'CITY' ORDER BY areacode) as aaa INNER JOIN (SELECT * from bs_arearatio GROUP BY area_id) bbb ON aaa.area_id = bbb.area_id WHERE aaa.belong_province=#{belongProvince} ORDER BY aaa.areacode;
+	</select>
+
+
+	<select id="getAreaCityList" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT aaa.area_id,aaa.name,aaa.belong_province FROM (SELECT * from bs_area WHERE area_type = 'CITY' ORDER BY areacode) as aaa INNER JOIN (SELECT * from bs_arearatio GROUP BY area_id) bbb ON aaa.area_id = bbb.area_id  ORDER BY aaa.areacode;
+	</select>
+
+	<select id="queryAreaByAreaCode" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT ba.area_id,ba.name from bs_area ba WHERE ba.areacode = #{areacode}
+	</select>
+
+	<select id="queryAreaByAreaType" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT ba.area_id,ba.name from bs_area ba WHERE ba.area_type = #{areaType}
+	</select>
+
+	<select id="getBsAreaListByAreaId" resultMap="result_map_BS_AREA" parameterType="java.lang.Integer">
+		SELECT * FROM bs_area WHERE area_id=#{0};
+	</select>
+	<select id="queryAreaByAreaName" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT * from bs_area WHERE `name` like '%${name}%'
+		<if test="areaType != null">AND area_type = #{areaType}</if>
+	</select>
+
+	<select id="queryAreaByScheme" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT area.area_id,area.`name` FROM sps_scheme scheme INNER JOIN bs_area area ON scheme.area_id = area.area_id
+		where scheme.cp_id = #{cpId} AND state = 'USE' and dr = 0
+        <if test="authority != 'ALL'"> 
+			and scheme.scheme_id in (${authority})
+		</if>
+		GROUP BY area.area_id
+	</select>
+    <select id="getAreaListByCityId" resultMap="result_map_BS_AREA" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+		FROM bs_area WHERE belong_city= (SELECT belong_city FROM bs_area WHERE area_id=#{0})and area_type='DISTRICT'
+    </select>
+
+	<!-- Result Map-->
+	<resultMap id="result_map_AREA_SCHEME_VO" type="com.xfs.acc.dto.AreaSchemeVo" >
+		<result column="areaId" property="areaId"/>
+		<result column="areaName" property="areaName"/>
+		<result column="schemeId" property="schemeId"/>
+		<result column="memo" property="memo"/>
+		<result column="authority" property="authority"/>
+		<result column="cpId" property="cpId"/>
+		<result column="isServiceByArea" property="isServiceByArea"/>
+		<collection property="schemeList" column="{areaId=areaId,authority=authority,cpId=cpId,isServiceByArea=isServiceByArea}" javaType="List" select="BS_AREA.findSchemeByArea"></collection>
+	</resultMap>
+
+    <!-- 通过cpid查询相关联的城市和方案-->
+    <select id="findAreaSchemeByOrg" resultMap="result_map_AREA_SCHEME_VO" parameterType="Object">
+    	SELECT s.scheme_id as schemeId,area.name as areaName ,s.area_id as areaId, #{authority} as authority,#{cpId} as cpId, #{isService} as isServiceByArea
+        FROM (
+	        SELECT scheme.scheme_id,scheme.area_id,area.belong_city FROM sps_scheme scheme INNER JOIN bs_area area ON scheme.area_id = area.area_id
+			where scheme.cp_id = #{cpId} AND state = 'USE' and scheme.dr = 0
+			<if test="isService == 0">
+				and scheme.sp_id = -999
+			</if>
+			<if test="isService == 1">
+				and scheme.sp_id != -999
+			</if>
+			<if test="authority != 'ALL'"> 
+				and scheme.scheme_id in (${authority})
+			</if>
+			GROUP BY area.area_id ORDER BY scheme.modify_dt desc
+			)s INNER JOIN bs_area area ON s.belong_city = area.area_id
+    </select>
+
+	<select id="findSchemeByArea" resultType="com.xfs.acc.dto.AreaSchemeVo">
+
+		SELECT scheme.area_id as areaId,scheme.scheme_id as schemeId,IFNULL(scheme.`name`, scheme.memo) as memo,scheme.sp_id as spId,sp.sp_name as spName FROM sps_scheme scheme
+		INNER JOIN bs_area area ON scheme.area_id = area.area_id
+		LEFT JOIN sp_service sp ON sp.sp_id = scheme.sp_id
+		where scheme.cp_id = #{cpId} AND state = 'USE' and scheme.dr = 0
+		<if test="isService == 0 or isServiceByArea == 0">
+			<!--and scheme.sp_id = -999-->
+		</if>
+		<if test="isService == 1 or isServiceByArea == 1">
+			and scheme.sp_id != -999
+		</if>
+		<if test="areaId != null">
+			and scheme.area_id = #{areaId}
+		</if>
+		<if test="authority != 'ALL'">
+			and scheme.scheme_id in (${authority})
+		</if>
+		<if test="isService == 1">
+			GROUP BY scheme.sp_id
+		</if>
+		ORDER BY scheme.modify_dt desc
+
+	</select>
+    
+    <!-- 获取方案中不存在的城市-->
+    <select id="findNotInArea" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT a.*
+		from bs_area a 
+		where 
+		 parent = #{parent}
+		and a.area_id not in
+		 (
+        	SELECT area.belong_city as area_id FROM sps_scheme scheme INNER JOIN bs_area area ON scheme.area_id = area.area_id
+			where scheme.cp_id = #{cpId} AND state = 'USE' and scheme.dr = 0 
+			<!--and scheme.sp_id=-999 -->
+			GROUP BY area.area_id ORDER BY scheme.modify_dt desc
+		)
+		order by a.code
+	</select>
+	 <!-- 查询 所有城市-->
+    <select id="findALLChildArea" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT a.*
+		from bs_area a 
+		where 
+		 parent = #{parent}
+		 order by a.code
+	</select>
+	<!-- 获取省份直辖市排在前面-->
+	<select id="findAllProvince" resultMap="result_map_BS_AREA" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BS_AREA 
+		<include refid="Example_Where_Clause" />
+		order by code
+	</select>
+
+</mapper>

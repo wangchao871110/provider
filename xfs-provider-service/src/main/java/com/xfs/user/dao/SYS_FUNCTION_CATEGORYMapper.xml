@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_FUNCTION_CATEGORY">
+  <resultMap id="result_map_SYS_FUNCTION_CATEGORY" type="com.xfs.user.model.SysFunctionCategory">
+    <id property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER" />
+    <result property="categoryName" column="CATEGORY_NAME" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="parentId" column="PARENT_ID" jdbcType="INTEGER" />
+    <result property="iconClass" column="ICON_CLASS" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="getFirstMenuByRoleId_result_map_SYS_FUNCTION_CATEGORY" type="com.xfs.user.model.SysFunctionCategory">
+    <id property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER" />
+    <result property="categoryName" column="CATEGORY_NAME" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="iconClass" column="ICON_CLASS" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="getSecondMenuByRoleIdAndCateogryId_result_map_SYS_FUNCTION_CATEGORY" type="com.xfs.user.model.SysFunctionCategory">
+    <id property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER" />
+    <result property="categoryName" column="CATEGORY_NAME" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="iconClass" column="ICON_CLASS" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="getSecondMenuByRoleId_result_map_SYS_FUNCTION_CATEGORY" type="com.xfs.user.model.SysFunctionCategory">
+    <id property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER" />
+    <result property="categoryName" column="CATEGORY_NAME" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="iconClass" column="ICON_CLASS" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="FindSecondMenuOP_result_map_SYS_FUNCTION_CATEGORY" type="com.xfs.user.model.SysFunctionCategory">
+    <id property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER" />
+    <result property="categoryName" column="CATEGORY_NAME" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="sysCode" column="SYS_CODE" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="InsertSYS_FUNCTION_CATEGORY">
+    INSERT INTO SYS_FUNCTION_CATEGORY (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="categoryId != null ">,CATEGORY_ID</if>
+      <if test="categoryName != null ">,CATEGORY_NAME</if>
+      <if test="priority != null ">,PRIORITY</if>
+      <if test="parentId != null ">,PARENT_ID</if>
+      <if test="iconClass != null ">,ICON_CLASS</if>
+    </trim>
+    )  VALUES (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="categoryId != null ">,#{categoryId,jdbcType=INTEGER}</if>
+      <if test="categoryName != null ">,#{categoryName,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">,#{priority,jdbcType=INTEGER}</if>
+      <if test="parentId != null ">,#{parentId,jdbcType=INTEGER}</if>
+      <if test="iconClass != null ">,#{iconClass,jdbcType=VARCHAR}</if>
+    </trim>
+    )
+  </insert>
+  <update id="UpdateSYS_FUNCTION_CATEGORY">
+    UPDATE SYS_FUNCTION_CATEGORY 
+    <trim prefix=" SET " prefixOverrides=",">
+      <if test="categoryName != null ">,CATEGORY_NAME=#{categoryName,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">,PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="parentId != null ">,PARENT_ID=#{parentId,jdbcType=INTEGER}</if>
+      <if test="iconClass != null ">,ICON_CLASS=#{iconClass,jdbcType=VARCHAR}</if>
+    </trim>
+     WHERE CATEGORY_ID=#{categoryId,jdbcType=INTEGER}
+  </update>
+  <delete id="DeleteSYS_FUNCTION_CATEGORY">DELETE FROM SYS_FUNCTION_CATEGORY WHERE CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</delete>
+  <select id="CountFindAllSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_FUNCTION_CATEGORY</select>
+  <select id="CountSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_FUNCTION_CATEGORY WHERE CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</select>
+  <select id="FindByPKSYS_FUNCTION_CATEGORY" resultMap="result_map_SYS_FUNCTION_CATEGORY">SELECT CATEGORY_ID,CATEGORY_NAME,PRIORITY,PARENT_ID,ICON_CLASS FROM SYS_FUNCTION_CATEGORY WHERE CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</select>
+  <select id="FreeFindSYS_FUNCTION_CATEGORY" resultMap="result_map_SYS_FUNCTION_CATEGORY">
+    SELECT CATEGORY_ID,CATEGORY_NAME,PRIORITY,PARENT_ID,ICON_CLASS FROM SYS_FUNCTION_CATEGORY
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="categoryId != null ">AND CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</if>
+      <if test="categoryName != null ">AND CATEGORY_NAME like '%${categoryName}%'</if>
+      <if test="categoryNameEq != null ">AND CATEGORY_NAME=#{categoryNameEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="parentId != null ">AND PARENT_ID=#{parentId,jdbcType=INTEGER}</if>
+      <if test="iconClass != null ">AND ICON_CLASS like '%${iconClass}%'</if>
+      <if test="iconClassEq != null ">AND ICON_CLASS=#{iconClassEq,jdbcType=VARCHAR}</if>
+    </trim>
+  </select>
+  <select id="CountFreeFindSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">
+    SELECT count(1) as value FROM SYS_FUNCTION_CATEGORY
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="categoryId != null ">AND CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</if>
+      <if test="categoryName != null ">AND CATEGORY_NAME like '%${categoryName}%'</if>
+      <if test="categoryNameEq != null ">AND CATEGORY_NAME=#{categoryNameEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="parentId != null ">AND PARENT_ID=#{parentId,jdbcType=INTEGER}</if>
+      <if test="iconClass != null ">AND ICON_CLASS like '%${iconClass}%'</if>
+      <if test="iconClassEq != null ">AND ICON_CLASS=#{iconClassEq,jdbcType=VARCHAR}</if>
+    </trim>
+  </select>
+  <select id="FreeFindSYS_FUNCTION_CATEGORYOrdered" resultMap="result_map_SYS_FUNCTION_CATEGORY">
+    SELECT CATEGORY_ID,CATEGORY_NAME,PRIORITY,PARENT_ID,ICON_CLASS FROM SYS_FUNCTION_CATEGORY
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="categoryId != null ">AND CATEGORY_ID=#{categoryId,jdbcType=INTEGER}</if>
+      <if test="categoryName != null ">AND CATEGORY_NAME like '%${categoryName}%'</if>
+      <if test="categoryNameEq != null ">AND CATEGORY_NAME=#{categoryNameEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="parentId != null ">AND PARENT_ID=#{parentId,jdbcType=INTEGER}</if>
+      <if test="iconClass != null ">AND ICON_CLASS like '%${iconClass}%'</if>
+      <if test="iconClassEq != null ">AND ICON_CLASS=#{iconClassEq,jdbcType=VARCHAR}</if>
+    </trim>
+     ORDER BY ${_orderBy}
+  </select>
+  <select id="GetFirstMenuByRoleIdSYS_FUNCTION_CATEGORY" resultMap="getFirstMenuByRoleId_result_map_SYS_FUNCTION_CATEGORY">select distinct pa.category_id as category_id, 
+pa.category_name as category_name, pa.priority, pa.icon_class 
+from sys_function_category pa, sys_function_category ch, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where pa.category_id = ch.parent_id 
+and ch.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+order by pa.priority desc</select>
+  <select id="CountGetFirstMenuByRoleIdSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value from(select distinct pa.category_id as category_id, 
+pa.category_name as category_name, pa.priority, pa.icon_class 
+from sys_function_category pa, sys_function_category ch, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where pa.category_id = ch.parent_id 
+and ch.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+order by pa.priority desc) as subsql</select>
+  <select id="GetSecondMenuByRoleIdAndCateogryIdSYS_FUNCTION_CATEGORY" resultMap="getSecondMenuByRoleIdAndCateogryId_result_map_SYS_FUNCTION_CATEGORY">select distinct ch.category_id as category_id,ch.category_name as category_name, ch.priority, ch.icon_class  
+from sys_function_category ch, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where ch.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+and ch.parent_id = #{parent_id,jdbcType=INTEGER} 
+order by ch.priority desc</select>
+  <select id="CountGetSecondMenuByRoleIdAndCateogryIdSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value from(select distinct ch.category_id as category_id,ch.category_name as category_name, ch.priority, ch.icon_class  
+from sys_function_category ch, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where ch.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+and ch.parent_id = #{parent_id,jdbcType=INTEGER} 
+order by ch.priority desc) as subsql</select>
+  <select id="GetSecondMenuByRoleIdSYS_FUNCTION_CATEGORY" resultMap="getSecondMenuByRoleId_result_map_SYS_FUNCTION_CATEGORY"  >
+  select distinct pa.category_id as category_id, pa.category_name as category_name, pa.priority, pa.icon_class 
+from sys_function_category pa, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where pa.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+order by pa.priority desc</select>
+
+
+  <select id="GetSecondMenuByRoleIdSYS_FUNCTION_CATEGORY_IN" resultMap="getSecondMenuByRoleId_result_map_SYS_FUNCTION_CATEGORY" parameterType="java.util.List">
+  select distinct pa.category_id as category_id, pa.category_name as category_name, pa.priority, pa.icon_class 
+from sys_function_category pa, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where pa.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id in  
+   <foreach collection="roleList" item="item" separator="," index="index" open="(" close=")">  
+                #{item}
+               </foreach>
+order by pa.priority desc</select>
+
+  <select id="CountGetSecondMenuByRoleIdSYS_FUNCTION_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value from(select distinct pa.category_id as category_id, pa.category_name as category_name, pa.priority, pa.icon_class 
+from sys_function_category pa, sys_function f, sys_function_crud fc, sys_rel_role_func r 
+where pa.category_id = f.category_id 
+and f.function_id = fc.function_id 
+and fc.rel_id = r.rel_id 
+and r.role_id = #{role_id,jdbcType=INTEGER} 
+order by pa.priority desc) as subsql</select>
+
+<select id="FindTopMenuOPSYS_FUNCTION_CATEGORY" resultMap="FindSecondMenuOP_result_map_SYS_FUNCTION_CATEGORY">
+select
+t1.category_id, t1.category_name, t1.priority, t1.sys_code
+from
+sys_function_category t1
+where
+t1.sys_code = #{sysCode, jdbcType=VARCHAR}
+</select>
+
+</mapper>
+

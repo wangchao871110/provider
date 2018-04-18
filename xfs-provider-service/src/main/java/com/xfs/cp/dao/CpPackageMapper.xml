@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_PACKAGE" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_PACKAGE" type="com.xfs.cp.model.CpPackage" >
+	<result column="id" property="id"/>
+	<result column="package_num" property="packageNum"/>
+	<result column="sp_id" property="spId"/>
+	<result column="city" property="city"/>
+	<result column="city_name" property="cityName"/>
+	<result column="project" property="project"/>
+	<result column="project_name" property="projectName"/>
+	<result column="num" property="num"/>
+	<result column="customer_type" property="customerType"/>
+	<result column="price" property="price"/>
+	<result column="days" property="days"/>
+	<result column="begin_time" property="beginTime"/>
+	<result column="end_time" property="endTime"/>
+	<result column="content" property="content"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="data_dr" property="dataDr"/>
+	<result column="status" property="status"/>
+	<result column="isRead" property="isRead"/>
+	<result column="back_reson" property="backReson"/>
+	<result column="everyone_price" property="everyonePrice"/>
+	<result column="start_month" property="startMonth"/>
+</resultMap>
+       
+<!-- cp_package table all fields -->
+<sql id="Base_Column_List" >
+	 id,package_num,sp_id,city,city_name,project,project_name,num,customer_type,price,days,begin_time,end_time,content,create_by,create_dt,modify_by,modify_dt,dr,data_dr,status,back_reson,everyone_price,start_month  
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="packageNum != null" >and package_num = #{packageNum}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="city != null" >and city = #{city}</if>
+	<if test="cityName != null" >and city_name = #{cityName}</if>
+	<if test="project != null" >and project = #{project}</if>
+	<if test="projectName != null" >and project_name = #{projectName}</if>
+	<if test="num != null" >and num = #{num}</if>
+	<if test="customerType != null" >and customer_type = #{customerType}</if>
+	<if test="price != null" >and price = #{price}</if>
+	<if test="days != null" >and days = #{days}</if>
+	<if test="beginTime != null" >and begin_time = #{beginTime}</if>
+	<if test="endTime != null" >and end_time = #{endTime}</if>
+	<if test="content != null" >and content = #{content}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="dataDr != null" >and data_dr = #{dataDr}</if>
+	<if test="status != null" >and status = #{status}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="packageNum != null">AND package_num like '%${packageNum}%'</if>
+    <if test="packageNumEq != null">AND package_num = #{packageNumEq}</if>
+    <if test="spId != null">AND sp_id = #{spId}</if>
+    <if test="city != null">AND city like '%${city}%'</if>
+    <if test="cityEq != null">AND city = #{cityEq}</if>
+    <if test="cityName != null">AND city_name like '%${cityName}%'</if>
+    <if test="cityNameEq != null">AND city_name = #{cityNameEq}</if>
+    <if test="project != null">AND project like '%${project}%'</if>
+    <if test="projectEq != null">AND project = #{projectEq}</if>
+    <if test="projectName != null">AND project_name like '%${projectName}%'</if>
+    <if test="projectNameEq != null">AND project_name = #{projectNameEq}</if>
+    <if test="num != null">AND num = #{num}</if>
+    <if test="customerType != null">AND customer_type = #{customerType}</if>
+    <if test="price != null">AND price like '%${price}%'</if>
+    <if test="days != null">AND days = #{days}</if>
+    <if test="beginTime != null">AND begin_time = #{beginTime}</if>
+    <if test="beginTimeFrom != null">AND begin_time&gt;=#{beginTimeFrom}</if>
+	<if test="beginTimeTo != null">AND begin_time&lt;=#{beginTimeTo}</if>
+    <if test="endTime != null">AND end_time = #{endTime}</if>
+    <if test="endTimeFrom != null">AND end_time&gt;=#{endTimeFrom}</if>
+	<if test="endTimeTo != null">AND end_time&lt;=#{endTimeTo}</if>
+    <if test="content != null">AND content like '%${content}%'</if>
+    <if test="contentEq != null">AND content = #{contentEq}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+    <if test="dataDr != null">AND data_dr = #{dataDr}</if>
+    <if test="status != null">AND status = #{status}</if>
+  </trim>
+</sql>
+
+<!-- 发包管理 查询包个数 -->
+<select id="queryPackagePageCount" resultType="java.lang.Integer" parameterType="Object">
+	SELECT count(1) as count
+	FROM cp_package cp
+	inner join cp_service cs
+	on cp.sp_id=cs.id
+	<if test="spName != null" >and (cs.name like CONCAT('%',#{spName},'%') or cp.package_num like CONCAT('%',#{spName},'%') )</if>
+	<if test="status != null" >and cp.status=#{status}</if>
+	<if test="createDtFrom != null" >and cp.create_dt &gt; #{createDtFrom}</if>
+	<if test="createDtTo != null" >and cp.create_dt &lt; #{createDtTo}</if>
+</select>
+<!-- 发包管理 查询包 -->
+<select id="queryPackagePage" resultType="Map" parameterType="Object">
+	SELECT cs.name,cp.id,cp.package_num,cp.create_dt,cp.city_name,concat(cp.price,'') as price,cp.status,cs.mobile
+	,(
+	SELECT count(cqp.quoted_spid)
+	FROM cp_quoted_price cqp
+    WHERE cqp.package_id=cp.id AND cqp.dr = 0
+	) as quoted_spid_num,
+    (
+    SELECT count(cqp.quoted_spid)
+    FROM cp_quoted_price cqp
+    WHERE cqp.package_id=cp.id AND cqp.dr = 0 AND cqp.status = 1
+    ) as quotedRelNum
+	FROM cp_package cp
+	inner join cp_service cs
+	on cp.sp_id=cs.id
+	<if test="spName != null" >and (cs.name like CONCAT('%',#{spName},'%') or cp.package_num like CONCAT('%',#{spName},'%') )</if>
+	<if test="status != null" >and cp.status=#{status}</if>
+	<if test="createDtFrom != null" >and cp.create_dt &gt; #{createDtFrom}</if>
+	<if test="createDtTo != null" >and cp.create_dt &lt; #{createDtTo}</if>
+	order by cp.id desc
+</select>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_PACKAGE" parameterType="Object" >
+  INSERT INTO CP_PACKAGE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="packageNum != null ">,package_num</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="city != null ">,city</if>
+	<if test="cityName != null ">,city_name</if>
+	<if test="project != null ">,project</if>
+	<if test="projectName != null ">,project_name</if>
+	<if test="num != null ">,num</if>
+	<if test="customerType != null ">,customer_type</if>
+	<if test="price != null ">,price</if>
+	<if test="days != null ">,days</if>
+	<if test="beginTime != null ">,begin_time</if>
+	<if test="endTime != null ">,end_time</if>
+	<if test="content != null ">,content</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="dataDr != null ">,data_dr</if>
+	<if test="status != null ">,status</if>
+	<if test="everyonePrice != null" >,everyone_price</if>
+	<if test="startMonth != null" >,start_month</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="packageNum != null ">,#{packageNum}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="city != null ">,#{city}</if>
+	<if test="cityName != null ">,#{cityName}</if>
+	<if test="project != null ">,#{project}</if>
+	<if test="projectName != null ">,#{projectName}</if>
+	<if test="num != null ">,#{num}</if>
+	<if test="customerType != null ">,#{customerType}</if>
+	<if test="price != null ">,#{price}</if>
+	<if test="days != null ">,#{days}</if>
+	<if test="beginTime != null ">,#{beginTime}</if>
+	<if test="endTime != null ">,#{endTime}</if>
+	<if test="content != null ">,#{content}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="dataDr != null ">,#{dataDr}</if>
+	<if test="status != null ">,#{status}</if>
+	<if test="everyonePrice != null" >,#{everyonePrice}</if>
+	<if test="startMonth != null" >,#{startMonth}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_PACKAGE" parameterType="Object" >
+UPDATE CP_PACKAGE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="packageNum != null ">,package_num=#{packageNum}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="city != null ">,city=#{city}</if>
+	<if test="cityName != null ">,city_name=#{cityName}</if>
+	<if test="project != null ">,project=#{project}</if>
+	<if test="projectName != null ">,project_name=#{projectName}</if>
+	<if test="num != null ">,num=#{num}</if>
+	<if test="customerType != null ">,customer_type=#{customerType}</if>
+	<if test="price != null ">,price=#{price}</if>
+	<if test="days != null ">,days=#{days}</if>
+	<if test="beginTime != null ">,begin_time=#{beginTime}</if>
+	<if test="endTime != null ">,end_time=#{endTime}</if>
+	<if test="content != null ">,content=#{content}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="dataDr != null ">,data_dr=#{dataDr}</if>
+	<if test="status != null ">,status=#{status}</if>
+	<if test="backReson != null ">,back_reson=#{backReson}</if>
+	<if test="everyonePrice != null" >,everyone_price = #{everyonePrice}</if>
+	<if test="startMonth != null" >,start_month = #{startMonth}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+
+<!-- 根据id和spId，修改记录-->  
+<update id="UpdateCP_PACKAGE_idAndSpId" parameterType="Object" >
+UPDATE CP_PACKAGE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="packageNum != null ">,package_num=#{packageNum}</if>
+	<if test="city != null ">,city=#{city}</if>
+	<if test="cityName != null ">,city_name=#{cityName}</if>
+	<if test="project != null ">,project=#{project}</if>
+	<if test="projectName != null ">,project_name=#{projectName}</if>
+	<if test="num != null ">,num=#{num}</if>
+	<if test="customerType != null ">,customer_type=#{customerType}</if>
+	<if test="price != null ">,price=#{price}</if>
+	<if test="days != null ">,days=#{days}</if>
+	<if test="beginTime != null ">,begin_time=#{beginTime}</if>
+	<if test="endTime != null ">,end_time=#{endTime}</if>
+	<if test="content != null ">,content=#{content}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="dataDr != null ">,data_dr=#{dataDr}</if>
+	<if test="status != null ">,status=#{status}</if>
+	<if test="backReson != null ">,back_reson=#{backReson}</if>
+	<if test="everyonePrice != null" >,everyone_price = #{everyonePrice}</if>
+	<if test="startMonth != null" >,start_month = #{startMonth}</if>
+  </trim>
+WHERE ID=#{id}
+AND sp_id = #{spId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_PACKAGE">DELETE FROM CP_PACKAGE WHERE ID=#{id}</delete>
+<!-- 发包表 列表总数-->
+<select id="CountFindAllCP_PACKAGE" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_PACKAGE</select>
+<select id="CountCP_PACKAGE" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_PACKAGE WHERE ID=#{id}</select>
+<!-- 根据id查询 发包表 -->
+<select id="FindByPK" resultMap="result_map_CP_PACKAGE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_PACKAGE WHERE ID=#{id}</select>
+<!-- 根据包编号查询 发包表 -->
+<select id="findByPackageNum" resultMap="result_map_CP_PACKAGE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_PACKAGE WHERE package_num=#{packageNum}</select>
+<!-- 根据各字段条件带模糊查询  发包表 -->
+<select id="FreeFindCP_PACKAGE" resultMap="result_map_CP_PACKAGE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_PACKAGE 
+	 <include refid="Example_Where_Clause2" />
+	 order by id
+</select>
+<!-- 根据各字段条件带模糊查询  发包表 记录数 -->
+<select id="CountFreeFindCP_PACKAGE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_PACKAGE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  发包表 -->
+<select id="FreeFindCP_PACKAGEOrdered" resultMap="result_map_CP_PACKAGE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_PACKAGE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy} DESC
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/20 10:21:18 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 我的发包   获取包列表总数 -->
+<select id="findASpListCount" resultType="java.lang.Integer"  parameterType="Object">
+	SELECT count(1) as value 
+	FROM CP_PACKAGE cp 
+	WHERE cp.dr =0 and cp.sp_id=#{spId}
+	<if test="packageNum != null">AND cp.package_num like '%${packageNum}%'</if>
+	<if test="createDtFrom != null">AND DATE(cp.create_dt)&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND DATE(cp.create_dt)&lt;=#{createDtTo}</if>
+	<if test="status != null">AND status=#{status}</if>
+	<if test="dataDr != null">AND cp.data_dr=#{dataDr}</if>
+	<if test="isRead != null">AND  (SELECT COUNT(1) FROM
+        cp_quoted_price cp_q WHERE cp_q.dr =0 AND
+        cp.id = cp_q.package_id AND cp_q.is_read = 0)  &gt; 0</if>
+</select>
+<!-- 我的发包   获取包列表总数 -->
+<select id="findASpList" resultMap="result_map_CP_PACKAGE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" />
+    , (SELECT COUNT(1) FROM cp_quoted_price cp_q 
+    	WHERE cp_q.dr =0 AND cp.id = cp_q.package_id AND cp_q.is_read = 0) AS isRead
+    FROM CP_PACKAGE cp 
+    WHERE dr = 0 and sp_id=#{spId}
+    <if test="packageNum != null">AND cp.package_num like '%${packageNum}%'</if>
+	<if test="createDtFrom != null">AND DATE(create_dt)&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND DATE(create_dt)&lt;=#{createDtTo}</if>
+	<if test="status != null">AND status=#{status}</if>
+	<if test="dataDr != null">AND cp.data_dr=#{dataDr}</if>
+	order by create_dt desc
+</select>
+
+<!-- 首页   获取包列表总数 -->
+<select id="findPackagePageCount" resultType="java.lang.Integer">
+	SELECT count(1) as value 
+	FROM CP_PACKAGE p 
+	WHERE p.status = 1 and p.dr = 0
+	AND end_time&gt;=now()
+	<if test="city != null and city != '' and city != 0">AND p.city like '%${city}%'</if>
+	<if test="priceSta != null and priceSta != 0 and priceSta != -1">AND p.price &gt;= #{priceSta}</if>
+	<if test="priceEnd != null and priceEnd != 0 and priceEnd != -1">AND p.price &lt;= #{priceEnd}</if>
+	<if test="priceSta == -1 and priceEnd == -1">AND p.price is null</if>
+	<if test="dateSta != null and dateSta != ''">
+		AND substring_index(timediff(p.end_time,now()),':',1) &gt;= #{dateSta}
+	</if>
+	<if test="dateEnd != null and dateEnd != '' and dateEnd != 0 and dateEnd != -1">AND substring_index(timediff(p.end_time,now()),':',1) &lt;= #{dateEnd}</if>
+	
+</select>
+<!-- 首页   获取包列表 -->
+<select id="findPackagePage" resultMap="result_map_CP_PACKAGE" parameterType="Object">
+	SELECT *
+	FROM CP_PACKAGE p 
+	WHERE p.status = 1 and p.dr = 0
+	AND end_time&gt;=now()
+	<if test="city != null and city != '' and city != 0">AND p.city like '%${city}%'</if>
+	<if test="priceSta != null and priceSta != 0 and priceSta != -1">AND p.price &gt;= #{priceSta}</if>
+	<if test="priceEnd != null and priceEnd != 0 and priceEnd != -1">AND p.price &lt;= #{priceEnd}</if>
+	<if test="priceSta == -1 and priceEnd == -1">AND p.price is null</if>
+	<if test="dateSta != null and dateSta != ''">
+		AND substring_index(timediff(p.end_time,now()),':',1) &gt;= #{dateSta}
+	</if>
+	<if test="dateEnd != null and dateEnd != '' and dateEnd != 0 and dateEnd != -1">AND substring_index(timediff(p.end_time,now()),':',1) &lt;= #{dateEnd}</if>
+	order by p.${orderBy}
+</select>
+<!-- 获取发单数量 -->
+<select id="findPackageNumber" parameterType="Object" resultType="java.lang.Integer">
+	SELECT count(1) as value
+ 	from CP_PACKAGE p
+ 	where p.sp_id=#{spId} and dr=0 and status in (1,2,3,4)
+ 	<if test="createDtFrom != null">AND create_dt&gt;=DATE_FORMAT(#{createDtFrom},'%Y-%m-%d %H:%i:%s')</if>
+ 	<if test="createDtTo != null">AND create_dt&lt;=DATE_FORMAT(#{createDtTo},'%Y-%m-%d %H:%i:%s')</if>
+</select>
+
+<!-- 修改包状态根据包id和发包的服务商id（防止其他用户修改此包） -->
+<select id="updateByIdAndSpId" parameterType="Object">
+	update cp_package cp
+	set cp.data_dr=1
+	where cp.id=#{id}
+	and cp.sp_id=#{spId}
+</select>
+
+</mapper>

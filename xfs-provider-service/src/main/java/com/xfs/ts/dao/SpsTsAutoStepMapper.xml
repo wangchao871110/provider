@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_TS_AUTO_STEP" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_TS_AUTO_STEP" type="com.xfs.ts.model.SpsTsAutoStep" >
+	<result column="id" property="id"/>
+	<result column="page_id" property="pageId"/>
+	<result column="step" property="step"/>
+	<result column="element_id" property="elementId"/>
+	<result column="element_name" property="elementName"/>
+	<result column="element_css" property="elementCss"/>
+	<result column="element_value" property="elementValue"/>
+	<result column="js" property="js"/>
+	<result column="other" property="other"/>
+	<result column="url" property="url"/>
+	<result column="op_type" property="opType"/>
+	<result column="sleep_time" property="sleepTime"/>
+	<result column="exception_resp" property="exceptionResp"/>
+	<result column="element_type" property="elementType"/>
+	<result column="icon_url" property="iconUrl"/>
+	<result column="opencv_type" property="opencvType"/>
+	<result column="ql_text" property="qlText"/>
+	<result column="msg" property="msg"/>
+</resultMap>
+       
+<!-- sps_ts_auto_step table all fields -->
+<sql id="Base_Column_List" >
+	 id,page_id,step,element_id,element_name,element_css,element_value,js,other,url,op_type,sleep_time,exception_resp,element_type,icon_url,opencv_type,ql_text,msg
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="pageId != null" >and page_id = #{pageId}</if>
+	<if test="step != null" >and step = #{step}</if>
+	<if test="elementId != null" >and element_id = #{elementId}</if>
+	<if test="elementName != null" >and element_name = #{elementName}</if>
+	<if test="elementCss != null" >and element_css = #{elementCss}</if>
+	<if test="elementValue != null" >and element_value = #{elementValue}</if>
+	<if test="js != null" >and js = #{js}</if>
+	<if test="other != null" >and other = #{other}</if>
+	<if test="url != null" >and url = #{url}</if>
+	<if test="opType != null" >and op_type = #{opType}</if>
+	<if test="sleepTime != null" >and sleep_time = #{sleepTime}</if>
+	<if test="exceptionResp != null" >and exception_resp = #{exceptionResp}</if>
+	<if test="elementType != null" >and element_type = #{elementType}</if>
+	<if test="iconUrl != null" >and icon_url = #{iconUrl}</if>
+	<if test="opencvType != null" >and opencv_type = #{opencvType}</if>
+	<if test="qlText != null" >and ql_text = #{qlText}</if>
+	<if test="msg != null" >and msg = #{msg}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="pageId != null">AND page_id = '${pageId}'</if>
+    <if test="step != null">AND step like '%${step}%'</if>
+    <if test="elementId != null">AND element_id = '${elementId}'</if>
+    <if test="elementIdEq != null">AND element_id = #{elementIdEq}</if>
+    <if test="elementName != null">AND element_name like '%${elementName}%'</if>
+    <if test="elementNameEq != null">AND element_name = #{elementNameEq}</if>
+    <if test="elementCss != null">AND element_css like '%${elementCss}%'</if>
+    <if test="elementCssEq != null">AND element_css = #{elementCssEq}</if>
+    <if test="elementValue != null">AND element_value like '%${elementValue}%'</if>
+    <if test="elementValueEq != null">AND element_value = #{elementValueEq}</if>
+    <if test="js != null">AND js like '%${js}%'</if>
+    <if test="jsEq != null">AND js = #{jsEq}</if>
+    <if test="other != null">AND other like '%${other}%'</if>
+    <if test="otherEq != null">AND other = #{otherEq}</if>
+    <if test="url != null">AND url like '%${url}%'</if>
+    <if test="urlEq != null">AND url = #{urlEq}</if>
+    <if test="opType != null">AND op_type like '%${opType}%'</if>
+    <if test="opTypeEq != null">AND op_type = #{opTypeEq}</if>
+    <if test="sleepTime != null">AND sleep_time like '%${sleepTime}%'</if>
+    <if test="exceptionResp != null">AND exception_resp like '%${exceptionResp}%'</if>
+    <if test="exceptionRespEq != null">AND exception_resp = #{exceptionRespEq}</if>
+    <if test="elementType != null">AND element_type like '%${elementType}%'</if>
+    <if test="elementTypeEq != null">AND element_type = #{elementTypeEq}</if>
+    <if test="iconUrl != null">AND icon_url like '%${iconUrl}%'</if>
+    <if test="opencvType != null">AND opencv_type like '%${opencvType}%'</if>
+    <if test="opencvTypeEq != null">AND opencv_type = #{opencvTypeEq}</if>
+    <if test="qlText != null">AND ql_text like '%${qlText}%'</if>
+    <if test="qlTextEq != null">AND ql_text = #{qlTextEq}</if>
+    <if test="msg != null">AND msg like '%${msg}%'</if>
+    <if test="msgEq != null">AND msg = #{msgEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_TS_AUTO_STEP" parameterType="Object" >
+  INSERT INTO SPS_TS_AUTO_STEP (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="pageId != null ">,page_id</if>
+	<if test="step != null ">,step</if>
+	<if test="elementId != null ">,element_id</if>
+	<if test="elementName != null ">,element_name</if>
+	<if test="elementCss != null ">,element_css</if>
+	<if test="elementValue != null ">,element_value</if>
+	<if test="js != null ">,js</if>
+	<if test="other != null ">,other</if>
+	<if test="url != null ">,url</if>
+	<if test="opType != null ">,op_type</if>
+	<if test="sleepTime != null ">,sleep_time</if>
+	<if test="exceptionResp != null ">,exception_resp</if>
+	<if test="elementType != null ">,element_type</if>
+	<if test="iconUrl != null ">,icon_url</if>
+	<if test="opencvType != null ">,opencv_type</if>
+	<if test="qlText != null ">,ql_text</if>
+	<if test="msg != null ">,msg</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="pageId != null ">,#{pageId}</if>
+	<if test="step != null ">,#{step}</if>
+	<if test="elementId != null ">,#{elementId}</if>
+	<if test="elementName != null ">,#{elementName}</if>
+	<if test="elementCss != null ">,#{elementCss}</if>
+	<if test="elementValue != null ">,#{elementValue}</if>
+	<if test="js != null ">,#{js}</if>
+	<if test="other != null ">,#{other}</if>
+	<if test="url != null ">,#{url}</if>
+	<if test="opType != null ">,#{opType}</if>
+	<if test="sleepTime != null ">,#{sleepTime}</if>
+	<if test="exceptionResp != null ">,#{exceptionResp}</if>
+	<if test="elementType != null ">,#{elementType}</if>
+	<if test="iconUrl != null ">,#{iconUrl}</if>
+	<if test="opencvType != null ">,#{opencvType}</if>
+	<if test="qlText != null ">,#{qlText}</if>
+	<if test="msg != null ">,#{msg}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_TS_AUTO_STEP" parameterType="Object" >
+UPDATE SPS_TS_AUTO_STEP 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="pageId != null ">,page_id=#{pageId}</if>
+	<if test="step != null ">,step=#{step}</if>
+	<if test="elementId != null ">,element_id=#{elementId}</if>
+	<if test="elementName != null ">,element_name=#{elementName}</if>
+	<if test="elementCss != null ">,element_css=#{elementCss}</if>
+	<if test="elementValue != null ">,element_value=#{elementValue}</if>
+	<if test="js != null ">,js=#{js}</if>
+	<if test="other != null ">,other=#{other}</if>
+	<if test="url != null ">,url=#{url}</if>
+	<if test="opType != null ">,op_type=#{opType}</if>
+	<if test="sleepTime != null ">,sleep_time=#{sleepTime}</if>
+	<if test="exceptionResp != null ">,exception_resp=#{exceptionResp}</if>
+	<if test="elementType != null ">,element_type=#{elementType}</if>
+	<if test="iconUrl != null ">,icon_url=#{iconUrl}</if>
+	<if test="opencvType != null ">,opencv_type=#{opencvType}</if>
+	<if test="qlText != null ">,ql_text=#{qlText}</if>
+	<if test="msg != null ">,msg=#{msg}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_TS_AUTO_STEP">DELETE FROM SPS_TS_AUTO_STEP WHERE ID=#{id}</delete>
+<!-- 业务操作指令 列表总数-->
+<select id="CountFindAllSPS_TS_AUTO_STEP" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_AUTO_STEP</select>
+<select id="CountSPS_TS_AUTO_STEP" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_AUTO_STEP WHERE ID=#{id}</select>
+<!-- 根据id查询 业务操作指令 -->
+<select id="FindByPK" resultMap="result_map_SPS_TS_AUTO_STEP" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_TS_AUTO_STEP WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  业务操作指令 -->
+<select id="FreeFindSPS_TS_AUTO_STEP" resultMap="result_map_SPS_TS_AUTO_STEP" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_AUTO_STEP 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  业务操作指令 记录数 -->
+<select id="CountFreeFindSPS_TS_AUTO_STEP" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_TS_AUTO_STEP 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  业务操作指令 -->
+<select id="FreeFindSPS_TS_AUTO_STEPOrdered" resultMap="result_map_SPS_TS_AUTO_STEP" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_AUTO_STEP 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/05/17 16:35:50 ** -->
+<!-- ************************************************************************ -->
+
+<delete id="DeleteSPS_TS_AUTO_STEPByPageId">DELETE FROM SPS_TS_AUTO_STEP WHERE page_id=#{pageId}</delete>
+
+
+</mapper>   

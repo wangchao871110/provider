@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_LOTTERY_POOL">
+	<!-- Result Map -->
+	<resultMap id="result_map_BD_LOTTERY_POOL" type="com.xfs.activity.model.BdLotteryPool">
+		<result column="id" property="id" />
+		<result column="lottery_id" property="lotteryId" />
+		<result column="prize_id" property="prizeId" />
+		<result column="remain_num" property="remainNum" />
+		<result column="distributed_num" property="distributedNum" />
+		<result column="orderby" property="orderby" />
+		<result column="create_by" property="createBy" />
+		<result column="create_dt" property="createDt" />
+		<result column="modify_by" property="modifyBy" />
+		<result column="modify_dt" property="modifyDt" />
+		<result column="dr" property="dr" />
+	</resultMap>
+
+	<!-- bd_lottery_pool table all fields -->
+	<sql id="Base_Column_List">
+		id,lottery_id,prize_id,remain_num,distributed_num,orderby,create_by,create_dt,modify_by,modify_dt,dr
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null">and id = #{id}</if>
+			<if test="lotteryId != null">and lottery_id = #{lotteryId}</if>
+			<if test="prizeId != null">and prize_id = #{prizeId}</if>
+			<if test="remainNum != null">and remain_num = #{remainNum}</if>
+			<if test="distributedNum != null">and distributed_num =
+				#{distributedNum}</if>
+			<if test="orderby != null">and orderby = #{orderby}</if>
+			<if test="createBy != null">and create_by = #{createBy}</if>
+			<if test="createDt != null">and create_dt = #{createDt}</if>
+			<if test="modifyBy != null">and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null">and modify_dt = #{modifyDt}</if>
+			<if test="dr != null">and dr = #{dr}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertBD_LOTTERY_POOL" parameterType="Object">
+		INSERT INTO BD_LOTTERY_POOL (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,id</if>
+			<if test="lotteryId != null ">,lottery_id</if>
+			<if test="prizeId != null ">,prize_id</if>
+			<if test="remainNum != null ">,remain_num</if>
+			<if test="distributedNum != null ">,distributed_num</if>
+			<if test="orderby != null ">,orderby</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+		</trim>
+		) VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,#{id}</if>
+			<if test="lotteryId != null ">,#{lotteryId}</if>
+			<if test="prizeId != null ">,#{prizeId}</if>
+			<if test="remainNum != null ">,#{remainNum}</if>
+			<if test="distributedNum != null ">,#{distributedNum}</if>
+			<if test="orderby != null ">,#{orderby}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录 -->
+	<update id="UpdateBD_LOTTERY_POOL" parameterType="Object">
+		UPDATE BD_LOTTERY_POOL
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="id != null ">,id=#{id}</if>
+			<if test="lotteryId != null ">,lottery_id=#{lotteryId}</if>
+			<if test="prizeId != null ">,prize_id=#{prizeId}</if>
+			<if test="remainNum != null ">,remain_num=#{remainNum}</if>
+			<if test="distributedNum != null ">,distributed_num=#{distributedNum}</if>
+			<if test="orderby != null ">,orderby=#{orderby}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteBD_LOTTERY_POOL">DELETE FROM BD_LOTTERY_POOL WHERE ID=#{id}</delete>
+	<!-- bd_lottery_pool 列表总数 -->
+	<select id="CountFindAllBD_LOTTERY_POOL" resultType="java.lang.Integer">SELECT
+		count(1) as value FROM BD_LOTTERY_POOL</select>
+	<select id="CountBD_LOTTERY_POOL" resultType="java.lang.Integer">SELECT count(1) as
+		value FROM BD_LOTTERY_POOL WHERE ID=#{id}</select>
+	<!-- 根据id查询 bd_lottery_pool -->
+	<select id="FindByPK" resultMap="result_map_BD_LOTTERY_POOL"
+		parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BD_LOTTERY_POOL WHERE ID=#{pk}
+	</select>
+
+	<!-- 根据各字段条件带查询 bd_lottery_pool -->
+	<select id="FreeFindBD_LOTTERY_POOL" resultMap="result_map_BD_LOTTERY_POOL"
+		parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BD_LOTTERY_POOL
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带查询 bd_lottery_pool 记录数 -->
+	<select id="CountFreeFindBD_LOTTERY_POOL" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM BD_LOTTERY_POOL
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带排序 bd_lottery_pool -->
+	<select id="FreeFindBD_LOTTERY_POOLOrdered" resultMap="result_map_BD_LOTTERY_POOL"
+		parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM BD_LOTTERY_POOL
+		<include refid="Example_Where_Clause" />
+		ORDER BY ${_orderBy}
+	</select>
+
+	<!-- ***************************** 温馨提示： ***************************** -->
+	<!-- ** ** -->
+	<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+	<!-- ** ** 2016/10/18 16:48:20 ** -->
+	<!-- ************************************************************************ -->
+
+	<!-- 查询活动的奖品 -->
+	<select id="FindLotteryPirze" resultType="java.util.Map"
+		parameterType="Object">
+		SELECT l.`lottery_id`, lp.`id` AS pool_id,
+		lp.`remain_num`, lp.`distributed_num`, p.`prize_id`, p.`prize_price`,
+		p.`begintime`, p.`endtime`, p.`need_active`
+		FROM bd_lottery l
+		INNER JOIN bd_lottery_pool lp ON l.`lottery_id` = lp.`lottery_id` AND
+		lp.`dr` = 0 AND lp.`remain_num` > 0
+		INNER JOIN bd_prize p ON lp.`prize_id` = p.`prize_id` AND NOW() BETWEEN
+		p.`begintime` AND p.`endtime` AND p.`dr` = 0
+		WHERE l.`lottery_id` = #{lotteryId} AND NOW() BETWEEN l.`begintime` AND
+		l.`endtime` AND l.`dr` = 0
+	</select>
+
+	<!-- 根据lotter_code查找bd_lottery_pool -->
+	<select id="FindBD_LOTTERY_POOL_BY_LotteryCode" resultType="java.util.Map"
+		parameterType="Object">
+		SELECT bp.prize_id AS prizeId,bp.prize_name AS
+		prizeName,bp.prize_img AS prizeImg,bp.prize_type AS prizeType FROM
+		bd_lottery_pool blp
+		INNER JOIN bd_lottery bl ON bl.lottery_id =
+		blp.lottery_id
+		INNER JOIN bd_prize bp ON bp.prize_id = blp.prize_id
+		WHERE blp.dr = 0 AND bl.lottery_code = #{lotteryCode}
+		ORDER BY
+		blp.orderby
+	</select>
+	
+	<!-- bs搜索（模糊查询） -->
+	<select id="FindPool" resultType="java.util.Map" parameterType="Object">
+		SELECT
+		bl.lottery_id,bp.prize_id,bl.lottery_name,pr.prize_name,bp.remain_num,bp.distributed_num
+		FROM bd_lottery bl
+		INNER JOIN bd_lottery_pool bp ON bl.lottery_id = bp.lottery_id
+		INNER JOIN bd_prize pr ON pr.prize_id = bp.prize_id
+		WHERE 1 = 1
+		<if test="lotteryId != null ">AND bp.lottery_id=#{lotteryId}</if>
+		<if test="prize_name != null ">AND pr.prize_name=#{prize_name}</if>
+	</select>
+	<!-- bs搜索个数 -->
+	<select id="FindPoolCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		SELECT count(*)
+		FROM bd_lottery bl
+		INNER JOIN bd_lottery_pool bp ON bl.lottery_id = bp.lottery_id
+		INNER JOIN bd_prize pr ON pr.prize_id = bp.prize_id
+		WHERE 1 = 1
+		<if test="lotteryId != null ">AND bp.lottery_id=#{lotteryId}</if>
+		<if test="prize_name != null ">AND pr.prize_name=#{prize_name}</if>
+	</select>
+
+</mapper>   

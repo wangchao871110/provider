@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OP_HRPLUS_CALC_CONFIG" > 
+<!-- Result Map-->
+<resultMap id="result_map_OP_HRPLUS_CALC_CONFIG" type="com.xfs.op.model.OpHrplusCalcConfig" >
+	<result column="id" property="id"/>
+	<result column="key" property="key"/>
+	<result column="value" property="value"/>
+	<result column="describe" property="describe"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="create_by" property="createBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- op_hrplus_calc_config table all fields -->
+<sql id="Base_Column_List" >
+	 id,`key`,`value`,`describe`,create_dt,create_by,modify_dt,modify_by,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="key != null" >and key = #{key}</if>
+	<if test="value != null" >and value = #{value}</if>
+	<if test="describe != null" >and describe = #{describe}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id like '%${id}%'</if>
+    <if test="key != null">AND key like '%${key}%'</if>
+    <if test="keyEq != null">AND key = #{keyEq}</if>
+    <if test="value != null">AND value like '%${value}%'</if>
+    <if test="describe != null">AND describe like '%${describe}%'</if>
+    <if test="describeEq != null">AND describe = #{describeEq}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="modifyBy != null">AND modify_by like '%${modifyBy}%'</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertOP_HRPLUS_CALC_CONFIG" parameterType="Object" >
+  INSERT INTO OP_HRPLUS_CALC_CONFIG (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="key != null ">,key</if>
+	<if test="value != null ">,value</if>
+	<if test="describe != null ">,describe</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="key != null ">,#{key}</if>
+	<if test="value != null ">,#{value}</if>
+	<if test="describe != null ">,#{describe}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateOP_HRPLUS_CALC_CONFIG" parameterType="Object" >
+UPDATE OP_HRPLUS_CALC_CONFIG 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="key != null ">,key=#{key}</if>
+	<if test="value != null ">,value=#{value}</if>
+	<if test="describe != null ">,describe=#{describe}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteOP_HRPLUS_CALC_CONFIG">DELETE FROM OP_HRPLUS_CALC_CONFIG WHERE ID=#{id}</delete>
+<!-- 税筹优化计算器配置 列表总数-->
+<select id="CountFindAllOP_HRPLUS_CALC_CONFIG" resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HRPLUS_CALC_CONFIG</select>
+<select id="CountOP_HRPLUS_CALC_CONFIG" resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HRPLUS_CALC_CONFIG WHERE ID=#{id}</select>
+<!-- 根据id查询 税筹优化计算器配置 -->
+<select id="FindByPK" resultMap="result_map_OP_HRPLUS_CALC_CONFIG" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM OP_HRPLUS_CALC_CONFIG WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  税筹优化计算器配置 -->
+<select id="FreeFindOP_HRPLUS_CALC_CONFIG" resultMap="result_map_OP_HRPLUS_CALC_CONFIG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM OP_HRPLUS_CALC_CONFIG 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  税筹优化计算器配置 记录数 -->
+<select id="CountFreeFindOP_HRPLUS_CALC_CONFIG" resultType="java.lang.Integer">
+SELECT count(1) as value FROM OP_HRPLUS_CALC_CONFIG 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  税筹优化计算器配置 -->
+<select id="FreeFindOP_HRPLUS_CALC_CONFIGOrdered" resultMap="result_map_OP_HRPLUS_CALC_CONFIG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM OP_HRPLUS_CALC_CONFIG 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2017/04/06 16:45:09 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

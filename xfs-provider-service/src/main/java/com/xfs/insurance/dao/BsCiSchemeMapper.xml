@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_CI_SCHEME" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_CI_SCHEME" type="com.xfs.insurance.model.BsCiScheme" >
+	<result column="id" property="id"/>
+	<result column="mall_item_id" property="mallItemId"/>
+	<result column="scheme_name" property="schemeName"/>
+	<result column="price" property="price"/>
+	<result column="agent_price" property="agentPrice"/>
+	<result column="suggest_price" property="suggestPrice"/>
+	<result column="scheme_desc" property="schemeDesc"/>
+	<result column="scheme_insure" property="schemeInsure"/>
+</resultMap>
+       
+<!-- bs_ci_scheme table all fields -->
+<sql id="Base_Column_List" >
+	 id,mall_item_id,scheme_name,price,agent_price,suggest_price,scheme_desc,scheme_insure
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="mallItemId != null" >and mall_item_id = #{mallItemId}</if>
+	<if test="schemeName != null" >and scheme_name = #{schemeName}</if>
+	<if test="price != null" >and price = #{price}</if>
+	<if test="agentPrice != null" >and agent_price = #{agentPrice}</if>
+	<if test="suggestPrice != null" >and suggest_price = #{suggestPrice}</if>
+	<if test="schemeDesc != null" >and scheme_desc = #{schemeDesc}</if>
+	<if test="schemeInsure != null" >and scheme_insure = #{schemeInsure}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="mallItemId != null">AND mall_item_id = #{mallItemId}</if>
+    <if test="schemeName != null">AND scheme_name like '%${schemeName}%'</if>
+    <if test="schemeNameEq != null">AND scheme_name = #{schemeNameEq}</if>
+    <if test="price != null">AND price like '%${price}%'</if>
+    <if test="agentPrice != null">AND agent_price like '%${agentPrice}%'</if>
+    <if test="suggestPrice != null">AND suggest_price like '%${suggestPrice}%'</if>
+    <if test="schemeDesc != null">AND scheme_desc like '%${schemeDesc}%'</if>
+    <if test="schemeDescEq != null">AND scheme_desc = #{schemeDescEq}</if>
+    <if test="schemeInsure != null">AND scheme_insure like '%${schemeInsure}%'</if>
+    <if test="schemeInsureEq != null">AND scheme_insure = #{schemeInsureEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_CI_SCHEME" parameterType="Object" >
+  INSERT INTO BS_CI_SCHEME (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="mallItemId != null ">,mall_item_id</if>
+	<if test="schemeName != null ">,scheme_name</if>
+	<if test="price != null ">,price</if>
+	<if test="agentPrice != null ">,agent_price</if>
+	<if test="suggestPrice != null ">,suggest_price</if>
+	<if test="schemeDesc != null ">,scheme_desc</if>
+	<if test="schemeInsure != null ">,scheme_insure</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="mallItemId != null ">,#{mallItemId}</if>
+	<if test="schemeName != null ">,#{schemeName}</if>
+	<if test="price != null ">,#{price}</if>
+	<if test="agentPrice != null ">,#{agentPrice}</if>
+	<if test="suggestPrice != null ">,#{suggestPrice}</if>
+	<if test="schemeDesc != null ">,#{schemeDesc}</if>
+	<if test="schemeInsure != null ">,#{schemeInsure}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_CI_SCHEME" parameterType="Object" >
+UPDATE BS_CI_SCHEME 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="mallItemId != null ">,mall_item_id=#{mallItemId}</if>
+	<if test="schemeName != null ">,scheme_name=#{schemeName}</if>
+	<if test="price != null ">,price=#{price}</if>
+	<if test="agentPrice != null ">,agent_price=#{agentPrice}</if>
+	<if test="suggestPrice != null ">,suggest_price=#{suggestPrice}</if>
+	<if test="schemeDesc != null ">,scheme_desc=#{schemeDesc}</if>
+	<if test="schemeInsure != null ">,scheme_insure=#{schemeInsure}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_CI_SCHEME">DELETE FROM BS_CI_SCHEME WHERE ID=#{id}</delete>
+<!-- 商保承保方案 列表总数-->
+<select id="CountFindAllBS_CI_SCHEME" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CI_SCHEME</select>
+<select id="CountBS_CI_SCHEME" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CI_SCHEME WHERE ID=#{id}</select>
+<!-- 根据id查询 商保承保方案 -->
+<select id="FindByPK" resultMap="result_map_BS_CI_SCHEME" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_CI_SCHEME WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  商保承保方案 -->
+<select id="FreeFindBS_CI_SCHEME" resultMap="result_map_BS_CI_SCHEME" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CI_SCHEME 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  商保承保方案 记录数 -->
+<select id="CountFreeFindBS_CI_SCHEME" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_CI_SCHEME 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  商保承保方案 -->
+<select id="FreeFindBS_CI_SCHEMEOrdered" resultMap="result_map_BS_CI_SCHEME" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CI_SCHEME 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/01 20:53:39 ** -->
+<!-- ************************************************************************ -->
+<delete id="DeleteBS_CI_SCHEME_BY_ITEM">
+    delete from bs_ci_scheme where mall_item_id = #{mallItemId}
+</delete>
+
+<select id="findByMallItemIds" resultType="com.xfs.insurance.dto.CiScheme" parameterType="Object">
+	select <include refid="Base_Column_List" /> from bs_ci_scheme
+	where mall_item_id in
+	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+</select>
+</mapper>   

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_OL_CORPSET" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_OL_CORPSET" type="com.xfs.openlist.model.SpsOlCorpset" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="cp_id" property="cpId"/>
+	<result column="contacts" property="contacts"/>
+	<result column="mobile" property="mobile"/>
+	<result column="address" property="address"/>
+	<result column="is_check" property="isCheck"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+</resultMap>
+       
+<!-- sps_ol_corpset table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,cp_id,contacts,mobile,address,is_check,create_by,create_dt,modify_by,modify_dt
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="cpId != null" >and cp_id = #{cpId}</if>
+	<if test="contacts != null" >and contacts = #{contacts}</if>
+	<if test="mobile != null" >and mobile = #{mobile}</if>
+	<if test="address != null" >and address = #{address}</if>
+	<if test="isCheck != null" >and is_check = #{isCheck}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = '${spId}'</if>
+    <if test="cpId != null">AND cp_id = '${cpId}'</if>
+    <if test="contacts != null">AND contacts like '%${contacts}%'</if>
+    <if test="contactsEq != null">AND contacts = #{contactsEq}</if>
+    <if test="mobile != null">AND mobile like '%${mobile}%'</if>
+    <if test="mobileEq != null">AND mobile = #{mobileEq}</if>
+    <if test="address != null">AND address like '%${address}%'</if>
+    <if test="addressEq != null">AND address = #{addressEq}</if>
+    <if test="isCheck != null">AND is_check like '%${isCheck}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_OL_CORPSET" parameterType="Object" >
+  INSERT INTO SPS_OL_CORPSET (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="cpId != null ">,cp_id</if>
+	<if test="contacts != null ">,contacts</if>
+	<if test="mobile != null ">,mobile</if>
+	<if test="address != null ">,address</if>
+	<if test="isCheck != null ">,is_check</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="cpId != null ">,#{cpId}</if>
+	<if test="contacts != null ">,#{contacts}</if>
+	<if test="mobile != null ">,#{mobile}</if>
+	<if test="address != null ">,#{address}</if>
+	<if test="isCheck != null ">,#{isCheck}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_OL_CORPSET" parameterType="Object" >
+UPDATE SPS_OL_CORPSET 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="cpId != null ">,cp_id=#{cpId}</if>
+	<if test="contacts != null ">,contacts=#{contacts}</if>
+	<if test="mobile != null ">,mobile=#{mobile}</if>
+	<if test="address != null ">,address=#{address}</if>
+	<if test="isCheck != null ">,is_check=#{isCheck}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_OL_CORPSET">DELETE FROM SPS_OL_CORPSET WHERE ID=#{id}</delete>
+<!-- 企业联系人 列表总数-->
+<select id="CountFindAllSPS_OL_CORPSET" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_OL_CORPSET</select>
+<select id="CountSPS_OL_CORPSET" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_OL_CORPSET WHERE ID=#{id}</select>
+<!-- 根据id查询 企业联系人 -->
+<select id="FindByPK" resultMap="result_map_SPS_OL_CORPSET" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_OL_CORPSET WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  企业联系人 -->
+<select id="FreeFindSPS_OL_CORPSET" resultMap="result_map_SPS_OL_CORPSET" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_OL_CORPSET 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  企业联系人 记录数 -->
+<select id="CountFreeFindSPS_OL_CORPSET" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_OL_CORPSET 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  企业联系人 -->
+<select id="FreeFindSPS_OL_CORPSETOrdered" resultMap="result_map_SPS_OL_CORPSET" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_OL_CORPSET 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/04/09 16:45:56 ** -->
+<!-- ************************************************************************ -->
+
+	<resultMap id="corpSetMap" type="java.util.Map">
+	</resultMap>
+	<!--获取企业接口人联系地址-->
+<select id="Find_CorpSet_Union__Customer" resultMap="corpSetMap" parameterType="Object">
+	SELECT r.cp_id,cp.corp_name,corp.id,cp.contact_psn,cp.mobile,corp.contacts,corp.mobile as corpmobile,corp.address,corp.is_check FROM
+    cm_corp cp INNER JOIN  sp_cm_relation r  ON cp.cp_id = r.cp_id AND r.sp_id = #{sp_id}
+	LEFT  JOIN sps_ol_corpset corp ON corp.cp_id = r.cp_id
+</select>
+
+	<!--根据员工手机号定位到对应的企业联系人-->
+	<select id="Find_CorpSet_By__CM_Person" resultMap="corpSetMap" parameterType="Object">
+            SELECT corp.cp_id,corp.corp_name,corp.contact_psn,corp.mobile,olset.contacts,olset.mobile as corpmobile,olset.address,olset.is_check,r.sp_id FROM
+			cm_corp corp INNER JOIN cm_employee em ON corp.cp_id = em.cp_id
+		    <if test="mobile != null "> AND em.mobile = #{mobile} </if>
+		    <if test="cpid != null "> AND corp.cp_id = #{cpid} </if>
+			INNER JOIN sp_cm_relation r ON r.cp_id = em.cp_id
+			LEFT  JOIN sps_ol_corpset olset ON olset.cp_id = corp.cp_id
+	</select>
+</mapper>   

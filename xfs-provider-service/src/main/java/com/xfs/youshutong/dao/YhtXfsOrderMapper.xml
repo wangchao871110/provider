@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yht_xfs_order" > 
+<!-- Result Map-->
+<resultMap id="result_map_yht_xfs_order" type="com.xfs.youshutong.model.YhtXfsOrder" >
+	<result column="order_id" property="orderId"/>
+	<result column="custome_id" property="customeId"/>
+	<result column="custome_name" property="customeName"/>
+	<result column="order_time" property="orderTime"/>
+	<result column="order_start_time" property="orderStartTime"/>
+	<result column="order_end_time" property="orderEndTime"/>
+	<result column="order_amount" property="orderAmount"/>
+	<result column="order_paid_amount" property="orderPaidAmount"/>
+	<result column="impower_user_count" property="impowerUserCount"/>
+	<result column="sys_mark" property="sysMark"/>
+	<result column="common_status" property="commonStatus"/>
+	<result column="user_id" property="userId"/>
+	<result column="user_name" property="userName"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="create_by" property="createBy"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="pay_time" property="payTime"/>
+</resultMap>
+       
+<!-- yht_xfs_order table all fields -->
+<sql id="Base_Column_List" >
+	 order_id,custome_id,custome_name,order_time,order_start_time,order_end_time,order_amount,order_paid_amount,impower_user_count,sys_mark,common_status,user_id,user_name,create_dt,modify_dt,dr,create_by,modify_by,pay_time
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="orderId != null" >and order_id = #{orderId}</if>
+	<if test="customeId != null" >and custome_id = #{customeId}</if>
+	<if test="customeName != null" >and custome_name = #{customeName}</if>
+	<if test="orderTime != null" >and order_time = #{orderTime}</if>
+	<if test="orderStartTime != null" >and order_start_time = #{orderStartTime}</if>
+	<if test="orderEndTime != null" >and order_end_time = #{orderEndTime}</if>
+	<if test="orderAmount != null" >and order_amount = #{orderAmount}</if>
+	<if test="orderPaidAmount != null" >and order_paid_amount = #{orderPaidAmount}</if>
+	<if test="impowerUserCount != null" >and impower_user_count = #{impowerUserCount}</if>
+	<if test="sysMark != null" >and sys_mark = #{sysMark}</if>
+	<if test="commonStatus != null" >and common_status = #{commonStatus}</if>
+	<if test="userId != null" >and user_id = #{userId}</if>
+	<if test="userName != null" >and user_name = #{userName}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="payTime != null" >and pay_time = #{payTime}</if>
+</trim>
+</sql>
+
+<!-- 订单表-和友互通对接 列表总数-->
+<select id="countFindAll" resultType="java.lang.Integer">SELECT count(1) as value FROM yht_xfs_order</select>
+
+<!-- 根据各字段条件查询  订单表-和友互通对接 -->
+<select id="freeFind" resultMap="result_map_yht_xfs_order" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM yht_xfs_order 
+	 <include refid="Example_Where_Clause" />
+</select>
+
+<!-- 根据各字段条件查询  订单表-和友互通对接 记录数 -->
+<select id="countFreeFind" resultType="java.lang.Integer">
+SELECT count(1) as value FROM yht_xfs_order 
+ <include refid="Example_Where_Clause" />
+</select>
+
+<!-- 根据id查询 订单表-和友互通对接 -->
+<select id="findByPK" resultMap="result_map_yht_xfs_order" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM yht_xfs_order WHERE ORDER_ID=#{orderId}</select>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  INSERT INTO yht_xfs_order (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="orderId != null ">,order_id</if>
+	<if test="customeId != null ">,custome_id</if>
+	<if test="customeName != null ">,custome_name</if>
+	<if test="orderTime != null ">,order_time</if>
+	<if test="orderStartTime != null ">,order_start_time</if>
+	<if test="orderEndTime != null ">,order_end_time</if>
+	<if test="orderAmount != null ">,order_amount</if>
+	<if test="orderPaidAmount != null ">,order_paid_amount</if>
+	<if test="impowerUserCount != null ">,impower_user_count</if>
+	<if test="sysMark != null ">,sys_mark</if>
+	<if test="commonStatus != null ">,common_status</if>
+	<if test="userId != null ">,user_id</if>
+	<if test="userName != null ">,user_name</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="payTime != null ">,pay_time</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="orderId != null ">,#{orderId}</if>
+	<if test="customeId != null ">,#{customeId}</if>
+	<if test="customeName != null ">,#{customeName}</if>
+	<if test="orderTime != null ">,#{orderTime}</if>
+	<if test="orderStartTime != null ">,#{orderStartTime}</if>
+	<if test="orderEndTime != null ">,#{orderEndTime}</if>
+	<if test="orderAmount != null ">,#{orderAmount}</if>
+	<if test="orderPaidAmount != null ">,#{orderPaidAmount}</if>
+	<if test="impowerUserCount != null ">,#{impowerUserCount}</if>
+	<if test="sysMark != null ">,#{sysMark}</if>
+	<if test="commonStatus != null ">,#{commonStatus}</if>
+	<if test="userId != null ">,#{userId}</if>
+	<if test="userName != null ">,#{userName}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="payTime != null ">,#{payTime}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="orderId">
+	SELECT LAST_INSERT_ID() AS ORDER_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="update" parameterType="Object" >
+UPDATE yht_xfs_order 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="orderId != null ">,order_id=#{orderId}</if>
+	<if test="customeId != null ">,custome_id=#{customeId}</if>
+	<if test="customeName != null ">,custome_name=#{customeName}</if>
+	<if test="orderTime != null ">,order_time=#{orderTime}</if>
+	<if test="orderStartTime != null ">,order_start_time=#{orderStartTime}</if>
+	<if test="orderEndTime != null ">,order_end_time=#{orderEndTime}</if>
+	<if test="orderAmount != null ">,order_amount=#{orderAmount}</if>
+	<if test="orderPaidAmount != null ">,order_paid_amount=#{orderPaidAmount}</if>
+	<if test="impowerUserCount != null ">,impower_user_count=#{impowerUserCount}</if>
+	<if test="sysMark != null ">,sys_mark=#{sysMark}</if>
+	<if test="commonStatus != null ">,common_status=#{commonStatus}</if>
+	<if test="userId != null ">,user_id=#{userId}</if>
+	<if test="userName != null ">,user_name=#{userName}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="payTime != null ">,pay_time=#{payTime}</if>
+  </trim>
+WHERE ORDER_ID=#{orderId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="remove">DELETE FROM yht_xfs_order WHERE ORDER_ID=#{orderId}</delete>
+
+	<!-- 根据各字段条件查询  订单表-和友互通对接 -->
+	<select id="findOrderByCondition" resultMap="result_map_yht_xfs_order" parameterType="Map">
+		<!--SELECT <include refid="Base_Column_List" /> FROM yht_xfs_order-->
+		<!--WHERE  LEFT(create_dt,10) = #{date} and dr=0-->
+		SELECT ord.order_id, corp.tenant_id as custome_id,ord.custome_name,ord.order_time,ord.order_start_time,ord.order_end_time,ord.order_amount,
+		ord.order_paid_amount,ord.impower_user_count,ord.sys_mark,ord.common_status,ord.user_id,ord.user_name,ord.create_dt,ord.modify_dt,ord.dr,ord.create_by,
+		ord.modify_by,ord.pay_time,ord.remark
+		FROM yht_xfs_order ord
+		LEFT JOIN cm_corp corp on  ord.custome_id = corp.cp_id
+		WHERE  LEFT(ord.create_dt,10) = #{date} and ord.dr=0
+
+	</select>
+
+</mapper>   

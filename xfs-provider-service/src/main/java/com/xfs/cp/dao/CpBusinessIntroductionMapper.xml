@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CPBUSINESSINTRODUCTION" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_BUSINESS_INTRODUCTION" type="com.xfs.cp.model.CpBusinessIntroduction" >
+	<result column="cp_id" property="cpId"/>
+	<result column="social_add_date_type" property="socialAddDateType"/>
+	<result column="social_add_date" property="socialAddDate"/>
+	<result column="social_reduction_date_type" property="socialReductionDateType"/>
+	<result column="social_reduction_date" property="socialReductionDate"/>
+	<result column="accumulation_fund_ratio" property="accumulationFundRatio"/>
+	<result column="residual_premium" property="residualPremium"/>
+	<result column="accounts_receivable" property="accountsReceivable"/>
+	<result column="document_upload" property="documentUpload"/>
+	<result column="latest_dt" property="latestDt"/>
+	<result column="is_pay" property="isPay"/>
+	<result column="is_qa" property="isQa"/>
+	<result column="collecting_material" property="collectingMaterial"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="insurance_add_date_type" property="insuranceAddDateType"/>
+	<result column="insurance_add_date" property="insuranceAddDate"/>
+	<result column="insurance_reduction_date_type" property="insuranceReductionDateType"/>
+	<result column="insurance_reduction_date" property="insuranceReductionDate"/>
+</resultMap>
+       
+<!-- cp_business_introduction table all fields -->
+<sql id="Base_Column_List" >
+	 cp_id,social_add_date_type,social_add_date,social_reduction_date_type,social_reduction_date,accumulation_fund_ratio,residual_premium,accounts_receivable,document_upload,latest_dt,is_pay,is_qa,collecting_material,create_by,create_dt,modify_by,modify_dt,dr,insurance_add_date_type,insurance_add_date,insurance_reduction_date_type,insurance_reduction_date
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="cpId != null" >and cp_id = #{cpId}</if>
+	<if test="socialAddDateType != null" >and social_add_date_type = #{socialAddDateType}</if>
+	<if test="socialAddDate != null" >and social_add_date = #{socialAddDate}</if>
+	<if test="socialReductionDateType != null" >and social_reduction_date_type = #{socialReductionDateType}</if>
+	<if test="socialReductionDate != null" >and social_reduction_date = #{socialReductionDate}</if>
+	<if test="accumulationFundRatio != null" >and accumulation_fund_ratio = #{accumulationFundRatio}</if>
+	<if test="residualPremium != null" >and residual_premium = #{residualPremium}</if>
+	<if test="accountsReceivable != null" >and accounts_receivable = #{accountsReceivable}</if>
+	<if test="documentUpload != null" >and document_upload = #{documentUpload}</if>
+	<if test="latestDt != null" >and latest_dt = #{latestDt}</if>
+	<if test="isPay != null" >and is_pay = #{isPay}</if>
+	<if test="isQa != null" >and is_qa = #{isQa}</if>
+	<if test="collectingMaterial != null" >and collecting_material = #{collectingMaterial}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="insuranceAddDateType != null" >and insurance_add_date_type = #{insuranceAddDateType}</if>
+	<if test="insuranceAddDate != null" >and insurance_add_date = #{insuranceAddDate}</if>
+	<if test="insuranceReductionDateType != null" >and insurance_reduction_date_type = #{insuranceReductionDateType}</if>
+	<if test="insuranceReductionDate != null" >and insurance_reduction_date = #{insuranceReductionDate}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="cpId != null">AND cp_id like '%${cpId}%'</if>
+    <if test="socialAddDateType != null">AND social_add_date_type like '%${socialAddDateType}%'</if>
+    <if test="socialAddDate != null">AND social_add_date like '%${socialAddDate}%'</if>
+    <if test="socialReductionDateType != null">AND social_reduction_date_type like '%${socialReductionDateType}%'</if>
+    <if test="socialReductionDate != null">AND social_reduction_date like '%${socialReductionDate}%'</if>
+    <if test="accumulationFundRatio != null">AND accumulation_fund_ratio like '%${accumulationFundRatio}%'</if>
+    <if test="accumulationFundRatioEq != null">AND accumulation_fund_ratio = #{accumulationFundRatioEq}</if>
+    <if test="residualPremium != null">AND residual_premium like '%${residualPremium}%'</if>
+    <if test="accountsReceivable != null">AND accounts_receivable like '%${accountsReceivable}%'</if>
+    <if test="documentUpload != null">AND document_upload like '%${documentUpload}%'</if>
+    <if test="latestDt != null">AND latest_dt like '%${latestDt}%'</if>
+    <if test="isPay != null">AND is_pay like '%${isPay}%'</if>
+    <if test="isQa != null">AND is_qa like '%${isQa}%'</if>
+    <if test="collectingMaterial != null">AND collecting_material like '%${collectingMaterial}%'</if>
+    <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by like '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+    <if test="insuranceAddDateType != null">AND insurance_add_date_type like '%${insuranceAddDateType}%'</if>
+    <if test="insuranceAddDate != null">AND insurance_add_date like '%${insuranceAddDate}%'</if>
+    <if test="insuranceReductionDateType != null">AND insurance_reduction_date_type like '%${insuranceReductionDateType}%'</if>
+    <if test="insuranceReductionDate != null">AND insurance_reduction_date like '%${insuranceReductionDate}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_BUSINESS_INTRODUCTION" parameterType="Object" >
+  INSERT INTO CP_BUSINESS_INTRODUCTION (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="cpId != null ">,cp_id</if>
+	<if test="socialAddDateType != null ">,social_add_date_type</if>
+	<if test="socialAddDate != null ">,social_add_date</if>
+	<if test="socialReductionDateType != null ">,social_reduction_date_type</if>
+	<if test="socialReductionDate != null ">,social_reduction_date</if>
+	<if test="accumulationFundRatio != null ">,accumulation_fund_ratio</if>
+	<if test="residualPremium != null ">,residual_premium</if>
+	<if test="accountsReceivable != null ">,accounts_receivable</if>
+	<if test="documentUpload != null ">,document_upload</if>
+	<if test="latestDt != null ">,latest_dt</if>
+	<if test="isPay != null ">,is_pay</if>
+	<if test="isQa != null ">,is_qa</if>
+	<if test="collectingMaterial != null ">,collecting_material</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="insuranceAddDateType != null ">,insurance_add_date_type</if>
+	<if test="insuranceAddDate != null ">,insurance_add_date</if>
+	<if test="insuranceReductionDateType != null ">,insurance_reduction_date_type</if>
+	<if test="insuranceReductionDate != null ">,insurance_reduction_date</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="cpId != null ">,#{cpId}</if>
+	<if test="socialAddDateType != null ">,#{socialAddDateType}</if>
+	<if test="socialAddDate != null ">,#{socialAddDate}</if>
+	<if test="socialReductionDateType != null ">,#{socialReductionDateType}</if>
+	<if test="socialReductionDate != null ">,#{socialReductionDate}</if>
+	<if test="accumulationFundRatio != null ">,#{accumulationFundRatio}</if>
+	<if test="residualPremium != null ">,#{residualPremium}</if>
+	<if test="accountsReceivable != null ">,#{accountsReceivable}</if>
+	<if test="documentUpload != null ">,#{documentUpload}</if>
+	<if test="latestDt != null ">,#{latestDt}</if>
+	<if test="isPay != null ">,#{isPay}</if>
+	<if test="isQa != null ">,#{isQa}</if>
+	<if test="collectingMaterial != null ">,#{collectingMaterial}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="insuranceAddDateType != null ">,#{insuranceAddDateType}</if>
+	<if test="insuranceAddDate != null ">,#{insuranceAddDate}</if>
+	<if test="insuranceReductionDateType != null ">,#{insuranceReductionDateType}</if>
+	<if test="insuranceReductionDate != null ">,#{insuranceReductionDate}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="cpId">
+	SELECT LAST_INSERT_ID() AS CP_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_BUSINESS_INTRODUCTION" parameterType="Object" >
+UPDATE CP_BUSINESS_INTRODUCTION 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="cpId != null ">,cp_id=#{cpId}</if>
+	<if test="socialAddDateType != null ">,social_add_date_type=#{socialAddDateType}</if>
+	<if test="socialAddDate != null ">,social_add_date=#{socialAddDate}</if>
+	<if test="socialReductionDateType != null ">,social_reduction_date_type=#{socialReductionDateType}</if>
+	<if test="socialReductionDate != null ">,social_reduction_date=#{socialReductionDate}</if>
+	<if test="accumulationFundRatio != null ">,accumulation_fund_ratio=#{accumulationFundRatio}</if>
+	<if test="residualPremium != null ">,residual_premium=#{residualPremium}</if>
+	<if test="accountsReceivable != null ">,accounts_receivable=#{accountsReceivable}</if>
+	<if test="documentUpload != null ">,document_upload=#{documentUpload}</if>
+	<if test="latestDt != null ">,latest_dt=#{latestDt}</if>
+	<if test="isPay != null ">,is_pay=#{isPay}</if>
+	<if test="isQa != null ">,is_qa=#{isQa}</if>
+	<if test="collectingMaterial != null ">,collecting_material=#{collectingMaterial}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="insuranceAddDateType != null ">,insurance_add_date_type=#{insuranceAddDateType}</if>
+	<if test="insuranceAddDate != null ">,insurance_add_date=#{insuranceAddDate}</if>
+	<if test="insuranceReductionDateType != null ">,insurance_reduction_date_type=#{insuranceReductionDateType}</if>
+	<if test="insuranceReductionDate != null ">,insurance_reduction_date=#{insuranceReductionDate}</if>
+  </trim>
+WHERE CP_ID=#{cpId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_BUSINESS_INTRODUCTION">DELETE FROM CP_BUSINESS_INTRODUCTION WHERE CP_ID=#{cpId}</delete>
+<!-- 业务介绍 列表总数-->
+<select id="CountFindAllCP_BUSINESS_INTRODUCTION" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_BUSINESS_INTRODUCTION</select>
+<select id="CountCP_BUSINESS_INTRODUCTION" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_BUSINESS_INTRODUCTION WHERE CP_ID=#{cpId}</select>
+<!-- 根据id查询 业务介绍 -->
+<select id="FindByPK" resultMap="result_map_CP_BUSINESS_INTRODUCTION" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_BUSINESS_INTRODUCTION WHERE CP_ID=#{cpId}</select>
+
+<!-- 根据各字段条件带模糊查询  业务介绍 -->
+<select id="FreeFindCP_BUSINESS_INTRODUCTION" resultMap="result_map_CP_BUSINESS_INTRODUCTION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_BUSINESS_INTRODUCTION 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  业务介绍 记录数 -->
+<select id="CountFreeFindCP_BUSINESS_INTRODUCTION" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_BUSINESS_INTRODUCTION 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  业务介绍 -->
+<select id="FreeFindCP_BUSINESS_INTRODUCTIONOrdered" resultMap="result_map_CP_BUSINESS_INTRODUCTION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_BUSINESS_INTRODUCTION 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2017/01/09 14:41:40 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

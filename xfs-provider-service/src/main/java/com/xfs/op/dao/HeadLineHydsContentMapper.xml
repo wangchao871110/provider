@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HEAD_LINE_HYDS_CONTENT">
+    <!-- Result Map-->
+    <resultMap id="result_map_HEAD_LINE_HYDS_CONTENT" type="com.xfs.op.model.HeadLineHydsContent">
+        <result column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="start_dt" property="startDt"/>
+        <result column="end_dt" property="endDt"/>
+        <result column="create_dt" property="createDt"/>
+        <result column="modify_dt" property="modifyDt"/>
+        <result column="content_url" property="contentUrl"/>
+        <result column="dr" property="dr"/>
+        <result column="area_id" property="areaId"/>
+        <result column="creat_by" property="creatBy"/>
+        <result column="midify_by" property="midifyBy"/>
+        <result column="title_img" property="titleImg"/>
+        <result column="createName" property="createName"/>
+        <result column="modifyName" property="modifyName"/>
+        <result column="areaName" property="areaName"/>
+        <result column="type" property="type"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <!-- head_line_hyds_content table all fields -->
+    <sql id="Base_Column_List">
+	 id,title,start_dt,end_dt,create_dt,modify_dt,content_url,dr,area_id,creat_by,midify_by,title_img,`type`,address
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">and id = #{id}</if>
+            <if test="title != null">and title = #{title}</if>
+            <if test="startDt != null">and start_dt = #{startDt}</if>
+            <if test="endDt != null">and end_dt = #{endDt}</if>
+            <if test="createDt != null">and create_dt = #{createDt}</if>
+            <if test="modifyDt != null">and modify_dt = #{modifyDt}</if>
+            <if test="contentUrl != null">and content_url = #{contentUrl}</if>
+            <if test="dr != null">and dr = #{dr}</if>
+            <if test="areaId != null">and area_id = #{areaId}</if>
+            <if test="creatBy != null">and creat_by = #{creatBy}</if>
+            <if test="midifyBy != null">and midify_by = #{midifyBy}</if>
+        </trim>
+    </sql>
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id like '%${id}%'</if>
+            <if test="title != null">AND title like '%${title}%'</if>
+            <if test="titleEq != null">AND title = #{titleEq}</if>
+            <if test="startDt != null">AND start_dt = #{startDt}</if>
+            <if test="startDtFrom != null">AND start_dt&gt;=#{startDtFrom}</if>
+            <if test="startDtTo != null">AND start_dt&lt;=#{startDtTo}</if>
+            <if test="endDt != null">AND end_dt = #{endDt}</if>
+            <if test="endDtFrom != null">AND end_dt&gt;=#{endDtFrom}</if>
+            <if test="endDtTo != null">AND end_dt&lt;=#{endDtTo}</if>
+            <if test="createDt != null">AND create_dt = #{createDt}</if>
+            <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+            <if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+            <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+            <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+            <if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+            <if test="contentUrl != null">AND content_url like '%${contentUrl}%'</if>
+            <if test="contentUrlEq != null">AND content_url = #{contentUrlEq}</if>
+            <if test="dr != null">AND dr like '%${dr}%'</if>
+            <if test="areaId != null">AND area_id like '%${areaId}%'</if>
+            <if test="creatBy != null">AND creat_by like '%${creatBy}%'</if>
+            <if test="midifyBy != null">AND midify_by like '%${midifyBy}%'</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertHEAD_LINE_HYDS_CONTENT" parameterType="Object">
+        INSERT INTO HEAD_LINE_HYDS_CONTENT (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="title != null ">,title</if>
+            <if test="startDt != null ">,start_dt</if>
+            <if test="endDt != null ">,end_dt</if>
+            <if test="createDt != null ">,create_dt</if>
+            <if test="modifyDt != null ">,modify_dt</if>
+            <if test="contentUrl != null ">,content_url</if>
+            <if test="dr != null ">,dr</if>
+            <if test="areaId != null ">,area_id</if>
+            <if test="creatBy != null ">,creat_by</if>
+            <if test="midifyBy != null ">,midify_by</if>
+            <if test="titleImg != null ">,title_img</if>
+            <if test="type != null ">,`type`</if>
+            <if test="address != null ">,address</if>
+
+        </trim>
+        ) VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="title != null ">,#{title}</if>
+            <if test="startDt != null ">,#{startDt}</if>
+            <if test="endDt != null ">,#{endDt}</if>
+            <if test="createDt != null ">,#{createDt}</if>
+            <if test="modifyDt != null ">,#{modifyDt}</if>
+            <if test="contentUrl != null ">,#{contentUrl}</if>
+            <if test="dr != null ">,#{dr}</if>
+            <if test="areaId != null ">,#{areaId}</if>
+            <if test="creatBy != null ">,#{creatBy}</if>
+            <if test="midifyBy != null ">,#{midifyBy}</if>
+            <if test="titleImg != null ">,#{titleImg}</if>
+            <if test="type != null ">,#{type}</if>
+            <if test="address != null ">,#{address}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateHEAD_LINE_HYDS_CONTENT" parameterType="Object">
+        UPDATE HEAD_LINE_HYDS_CONTENT
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="title != null ">,title=#{title}</if>
+            <if test="startDt != null ">,start_dt=#{startDt}</if>
+            <if test="endDt != null ">,end_dt=#{endDt}</if>
+            <if test="createDt != null ">,create_dt=#{createDt}</if>
+            <if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+            <if test="contentUrl != null ">,content_url=#{contentUrl}</if>
+            <if test="dr != null ">,dr=#{dr}</if>
+            <if test="areaId != null ">,area_id=#{areaId}</if>
+            <if test="creatBy != null ">,creat_by=#{creatBy}</if>
+            <if test="midifyBy != null ">,midify_by=#{midifyBy}</if>
+            <if test="titleImg != null ">,title_img=#{titleImg}</if>
+            <if test="type != null ">,`type`=#{type}</if>
+            <if test="address != null ">,address=#{address}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteHEAD_LINE_HYDS_CONTENT">
+    UPDATE  HEAD_LINE_HYDS_CONTENT SET dr = 1 WHERE ID=#{id}
+</delete>
+    <!-- 行业大事内容 列表总数-->
+    <select id="CountFindAllHEAD_LINE_HYDS_CONTENT"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM HEAD_LINE_HYDS_CONTENT</select>
+    <select id="CountHEAD_LINE_HYDS_CONTENT"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM HEAD_LINE_HYDS_CONTENT WHERE ID=#{id}</select>
+    <!-- 根据id查询 行业大事内容 -->
+    <select id="FindByPK" resultMap="result_map_HEAD_LINE_HYDS_CONTENT" parameterType="Object">SELECT
+        <include refid="Base_Column_List"/>
+        FROM HEAD_LINE_HYDS_CONTENT WHERE ID=#{id}
+    </select>
+
+    <!-- 根据各字段条件带模糊查询  行业大事内容 -->
+    <select id="FreeFindHEAD_LINE_HYDS_CONTENT" resultMap="result_map_HEAD_LINE_HYDS_CONTENT" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HEAD_LINE_HYDS_CONTENT
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带模糊查询  行业大事内容 记录数 -->
+    <select id="CountFreeFindHEAD_LINE_HYDS_CONTENT" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM HEAD_LINE_HYDS_CONTENT
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带排序  行业大事内容 -->
+    <select id="FreeFindHEAD_LINE_HYDS_CONTENTOrdered" resultMap="result_map_HEAD_LINE_HYDS_CONTENT"
+            parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM HEAD_LINE_HYDS_CONTENT
+        <include refid="Example_Where_Clause2"/>
+        ORDER BY ${_orderBy}
+    </select>
+
+    <!-- *****************************  温馨提示：  ***************************** -->
+    <!-- **                                                                    ** -->
+    <!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+    <!-- **                                             ** 2017/05/02 16:19:11 ** -->
+    <!-- ************************************************************************ -->
+
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="new_Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND hyds.id like '%${id}%'</if>
+            <if test="title != null">AND hyds.title like '%${title}%'</if>
+            <if test="titleEq != null">AND hyds.title = #{titleEq}</if>
+            <if test="startDt != null">AND hyds.start_dt = #{startDt}</if>
+            <if test="startDtFrom != null">AND hyds.start_dt&gt;=#{startDtFrom}</if>
+            <if test="startDtTo != null">AND hyds.start_dt&lt;=#{startDtTo}</if>
+            <if test="endDt != null">AND hyds.end_dt = #{endDt}</if>
+            <if test="endDtFrom != null">AND hyds.end_dt&gt;=#{endDtFrom}</if>
+            <if test="endDtTo != null">AND hyds.end_dt&lt;=#{endDtTo}</if>
+            <if test="createDt != null">AND hyds.create_dt = #{createDt}</if>
+            <if test="createDtFrom != null">AND hyds.create_dt&gt;=#{createDtFrom}</if>
+            <if test="createDtTo != null">AND hyds.create_dt&lt;=#{createDtTo}</if>
+            <if test="modifyDt != null">AND hyds.modify_dt = #{modifyDt}</if>
+            <if test="type != null">AND hyds.type = #{type}</if>
+            <if test="modifyDtFrom != null">AND hyds.modify_dt&gt;=#{modifyDtFrom}</if>
+            <if test="modifyDtTo != null">AND hyds.modify_dt&lt;=#{modifyDtTo}</if>
+            <if test="contentUrl != null">AND hyds.content_url like '%${contentUrl}%'</if>
+            <if test="contentUrlEq != null">AND hyds.content_url = #{contentUrlEq}</if>
+            <if test="dr != null">AND hyds.dr like '%${dr}%'</if>
+            <if test="areaId != null">AND hyds.area_id = #{areaId}</if>
+            <if test="creatBy != null">AND hyds.creat_by like '%${creatBy}%'</if>
+            <if test="midifyBy != null">AND hyds.midify_by like '%${midifyBy}%'</if>
+            <if test="createName != null">AND use1.user_name = #{createName}</if>
+            <if test="modifyName != null">AND use2.user_name = #{modifyName}</if>
+        </trim>
+    </sql>
+
+
+    <!-- 使用条件查询 -->
+    <select id="findBySearchQueryMap" resultMap="result_map_HEAD_LINE_HYDS_CONTENT" parameterType="Object">
+        SELECT hyds.* , use1.user_name as createName ,
+        use2.user_name as modifyName , ar.`name` as areaName
+        FROM HEAD_LINE_HYDS_CONTENT hyds
+        LEFT join sys_user use1 ON hyds.creat_by = use1.user_id
+        LEFT join sys_user use2 ON hyds.midify_by = use2.user_id
+        LEFT JOIN bs_area ar ON ar.area_id = hyds.area_id
+        <include refid="new_Example_Where_Clause2"/>
+        ORDER BY start_dt DESC , end_dt DESC
+    </select>
+
+    <!-- count -->
+    <select id="countBySearchQueryMap" resultType="java.lang.Integer" parameterType="Object">
+        SELECT count(1) FROM HEAD_LINE_HYDS_CONTENT hyds
+        LEFT join sys_user use1 ON hyds.creat_by = use1.user_id
+        LEFT join sys_user use2 ON hyds.midify_by = use2.user_id
+        LEFT JOIN bs_area ar ON ar.area_id = hyds.area_id
+        <include refid="new_Example_Where_Clause2"/>
+    </select>
+
+
+</mapper>   

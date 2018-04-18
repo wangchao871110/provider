@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_INSURANCEAREA" > 
+<!-- Result Map-->
+<resultMap id="result_map_BD_INSURANCEAREA" type="com.xfs.business.model.BdInsurancearea" >
+	<result column="id" property="id"/>
+	<result column="area_id" property="areaId"/>
+	<result column="insurance_id" property="insuranceId"/>
+	<result column="round_method" property="roundMethod"/>
+	<result column="flow" property="flow"/>
+    <result column="required" property="required"/>
+</resultMap>
+       
+<!-- bd_insurancearea table all fields -->
+<sql id="Base_Column_List" >
+	 id,area_id,insurance_id,round_method,flow,required
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="insuranceId != null" >and insurance_id = #{insuranceId}</if>
+	<if test="roundMethod != null" >and round_method = #{roundMethod}</if>
+    <if test="required != null" >and required = #{required}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="areaId != null">AND area_id = '${areaId}'</if>
+    <if test="insuranceId != null">AND insurance_id = '${insuranceId}'</if>
+    <if test="roundMethod != null">AND round_method like '%${roundMethod}%'</if>
+    <if test="roundMethodEq != null">AND round_method = #{roundMethodEq}</if>
+    <if test="required != null" >and required = #{required}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBD_INSURANCEAREA" parameterType="Object" >
+  INSERT INTO BD_INSURANCEAREA (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="insuranceId != null ">,insurance_id</if>
+	<if test="roundMethod != null ">,round_method</if>
+    <if test="required != null ">,required</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="insuranceId != null ">,#{insuranceId}</if>
+	<if test="roundMethod != null ">,#{roundMethod}</if>
+    <if test="required != null ">,#{required}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBD_INSURANCEAREA" parameterType="Object" >
+UPDATE BD_INSURANCEAREA 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="insuranceId != null ">,insurance_id=#{insuranceId}</if>
+	<if test="roundMethod != null ">,round_method=#{roundMethod}</if>
+    <if test="required != null ">,required=#{required}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBD_INSURANCEAREA">DELETE FROM BD_INSURANCEAREA WHERE ID=#{id}</delete>
+<!-- 保险类型地区 列表总数-->
+<select id="CountFindAllBD_INSURANCEAREA" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_INSURANCEAREA</select>
+<select id="CountBD_INSURANCEAREA" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_INSURANCEAREA WHERE ID=#{id}</select>
+<!-- 根据id查询 保险类型地区 -->
+<select id="FindByPK" resultMap="result_map_BD_INSURANCEAREA" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BD_INSURANCEAREA WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  保险类型地区 -->
+<select id="FreeFindBD_INSURANCEAREA" resultMap="result_map_BD_INSURANCEAREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_INSURANCEAREA 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  保险类型地区 记录数 -->
+<select id="CountFreeFindBD_INSURANCEAREA" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BD_INSURANCEAREA 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  保险类型地区 -->
+<select id="FreeFindBD_INSURANCEAREAOrdered" resultMap="result_map_BD_INSURANCEAREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_INSURANCEAREA 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/05/16 16:36:51 ** -->
+<!-- ************************************************************************ -->
+
+	<!-- 根据人员信息获取地区参保列表 -->
+	<select id="QUERY_EM_INSURANCE_AREA_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT din.code as parentCode,din.name as parentName,bf.`code` as childCode,bf.`name` as childName FROM bs_arearatio area
+		INNER JOIN bs_area barea ON area.`area_id` = barea.`area_id`
+		INNER JOIN bd_insurance din ON area.insurance_id = din.insurance_id
+		INNER JOIN bd_insurancefields fs ON fs.insurance_id = din.insurance_id
+
+		INNER JOIN bd_businessfield bf ON bf.field_id = fs.field_id
+		INNER JOIN
+		(
+		SELECT tf.* from (
+		SELECT t.id,t.sp_id FROM (
+		SELECT template.* FROM sps_bill_temp_corp temcorp INNER JOIN sps_bill_template template ON temcorp.temp_id = template.id WHERE temcorp.cp_id = #{cmid} AND template.sp_id = #{spid} AND template.is_effect = 'Y' AND template.is_default = 'N' AND temcorp.dr = 0 AND template.dr = 0
+		UNION
+		SELECT template.* FROM sps_bill_template template WHERE template.sp_id = #{spid} AND template.is_effect = 'Y' AND template.is_default = 'Y' AND template.dr = 0
+		) t LIMIT 1) m INNER JOIN sps_bill_temp_business_field tf ON tf.temp_id = m.id AND tf.dr = 0
+
+		) lf ON lf.field_id = bf.field_id
+		INNER JOIN (
+		SELECT
+		ba. CODE,
+		em.insurance_area
+		FROM
+		sps_bill_emp em
+		INNER JOIN sps_bill re ON re.bill_id = em.bill_id
+		AND re.sp_id =#{spid} AND re.cp_id = #{cmid}
+		AND re.bill_id = #{bill_id}
+		INNER JOIN cm_employee_insurance ins ON ins.emp_id = em.emp_id and ins.pay_type = 'MONTH'
+		INNER JOIN bs_area ba ON em.`insurance_area` = ba.`area_id`
+		GROUP BY
+		em.insurance_area
+		) t ON LOCATE(barea.code, t.code) = 1
+		GROUP BY din.code,bf.code
+		ORDER BY din.insurance_fund_type desc,din.name ASC,LEFT(bf.`code`,1) ASC,REPLACE(bf.`name`,'附加金额','比例') ASC
+	</select>
+	<!-- 获取单列账单模版字段 -->
+	<select id="QUERY_EM_INSURANCE_SPSBILL_TEMPLATE_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT bf.`code` as parentCode,bf.`name` as parentName FROM bd_businessfield bf INNER JOIN
+			(
+				SELECT tf.* from (
+					SELECT t.id,t.sp_id FROM (
+					SELECT template.* FROM sps_bill_temp_corp temcorp INNER JOIN sps_bill_template template ON temcorp.temp_id = template.id WHERE temcorp.cp_id = #{cmid} AND template.sp_id = #{spid} AND template.is_effect = 'Y' AND template.is_default = 'N' AND template.dr = 0 and temcorp.dr = 0
+					UNION
+					SELECT template.* FROM sps_bill_template template WHERE template.sp_id = #{spid} AND template.is_effect = 'Y' AND template.is_default = 'Y' AND template.dr = 0
+				) t LIMIT 1) m INNER JOIN sps_bill_temp_business_field tf ON tf.temp_id = m.id and tf.dr = 0
+
+		) lf ON lf.field_id = bf.field_id AND  bf.source = 'INSURANCEFUND_SINGLE'
+	</select>
+
+	<!-- 预览 -->
+	<select id="PERVIEW_EM_INSURANCE_AREA_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT din.code as parentCode,din.name as parentName,bf.`code` as childCode,bf.`name` as childName FROM bs_arearatio area
+		INNER JOIN bs_area barea ON area.`area_id` = barea.`area_id`
+		INNER JOIN bd_insurance din ON area.insurance_id = din.insurance_id
+		INNER JOIN bd_insurancefields fs ON fs.insurance_id = din.insurance_id
+		INNER JOIN bd_businessfield bf ON bf.field_id = fs.field_id
+		WHERE bf.field_id IN
+		<foreach collection="filedIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		GROUP BY din.code,bf.code
+		ORDER BY din.insurance_fund_type desc,din.name ASC,LEFT(bf.`code`,1) ASC,REPLACE(bf.`name`,'附加金额','比例') ASC
+	</select>
+
+	<!-- 预览账单模版 -->
+	<select id="PERVIEW_EM_INSURANCE_SPSBILL_TEMPLATE_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT bf.`code` as parentCode,bf.`name` as parentName FROM bd_businessfield bf WHERE bf.field_id in
+		<foreach collection="filedIds" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+		 AND  bf.source = 'INSURANCEFUND_SINGLE'
+	</select>
+
+<!-- 根据人员信息获取地区参保列表 -->
+	<select id="QUERY_EM_INSURANCE_AREA_LIST_CS" resultType="java.util.Map" parameterType="Object">
+		SELECT din.code as parentCode,din.name as parentName,bf.`code` as childCode,bf.`name` as childName FROM bs_arearatio area
+		INNER JOIN bd_insurance din ON area.insurance_id = din.insurance_id
+		<if test="in_type != null "> AND din.insurance_fund_type = #{in_type} </if>
+		INNER JOIN bd_insurancefields fs ON fs.insurance_id = din.insurance_id
+		INNER JOIN bd_businessfield bf ON bf.field_id = fs.field_id
+		INNER JOIN (
+		SELECT em.insurance_area FROM sps_empmonthfee em
+		INNER JOIN sp_cm_relation re ON em.cp_id = re.cp_id AND re.cp_id = #{cmid}
+		INNER JOIN sps_empinsurancedetail ins ON em.id = ins.emp_fee_id
+		GROUP BY em.insurance_area) t ON t.insurance_area = area.area_id
+		GROUP BY din.code,bf.code
+		ORDER BY din.insurance_fund_type desc,din.insurance_id ASC,bf.field_id ASC
+	</select>
+
+	<select id="FindBD_INSURANCEAREAbyAreaidAndInsuranceTypeID" resultMap="result_map_BD_INSURANCEAREA" parameterType="Object">
+		select <include refid="Base_Column_List" /> from BD_INSURANCEAREA
+		<include refid = 'Example_Where_Clause' />
+	</select>
+
+	<select id="FindBD_INSURANCEAREAbyAreaid" resultMap="result_map_BD_INSURANCEAREA" parameterType="Object">
+		select <include refid="Base_Column_List" /> from BD_INSURANCEAREA
+		<include refid = 'Example_Where_Clause' />
+	</select>
+
+	<!--  根据方案id 查询 险种信息 -->
+	<select id="findInsurancesByAreaId" resultType="java.util.Map" parameterType="Object">
+		select t.insurance_id,t.round_method,b.`name`,b.insurance_fund_type
+		from bd_insurancearea t   inner join bd_insurance b
+		on t.insurance_id = b.insurance_id  where t.area_id = #{area_id}
+		<if test="insuFundType != null"> and b.insurance_fund_type = #{insuFundType}</if>
+	</select>
+	
+	<!-- spId,cpId 获取参保信息 Excel动态标题头 -->
+	<select id="fundInsFundByCpIdSpId" resultType="java.util.Map" parameterType="Object">
+		select din.code as parentCode,din.name as parentName,bf.name as childName,bf.code as childCode
+		from sps_account a 
+		inner JOIN sps_account_ratio r on a.acc_id=r.acc_id
+		inner JOIN bs_arearatio ar on r.ratio_id=ar.ratio_id
+        INNER JOIN bd_insurance din ON ar.insurance_id = din.insurance_id
+        INNER JOIN bd_insurancefields fs ON fs.insurance_id = din.insurance_id
+		INNER JOIN bd_businessfield bf ON bf.field_id = fs.field_id
+        where a.cp_id=#{cpId} 
+        <if test="spId != null">  
+        	and a.sp_id = #{spId}
+        </if>
+        <if test="insuFundType != null">  and a.insurance_fund_type=#{insuFundType}</if>
+        <if test="insuFundType != null and insuFundType == 'FUND'">  AND din.insurance_id in(6,11)</if>
+        GROUP BY din.name,bf.name
+        ORDER BY din.insurance_fund_type desc,din.name ASC,LEFT(bf.code,1) ASC,REPLACE(bf.name,'附加金额','比例') ASC
+	</select>
+</mapper>   

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CS_MALL_TEL_RECORD" > 
+<!-- Result Map-->
+<resultMap id="result_map_CS_MALL_TEL_RECORD" type="com.xfs.mall.customer.model.CsMallTelRecord" >
+	<result column="id" property="id"/>
+	<result column="receiver_mobile" property="receiverMobile"/>
+	<result column="user_mobile" property="userMobile"/>
+	<result column="receiver_type" property="receiverType"/>
+	<result column="record_id" property="recordId"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_date" property="createDate"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- cs_mall_tel_record table all fields -->
+<sql id="Base_Column_List" >
+	 id,receiver_mobile,user_mobile,receiver_type,record_id,create_by,create_date,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="receiverMobile != null" >and receiver_mobile = #{receiverMobile}</if>
+	<if test="userMobile != null" >and user_mobile = #{userMobile}</if>
+	<if test="receiverType != null" >and receiver_type = #{receiverType}</if>
+	<if test="recordId != null" >and record_id = #{recordId}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDate != null" >and create_date = #{createDate}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id like '%${id}%'</if>
+    <if test="receiverMobile != null">AND receiver_mobile like '%${receiverMobile}%'</if>
+    <if test="receiverMobileEq != null">AND receiver_mobile = #{receiverMobileEq}</if>
+    <if test="userMobile != null">AND user_mobile like '%${userMobile}%'</if>
+    <if test="userMobileEq != null">AND user_mobile = #{userMobileEq}</if>
+    <if test="receiverType != null">AND receiver_type like '%${receiverType}%'</if>
+    <if test="receiverTypeEq != null">AND receiver_type = #{receiverTypeEq}</if>
+    <if test="recordId != null">AND record_id like '%${recordId}%'</if>
+    <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+    <if test="createDate != null">AND create_date = #{createDate}</if>
+    <if test="createDateFrom != null">AND create_date&gt;=#{createDateFrom}</if>
+	<if test="createDateTo != null">AND create_date&lt;=#{createDateTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCS_MALL_TEL_RECORD" parameterType="Object" >
+  INSERT INTO CS_MALL_TEL_RECORD (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="receiverMobile != null ">,receiver_mobile</if>
+	<if test="userMobile != null ">,user_mobile</if>
+	<if test="receiverType != null ">,receiver_type</if>
+	<if test="recordId != null ">,record_id</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDate != null ">,create_date</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="receiverMobile != null ">,#{receiverMobile}</if>
+	<if test="userMobile != null ">,#{userMobile}</if>
+	<if test="receiverType != null ">,#{receiverType}</if>
+	<if test="recordId != null ">,#{recordId}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDate != null ">,#{createDate}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCS_MALL_TEL_RECORD" parameterType="Object" >
+UPDATE CS_MALL_TEL_RECORD 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="receiverMobile != null ">,receiver_mobile=#{receiverMobile}</if>
+	<if test="userMobile != null ">,user_mobile=#{userMobile}</if>
+	<if test="receiverType != null ">,receiver_type=#{receiverType}</if>
+	<if test="recordId != null ">,record_id=#{recordId}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDate != null ">,create_date=#{createDate}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCS_MALL_TEL_RECORD">DELETE FROM CS_MALL_TEL_RECORD WHERE ID=#{id}</delete>
+<!-- 嘟嘟回拨信息表 列表总数-->
+<select id="CountFindAllCS_MALL_TEL_RECORD" resultType="java.lang.Integer">SELECT count(1) as value FROM CS_MALL_TEL_RECORD</select>
+<select id="CountCS_MALL_TEL_RECORD" resultType="java.lang.Integer">SELECT count(1) as value FROM CS_MALL_TEL_RECORD WHERE ID=#{id}</select>
+<!-- 根据id查询 嘟嘟回拨信息表 -->
+<select id="FindByPK" resultMap="result_map_CS_MALL_TEL_RECORD" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CS_MALL_TEL_RECORD WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  嘟嘟回拨信息表 -->
+<select id="FreeFindCS_MALL_TEL_RECORD" resultMap="result_map_CS_MALL_TEL_RECORD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CS_MALL_TEL_RECORD 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  嘟嘟回拨信息表 记录数 -->
+<select id="CountFreeFindCS_MALL_TEL_RECORD" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CS_MALL_TEL_RECORD 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  嘟嘟回拨信息表 -->
+<select id="FreeFindCS_MALL_TEL_RECORDOrdered" resultMap="result_map_CS_MALL_TEL_RECORD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CS_MALL_TEL_RECORD 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/08 19:29:12 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

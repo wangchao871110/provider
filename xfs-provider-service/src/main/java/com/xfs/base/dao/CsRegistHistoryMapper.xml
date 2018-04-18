@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CS_REGIST_HISTORY" > 
+<!-- Result Map-->
+<resultMap id="result_map_CS_REGIST_HISTORY" type="com.xfs.base.model.CsRegistHistory" >
+	<result column="id" property="id"/>
+	<result column="channel" property="channel"/>
+	<result column="sname" property="sname"/>
+	<result column="corp_id" property="corpId"/>
+	<result column="area" property="area"/>
+	<result column="groups" property="groups"/>
+	<result column="answer_dt" property="answerDt"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+</resultMap>
+       
+<!-- cs_regist_history table all fields -->
+<sql id="Base_Column_List" >
+	 id,channel,sname,corp_id,area,groups,answer_dt,create_by,create_dt,modify_by,modify_dt
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="channel != null" >and channel = #{channel}</if>
+	<if test="sname != null" >and sname = #{sname}</if>
+	<if test="corpId != null" >and corp_id = #{corpId}</if>
+	<if test="area != null" >and area = #{area}</if>
+	<if test="groups != null" >and groups = #{groups}</if>
+	<if test="answerDt != null" >and answer_dt = #{answerDt}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="channel != null">AND channel like '%${channel}%'</if>
+    <if test="channelEq != null">AND channel = #{channelEq}</if>
+    <if test="sname != null">AND sname like '%${sname}%'</if>
+    <if test="snameEq != null">AND sname = #{snameEq}</if>
+    <if test="corpId != null">AND corp_id = '${corpId}'</if>
+    <if test="area != null">AND area like '%${area}%'</if>
+    <if test="groups != null">AND groups like '%${groups}%'</if>
+    <if test="answerDt != null">AND answer_dt = #{answerDt}</if>
+    <if test="answerDtFrom != null">AND answer_dt&gt;=#{answerDtFrom}</if>
+	<if test="answerDtTo != null">AND answer_dt&lt;=#{answerDtTo}</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCS_REGIST_HISTORY" parameterType="Object" >
+  INSERT INTO CS_REGIST_HISTORY (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="channel != null ">,channel</if>
+	<if test="sname != null ">,sname</if>
+	<if test="corpId != null ">,corp_id</if>
+	<if test="area != null ">,area</if>
+	<if test="groups != null ">,groups</if>
+	<if test="answerDt != null ">,answer_dt</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="channel != null ">,#{channel}</if>
+	<if test="sname != null ">,#{sname}</if>
+	<if test="corpId != null ">,#{corpId}</if>
+	<if test="area != null ">,#{area}</if>
+	<if test="groups != null ">,#{groups}</if>
+	<if test="answerDt != null ">,#{answerDt}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCS_REGIST_HISTORY" parameterType="Object" >
+UPDATE CS_REGIST_HISTORY 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="channel != null ">,channel=#{channel}</if>
+	<if test="sname != null ">,sname=#{sname}</if>
+	<if test="corpId != null ">,corp_id=#{corpId}</if>
+	<if test="area != null ">,area=#{area}</if>
+	<if test="groups != null ">,groups=#{groups}</if>
+	<if test="answerDt != null ">,answer_dt=#{answerDt}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+  </trim>
+	WHERE 1 = 1
+		<if test="id != null "> AND id=#{id}</if>
+		<if test="corpId != null "> AND corp_id=#{corpId}</if>
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCS_REGIST_HISTORY">DELETE FROM CS_REGIST_HISTORY WHERE ID=#{id}</delete>
+<!-- 注册历史记录 列表总数-->
+<select id="CountFindAllCS_REGIST_HISTORY" resultType="java.lang.Integer">SELECT count(1) as value FROM CS_REGIST_HISTORY</select>
+<select id="CountCS_REGIST_HISTORY" resultType="java.lang.Integer">SELECT count(1) as value FROM CS_REGIST_HISTORY WHERE ID=#{id}</select>
+<!-- 根据id查询 注册历史记录 -->
+<select id="FindByPK" resultMap="result_map_CS_REGIST_HISTORY" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CS_REGIST_HISTORY WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  注册历史记录 -->
+<select id="FreeFindCS_REGIST_HISTORY" resultMap="result_map_CS_REGIST_HISTORY" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CS_REGIST_HISTORY 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  注册历史记录 记录数 -->
+<select id="CountFreeFindCS_REGIST_HISTORY" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CS_REGIST_HISTORY 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  注册历史记录 -->
+<select id="FreeFindCS_REGIST_HISTORYOrdered" resultMap="result_map_CS_REGIST_HISTORY" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CS_REGIST_HISTORY 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/07/29 17:32:17 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 根据各字段条件注册和问卷记录数 -->
+<select id="CountFreeFindRegistHistory" resultType="java.lang.Integer" parameterType="Object">
+SELECT count(1) as value 
+FROM CS_REGIST_HISTORY re INNER JOIN cm_corp cm ON re.corp_id = cm.cp_id
+ WHERE re.channel=#{channel} 
+ <if test="answerDt != null ">and re.answer_dt IS NOT NULL </if>
+	<if test="sname != null ">and re.sname = #{sname} </if>
+</select>
+<!-- 根据渠道code 查询出企业信息 -->
+<select id="findRegitCorpMsg" resultType="java.util.Map" parameterType="Object">
+	SELECT corp_id,corp_name,answer_dt 
+	FROM cs_regist_history re INNER JOIN cm_corp cm ON re.corp_id = cm.cp_id
+	WHERE answer_dt IS NOT NULL
+	AND re.channel = #{channel}
+	<if test="corp_name != null">AND cm.corp_name like '%${corp_name}%'</if>
+</select>
+
+<select id="findRegitCorpMsgCount" resultType="java.lang.Integer" parameterType="Object">
+	SELECT count(1) 
+	FROM cs_regist_history re INNER JOIN cm_corp cm ON re.corp_id = cm.cp_id
+	WHERE answer_dt IS NOT NULL
+	AND re.channel = #{channel}
+	<if test="corp_name != null">AND cm.corp_name like '%${corp_name}%'</if>
+</select> 
+
+<!-- 查询渠道注册的企业 -->
+	<select id="FindRegistCorpByChannel" resultType="java.util.Map" parameterType="Object">
+		SELECT c.`cp_id`, c.`corp_name`, c.`short_name`, c.`contact_psn`, scr.`id` AS state FROM cs_regist_history rh
+			INNER JOIN cm_corp c ON rh.`corp_id` = c.`cp_id`
+			LEFT JOIN sp_cm_relation scr ON c.`cp_id` = scr.`cp_id`
+			WHERE c.dr = 0 AND rh.`channel` = #{channel} AND rh.`sname` = #{sname}
+			GROUP BY c.`cp_id` ORDER BY c.`cp_id` DESC
+	</select>
+
+</mapper>   

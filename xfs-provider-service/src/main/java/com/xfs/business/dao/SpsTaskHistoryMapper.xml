@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_TASK_HISTORY" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_TASK_HISTORY" type="com.xfs.business.model.SpsTaskHistory" >
+	<result column="id" property="id"/>
+	<result column="task_id" property="taskId"/>
+	<result column="bstype_id" property="bstypeId"/>
+	<result column="type" property="type"/>
+	<result column="operate_des" property="operateDes"/>
+	<result column="operate_pic" property="operatePic"/>
+	<result column="operate" property="operate"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="state_filed_id" property="stateFiledId"/>
+	<result column="state_filed_name" property="stateFiledName"/>
+	<result column="errmsg" property="errmsg"/>
+	<result column="pic_url" property="picUrl"/>
+	<result column="task_outer_id" property="taskOuterId"/>
+	<result column="is_read" property="isRead"/>
+</resultMap>
+
+	<!-- sps_task_history table all fields -->
+	<sql id="Base_Column_List" >
+		id,task_id,bstype_id,type,operate_des,operate_pic,operate,create_by,create_dt,modify_by,modify_dt,dr,state_filed_id,state_filed_name,errmsg,pic_url,task_outer_id,is_read
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null" >and id = #{id}</if>
+			<if test="taskId != null" >and task_id = #{taskId}</if>
+			<if test="bstypeId != null" >and bstype_id = #{bstypeId}</if>
+			<if test="type != null" >and type = #{type}</if>
+			<if test="operateDes != null" >and operate_des = #{operateDes}</if>
+			<if test="operatePic != null" >and operate_pic = #{operatePic}</if>
+			<if test="operate != null" >and operate = #{operate}</if>
+			<if test="createBy != null" >and create_by = #{createBy}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="dr != null" >and dr = #{dr}</if>
+			<if test="stateFiledId != null" >and state_filed_id = #{stateFiledId}</if>
+			<if test="stateFiledName != null" >and state_filed_name = #{stateFiledName}</if>
+			<if test="errmsg != null" >and errmsg = #{errmsg}</if>
+			<if test="picUrl != null" >and pic_url = #{picUrl}</if>
+			<if test="taskOuterId != null" >and task_outer_id = #{taskOuterId}</if>
+			<if test="isRead != null" >and is_read = #{isRead}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertSPS_TASK_HISTORY" parameterType="Object" >
+		INSERT INTO SPS_TASK_HISTORY (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,id</if>
+			<if test="taskId != null ">,task_id</if>
+			<if test="bstypeId != null ">,bstype_id</if>
+			<if test="type != null ">,type</if>
+			<if test="operateDes != null ">,operate_des</if>
+			<if test="operatePic != null ">,operate_pic</if>
+			<if test="operate != null ">,operate</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+			<if test="stateFiledId != null ">,state_filed_id</if>
+			<if test="stateFiledName != null ">,state_filed_name</if>
+			<if test="errmsg != null ">,errmsg</if>
+			<if test="picUrl != null ">,pic_url</if>
+			<if test="taskOuterId != null ">,task_outer_id</if>
+			<if test="isRead != null" >,is_read</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,#{id}</if>
+			<if test="taskId != null ">,#{taskId}</if>
+			<if test="bstypeId != null ">,#{bstypeId}</if>
+			<if test="type != null ">,#{type}</if>
+			<if test="operateDes != null ">,#{operateDes}</if>
+			<if test="operatePic != null ">,#{operatePic}</if>
+			<if test="operate != null ">,#{operate}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+			<if test="stateFiledId != null ">,#{stateFiledId}</if>
+			<if test="stateFiledName != null ">,#{stateFiledName}</if>
+			<if test="errmsg != null ">,#{errmsg}</if>
+			<if test="picUrl != null ">,#{picUrl}</if>
+			<if test="taskOuterId != null ">,#{taskOuterId}</if>
+			<if test="isRead != null" >,#{isRead}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateSPS_TASK_HISTORY" parameterType="Object" >
+		UPDATE SPS_TASK_HISTORY
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="id != null ">,id=#{id}</if>
+			<if test="taskId != null ">,task_id=#{taskId}</if>
+			<if test="bstypeId != null ">,bstype_id=#{bstypeId}</if>
+			<if test="type != null ">,type=#{type}</if>
+			<if test="operateDes != null ">,operate_des=#{operateDes}</if>
+			<if test="operatePic != null ">,operate_pic=#{operatePic}</if>
+			<if test="operate != null ">,operate=#{operate}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+			<if test="stateFiledId != null ">,state_filed_id=#{stateFiledId}</if>
+			<if test="stateFiledName != null ">,state_filed_name=#{stateFiledName}</if>
+			<if test="errmsg != null ">,errmsg=#{errmsg}</if>
+			<if test="picUrl != null ">,pic_url=#{picUrl}</if>
+			<if test="taskOuterId != null ">,task_outer_id=#{taskOuterId}</if>
+			<if test="isRead != null" >,is_read = #{isRead}</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+	
+	<!-- 根据id，修改记录-->
+	<update id="UpdateSPS_TASK_HISTORY_BY_TASKID" parameterType="Object" >
+		UPDATE SPS_TASK_HISTORY
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="bstypeId != null ">,bstype_id=#{bstypeId}</if>
+			<if test="type != null ">,type=#{type}</if>
+			<if test="operateDes != null ">,operate_des=#{operateDes}</if>
+			<if test="operatePic != null ">,operate_pic=#{operatePic}</if>
+			<if test="operate != null ">,operate=#{operate}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+			<if test="stateFiledId != null ">,state_filed_id=#{stateFiledId}</if>
+			<if test="stateFiledName != null ">,state_filed_name=#{stateFiledName}</if>
+			<if test="errmsg != null ">,errmsg=#{errmsg}</if>
+			<if test="picUrl != null ">,pic_url=#{picUrl}</if>
+			<if test="taskOuterId != null ">,task_outer_id=#{taskOuterId}</if>
+			<if test="isRead != null" >,is_read = #{isRead}</if>
+		</trim>
+		WHERE task_id=#{taskId}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteSPS_TASK_HISTORY">DELETE FROM SPS_TASK_HISTORY WHERE ID=#{id}</delete>
+	<!-- 爬取规则 列表总数-->
+	<select id="CountFindAllSPS_TASK_HISTORY" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TASK_HISTORY</select>
+	<select id="CountSPS_TASK_HISTORY" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TASK_HISTORY WHERE ID=#{id}</select>
+	<!-- 根据id查询 爬取规则 -->
+	<select id="FindByPK" resultMap="result_map_SPS_TASK_HISTORY" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_TASK_HISTORY WHERE ID=#{pk}</select>
+
+	<!-- 根据各字段条件带查询  爬取规则 -->
+	<select id="FreeFindSPS_TASK_HISTORY" resultMap="result_map_SPS_TASK_HISTORY" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_TASK_HISTORY
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带查询  爬取规则 记录数 -->
+	<select id="CountFreeFindSPS_TASK_HISTORY" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM SPS_TASK_HISTORY
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带排序  爬取规则 -->
+	<select id="FreeFindSPS_TASK_HISTORYOrdered" resultMap="result_map_SPS_TASK_HISTORY" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_TASK_HISTORY
+		<include refid="Example_Where_Clause" />
+		ORDER BY ${_orderBy}
+	</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/08/03 16:29:21 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 2016-08  任务管理 任务单详情 查看操作历史记录-->
+<select id="FreeFindSPS_TASK_ALL_LIST" resultType="java.util.Map" parameterType="Object">
+	SELECT 
+		sth.id,sth.task_id,sth.operate_des,
+		sth.operate_pic,sth.operate,sth.create_by,
+		sth.create_dt,sth.modify_by,sth.modify_dt,sth.dr,
+		st.task_no,st.create_dt as inittime,su.user_name as create_by_name
+	FROM SPS_TASK_HISTORY STH LEFT JOIN SPS_TASK ST ON STH.TASK_ID = ST.TASK_ID
+	left join sys_user su on sth.create_by = su.user_id 
+	WHERE STH.TASK_ID = #{taskId}
+	ORDER BY STH.CREATE_DT DESC 
+</select>
+
+	<!-- 2016-08  任务管理 任务单详情 查看操作历史记录-->
+	<select id="findDetailHistory" resultType="java.util.Map" parameterType="Object">
+		 SELECT
+    sth.id,sth.task_id,sth.type,sth.operate_des,
+    sth.operate_pic,sth.operate,sth.state_filed_id,sth.state_filed_name,
+    sth.create_by,
+    sth.create_dt,sth.modify_by,sth.modify_dt,sth.dr,
+		st.task_no,st.create_dt as inittime,su.user_name as create_by_name
+		FROM SPS_TASK_HISTORY STH LEFT JOIN SPS_TASK ST ON STH.TASK_ID = ST.TASK_ID
+		left join sys_user su on sth.create_by = su.user_id
+		WHERE STH.TASK_ID = #{taskId}
+		ORDER BY STH.CREATE_DT DESC,STH.id DESC
+	</select>
+
+
+
+
+<!--  根据任务单单号查询任务单历史记录最后一条-->
+<select id="FreeFindSPS_TASK_HistoryList" resultType="java.util.Map" parameterType="Object">
+	select  <include refid="Base_Column_List" /> from SPS_TASK_HISTORY where task_id = #{taskId} order by create_dt desc limit 0,1
+</select>
+
+	<select id="QUERY_SPS_TASK_HISTORY_COUNT" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM sps_task task 
+		INNER JOIN sps_task_history his ON task.task_id = his.task_id AND task.cp_id = #{cpId} AND his.state_filed_id = #{stateFiledId}
+		<if test="authority != 'ALL'"> 
+			AND task.scheme_id in (${authority})
+		</if>
+	</select>
+
+
+</mapper>   

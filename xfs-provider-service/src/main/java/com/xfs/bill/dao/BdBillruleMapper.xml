@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_BILLRULE" > 
+<!-- Result Map-->
+<resultMap id="result_map_BD_BILLRULE" type="com.xfs.bill.model.BdBillrule" >
+	<result column="id" property="id"/>
+	<result column="area_id" property="areaId"/>
+	<result column="insurance_rule" property="insuranceRule"/>
+	<result column="fund_rule" property="fundRule"/>
+</resultMap>
+       
+<!-- bd_billrule table all fields -->
+<sql id="Base_Column_List" >
+	 id,area_id,insurance_rule,fund_rule
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="insuranceRule != null" >and insurance_rule = #{insuranceRule}</if>
+	<if test="fundRule != null" >and fund_rule = #{fundRule}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="areaId != null">AND area_id = #{areaId}</if>
+    <if test="insuranceRule != null">AND insurance_rule like '%${insuranceRule}%'</if>
+    <if test="insuranceRuleEq != null">AND insurance_rule = #{insuranceRuleEq}</if>
+    <if test="fundRule != null">AND fund_rule like '%${fundRule}%'</if>
+    <if test="fundRuleEq != null">AND fund_rule = #{fundRuleEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBD_BILLRULE" parameterType="Object" >
+  INSERT INTO BD_BILLRULE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="insuranceRule != null ">,insurance_rule</if>
+	<if test="fundRule != null ">,fund_rule</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="insuranceRule != null ">,#{insuranceRule}</if>
+	<if test="fundRule != null ">,#{fundRule}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBD_BILLRULE" parameterType="Object" >
+UPDATE BD_BILLRULE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="insuranceRule != null ">,insurance_rule=#{insuranceRule}</if>
+	<if test="fundRule != null ">,fund_rule=#{fundRule}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBD_BILLRULE">DELETE FROM BD_BILLRULE WHERE ID=#{id}</delete>
+<!-- 账单地区规则 列表总数-->
+<select id="CountFindAllBD_BILLRULE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_BILLRULE</select>
+<select id="CountBD_BILLRULE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_BILLRULE WHERE ID=#{id}</select>
+<!-- 根据id查询 账单地区规则 -->
+<select id="FindByPK" resultMap="result_map_BD_BILLRULE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BD_BILLRULE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  账单地区规则 -->
+<select id="FreeFindBD_BILLRULE" resultMap="result_map_BD_BILLRULE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_BILLRULE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  账单地区规则 记录数 -->
+<select id="CountFreeFindBD_BILLRULE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BD_BILLRULE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  账单地区规则 -->
+<select id="FreeFindBD_BILLRULEOrdered" resultMap="result_map_BD_BILLRULE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_BILLRULE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/09 11:34:52 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

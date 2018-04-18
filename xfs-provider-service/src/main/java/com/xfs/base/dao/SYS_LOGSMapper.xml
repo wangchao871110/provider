@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_LOGS">
+  <resultMap id="result_map_SYS_LOGS" type="com.xfs.base.model.SysLogs">
+    <id property="logId" column="LOG_ID" jdbcType="INTEGER" />
+    <result property="userId" column="USER_ID" jdbcType="INTEGER" />
+    <result property="userName" column="USER_NAME" jdbcType="VARCHAR" />
+    <result property="description" column="DESCRIPTION" jdbcType="VARCHAR" />
+    <result property="cdate" column="CDATE" jdbcType="TIMESTAMP" />
+    <result property="ip" column="IP" jdbcType="VARCHAR" />
+    <result property="location" column="LOCATION" jdbcType="VARCHAR" />
+    <result property="type" column="TYPE" jdbcType="CHAR" />
+    <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER" />
+    <result property="functionName" column="FUNCTION_NAME" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="InsertSYS_LOGS">
+    INSERT INTO SYS_LOGS (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="userId != null ">,USER_ID</if>
+      <if test="userName != null ">,USER_NAME</if>
+      <if test="description != null ">,DESCRIPTION</if>
+      <if test="cdate != null ">,CDATE</if>
+      <if test="ip != null ">,IP</if>
+      <if test="location != null ">,LOCATION</if>
+      <if test="type != null ">,TYPE</if>
+      <if test="functionId != null ">,FUNCTION_ID</if>
+      <if test="functionName != null ">,FUNCTION_NAME</if>
+    </trim>
+    )  VALUES (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="userId != null ">,#{userId,jdbcType=INTEGER}</if>
+      <if test="userName != null ">,#{userName,jdbcType=VARCHAR}</if>
+      <if test="description != null ">,#{description,jdbcType=VARCHAR}</if>
+      <if test="cdate != null ">,#{cdate,jdbcType=TIMESTAMP}</if>
+      <if test="ip != null ">,#{ip,jdbcType=VARCHAR}</if>
+      <if test="location != null ">,#{location,jdbcType=VARCHAR}</if>
+      <if test="type != null ">,#{type,jdbcType=CHAR}</if>
+      <if test="functionId != null ">,#{functionId,jdbcType=INTEGER}</if>
+      <if test="functionName != null ">,#{functionName,jdbcType=VARCHAR}</if>
+    </trim>
+    )
+    <selectKey resultType="java.lang.Integer" keyProperty="logId" order="AFTER">SELECT LAST_INSERT_ID() AS LOG_ID</selectKey>
+  </insert>
+  <update id="UpdateSYS_LOGS">
+    UPDATE SYS_LOGS 
+    <trim prefix=" SET " prefixOverrides=",">
+      <if test="userId != null ">,USER_ID=#{userId,jdbcType=INTEGER}</if>
+      <if test="userName != null ">,USER_NAME=#{userName,jdbcType=VARCHAR}</if>
+      <if test="description != null ">,DESCRIPTION=#{description,jdbcType=VARCHAR}</if>
+      <if test="cdate != null ">,CDATE=#{cdate,jdbcType=TIMESTAMP}</if>
+      <if test="ip != null ">,IP=#{ip,jdbcType=VARCHAR}</if>
+      <if test="location != null ">,LOCATION=#{location,jdbcType=VARCHAR}</if>
+      <if test="type != null ">,TYPE=#{type,jdbcType=CHAR}</if>
+      <if test="functionId != null ">,FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+      <if test="functionName != null ">,FUNCTION_NAME=#{functionName,jdbcType=VARCHAR}</if>
+    </trim>
+     WHERE LOG_ID=#{logId,jdbcType=INTEGER}
+  </update>
+  <delete id="DeleteSYS_LOGS">DELETE FROM SYS_LOGS WHERE LOG_ID=#{logId,jdbcType=INTEGER}</delete>
+  <select id="CountFindAllSYS_LOGS" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_LOGS</select>
+  <select id="CountSYS_LOGS" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_LOGS WHERE LOG_ID=#{logId,jdbcType=INTEGER}</select>
+  <select id="FindByPKSYS_LOGS" resultMap="result_map_SYS_LOGS">SELECT LOG_ID,USER_ID,USER_NAME,DESCRIPTION,CDATE,IP,LOCATION,TYPE,FUNCTION_ID,FUNCTION_NAME FROM SYS_LOGS WHERE LOG_ID=#{logId,jdbcType=INTEGER}</select>
+  <select id="FreeFindSYS_LOGS" resultMap="result_map_SYS_LOGS">
+    SELECT LOG_ID,USER_ID,USER_NAME,DESCRIPTION,CDATE,IP,LOCATION,TYPE,FUNCTION_ID,FUNCTION_NAME FROM SYS_LOGS
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="logId != null ">AND LOG_ID=#{logId,jdbcType=INTEGER}</if>
+      <if test="userId != null ">AND USER_ID=#{userId,jdbcType=INTEGER}</if>
+      <if test="userName != null ">AND USER_NAME like '%${userName}%'</if>
+      <if test="userNameEq != null ">AND USER_NAME=#{userNameEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="cdate != null ">AND CDATE=#{cdate,jdbcType=TIMESTAMP}</if>
+      <if test="cdateFrom != null ">AND CDATE&gt;=#{cdateFrom,jdbcType=TIMESTAMP}</if>
+      <if test="cdateTo != null ">AND CDATE&lt;=#{cdateTo,jdbcType=TIMESTAMP}</if>
+      <if test="ip != null ">AND IP like '%${ip}%'</if>
+      <if test="ipEq != null ">AND IP=#{ipEq,jdbcType=VARCHAR}</if>
+      <if test="location != null ">AND LOCATION like '%${location}%'</if>
+      <if test="locationEq != null ">AND LOCATION=#{locationEq,jdbcType=VARCHAR}</if>
+      <if test="type != null ">AND TYPE like '%${type}%'</if>
+      <if test="typeEq != null ">AND TYPE=#{typeEq,jdbcType=CHAR}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+      <if test="functionName != null ">AND FUNCTION_NAME like '%${functionName}%'</if>
+      <if test="functionNameEq != null ">AND FUNCTION_NAME=#{functionNameEq,jdbcType=VARCHAR}</if>
+    </trim>
+  </select>
+  <select id="CountFreeFindSYS_LOGS" resultType="java.lang.Integer">
+    SELECT count(1) as value FROM SYS_LOGS
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="logId != null ">AND LOG_ID=#{logId,jdbcType=INTEGER}</if>
+      <if test="userId != null ">AND USER_ID=#{userId,jdbcType=INTEGER}</if>
+      <if test="userName != null ">AND USER_NAME like '%${userName}%'</if>
+      <if test="userNameEq != null ">AND USER_NAME=#{userNameEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="cdate != null ">AND CDATE=#{cdate,jdbcType=TIMESTAMP}</if>
+      <if test="cdateFrom != null ">AND CDATE&gt;=#{cdateFrom,jdbcType=TIMESTAMP}</if>
+      <if test="cdateTo != null ">AND CDATE&lt;=#{cdateTo,jdbcType=TIMESTAMP}</if>
+      <if test="ip != null ">AND IP like '%${ip}%'</if>
+      <if test="ipEq != null ">AND IP=#{ipEq,jdbcType=VARCHAR}</if>
+      <if test="location != null ">AND LOCATION like '%${location}%'</if>
+      <if test="locationEq != null ">AND LOCATION=#{locationEq,jdbcType=VARCHAR}</if>
+      <if test="type != null ">AND TYPE like '%${type}%'</if>
+      <if test="typeEq != null ">AND TYPE=#{typeEq,jdbcType=CHAR}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+      <if test="functionName != null ">AND FUNCTION_NAME like '%${functionName}%'</if>
+      <if test="functionNameEq != null ">AND FUNCTION_NAME=#{functionNameEq,jdbcType=VARCHAR}</if>
+    </trim>
+  </select>
+  <select id="FreeFindSYS_LOGSOrdered" resultMap="result_map_SYS_LOGS">
+    SELECT LOG_ID,USER_ID,USER_NAME,DESCRIPTION,CDATE,IP,LOCATION,TYPE,FUNCTION_ID,FUNCTION_NAME FROM SYS_LOGS
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="logId != null ">AND LOG_ID=#{logId,jdbcType=INTEGER}</if>
+      <if test="userId != null ">AND USER_ID=#{userId,jdbcType=INTEGER}</if>
+      <if test="userName != null ">AND USER_NAME like '%${userName}%'</if>
+      <if test="userNameEq != null ">AND USER_NAME=#{userNameEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="cdate != null ">AND CDATE=#{cdate,jdbcType=TIMESTAMP}</if>
+      <if test="cdateFrom != null ">AND CDATE&gt;=#{cdateFrom,jdbcType=TIMESTAMP}</if>
+      <if test="cdateTo != null ">AND CDATE&lt;=#{cdateTo,jdbcType=TIMESTAMP}</if>
+      <if test="ip != null ">AND IP like '%${ip}%'</if>
+      <if test="ipEq != null ">AND IP=#{ipEq,jdbcType=VARCHAR}</if>
+      <if test="location != null ">AND LOCATION like '%${location}%'</if>
+      <if test="locationEq != null ">AND LOCATION=#{locationEq,jdbcType=VARCHAR}</if>
+      <if test="type != null ">AND TYPE like '%${type}%'</if>
+      <if test="typeEq != null ">AND TYPE=#{typeEq,jdbcType=CHAR}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+      <if test="functionName != null ">AND FUNCTION_NAME like '%${functionName}%'</if>
+      <if test="functionNameEq != null ">AND FUNCTION_NAME=#{functionNameEq,jdbcType=VARCHAR}</if>
+    </trim>
+     ORDER BY ${_orderBy}
+  </select>
+</mapper>
+

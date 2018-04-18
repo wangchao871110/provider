@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_ACCOUNTINFO" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_ACCOUNTINFO" type="com.xfs.sp.model.SpsAccountinfo" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="pay_account" property="payAccount"/>
+	<result column="pay_teller" property="payTeller"/>
+	<result column="pay_bank" property="payBank"/>
+	<result column="deal_date" property="dealDate"/>
+	<result column="deal_money" property="dealMoney"/>
+	<result column="memo" property="memo"/>
+	<result column="receiver" property="receiver"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+</resultMap>
+       
+<!-- sps_accountinfo table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,pay_account,pay_teller,pay_bank,deal_date,deal_money,memo,receiver,create_by,create_dt,modify_by,modify_dt
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="payAccount != null" >and pay_account = #{payAccount}</if>
+	<if test="payTeller != null" >and pay_teller = #{payTeller}</if>
+	<if test="payBank != null" >and pay_bank = #{payBank}</if>
+	<if test="dealDate != null" >and deal_date = #{dealDate}</if>
+	<if test="dealMoney != null" >and deal_money = #{dealMoney}</if>
+	<if test="memo != null" >and memo = #{memo}</if>
+	<if test="receiver != null" >and receiver = #{receiver}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = '${spId}'</if>
+    <if test="payAccount != null">AND pay_account like '%${payAccount}%'</if>
+    <if test="payAccountEq != null">AND pay_account = #{payAccountEq}</if>
+    <if test="payTeller != null">AND pay_teller like '%${payTeller}%'</if>
+    <if test="payTellerEq != null">AND pay_teller = #{payTellerEq}</if>
+    <if test="payBank != null">AND pay_bank like '%${payBank}%'</if>
+    <if test="payBankEq != null">AND pay_bank = #{payBankEq}</if>
+    <if test="dealDate != null">AND deal_date = #{dealDate}</if>
+    <if test="dealDateFrom != null">AND deal_date&gt;=#{dealDateFrom}</if>
+	<if test="dealDateTo != null">AND deal_date&lt;=#{dealDateTo}</if>
+    <if test="dealMoney != null">AND deal_money like '%${dealMoney}%'</if>
+    <if test="dealMoneyEq != null">AND deal_money = #{dealMoneyEq}</if>
+    <if test="memo != null">AND memo like '%${memo}%'</if>
+    <if test="memoEq != null">AND memo = #{memoEq}</if>
+    <if test="receiver != null">AND receiver like '%${receiver}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_ACCOUNTINFO" parameterType="Object" >
+  INSERT INTO SPS_ACCOUNTINFO (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="payAccount != null ">,pay_account</if>
+	<if test="payTeller != null ">,pay_teller</if>
+	<if test="payBank != null ">,pay_bank</if>
+	<if test="dealDate != null ">,deal_date</if>
+	<if test="dealMoney != null ">,deal_money</if>
+	<if test="memo != null ">,memo</if>
+	<if test="receiver != null ">,receiver</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="payAccount != null ">,#{payAccount}</if>
+	<if test="payTeller != null ">,#{payTeller}</if>
+	<if test="payBank != null ">,#{payBank}</if>
+	<if test="dealDate != null ">,#{dealDate}</if>
+	<if test="dealMoney != null ">,#{dealMoney}</if>
+	<if test="memo != null ">,#{memo}</if>
+	<if test="receiver != null ">,#{receiver}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_ACCOUNTINFO" parameterType="Object" >
+UPDATE SPS_ACCOUNTINFO 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="payAccount != null ">,pay_account=#{payAccount}</if>
+	<if test="payTeller != null ">,pay_teller=#{payTeller}</if>
+	<if test="payBank != null ">,pay_bank=#{payBank}</if>
+	<if test="dealDate != null ">,deal_date=#{dealDate}</if>
+	<if test="dealMoney != null ">,deal_money=#{dealMoney}</if>
+	<if test="memo != null ">,memo=#{memo}</if>
+	<if test="receiver != null ">,receiver=#{receiver}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_ACCOUNTINFO">DELETE FROM SPS_ACCOUNTINFO WHERE ID=#{id}</delete>
+<!-- 平台账款表 列表总数-->
+<select id="CountFindAllSPS_ACCOUNTINFO" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_ACCOUNTINFO</select>
+<select id="CountSPS_ACCOUNTINFO" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_ACCOUNTINFO WHERE ID=#{id}</select>
+<!-- 根据id查询 平台账款表 -->
+<select id="FindByPK" resultMap="result_map_SPS_ACCOUNTINFO" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_ACCOUNTINFO WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  平台账款表 -->
+<select id="FreeFindSPS_ACCOUNTINFO" resultMap="result_map_SPS_ACCOUNTINFO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_ACCOUNTINFO 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  平台账款表 记录数 -->
+<select id="CountFreeFindSPS_ACCOUNTINFO" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_ACCOUNTINFO 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  平台账款表 -->
+<select id="FreeFindSPS_ACCOUNTINFOOrdered" resultMap="result_map_SPS_ACCOUNTINFO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_ACCOUNTINFO 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                              ** 2016/04/19 15:34:17 ** -->
+<!-- ************************************************************************ -->
+<!-- 根据spId查询 当前服务商下边的分账表数据 -->
+<select id="FindBySpId_ACCOUNTINFO" resultMap="result_map_SPS_ACCOUNTINFO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_ACCOUNTINFO 
+	 where sp_id=#{spId} 
+	 <if test="payBank != null" >and pay_bank like '%${payBank}%'</if>
+	 <if test="dealDateFrom != null">AND deal_date&gt;=#{dealDateFrom}</if>
+	 <if test="dealDateTo != null">AND deal_date&lt;=#{dealDateTo}</if>
+	 <if test="memo != null and payTeller != null and payAccount != null">
+     AND (1=2 <if test="memo != null">OR memo like '%${memo}%'</if>
+     <if test="payTeller != null">OR pay_Teller like '%${payTeller}%'</if>
+     <if test="payAccount != null">OR pay_Account like '%${payAccount}%'</if>
+ 	  )
+ 	  </if>
+	 order by deal_date desc
+</select>
+<!-- 根据spId查询 当前服务商下边的分账总数 -->
+<select id="CountFreeFindBySpId_ACCOUNTINFO" resultType="java.lang.Integer">
+	SELECT count(1) as value FROM SPS_ACCOUNTINFO 
+	where sp_id=#{spId} 
+	 <if test="payBank != null" >and pay_bank like '%${payBank}%'</if>
+	 <if test="dealDateFrom != null">AND deal_date&gt;=#{dealDateFrom}</if>
+	 <if test="dealDateTo != null">AND deal_date&lt;=#{dealDateTo}</if>
+	 <if test="memo != null and payTeller != null and payAccount != null">
+     AND (1=2 <if test="memo != null">OR memo like '%${memo}%'</if>
+     <if test="payTeller != null">OR pay_Teller like '%${payTeller}%'</if>
+     <if test="payAccount != null">OR pay_Account like '%${payAccount}%'</if>
+ 	  )
+ 	  </if>
+</select>
+<!-- 根据spId查询 当前服务商下边账款金额 -->
+<select id="CountMoneyFindBySpId_ACCOUNTINFO" resultType="java.lang.Integer">
+	SELECT sum(deal_money) FROM SPS_ACCOUNTINFO 
+	where sp_id=#{spId} 
+	 <if test="payBank != null" >and pay_bank like '%${payBank}%'</if>
+</select>
+<!-- findBankNameDateBySpId根据SpId查询 当前服务商下边账款 日期时间 和银行名称 -->
+<select id="findBankNameDateBySpId" resultMap="result_map_SPS_ACCOUNTINFO" parameterType="Integer">
+	SELECT pay_bank,deal_date FROM SPS_ACCOUNTINFO
+	where sp_id=#{spId} 
+</select>
+</mapper>   

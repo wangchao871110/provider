@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_SAASFEESTANDARD" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_SAASFEESTANDARD" type="com.xfs.base.model.BsSaasfeestandard" >
+	<result column="id" property="id"/>
+	<result column="lower" property="lower"/>
+	<result column="upper" property="upper"/>
+	<result column="quarter_fee" property="quarterFee"/>
+	<result column="half_fee" property="halfFee"/>
+	<result column="year_fee" property="yearFee"/>
+	<result column="three_fee" property="threeFee"/>
+</resultMap>
+       
+<!-- bs_saasfeestandard table all fields -->
+<sql id="Base_Column_List" >
+	 id,lower,upper,quarter_fee,half_fee,year_fee,three_fee
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="lower != null" >and lower = #{lower}</if>
+	<if test="upper != null" >and upper = #{upper}</if>
+	<if test="quarterFee != null" >and quarter_fee = #{quarterFee}</if>
+	<if test="halfFee != null" >and half_fee = #{halfFee}</if>
+	<if test="yearFee != null" >and year_fee = #{yearFee}</if>
+	<if test="threeFee != null" >and three_fee = #{threeFee}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="lower != null">AND lower like '%${lower}%'</if>
+    <if test="upper != null">AND upper like '%${upper}%'</if>
+    <if test="quarterFee != null">AND quarter_fee like '%${quarterFee}%'</if>
+    <if test="halfFee != null">AND half_fee like '%${halfFee}%'</if>
+    <if test="yearFee != null">AND year_fee like '%${yearFee}%'</if>
+    <if test="threeFee != null">AND three_fee like '%${threeFee}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_SAASFEESTANDARD" parameterType="Object" >
+  INSERT INTO BS_SAASFEESTANDARD (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="lower != null ">,lower</if>
+	<if test="upper != null ">,upper</if>
+	<if test="quarterFee != null ">,quarter_fee</if>
+	<if test="halfFee != null ">,half_fee</if>
+	<if test="yearFee != null ">,year_fee</if>
+	<if test="threeFee != null ">,three_fee</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="lower != null ">,#{lower}</if>
+	<if test="upper != null ">,#{upper}</if>
+	<if test="quarterFee != null ">,#{quarterFee}</if>
+	<if test="halfFee != null ">,#{halfFee}</if>
+	<if test="yearFee != null ">,#{yearFee}</if>
+	<if test="threeFee != null ">,#{threeFee}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_SAASFEESTANDARD" parameterType="Object" >
+UPDATE BS_SAASFEESTANDARD 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="lower != null ">,lower=#{lower}</if>
+	<if test="upper != null ">,upper=#{upper}</if>
+	<if test="quarterFee != null ">,quarter_fee=#{quarterFee}</if>
+	<if test="halfFee != null ">,half_fee=#{halfFee}</if>
+	<if test="yearFee != null ">,year_fee=#{yearFee}</if>
+	<if test="threeFee != null ">,three_fee=#{threeFee}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_SAASFEESTANDARD">DELETE FROM BS_SAASFEESTANDARD WHERE ID=#{id}</delete>
+<!-- saas平台收费标准 列表总数-->
+<select id="CountFindAllBS_SAASFEESTANDARD" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_SAASFEESTANDARD</select>
+<select id="CountBS_SAASFEESTANDARD" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_SAASFEESTANDARD WHERE ID=#{id}</select>
+<!-- 根据id查询 saas平台收费标准 -->
+<select id="FindByPK" resultMap="result_map_BS_SAASFEESTANDARD" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_SAASFEESTANDARD WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  saas平台收费标准 -->
+<select id="FreeFindBS_SAASFEESTANDARD" resultMap="result_map_BS_SAASFEESTANDARD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_SAASFEESTANDARD 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  saas平台收费标准 记录数 -->
+<select id="CountFreeFindBS_SAASFEESTANDARD" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_SAASFEESTANDARD 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  saas平台收费标准 -->
+<select id="FreeFindBS_SAASFEESTANDARDOrdered" resultMap="result_map_BS_SAASFEESTANDARD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_SAASFEESTANDARD 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/15 19:00:17 ** -->
+<!-- ************************************************************************ -->
+
+<select id="FindReckonStandardFee_SAASFEESTANDARD" resultMap="result_map_BS_SAASFEESTANDARD" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_SAASFEESTANDARD 
+	where #{lower}&gt;=lower and #{lower}&lt;upper;
+</select>
+
+
+</mapper>   

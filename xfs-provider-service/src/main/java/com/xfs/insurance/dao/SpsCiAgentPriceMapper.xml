@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_CI_AGENT_PRICE" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_CI_AGENT_PRICE" type="com.xfs.insurance.model.SpsCiAgentPrice" >
+	<result column="id" property="id"/>
+	<result column="prod_item_id" property="prodItemId"/>
+	<result column="scheme_id" property="schemeId"/>
+	<result column="scheme_price" property="schemePrice"/>
+</resultMap>
+       
+<!-- sps_ci_agent_price table all fields -->
+<sql id="Base_Column_List" >
+	 id,prod_item_id,scheme_id,scheme_price
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="prodItemId != null" >and prod_item_id = #{prodItemId}</if>
+	<if test="schemeId != null" >and scheme_id = #{schemeId}</if>
+	<if test="schemePrice != null" >and scheme_price = #{schemePrice}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="prodItemId != null">AND prod_item_id = #{prodItemId}</if>
+    <if test="schemeId != null">AND scheme_id = #{schemeId}</if>
+    <if test="schemePrice != null">AND scheme_price like '%${schemePrice}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_CI_AGENT_PRICE" parameterType="Object" >
+  INSERT INTO SPS_CI_AGENT_PRICE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="prodItemId != null ">,prod_item_id</if>
+	<if test="schemeId != null ">,scheme_id</if>
+	<if test="schemePrice != null ">,scheme_price</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="prodItemId != null ">,#{prodItemId}</if>
+	<if test="schemeId != null ">,#{schemeId}</if>
+	<if test="schemePrice != null ">,#{schemePrice}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_CI_AGENT_PRICE" parameterType="Object" >
+UPDATE SPS_CI_AGENT_PRICE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="prodItemId != null ">,prod_item_id=#{prodItemId}</if>
+	<if test="schemeId != null ">,scheme_id=#{schemeId}</if>
+	<if test="schemePrice != null ">,scheme_price=#{schemePrice}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_CI_AGENT_PRICE">DELETE FROM SPS_CI_AGENT_PRICE WHERE ID=#{id}</delete>
+<!-- 商保代理价格表 列表总数-->
+<select id="CountFindAllSPS_CI_AGENT_PRICE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_CI_AGENT_PRICE</select>
+<select id="CountSPS_CI_AGENT_PRICE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_CI_AGENT_PRICE WHERE ID=#{id}</select>
+<!-- 根据id查询 商保代理价格表 -->
+<select id="FindByPK" resultMap="result_map_SPS_CI_AGENT_PRICE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_CI_AGENT_PRICE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  商保代理价格表 -->
+<select id="FreeFindSPS_CI_AGENT_PRICE" resultMap="result_map_SPS_CI_AGENT_PRICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_CI_AGENT_PRICE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  商保代理价格表 记录数 -->
+<select id="CountFreeFindSPS_CI_AGENT_PRICE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_CI_AGENT_PRICE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  商保代理价格表 -->
+<select id="FreeFindSPS_CI_AGENT_PRICEOrdered" resultMap="result_map_SPS_CI_AGENT_PRICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_CI_AGENT_PRICE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/07 09:14:06 ** -->
+<!-- ************************************************************************ -->
+<select id="findCiItemPrice" parameterType="Object" resultType="com.xfs.insurance.dto.CiScheme">
+	select cs.id, cs.scheme_name, cs.agent_price, cs.suggest_price, cap.scheme_price , cap.prod_item_id, cs.scheme_insure, cs.scheme_desc, mpi.price
+      from sps_mall_product_item mpi
+     inner join bs_ci_scheme cs on cs.mall_item_id = mpi.item_id
+     left join sps_ci_agent_price cap on mpi.id = cap.prod_item_id and cs.id = cap.scheme_id
+     where mpi.product_id = #{productId} and mpi.item_id = #{itemId}
+</select>
+
+
+
+</mapper>   

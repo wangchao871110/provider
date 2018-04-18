@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_MALL_PRODUCTAREA" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_MALL_PRODUCTAREA" type="com.xfs.mall.product.model.SpsMallProductarea" >
+	<result column="id" property="id"/>
+	<result column="product_id" property="productId"/>
+	<result column="area_id" property="areaId"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- sps_mall_productarea table all fields -->
+<sql id="Base_Column_List" >
+	 id,product_id,area_id,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="productId != null" >and product_id = #{productId}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id like '%${id}%'</if>
+    <if test="productId != null">AND product_id like '%${productId}%'</if>
+    <if test="areaId != null">AND area_id like '%${areaId}%'</if>
+    <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by like '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_MALL_PRODUCTAREA" parameterType="Object" >
+  INSERT INTO SPS_MALL_PRODUCTAREA (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="productId != null ">,product_id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="productId != null ">,#{productId}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_MALL_PRODUCTAREA" parameterType="Object" >
+UPDATE SPS_MALL_PRODUCTAREA 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="productId != null ">,product_id=#{productId}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_MALL_PRODUCTAREA">DELETE FROM SPS_MALL_PRODUCTAREA WHERE ID=#{id}</delete>
+<!-- sps_mall_productarea 列表总数-->
+<select id="CountFindAllSPS_MALL_PRODUCTAREA" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_MALL_PRODUCTAREA</select>
+<select id="CountSPS_MALL_PRODUCTAREA" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_MALL_PRODUCTAREA WHERE ID=#{id}</select>
+<!-- 根据id查询 sps_mall_productarea -->
+<select id="FindByPK" resultMap="result_map_SPS_MALL_PRODUCTAREA" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_MALL_PRODUCTAREA WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  sps_mall_productarea -->
+<select id="FreeFindSPS_MALL_PRODUCTAREA" resultMap="result_map_SPS_MALL_PRODUCTAREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_MALL_PRODUCTAREA 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  sps_mall_productarea 记录数 -->
+<select id="CountFreeFindSPS_MALL_PRODUCTAREA" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_MALL_PRODUCTAREA 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  sps_mall_productarea -->
+<select id="FreeFindSPS_MALL_PRODUCTAREAOrdered" resultMap="result_map_SPS_MALL_PRODUCTAREA" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_MALL_PRODUCTAREA 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/08/09 14:08:05 ** -->
+<!-- ************************************************************************ -->
+
+	<!-- 产品的服务区域 -->
+	<select id="FindProductAreas" resultType="java.util.Map" parameterType="Object">
+		SELECT a.`area_id`, a.`name` AS area_name, tab.rel_type
+		FROM sps_mall_productarea mpa
+		INNER JOIN sps_mall_product mp ON mpa.`product_id` = mp.`product_id`
+		INNER JOIN bs_area a ON mpa.`area_id` = a.`area_id`
+		INNER JOIN (
+		SELECT a.*, sa.`sp_id`, sa.`rel_type` FROM sps_servicearea sa
+		INNER JOIN bs_area a ON sa.`area_id` = a.`area_id`
+		) tab ON (tab.sp_id = mp.`sp_id` AND tab.belong_city = mpa.`area_id`)
+		WHERE mpa.`dr` = 0 AND mpa.`product_id` = #{productId}
+		GROUP BY a.`area_id` ORDER BY a.code ASC
+	</select>
+
+	<select id="FreeFindGROUP" resultType="java.util.Map" parameterType="Object">
+		SELECT mm.area_id areaId FROM sps_servicearea ss
+		INNER JOIN bs_area ba ON ba.area_id = ss.area_id
+		INNER JOIN sps_mall_productarea mm ON mm.area_id = ba.belong_city
+		WHERE ss.rel_type = 'COOP' AND mm.product_id = #{productId} AND ss.sp_id=#{spId} GROUP BY ba.belong_city
+	</select>
+
+	<select id="FreeFindCOOPAndINNER" resultType="java.util.Map" parameterType="Object">
+		SELECT mm.area_id areaId FROM sps_servicearea ss
+		INNER JOIN bs_area ba ON ba.area_id = ss.area_id
+		INNER JOIN sps_mall_productarea mm ON mm.area_id = ba.belong_city
+		WHERE ss.rel_type in('GROUP','INNER') AND mm.product_id = #{productId} AND ss.sp_id=#{spId} GROUP BY ba.belong_city
+	</select>
+
+	<insert id="batchInsert" parameterType="java.util.List" >
+		INSERT INTO sps_mall_productarea (product_id,area_id,dr) VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.productId},#{item.areaId},#{item.dr})
+		</foreach>
+	</insert>
+
+	<!-- 删除记录 -->
+	<delete id="RemoveByProductId">DELETE FROM sps_mall_productarea WHERE product_id=#{productId}</delete>
+
+</mapper>   

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_BSAREATYPE" > 
+<!-- Result Map-->
+    <!-- Result Map-->
+    <resultMap id="result_map_BD_BSAREATYPE" type="com.xfs.business.model.BdBsareatype" >
+        <result column="id" property="id"/>
+        <result column="bstype_id" property="bstypeId"/>
+        <result column="area_id" property="areaId"/>
+        <result column="orderby" property="orderby"/>
+        <result column="end_day" property="endDay"/>
+        <result column="effect" property="effect"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_dt" property="createDt"/>
+        <result column="modify_by" property="modifyBy"/>
+        <result column="modify_dt" property="modifyDt"/>
+        <result column="source" property="source"/>
+        <result column="business_process" property="businessProcess"/>
+        <result column="management_rule" property="managementRule"/>
+        <result column="automatic_interval" property="automaticInterval"/>
+        <result column="task_bot" property="taskBot"/>
+        <result column="taker" property="taker"/>
+        <result column="detailed_process" property="detailedProcess"/>
+    </resultMap>
+
+    <!-- bd_bsareatype table all fields -->
+    <sql id="Base_Column_List" >
+	 id,bstype_id,area_id,orderby,end_day,effect,create_by,create_dt,modify_by,modify_dt,source,business_process,management_rule,automatic_interval,task_bot
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null" >and id = #{id}</if>
+            <if test="bstypeId != null" >and bstype_id = #{bstypeId}</if>
+            <if test="areaId != null" >and area_id = #{areaId}</if>
+            <if test="orderby != null" >and orderby = #{orderby}</if>
+            <if test="endDay != null" >and end_day = #{endDay}</if>
+            <if test="effect != null" >and effect = #{effect}</if>
+            <if test="createBy != null" >and create_by = #{createBy}</if>
+            <if test="createDt != null" >and create_dt = #{createDt}</if>
+            <if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+            <if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+            <if test="source != null" >and modify_dt = #{source}</if>
+            <if test="businessProcess != null" >and modify_dt = #{businessProcess}</if>
+            <if test="managementRule != null" >and modify_dt = #{managementRule}</if>
+            <if test="automaticInterval != null" >and modify_dt = #{automaticInterval}</if>
+            <if test="taskBot != null" >and modify_dt = #{taskBot}</if>
+            <if test="taker != null" >and modify_dt = #{taker}</if>
+        </trim>
+    </sql>
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = #{id}</if>
+            <if test="bstypeId != null">AND bstype_id = #{bstypeId}</if>
+            <if test="areaId != null">AND area_id = #{areaId}</if>
+            <if test="orderby != null">AND orderby = #{orderby}</if>
+            <if test="endDay != null">AND end_day = #{endDay}</if>
+            <if test="effect != null">AND effect like '%${effect}%'</if>
+            <if test="effectEq != null">AND effect = #{effectEq}</if>
+            <if test="createBy != null">AND create_by = #{createBy}</if>
+            <if test="createDt != null">AND create_dt = #{createDt}</if>
+            <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+            <if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+            <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+            <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+            <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+            <if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+            <if test="source != null" >and modify_dt = #{source}</if>
+            <if test="businessProcess != null" >and modify_dt = #{businessProcess}</if>
+            <if test="managementRule != null" >and modify_dt = #{managementRule}</if>
+            <if test="automaticInterval != null" >and modify_dt = #{automaticInterval}</if>
+            <if test="taskBot != null" >and modify_dt = #{taskBot}</if>
+            <if test="taker != null" >and modify_dt = #{taker}</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertBD_BSAREATYPE" parameterType="Object" >
+        INSERT INTO BD_BSAREATYPE (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="bstypeId != null ">,bstype_id</if>
+            <if test="areaId != null ">,area_id</if>
+            <if test="orderby != null ">,orderby</if>
+            <if test="endDay != null ">,end_day</if>
+            <if test="effect != null ">,effect</if>
+            <if test="createBy != null ">,create_by</if>
+            <if test="createDt != null ">,create_dt</if>
+            <if test="modifyBy != null ">,modify_by</if>
+            <if test="modifyDt != null ">,modify_dt</if>
+            <if test="source != null ">,source</if>
+            <if test="businessProcess != null ">,business_process</if>
+            <if test="managementRule != null ">,management_rule</if>
+            <if test="automaticInterval != null ">,automatic_interval</if>
+            <if test="taskBot != null ">,task_bot</if>
+            <if test="taker != null ">,taker</if>
+
+        </trim>
+        )  VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="bstypeId != null ">,#{bstypeId}</if>
+            <if test="areaId != null ">,#{areaId}</if>
+            <if test="orderby != null ">,#{orderby}</if>
+            <if test="endDay != null ">,#{endDay}</if>
+            <if test="effect != null ">,#{effect}</if>
+            <if test="createBy != null ">,#{createBy}</if>
+            <if test="createDt != null ">,#{createDt}</if>
+            <if test="modifyBy != null ">,#{modifyBy}</if>
+            <if test="modifyDt != null ">,#{modifyDt}</if>
+            <if test="source != null ">,#{source}</if>
+            <if test="businessProcess != null ">,#{businessProcess}</if>
+            <if test="managementRule != null ">,#{managementRule}</if>
+            <if test="automaticInterval != null ">,#{automaticInterval}</if>
+            <if test="taskBot != null ">,#{taskBot}</if>
+            <if test="taker != null ">,#{taker}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateBD_BSAREATYPE" parameterType="Object" >
+        UPDATE BD_BSAREATYPE
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="bstypeId != null ">,bstype_id=#{bstypeId}</if>
+            <if test="areaId != null ">,area_id=#{areaId}</if>
+            <if test="orderby != null ">,orderby=#{orderby}</if>
+            <if test="endDay != null ">,end_day=#{endDay}</if>
+            <if test="effect != null ">,effect=#{effect}</if>
+            <if test="createBy != null ">,create_by=#{createBy}</if>
+            <if test="createDt != null ">,create_dt=#{createDt}</if>
+            <if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+            <if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+            <if test="source != null ">,source=#{source}</if>
+            <if test="businessProcess != null ">,business_process=#{businessProcess}</if>
+            <if test="managementRule != null ">,management_rule=#{managementRule}</if>
+            <if test="automaticInterval != null ">,automatic_interval=#{automaticInterval}</if>
+            <if test="taskBot != null ">,task_bot=#{taskBot}</if>
+            <if test="taker != null ">,taker=#{taker}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteBD_BSAREATYPE">DELETE FROM BD_BSAREATYPE WHERE ID=#{id}</delete>
+    <!-- 业务类型地区 列表总数-->
+    <select id="CountFindAllBD_BSAREATYPE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_BSAREATYPE</select>
+    <select id="CountBD_BSAREATYPE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_BSAREATYPE WHERE ID=#{id}</select>
+    <!-- 根据id查询 业务类型地区 -->
+    <select id="FindByPK" resultMap="result_map_BD_BSAREATYPE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BD_BSAREATYPE WHERE ID=#{id}</select>
+
+    <!-- 根据各字段条件带模糊查询  业务类型地区 -->
+    <select id="FreeFindBD_BSAREATYPE" resultMap="result_map_BD_BSAREATYPE" parameterType="Object">
+        SELECT <include refid="Base_Column_List" /> FROM BD_BSAREATYPE
+        <include refid="Example_Where_Clause2" />
+    </select>
+    <!-- 根据各字段条件带模糊查询  业务类型地区 记录数 -->
+    <select id="CountFreeFindBD_BSAREATYPE" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM BD_BSAREATYPE
+        <include refid="Example_Where_Clause2" />
+    </select>
+    <!-- 根据各字段条件带排序  业务类型地区 -->
+    <select id="FreeFindBD_BSAREATYPEOrdered" resultMap="result_map_BD_BSAREATYPE" parameterType="Object">
+        SELECT <include refid="Base_Column_List" /> FROM BD_BSAREATYPE
+        <include refid="Example_Where_Clause2" />
+        ORDER BY ${_orderBy}
+    </select>
+
+    <!-- *****************************  温馨提示：  ***************************** -->
+    <!-- **                                                                    ** -->
+    <!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+    <!-- **                                             ** 2016/09/07 11:08:04 ** -->
+    <!-- ************************************************************************ -->
+
+	<resultMap id="mapType" type="java.util.Map">
+	</resultMap>
+    <!-- 根据 城市id 查询 业务类型 -->
+    <select id="findBstypeByCity" resultMap="mapType" parameterType="Object">
+        SELECT t.*,b.name,b.insurance_fund_type
+        FROM bd_bsareatype t inner join bd_bstype b
+        on t.bstype_id = b.bstype_id 
+        where t.area_id =#{areaId}
+    </select>
+    <!-- 根据城市id查询业务类型、待处理总数  -->
+    <select id="getBstypeByArea" resultType="java.util.Map" parameterType="Object">
+        SELECT bst.`bstype_id`, bst.`name`, bst.`code`, bst.`insurance_fund_type`, COUNT(t.`task_id`) AS todoNum,
+        IFNULL(p.progress,0)*100  as progress,
+        ifnull(p.state,'UNDO') as state
+        FROM bd_bsareatype bsat
+            INNER JOIN bd_bstype bst ON bsat.`bstype_id` = bst.`bstype_id`
+            LEFT JOIN sps_task t ON (t.`bstype_id` = bst.`bstype_id` AND t.`area_id` = bsat.`area_id` AND t.`type` = 'TODO' AND t.`sp_id` = #{spId})
+            left join sps_task_progress p on t.cp_id = p.cid and p.type=t.type
+            WHERE bsat.`area_id` = #{areaId}
+            <if test="insuranceFundType != null "> AND bst.`insurance_fund_type` = #{insuranceFundType} </if>
+            GROUP BY bst.`bstype_id`
+            ORDER BY bst.`insurance_fund_type` DESC, bsat.orderby ASC, bst.`bstype_id` ASC
+    </select>
+    
+    
+     <select id="getBstypeByArea2" resultType="java.util.Map" parameterType="Object">
+      
+      SELECT
+	bst.`bstype_id`,
+	bst.`name`,
+	bst.`code`,
+	bst.`insurance_fund_type`,
+	COUNT(t.`task_id`) AS todoNum,
+	IFNULL(p.progress, 0) * 100 AS progress,
+	ifnull(p.state, 'UNDO') AS state
+FROM
+	sps_task t
+INNER JOIN bd_bstype bst ON t.`bstype_id` = bst.`bstype_id`
+LEFT JOIN sps_task_progress p ON t.scheme_id = p.cid AND p.type =bst.insurance_fund_type and p.sp_id=t.sp_id
+WHERE
+<if test="onlineStatus != 'TODO' ">	t.`online_status` =   #{onlineStatus}  </if>
+<if test="onlineStatus == 'TODO' ">	(t.`online_status` is null OR t.`online_status` = 'TODO')</if>
+AND t.`sp_id` = #{spId}
+AND t.scheme_id = #{schemeId}
+AND  t.type !='CLOSED'
+GROUP BY
+	t.sp_id,
+	t.scheme_id,
+	t.online_status,
+	t.bstype_id
+ORDER BY
+	bst.`insurance_fund_type` DESC,
+	bst.`bstype_id` ASC
+      
+    </select>
+    
+    
+
+    <select id="findBstypeByCityAndType" resultMap="mapType" parameterType="Object">
+        SELECT t.*,b.name,b.insurance_fund_type
+        FROM bd_bsareatype t inner join bd_bstype b
+        on t.bstype_id = b.bstype_id
+        where t.area_id =#{areaId}
+        <if test="insuType != null "> and b.insurance_fund_type=#{insuType}</if>
+        <if test="bstypeIn != null "> and t.bstype_id in (${bstypeIn})</if>
+    </select>
+
+    <select id="findBstypeByCityAndNotType" resultMap="mapType" parameterType="Object">
+        SELECT t.*,b.name,b.insurance_fund_type
+        FROM bd_bsareatype t inner join bd_bstype b
+        on t.bstype_id = b.bstype_id
+        where t.area_id =#{areaId}
+        <if test="typeNotIn != null "> and t.bstype_id not in
+            <foreach collection="typeNotIn" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <resultMap id="result_map_BD_BSAREATYPE_VO" type="com.xfs.business.dto.BsAreaTypeVo" >
+        <result column="id" property="id"/>
+        <result column="bstype_id" property="bstypeId"/>
+        <result column="area_id" property="areaId"/>
+        <result column="type_name" property="typeName"/>
+        <result column="area_name" property="areaName"/>
+    </resultMap>
+
+    <select id="findBsareatypeVo" resultMap="result_map_BD_BSAREATYPE_VO" parameterType="Object">
+        SELECT a.id,a.area_id,a.bstype_id,b.`name` area_name,c.`name` type_name FROM bd_bsareatype a INNER JOIN bs_area b on a.area_id = b.area_id INNER JOIN bd_bstype c on a.bstype_id = c.bstype_id
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null"> AND a.id = ${id}</if>
+            <if test="bstypeId != null"> AND a.bstype_id = ${bstypeId}</if>
+            <if test="areaId != null"> AND a.area_id = ${areaId}</if>
+        </trim>
+    </select>
+
+    <!-- 根据id查询 业务类型地区VO -->
+    <select id="FindVoByPK" resultMap="result_map_BD_BSAREATYPE_VO" parameterType="Object">SELECT a.id,a.area_id,a.bstype_id,b.`name` area_name,c.`name` type_name FROM bd_bsareatype a INNER JOIN bs_area b on a.area_id = b.area_id INNER JOIN bd_bstype c on a.bstype_id = c.bstype_id WHERE a.ID=#{id}</select>
+
+    <select id="findBdBsAreaType" resultMap="result_map_BD_BSAREATYPE" parameterType="Object">SELECT * FROM bd_bsareatype  WHERE  area_id = ${areaId} AND bstype_id = ${bstypeId};</select>
+
+
+    <resultMap id="result_map_BD_BSAREATYPE_FILED" type="com.xfs.business.dto.BsTypeAreaFiledDto" >
+        <result column="bstype_id" property="bstypeId"/>
+        <result column="area_id" property="areaId"/>
+        <result column="required" property="required"/>
+        <result column="default_value" property="defaultValue"/>
+        <result column="code" property="code"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <!-- 根据企业方案所在地区获取业务对应的字段信息 -->
+    <select id="findBdBsAreaTypeBySchemeAreaId" resultMap="result_map_BD_BSAREATYPE_FILED" parameterType="Object">
+        SELECT af.area_id,af.bstype_id,af.required,af.default_value,f.`code`,f.`name`,f.type FROM bd_bstypeareafield af INNER JOIN bd_businessfield f ON af.field_id = f.field_id
+        <if test="bstypeId != null">  AND af.bstype_id IN (${bstypeId}) </if>
+        INNER JOIN sps_scheme scheme ON scheme.cp_id = #{cpId} AND scheme.area_id = af.area_id
+        AND scheme.dr = 0
+        AND scheme.state = 'USE'
+        ORDER BY af.area_id ASC,af.bstype_id ASC
+    </select>
+
+    <select id="findBdBsAreaTypeByAreaId" resultMap="result_map_BD_BSAREATYPE_FILED" parameterType="Object">
+         SELECT af.area_id,af.bstype_id,af.required,af.default_value,f.`code`,f.`name`,f.type FROM bd_bstypeareafield af INNER JOIN bd_businessfield f ON af.field_id = f.field_id AND area_id in (2,100,300,400,501,502,549,601,701,801)
+         ORDER BY af.area_id ASC,af.bstype_id ASC
+    </select>
+
+    <!-- 获取当前企业对应方案地区下业务字段值信息 -->
+    <select id="findBdBsAreaTypeFiledBySchemeAreaId" resultType="java.util.Map" parameterType="Object">
+        SELECT item.id,item.`code` as ${code},item.`name` as ${code}_name FROM sys_dictionary dic INNER JOIN sys_dictitem item ON dic.`name` = CONCAT(#{code},'_doc') AND dic.id = item.dictionary
+        INNER JOIN sps_scheme scheme ON scheme.cp_id = #{cpId} AND scheme.area_id = item.area_id AND scheme.scheme_id = #{schemeId} GROUP BY item.`code` ORDER BY item.area_id ASC,dic.id ASC
+    </select>
+
+    <!-- 根据网申结束日期获取用户信息 -->
+    <select id="findUserByEndDay" resultType="java.util.Map" parameterType="Object">
+        select su.user_id,su.mobile,cc.corp_name,cc.company_type,ba.name as area_name,s.* from (
+            select t.area_id, t.end_day from (
+                select btype.insurance_fund_type,batype.area_id,batype.end_day
+                    from bd_bsareatype batype
+                    INNER JOIN bd_bstype btype on batype.bstype_id = btype.bstype_id
+                    where batype.end_day is not null and batype.end_day in (${endDays})
+                    GROUP BY batype.area_id,btype.insurance_fund_type
+            ) t GROUP BY t.area_id
+        ) s
+        INNER JOIN sys_user su
+        INNER JOIN cm_corp cc on su.org_id = cc.cp_id
+        INNER JOIN sps_scheme ss on ss.cp_id = cc.cp_id AND ss.area_id = s.area_id
+        INNER JOIN bs_area ba on ss.area_id = ba.area_id
+        where cc.company_type = 'SELFSERVICE'
+        GROUP BY su.user_id
+    </select>
+
+</mapper>

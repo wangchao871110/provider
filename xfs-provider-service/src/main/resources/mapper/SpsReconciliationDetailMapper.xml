@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xfs.finance.dao.SpsReconciliationDetailDao">
+    <resultMap id="BaseResultMap" type="com.xfs.finance.model.SpsReconciliationDetail">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="info_id" property="infoId" jdbcType="BIGINT"/>
+        <result column="insurance_id" property="insuranceId" jdbcType="BIGINT"/>
+        <result column="insurance_name" property="insuranceName" jdbcType="VARCHAR"/>
+        <result column="corp_base" property="corpBase" jdbcType="REAL"/>
+        <result column="corp_ratio" property="corpRatio" jdbcType="REAL"/>
+        <result column="corp_extra" property="corpExtra" jdbcType="REAL"/>
+        <result column="corp_fee" property="corpFee" jdbcType="REAL"/>
+        <result column="per_base" property="perBase" jdbcType="REAL"/>
+        <result column="per_ratio" property="perRatio" jdbcType="REAL"/>
+        <result column="per_extra" property="perExtra" jdbcType="REAL"/>
+        <result column="per_fee" property="perFee" jdbcType="REAL"/>
+        <result column="total" property="total" jdbcType="REAL"/>
+    </resultMap>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from sps_reconciliation_detail
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.xfs.finance.model.SpsReconciliationDetail" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        insert into sps_reconciliation_detail (info_id, insurance_id,
+        insurance_name, corp_base, corp_ratio,
+        corp_extra, corp_fee, per_base,
+        per_ratio, per_extra, per_fee,
+        total)
+        values ( #{infoId,jdbcType=BIGINT}, #{insuranceId,jdbcType=BIGINT},
+        #{insuranceName,jdbcType=VARCHAR}, #{corpBase,jdbcType=REAL}, #{corpRatio,jdbcType=REAL},
+        #{corpExtra,jdbcType=REAL}, #{corpFee,jdbcType=REAL}, #{perBase,jdbcType=REAL},
+        #{perRatio,jdbcType=REAL}, #{perExtra,jdbcType=REAL}, #{perFee,jdbcType=REAL},
+        #{total,jdbcType=REAL})
+    </insert>
+    <update id="updateByPrimaryKey" parameterType="com.xfs.finance.model.SpsReconciliationDetail">
+        update sps_reconciliation_detail
+        set info_id = #{infoId,jdbcType=BIGINT},
+        insurance_id = #{insuranceId,jdbcType=BIGINT},
+        insurance_name = #{insuranceName,jdbcType=VARCHAR},
+        corp_base = #{corpBase,jdbcType=REAL},
+        corp_ratio = #{corpRatio,jdbcType=REAL},
+        corp_extra = #{corpExtra,jdbcType=REAL},
+        corp_fee = #{corpFee,jdbcType=REAL},
+        per_base = #{perBase,jdbcType=REAL},
+        per_ratio = #{perRatio,jdbcType=REAL},
+        per_extra = #{perExtra,jdbcType=REAL},
+        per_fee = #{perFee,jdbcType=REAL},
+        total = #{total,jdbcType=REAL}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select id, info_id, insurance_id, insurance_name, corp_base, corp_ratio, corp_extra,
+        corp_fee, per_base, per_ratio, per_extra, per_fee, total
+        from sps_reconciliation_detail
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, info_id, insurance_id, insurance_name, corp_base, corp_ratio, corp_extra,
+        corp_fee, per_base, per_ratio, per_extra, per_fee, total
+        from sps_reconciliation_detail
+    </select>
+    <sql id="Sql_Pagination">
+        <if test="offset != -1 &amp;&amp; rows != -1">
+            LIMIT #{offset}, #{rows}
+        </if>
+    </sql>
+    <delete id="deleteByInfoId" parameterType="list">
+        delete from sps_reconciliation_detail
+        WHERE info_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item">
+            #{item}
+        </foreach>
+    </delete>
+    <insert id="batchInsert" parameterType="map">
+        insert into sps_reconciliation_detail (info_id, insurance_id,
+        insurance_name, corp_base, corp_ratio,
+        corp_extra, corp_fee, per_base,
+        per_ratio, per_extra, per_fee,
+        total)
+        values
+        <foreach collection="list" separator="," item="item">
+            ( #{infoId}, #{item.insuranceId},
+            #{item.insuranceName,jdbcType=VARCHAR}, #{item.corpBase,jdbcType=REAL}, #{item.corpRatio,jdbcType=REAL},
+            #{item.corpExtra,jdbcType=REAL}, #{item.corpFee,jdbcType=REAL}, #{item.perBase,jdbcType=REAL},
+            #{item.perRatio,jdbcType=REAL}, #{item.perExtra,jdbcType=REAL}, #{item.perFee,jdbcType=REAL},
+            #{item.total,jdbcType=REAL})
+        </foreach>
+    </insert>
+
+
+    <select id="getDetail" resultType="com.xfs.finance.vo.SpsReconciliationDetailVo" parameterType="map">
+      select l.bill_month, d.insurance_name, ifnull(d.insurance_id,99) as insurance_id,
+        sum(ifnull(d.corp_fee,0)) as corp_fee,
+        sum(ifnull(d.per_fee,0)) as per_fee,
+        sum(ifnull(d.total,0)) as total,1 as type
+        from
+            (select id,bill_month
+              from sps_reconciliation_info
+            where
+            id in
+            <foreach collection="lList" open="(" separator="," close=")" item="item">
+              #{item}
+            </foreach>
+            order by bill_month desc ) l
+        left join sps_reconciliation_detail d on l.id = d.info_id
+        group by l.bill_month,d.insurance_name
+      union all
+      select l.bill_month, d.insurance_name, ifnull(d.insurance_id,99) as insurance_id,
+        sum(ifnull(d.corp_fee,0)) as corp_fee,
+        sum(ifnull(d.per_fee,0)) as per_fee,
+        sum(ifnull(d.total,0)) as total,2 as type
+        from
+            (select id,bill_month
+            from sps_reconciliation_info
+            where
+            id in
+            <foreach collection="rList" open="(" separator="," close=")" item="item">
+                #{item}
+            </foreach>
+            order by bill_month desc ) l
+        left join sps_reconciliation_detail d on l.id = d.info_id
+        group by l.bill_month, d.insurance_name
+      order by bill_month desc , insurance_id asc
+    </select>
+
+
+</mapper>

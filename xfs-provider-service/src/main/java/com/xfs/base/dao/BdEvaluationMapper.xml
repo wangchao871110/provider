@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_EVALUATION" > 
+<!-- Result Map-->
+<resultMap id="result_map_BD_EVALUATION" type="com.xfs.base.model.BdEvaluation" >
+	<result column="id" property="id"/>
+	<result column="attitude" property="attitude"/>
+	<result column="quality" property="quality"/>
+	<result column="velocity" property="velocity"/>
+	<result column="type" property="type"/>
+	<result column="content" property="content"/>
+	<result column="anonymity" property="anonymity"/>
+	<result column="evaluate_tpye" property="evaluateTpye"/>
+	<result column="evaluate_userid" property="evaluateUserid"/>
+	<result column="evaluate_orgid" property="evaluateOrgid"/>
+	<result column="evaluated_org_tpye" property="evaluatedOrgTpye"/>
+	<result column="evaluated_type" property="evaluatedType"/>
+	<result column="evaluated_tagerid" property="evaluatedTagerid"/>
+	<result column="evaluated_orgid" property="evaluatedOrgid"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- bd_evaluation table all fields -->
+<sql id="Base_Column_List" >
+	 id,attitude,quality,velocity,type,content,anonymity,evaluate_tpye,evaluate_userid,evaluate_orgid,evaluated_org_tpye,evaluated_type,evaluated_tagerid,evaluated_orgid,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="attitude != null" >and attitude = #{attitude}</if>
+	<if test="quality != null" >and quality = #{quality}</if>
+	<if test="velocity != null" >and velocity = #{velocity}</if>
+	<if test="type != null" >and type = #{type}</if>
+	<if test="content != null" >and content = #{content}</if>
+	<if test="anonymity != null" >and anonymity = #{anonymity}</if>
+	<if test="evaluateTpye != null" >and evaluate_tpye = #{evaluateTpye}</if>
+	<if test="evaluateUserid != null" >and evaluate_userid = #{evaluateUserid}</if>
+	<if test="evaluateOrgid != null" >and evaluate_orgid = #{evaluateOrgid}</if>
+	<if test="evaluatedOrgTpye != null" >and evaluated_org_tpye = #{evaluatedOrgTpye}</if>
+	<if test="evaluatedType != null" >and evaluated_type = #{evaluatedType}</if>
+	<if test="evaluatedTagerid != null" >and evaluated_tagerid = #{evaluatedTagerid}</if>
+	<if test="evaluatedOrgid != null" >and evaluated_orgid = #{evaluatedOrgid}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="attitude != null">AND attitude = #{attitude}</if>
+    <if test="quality != null">AND quality = #{quality}</if>
+    <if test="velocity != null">AND velocity = #{velocity}</if>
+    <if test="type != null">AND type = #{type}</if>
+    <if test="content != null">AND content like '%${content}%'</if>
+    <if test="contentEq != null">AND content = #{contentEq}</if>
+    <if test="anonymity != null">AND anonymity = #{anonymity}</if>
+    <if test="evaluateTpye != null">AND evaluate_tpye like '%${evaluateTpye}%'</if>
+    <if test="evaluateTpyeEq != null">AND evaluate_tpye = #{evaluateTpyeEq}</if>
+    <if test="evaluateUserid != null">AND evaluate_userid = #{evaluateUserid}</if>
+    <if test="evaluateOrgid != null">AND evaluate_orgid = #{evaluateOrgid}</if>
+    <if test="evaluatedOrgTpye != null">AND evaluated_org_tpye like '%${evaluatedOrgTpye}%'</if>
+    <if test="evaluatedOrgTpyeEq != null">AND evaluated_org_tpye = #{evaluatedOrgTpyeEq}</if>
+    <if test="evaluatedType != null">AND evaluated_type like '%${evaluatedType}%'</if>
+    <if test="evaluatedTypeEq != null">AND evaluated_type = #{evaluatedTypeEq}</if>
+    <if test="evaluatedTagerid != null">AND evaluated_tagerid like '%${evaluatedTagerid}%'</if>
+    <if test="evaluatedTageridEq != null">AND evaluated_tagerid = #{evaluatedTageridEq}</if>
+    <if test="evaluatedOrgid != null">AND evaluated_orgid = #{evaluatedOrgid}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createByFrom != null">AND create_by&gt;=#{createByFrom}</if>
+	<if test="createByTo != null">AND create_by&lt;=#{createByTo}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+<select id="getEvaluationById" parameterType="Object" resultType="Map">
+	select be.attitude,be.quality,be.velocity,be.type,be.content,be.anonymity
+	from bd_evaluation be
+	where be.id=#{id}
+</select>
+
+<!-- 插入记录 -->
+<insert id="InsertBD_EVALUATION" parameterType="Object" >
+  INSERT INTO BD_EVALUATION (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="attitude != null ">,attitude</if>
+	<if test="quality != null ">,quality</if>
+	<if test="velocity != null ">,velocity</if>
+	<if test="type != null ">,type</if>
+	<if test="content != null ">,content</if>
+	<if test="anonymity != null ">,anonymity</if>
+	<if test="evaluateTpye != null ">,evaluate_tpye</if>
+	<if test="evaluateUserid != null ">,evaluate_userid</if>
+	<if test="evaluateOrgid != null ">,evaluate_orgid</if>
+	<if test="evaluatedOrgTpye != null ">,evaluated_org_tpye</if>
+	<if test="evaluatedType != null ">,evaluated_type</if>
+	<if test="evaluatedTagerid != null ">,evaluated_tagerid</if>
+	<if test="evaluatedOrgid != null ">,evaluated_orgid</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="attitude != null ">,#{attitude}</if>
+	<if test="quality != null ">,#{quality}</if>
+	<if test="velocity != null ">,#{velocity}</if>
+	<if test="type != null ">,#{type}</if>
+	<if test="content != null ">,#{content}</if>
+	<if test="anonymity != null ">,#{anonymity}</if>
+	<if test="evaluateTpye != null ">,#{evaluateTpye}</if>
+	<if test="evaluateUserid != null ">,#{evaluateUserid}</if>
+	<if test="evaluateOrgid != null ">,#{evaluateOrgid}</if>
+	<if test="evaluatedOrgTpye != null ">,#{evaluatedOrgTpye}</if>
+	<if test="evaluatedType != null ">,#{evaluatedType}</if>
+	<if test="evaluatedTagerid != null ">,#{evaluatedTagerid}</if>
+	<if test="evaluatedOrgid != null ">,#{evaluatedOrgid}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBD_EVALUATION" parameterType="Object" >
+UPDATE BD_EVALUATION 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="attitude != null ">,attitude=#{attitude}</if>
+	<if test="quality != null ">,quality=#{quality}</if>
+	<if test="velocity != null ">,velocity=#{velocity}</if>
+	<if test="type != null ">,type=#{type}</if>
+	<if test="content != null ">,content=#{content}</if>
+	<if test="anonymity != null ">,anonymity=#{anonymity}</if>
+	<if test="evaluateTpye != null ">,evaluate_tpye=#{evaluateTpye}</if>
+	<if test="evaluateUserid != null ">,evaluate_userid=#{evaluateUserid}</if>
+	<if test="evaluateOrgid != null ">,evaluate_orgid=#{evaluateOrgid}</if>
+	<if test="evaluatedOrgTpye != null ">,evaluated_org_tpye=#{evaluatedOrgTpye}</if>
+	<if test="evaluatedType != null ">,evaluated_type=#{evaluatedType}</if>
+	<if test="evaluatedTagerid != null ">,evaluated_tagerid=#{evaluatedTagerid}</if>
+	<if test="evaluatedOrgid != null ">,evaluated_orgid=#{evaluatedOrgid}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBD_EVALUATION">DELETE FROM BD_EVALUATION WHERE ID=#{id}</delete>
+<!-- 评价信息表 列表总数-->
+<select id="CountFindAllBD_EVALUATION" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_EVALUATION</select>
+<select id="CountBD_EVALUATION" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_EVALUATION WHERE ID=#{id}</select>
+<!-- 根据id查询 评价信息表 -->
+<select id="FindByPK" resultMap="result_map_BD_EVALUATION" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BD_EVALUATION WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  评价信息表 -->
+<select id="FreeFindBD_EVALUATION" resultMap="result_map_BD_EVALUATION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_EVALUATION 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  评价信息表 记录数 -->
+<select id="CountFreeFindBD_EVALUATION" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BD_EVALUATION 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  评价信息表 -->
+<select id="FreeFindBD_EVALUATIONOrdered" resultMap="result_map_BD_EVALUATION" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BD_EVALUATION 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/05 10:52:21 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

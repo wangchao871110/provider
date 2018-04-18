@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_TS_PERSON_FLOW" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_TS_PERSON_FLOW" type="com.xfs.ts.model.SpsTsPersonFlow" >
+	<result column="id" property="id"/>
+	<result column="month" property="month"/>
+	<result column="name" property="name"/>
+	<result column="id_card" property="idCard"/>
+	<result column="total" property="total"/>
+	<result column="type" property="type"/>
+	<result column="cname" property="cname"/>
+	<result column="json" property="json"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="sp_id" property="spId"/>
+	<result column="acc_id" property="accId"/>
+	<result column="service_type" property="serviceType"/>
+	<result column="area_code" property="areaCode"/>
+	
+</resultMap>
+       
+<!-- sps_ts_person_flow table all fields -->
+<sql id="Base_Column_List" >
+	 id,month,name,id_card,total,type,cname,json,create_dt,sp_id,acc_id,service_type,area_code
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="month != null" >and month = #{month}</if>
+	<if test="name != null" >and name = #{name}</if>
+	<if test="idCard != null" >and id_card = #{idCard}</if>
+	<if test="total != null" >and total = #{total}</if>
+	<if test="type != null" >and type = #{type}</if>
+	<if test="cname != null" >and cname = #{cname}</if>
+	<if test="json != null" >and json = #{json}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="accId != null" >and acc_id = #{accId}</if>
+	<if test="serviceType != null" >and service_type = #{serviceType}</if>
+	<if test="areaCode != null" >and area_code = #{areaCode}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="month != null">AND month like '%${month}%'</if>
+    <if test="monthEq != null">AND month = #{monthEq}</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+    <if test="idCard != null">AND id_card like '%${idCard}%'</if>
+    <if test="idCardEq != null">AND id_card = #{idCardEq}</if>
+    <if test="total != null">AND total like '%${total}%'</if>
+    <if test="type != null">AND type like '%${type}%'</if>
+    <if test="typeEq != null">AND type = #{typeEq}</if>
+   <!--  <if test="cname != null">AND cname like '%${cname}%'</if>
+    <if test="cnameEq != null">AND cname = #{cnameEq}</if> -->
+    <if test="json != null">AND json like '%${json}%'</if>
+    <if test="jsonEq != null">AND json = #{jsonEq}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="accId != null" >and acc_id = #{accId}</if>
+	<if test="serviceType != null" >and service_type = #{serviceType}</if>
+	<if test="areaCode != null" >and area_code = #{areaCode}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_TS_PERSON_FLOW" parameterType="Object" >
+  INSERT INTO SPS_TS_PERSON_FLOW (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="month != null ">,month</if>
+	<if test="name != null ">,name</if>
+	<if test="idCard != null ">,id_card</if>
+	<if test="total != null ">,total</if>
+	<if test="type != null ">,type</if>
+	<if test="cname != null ">,cname</if>
+	<if test="json != null ">,json</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="accId != null ">,acc_id</if>
+	<if test="serviceType != null ">,service_type</if>
+	<if test="areaCode != null ">,area_code</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="month != null ">,#{month}</if>
+	<if test="name != null ">,#{name}</if>
+	<if test="idCard != null ">,#{idCard}</if>
+	<if test="total != null ">,#{total}</if>
+	<if test="type != null ">,#{type}</if>
+	<if test="cname != null ">,#{cname}</if>
+	<if test="json != null ">,#{json}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="accId != null ">,#{accId}</if>
+	<if test="serviceType != null ">,#{serviceType}</if>
+	<if test="areaCode != null ">,#{areaCode}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_TS_PERSON_FLOW" parameterType="Object" >
+UPDATE SPS_TS_PERSON_FLOW 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="month != null ">,month=#{month}</if>
+	<if test="name != null ">,name=#{name}</if>
+	<if test="idCard != null ">,id_card=#{idCard}</if>
+	<if test="total != null ">,total=#{total}</if>
+	<if test="type != null ">,type=#{type}</if>
+	<if test="cname != null ">,cname=#{cname}</if>
+	<if test="json != null ">,json=#{json}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="accId != null ">,acc_id=#{accId}</if>
+	<if test="serviceType != null ">,service_type=#{serviceType}</if>
+	<if test="areaCode != null ">,area_code=#{areaCode}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_TS_PERSON_FLOW">DELETE FROM SPS_TS_PERSON_FLOW WHERE ID=#{id}</delete>
+<!-- 个人流水 列表总数-->
+<select id="CountFindAllSPS_TS_PERSON_FLOW" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_PERSON_FLOW</select>
+<select id="CountSPS_TS_PERSON_FLOW" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_PERSON_FLOW WHERE ID=#{id}</select>
+<!-- 根据id查询 个人流水 -->
+<select id="FindByPK" resultMap="result_map_SPS_TS_PERSON_FLOW" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_TS_PERSON_FLOW WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  个人流水 -->
+<select id="FreeFindSPS_TS_PERSON_FLOW" resultMap="result_map_SPS_TS_PERSON_FLOW" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_PERSON_FLOW 
+	 <include refid="Example_Where_Clause2" />
+	 and EXISTS (select 1 from sp_cm_relation r where r.cp_id=#{cid} and r.sp_id=#{spId} and (r.insurance_account_id =acc_id or r.fund_account_id =acc_id) )
+</select>
+<!-- 根据各字段条件带模糊查询  个人流水 记录数 -->
+<select id="CountFreeFindSPS_TS_PERSON_FLOW" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_TS_PERSON_FLOW 
+ <include refid="Example_Where_Clause2" />
+ and EXISTS (select 1 from sp_cm_relation r where r.cp_id=#{cid} and r.sp_id=#{spId} and (r.insurance_account_id =acc_id or r.fund_account_id =acc_id) )
+</select>
+<!-- 根据各字段条件带排序  个人流水 -->
+<select id="FreeFindSPS_TS_PERSON_FLOWOrdered" resultMap="result_map_SPS_TS_PERSON_FLOW" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_PERSON_FLOW 
+	 <include refid="Example_Where_Clause2" />
+	 <if test="_orderBy != null"> ORDER BY ${_orderBy}</if>
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/06 13:41:11 ** -->
+<!-- ************************************************************************ -->
+
+<select id="CountSPS_TS_PERSON_FLOWByMonthAndIdCard" resultType="java.lang.Integer">
+	SELECT id as value FROM SPS_TS_PERSON_FLOW WHERE
+	<if test="month != null ">month=#{month} and</if> id_card=#{idCard} and type=#{type} and service_type=#{serviceType}
+</select>
+
+
+<resultMap id="result_map_TS_PERSON_FLOW_with_curver" type="com.xfs.ts.model.SpsTsPersonFlow" >
+	<result column="id" property="id"/>
+	<result column="month" property="month"/>
+	<result column="name" property="name"/>
+	<result column="id_card" property="idCard"/>
+	<result column="json" property="json"/>
+	<result column="insurance_accid" property="insuranceAccid"/>
+	<result column="fund_accid" property="fundAccid"/>
+	<result column="type" property="type"/>
+	<result column="area_code" property="areaCode"/>
+	<collection property="insurancelist" javaType="List" ofType="com.xfs.corp.model.CmEmployeeInsurance" column="ins_id">
+		<result column="ins_id" property="id"/>
+		<result column="emp_id" property="empId"/>
+		<result column="insurance_id" property="insuranceId"/>
+		<result column="pay_base" property="payBase"/>
+		<result column="emp_payment" property="empPayment"/>
+		<result column="corp_payment" property="corpPayment"/>
+		<result column="emp_ratio" property="empRatio"/>
+		<result column="corp_ratio" property="corpRatio"/>
+		<result column="flow" property="flow"/>
+	</collection>
+</resultMap>
+
+
+	<select id="QUERY_ALL_FLOW" resultMap="result_map_TS_PERSON_FLOW_with_curver" parameterType="Object">
+		SELECT t.*,ins.id as ins_id,ins.corp_payment,ins.corp_ratio,ins.emp_payment,ins.emp_ratio,inarea.insurance_id,ins.pay_base,inarea.flow FROM (
+		SELECT
+		flow.id,
+		flow.`month`,
+		GROUP_CONCAT(flow.type) AS type,
+		flow.`name`,
+		flow.id_card,
+		GROUP_CONCAT(flow.json) AS json,
+		GROUP_CONCAT(case when type=1 then flow.acc_id else null end) as insurance_accid,
+		GROUP_CONCAT(case when type=2 then flow.acc_id else null end) as fund_accid,
+		flow.area_code,
+		area.belong_city as area_id,
+		employee.emp_id
+		FROM
+		sps_ts_person_flow flow
+		INNER JOIN cm_employee employee ON employee.identity_code = flow.id_card AND employee.`name` = flow.`name` AND employee.dr = 0
+		INNER JOIN sps_account account ON flow.acc_id = account.acc_id
+		INNER JOIN bs_area area ON area.area_id = account.area_id
+		WHERE
+		flow.`status` = 0
+		AND flow.service_type = 2
+		AND flow.`month` IS NOT NULL
+		<if test="accId != null "> AND flow.acc_id=#{accId} </if>
+		GROUP BY
+		flow.id_card,
+		flow.`name`,
+		flow.`month`,
+		area.belong_city
+		) t
+		left JOIN bd_insurancearea inarea ON t.area_id = inarea.area_id
+		left JOIN cm_employee_insurance ins ON ins.emp_id = t.emp_id AND ins.pay_type = 'MONTH'
+		AND t.`month` BETWEEN ins.begin_period AND ins.insurance_id = inarea.insurance_id
+		AND IFNULL(ins.end_period, '2099-01')
+	</select>
+
+	<select id="UPDATE_PERSON_FLOW" resultType="java.lang.Integer" parameterType="Object">
+		UPDATE sps_ts_person_flow SET status = 1 WHERE month = #{month} AND id_card = #{idCard} AND name = #{name}
+	</select>
+
+	<select id="GetSPS_TS_PERSON_FLOWByMonthAndIdCard" resultMap="result_map_SPS_TS_PERSON_FLOW">SELECT * FROM SPS_TS_PERSON_FLOW WHERE
+		<if test="month != null ">month=#{month} and</if> id_card=#{idCard} and type=#{type} and service_type=#{serviceType}</select>
+
+
+</mapper>   

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_AREABUSI" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_AREABUSI" type="com.xfs.base.model.BsAreabusi" >
+	<result column="id" property="id"/>
+	<result column="area_id" property="areaId"/>
+	<result column="busi" property="busi"/>
+	<result column="orderby" property="orderby"/>
+</resultMap>
+       
+<!-- bs_areabusi table all fields -->
+<sql id="Base_Column_List" >
+	 id,area_id,busi,orderby
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="busi != null" >and busi = #{busi}</if>
+	<if test="orderby != null" >and orderby = #{orderby}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="areaId != null">AND area_id = '${areaId}'</if>
+    <if test="busi != null">AND busi like '%${busi}%'</if>
+    <if test="busiEq != null">AND busi = #{busiEq}</if>
+    <if test="orderby != null">AND orderby like '%${orderby}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_AREABUSI" parameterType="Object" >
+  INSERT INTO BS_AREABUSI (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="busi != null ">,busi</if>
+	<if test="orderby != null ">,orderby</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="busi != null ">,#{busi}</if>
+	<if test="orderby != null ">,#{orderby}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_AREABUSI" parameterType="Object" >
+UPDATE BS_AREABUSI 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="areaId != null ">,area_id=#{areaId}</if>
+	<if test="busi != null ">,busi=#{busi}</if>
+	<if test="orderby != null ">,orderby=#{orderby}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_AREABUSI">DELETE FROM BS_AREABUSI WHERE ID=#{id}</delete>
+<!-- bs_areabusi 列表总数-->
+<select id="CountFindAllBS_AREABUSI" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREABUSI</select>
+<select id="CountBS_AREABUSI" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREABUSI WHERE ID=#{id}</select>
+<!-- 根据id查询 bs_areabusi -->
+<select id="FindByPK" resultMap="result_map_BS_AREABUSI" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_AREABUSI WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  bs_areabusi -->
+<select id="FreeFindBS_AREABUSI" resultMap="result_map_BS_AREABUSI" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREABUSI 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  bs_areabusi 记录数 -->
+<select id="CountFreeFindBS_AREABUSI" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_AREABUSI 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  bs_areabusi -->
+<select id="FreeFindBS_AREABUSIOrdered" resultMap="result_map_BS_AREABUSI" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREABUSI 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/11 16:39:16 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 通过业务类型查询城市列表 -->
+<select id="FindBS_AREABUSI_BY_BUSI" resultType="java.util.Map" parameterType="Object">
+	SELECT a.* FROM bs_areabusi ab
+		INNER JOIN bs_area a ON ab.`area_id` = a.`area_id`
+		WHERE ab.busi = #{busi}
+		ORDER BY ab.`orderby` ASC, a.`area_id` ASC
+</select>
+
+<select id="getBsAreabusi" resultMap="result_map_BS_AREABUSI" parameterType="Object">
+    SELECT <include refid="Base_Column_List" /> FROM BS_AREABUSI
+    <include refid="Example_Where_Clause" />
+</select>
+
+<!-- 查询开通城市列表 -->
+<select id="FindOpenCityAll" resultMap="result_map_BS_AREABUSI" parameterType="Object">
+	select ba.name area_name,bsa.* from bs_areabusi bsa
+	inner join bs_area ba on bsa.area_id = ba.area_id
+	where bsa.busi='mall'
+	order by bsa.orderby
+</select>
+
+
+<select id="findBsAreabusiMax" resultMap="result_map_BS_AREABUSI" parameterType="Object">
+	SELECT * FROM bs_areabusi ORDER BY orderby DESC LIMIT 1;
+</select>
+
+</mapper>   

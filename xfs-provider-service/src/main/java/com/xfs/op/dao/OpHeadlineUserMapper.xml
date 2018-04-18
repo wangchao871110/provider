@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OP_HEADLINE_USER">
+    <!-- Result Map-->
+    <resultMap id="result_map_OP_HEADLINE_USER" type="com.xfs.op.model.OpHeadlineUser">
+        <result column="id" property="id"/>
+        <result column="wx_open_id" property="wxOpenId"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="type" property="type"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+        <result column="sex" property="sex"/>
+        <result column="auto_tag" property="autoTag"/>
+        <result column="create_dt" property="createDt"/>
+        <result column="create_by" property="createBy"/>
+        <result column="modify_dt" property="modifyDt"/>
+        <result column="modify_by" property="modifyBy"/>
+        <result column="dr" property="dr"/>
+        <result column="head_img" property="headImg"/>
+    </resultMap>
+
+    <!-- op_headline_user table all fields -->
+    <sql id="Base_Column_List">
+	 id,wx_open_id,nick_name,type,area_id,area_name,sex,auto_tag,create_dt,create_by,modify_dt,modify_by,dr,head_img
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">and id = #{id}</if>
+            <if test="wxOpenId != null">and wx_open_id = #{wxOpenId}</if>
+            <if test="nickName != null">and nick_name = #{nickName}</if>
+            <if test="type != null">and type = #{type}</if>
+            <if test="areaId != null">and area_id = #{areaId}</if>
+            <if test="areaName != null">and area_name = #{areaName}</if>
+            <if test="sex != null">and sex = #{sex}</if>
+            <if test="autoTag != null">and auto_tag = #{autoTag}</if>
+            <if test="createDt != null">and create_dt = #{createDt}</if>
+            <if test="createBy != null">and create_by = #{createBy}</if>
+            <if test="modifyDt != null">and modify_dt = #{modifyDt}</if>
+            <if test="modifyBy != null">and modify_by = #{modifyBy}</if>
+            <if test="dr != null">and dr = #{dr}</if>
+            <if test="headImg != null">and head_img = #{headImg}</if>
+        </trim>
+    </sql>
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id like '%${id}%'</if>
+            <if test="wxOpenId != null">AND wx_open_id like '%${wxOpenId}%'</if>
+            <if test="wxOpenIdEq != null">AND wx_open_id = #{wxOpenIdEq}</if>
+            <if test="nickName != null">AND nick_name like '%${nickName}%'</if>
+            <if test="nickNameEq != null">AND nick_name = #{nickNameEq}</if>
+            <if test="type != null">AND type like '%${type}%'</if>
+            <if test="areaId != null">AND area_id like '%${areaId}%'</if>
+            <if test="areaName != null">AND area_name like '%${areaName}%'</if>
+            <if test="areaNameEq != null">AND area_name = #{areaNameEq}</if>
+            <if test="sex != null">AND sex like '%${sex}%'</if>
+            <if test="autoTag != null">and auto_tag = #{autoTag}</if>
+            <if test="createDt != null">AND create_dt = #{createDt}</if>
+            <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+            <if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+            <if test="createBy != null">AND create_by like '%${createBy}%'</if>
+            <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+            <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+            <if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+            <if test="modifyBy != null">AND modify_by like '%${modifyBy}%'</if>
+            <if test="dr != null">AND dr like '%${dr}%'</if>
+            <if test="headImg != null">AND head_img like '%${headImg}%'</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertOP_HEADLINE_USER" parameterType="Object">
+        INSERT INTO OP_HEADLINE_USER (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="wxOpenId != null ">,wx_open_id</if>
+            <if test="nickName != null ">,nick_name</if>
+            <if test="type != null ">,type</if>
+            <if test="areaId != null ">,area_id</if>
+            <if test="areaName != null ">,area_name</if>
+            <if test="sex != null ">,sex</if>
+            <if test="autoTag != null">,auto_tag</if>
+            <if test="createDt != null ">,create_dt</if>
+            <if test="createBy != null ">,create_by</if>
+            <if test="modifyDt != null ">,modify_dt</if>
+            <if test="modifyBy != null ">,modify_by</if>
+            <if test="dr != null ">,dr</if>
+            <if test="headImg != null ">,head_img</if>
+        </trim>
+        ) VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="wxOpenId != null ">,#{wxOpenId}</if>
+            <if test="nickName != null ">,#{nickName}</if>
+            <if test="type != null ">,#{type}</if>
+            <if test="areaId != null ">,#{areaId}</if>
+            <if test="areaName != null ">,#{areaName}</if>
+            <if test="sex != null ">,#{sex}</if>
+            <if test="autoTag != null">, #{autoTag}</if>
+            <if test="createDt != null ">,#{createDt}</if>
+            <if test="createBy != null ">,#{createBy}</if>
+            <if test="modifyDt != null ">,#{modifyDt}</if>
+            <if test="modifyBy != null ">,#{modifyBy}</if>
+            <if test="dr != null ">,#{dr}</if>
+            <if test="headImg != null ">,#{headImg}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateOP_HEADLINE_USER" parameterType="Object">
+        UPDATE OP_HEADLINE_USER
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="wxOpenId != null ">,wx_open_id=#{wxOpenId}</if>
+            <if test="nickName != null ">,nick_name=#{nickName}</if>
+            <if test="type != null ">,type=#{type}</if>
+            <if test="areaId != null ">,area_id=#{areaId}</if>
+            <if test="areaName != null ">,area_name=#{areaName}</if>
+            <if test="sex != null ">,sex=#{sex}</if>
+            <if test="autoTag != null">,auto_tag = #{autoTag}</if>
+            <if test="createDt != null ">,create_dt=#{createDt}</if>
+            <if test="createBy != null ">,create_by=#{createBy}</if>
+            <if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+            <if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+            <if test="dr != null ">,dr=#{dr}</if>
+            <if test="headImg != null ">,head_img=#{headImg}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteOP_HEADLINE_USER">DELETE FROM OP_HEADLINE_USER WHERE ID=#{id}</delete>
+    <!-- hr头条用户 列表总数-->
+    <select id="CountFindAllOP_HEADLINE_USER"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HEADLINE_USER</select>
+    <select id="CountOP_HEADLINE_USER"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM OP_HEADLINE_USER WHERE ID=#{id}
+    </select>
+    <!-- 根据id查询 hr头条用户 -->
+    <select id="FindByPK" resultMap="result_map_OP_HEADLINE_USER" parameterType="Object">SELECT
+        <include refid="Base_Column_List"/>
+        FROM OP_HEADLINE_USER WHERE ID=#{id}
+    </select>
+
+    <!-- 根据各字段条件带模糊查询  hr头条用户 -->
+    <select id="FreeFindOP_HEADLINE_USER" resultMap="result_map_OP_HEADLINE_USER" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OP_HEADLINE_USER
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带模糊查询  hr头条用户 记录数 -->
+    <select id="CountFreeFindOP_HEADLINE_USER" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM OP_HEADLINE_USER
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带排序  hr头条用户 -->
+    <select id="FreeFindOP_HEADLINE_USEROrdered" resultMap="result_map_OP_HEADLINE_USER" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OP_HEADLINE_USER
+        <include refid="Example_Where_Clause2"/>
+        ORDER BY ${_orderBy}
+    </select>
+
+    <!-- *****************************  温馨提示：  ***************************** -->
+    <!-- **                                                                    ** -->
+    <!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+    <!-- **                                             ** 2017/02/23 11:11:06 ** -->
+    <!-- ************************************************************************ -->
+    <!-- 根据openId 获取  hr头条用户 -->
+    <select id="GetHeadlineUserByOpenId" resultMap="result_map_OP_HEADLINE_USER" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OP_HEADLINE_USER
+        WHERE wx_open_id = #{wxOpenId}
+    </select>
+
+
+    <!-- 根据id，修改记录-->
+    <update id="updateHeadlineUserByOpenId" parameterType="Object">
+        UPDATE OP_HEADLINE_USER
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="wxOpenId != null ">,wx_open_id=#{wxOpenId}</if>
+            <if test="nickName != null ">,nick_name=#{nickName}</if>
+            <if test="type != null ">,type=#{type}</if>
+            <if test="areaId != null ">,area_id=#{areaId}</if>
+            <if test="areaName != null ">,area_name=#{areaName}</if>
+            <if test="sex != null ">,sex=#{sex}</if>
+            <if test="autoTag != null">,auto_tag = #{autoTag}</if>
+            <if test="createDt != null ">,create_dt=#{createDt}</if>
+            <if test="createBy != null ">,create_by=#{createBy}</if>
+            <if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+            <if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+            <if test="dr != null ">,dr=#{dr}</if>
+            <if test="headImg != null ">,head_img=#{headImg}</if>
+        </trim>
+        WHERE wx_open_id=#{wxOpenId}
+    </update>
+
+
+</mapper>

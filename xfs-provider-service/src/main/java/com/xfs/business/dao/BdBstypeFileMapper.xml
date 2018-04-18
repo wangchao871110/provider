@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bd_bstype_file" > 
+<!-- Result Map-->
+<resultMap id="result_map_bd_bstype_file" type="com.xfs.business.model.BdBstypeFile" >
+	<result column="bd_bstype_file_id" property="bdBstypeFileId"/>
+	<result column="bstype_id" property="bstypeId"/>
+	<result column="descript_file" property="descriptFile"/>
+	<result column="area_id" property="areaId"/>
+	<result column="guid" property="guid"/>
+</resultMap>
+       
+<!-- bd_bstype_file table all fields -->
+<sql id="Base_Column_List" >
+	 bd_bstype_file_id,bstype_id,descript_file,area_id,guid
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="bdBstypeFileId != null" >and bd_bstype_file_id = #{bdBstypeFileId}</if>
+	<if test="bstypeId != null" >and bstype_id = #{bstypeId}</if>
+	<if test="descriptFile != null" >and descript_file = #{descriptFile}</if>
+	  <if test="areaId != null" >and area_id = #{areaId}</if>
+	  <if test="guid != null" >and guid = #{guid}</if>
+</trim>
+</sql>
+
+<!-- 业务文件描述表 列表总数-->
+<select id="countFindAll" resultType="java.lang.Integer">SELECT count(1) as value FROM bd_bstype_file</select>
+
+<!-- 根据各字段条件查询  业务文件描述表 -->
+<select id="freeFind" resultMap="result_map_bd_bstype_file" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM bd_bstype_file 
+	 <include refid="Example_Where_Clause" />
+</select>
+
+<!-- 根据各字段条件查询  业务文件描述表 记录数 -->
+<select id="countFreeFind" resultType="java.lang.Integer">
+SELECT count(1) as value FROM bd_bstype_file 
+ <include refid="Example_Where_Clause" />
+</select>
+
+<!-- 根据id查询 业务文件描述表 -->
+<select id="findByPK" resultMap="result_map_bd_bstype_file" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM bd_bstype_file WHERE BD_BSTYPE_FILE_ID=#{bdBstypeFileId}</select>
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  INSERT INTO bd_bstype_file (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="bdBstypeFileId != null ">,bd_bstype_file_id</if>
+	<if test="bstypeId != null ">,bstype_id</if>
+	<if test="descriptFile != null ">,descript_file</if>
+	  <if test="areaId != null ">,area_id</if>
+	  <if test="guid != null ">,guid</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="bdBstypeFileId != null ">,#{bdBstypeFileId}</if>
+	<if test="bstypeId != null ">,#{bstypeId}</if>
+	<if test="descriptFile != null ">,#{descriptFile}</if>
+	  <if test="areaId != null ">,#{areaId}</if>
+	  <if test="guid != null ">,#{guid}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="bdBstypeFileId">
+	SELECT LAST_INSERT_ID() AS BD_BSTYPE_FILE_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="update" parameterType="Object" >
+UPDATE bd_bstype_file 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="bdBstypeFileId != null ">,bd_bstype_file_id=#{bdBstypeFileId}</if>
+	<if test="bstypeId != null ">,bstype_id=#{bstypeId}</if>
+	<if test="descriptFile != null ">,descript_file=#{descriptFile}</if>
+	  <if test="areaId != null ">,area_id=#{areaId}</if>
+	  <if test="guid != null ">,guid=#{guid}</if>
+  </trim>
+WHERE BD_BSTYPE_FILE_ID=#{bdBstypeFileId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="remove">DELETE FROM bd_bstype_file WHERE BD_BSTYPE_FILE_ID=#{bdBstypeFileId}</delete>
+
+
+
+	<!-- 根据id查询 业务文件描述表 -->
+	<select id="getWorkGuide"  parameterType="Map" resultType="Map">
+		
+		SELECT * FROM  jc_content_txt   WHERE content_id=#{contentId}
+
+	</select>
+
+
+
+</mapper>   

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="RAISE_TAXES">
+
+    <!--获取用户信息-->
+    <select id="getUserInfo" parameterType="Map" resultType="Map">
+		SELECT  * from MC_USER
+		WHERE LEFT(create_time,10) = #{date}
+	</select>
+
+    <!--获取订单信息-->
+    <select id="getOrderInfo" parameterType="Map" resultType="Map">
+
+		SELECT  ord.id as ordId,ord.create_dt as createDt,pay.order_code  as ordCode,pay.pay_user as payUser,pay.pay_date as payDate,ser.service_price as serPrice,ser.id as serviceId ,usr.mdn as cusCode
+		FROM mc_mall_order  ord
+		LEFT JOIN mc_mall_payment  pay on pay.order_id = ord.id
+		LEFT JOIN mc_mall_service ser on ser.id = ord.service_id
+		LEFT JOIN mc_user  usr on  usr.id = ord.user_id
+		WHERE LEFT(ord.create_dt,10) = #{date}
+		and ser.service_price   &lt;&gt; 0.00
+		and  ord.pay_state=2
+
+	</select>
+
+
+</mapper>   

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>欢迎邮件</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+</head>
+
+<body>
+<div class="body-content" style="width: 800px;margin: 0 auto; font-family: 'Helvetica Neue',PingFangSC-Light,'PingFang SC','Hiragino Sans GB','Microsoft YaHei','微软雅黑',Arial,sans-serif">
+    <div class="table-content">
+        <table class="table-email" style="width:800px;margin:0 auto; overflow: hidden;border-collapse: collapse;margin: 0;padding: 0;table-layout: fixed;border-spacing: 0;">
+            <tr>
+                <th style="height:85px;"><img src="http://cdn01.xinfushe.cn/images/welfare/1481796689119/logo.png" style="display: block;height:85px;width: 800px;margin-left: -1px;"></th>
+            </tr>
+            <tr>
+                <td style="padding:0 30px;display: block;min-height: 23px; line-height:2;" background="http://cdn01.xinfushe.cn/images/welfare/1481797418683/line.png">
+                    <h4 style="width:570px;color:#1b1b1b;margin: 0 auto; padding-top:30px;padding-bottom:10px;font-size: 22px; font-weight:normal;">尊敬的用户：</h4>
+                    <p style="width:570px;color:#1b1b1b;text-indent: 2em;margin: 0 auto;display: block;">${content}</p>
+                    <p style="width:570px;color:#1b1b1b;text-align: right; margin: 0 auto;display: block;padding-top:20px;">祝您一切顺利，事业有成。</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="margin: 0;padding: 0; border:0;">
+                    <div style="height: 350px; position: relative">
+                        <img style="width:800px; height:350px;display: block;" src="http://cdn01.xinfushe.cn/images/welfare/1481796078763/bottom.png">
+                    </div>
+                </td>
+            </tr>
+            <!--
+            <tr>
+                <td style="margin-top: 30px; display:block;">
+                    <img style="display: block;height:74px; width:800px;" src="http://cdn01.xinfushe.cn/images/welfare/1481796621813/footer.png">
+                </td>
+            </tr>
+            -->
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

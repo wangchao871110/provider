@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_FIXEDPOINTHOSPITAL">
+    <!-- Result Map-->
+    <resultMap id="result_map_SPS_FIXEDPOINTHOSPITAL" type="com.xfs.business.model.SpsFixedpointhospital">
+        <result column="id" property="id"/>
+        <result column="area_id" property="areaId"/>
+        <result column="hospital_code" property="hospitalCode"/>
+        <result column="full_name" property="fullName"/>
+        <result column="abbreviation" property="abbreviation"/>
+        <result column="region" property="region"/>
+        <result column="hospital_type" property="hospitalType"/>
+        <result column="hospital_level" property="hospitalLevel"/>
+        <result column="hospital_address" property="hospitalAddress"/>
+        <result column="hospital_coordinate" property="hospitalCoordinate"/>
+    </resultMap>
+
+    <!-- sps_fixedpointhospital table all fields -->
+    <sql id="Base_Column_List">
+	 id,area_id,hospital_code,full_name,abbreviation,region,hospital_type,hospital_level,hospital_address,hospital_coordinate
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">and id = #{id}</if>
+            <if test="areaId != null">and area_id = #{areaId}</if>
+            <if test="hospitalCode != null">and hospital_code = #{hospitalCode}</if>
+            <if test="fullName != null">and full_name = #{fullName}</if>
+            <if test="abbreviation != null">and abbreviation = #{abbreviation}</if>
+            <if test="region != null">and region = #{region}</if>
+            <if test="hospitalType != null">and hospital_type = #{hospitalType}</if>
+            <if test="hospitalLevel != null">and hospital_level = #{hospitalLevel}</if>
+            <if test="hospitalAddress != null">and hospital_address = #{hospitalAddress}</if>
+            <if test="hospitalCoordinate != null">and hospital_coordinate = #{hospitalCoordinate}</if>
+        </trim>
+    </sql>
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = #{id}</if>
+            <if test="areaId != null">AND area_id = '${areaId}'</if>
+            <if test="hospitalCode != null">AND hospital_code like '%${hospitalCode}%'</if>
+            <if test="hospitalCodeEq != null">AND hospital_code = #{hospitalCodeEq}</if>
+            <if test="fullName != null">AND full_name like '%${fullName}%'</if>
+            <if test="fullNameEq != null">AND full_name = #{fullNameEq}</if>
+            <if test="abbreviation != null">AND abbreviation like '%${abbreviation}%'</if>
+            <if test="abbreviationEq != null">AND abbreviation = #{abbreviationEq}</if>
+            <if test="region != null">AND region like '%${region}%'</if>
+            <if test="regionEq != null">AND region = #{regionEq}</if>
+            <if test="hospitalType != null">AND hospital_type like '%${hospitalType}%'</if>
+            <if test="hospitalTypeEq != null">AND hospital_type = #{hospitalTypeEq}</if>
+            <if test="hospitalLevel != null">AND hospital_level like '%${hospitalLevel}%'</if>
+            <if test="hospitalLevelEq != null">AND hospital_level = #{hospitalLevelEq}</if>
+            <if test="hospitalAddress != null">AND hospital_address like '%${hospitalAddress}%'</if>
+            <if test="hospitalAddressEq != null">AND hospital_address = #{hospitalAddressEq}</if>
+            <if test="hospitalCoordinate != null">AND hospital_coordinate like '%${hospitalCoordinate}%'</if>
+            <if test="hospitalCoordinateEq != null">AND hospital_coordinate = #{hospitalCoordinateEq}</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertSPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+        INSERT INTO SPS_FIXEDPOINTHOSPITAL (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="areaId != null ">,area_id</if>
+            <if test="hospitalCode != null ">,hospital_code</if>
+            <if test="fullName != null ">,full_name</if>
+            <if test="abbreviation != null ">,abbreviation</if>
+            <if test="region != null ">,region</if>
+            <if test="hospitalType != null ">,hospital_type</if>
+            <if test="hospitalLevel != null ">,hospital_level</if>
+            <if test="hospitalAddress != null ">,hospital_address</if>
+            <if test="hospitalCoordinate != null ">,hospital_coordinate</if>
+        </trim>
+        ) VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="areaId != null ">,#{areaId}</if>
+            <if test="hospitalCode != null ">,#{hospitalCode}</if>
+            <if test="fullName != null ">,#{fullName}</if>
+            <if test="abbreviation != null ">,#{abbreviation}</if>
+            <if test="region != null ">,#{region}</if>
+            <if test="hospitalType != null ">,#{hospitalType}</if>
+            <if test="hospitalLevel != null ">,#{hospitalLevel}</if>
+            <if test="hospitalAddress != null ">,#{hospitalAddress}</if>
+            <if test="hospitalCoordinate != null ">,#{hospitalCoordinate}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateSPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+        UPDATE SPS_FIXEDPOINTHOSPITAL
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="areaId != null ">,area_id=#{areaId}</if>
+            <if test="hospitalCode != null ">,hospital_code=#{hospitalCode}</if>
+            <if test="fullName != null ">,full_name=#{fullName}</if>
+            <if test="abbreviation != null ">,abbreviation=#{abbreviation}</if>
+            <if test="region != null ">,region=#{region}</if>
+            <if test="hospitalType != null ">,hospital_type=#{hospitalType}</if>
+            <if test="hospitalLevel != null ">,hospital_level=#{hospitalLevel}</if>
+            <if test="hospitalAddress != null ">,hospital_address=#{hospitalAddress}</if>
+            <if test="hospitalCoordinate != null ">,hospital_coordinate=#{hospitalCoordinate}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteSPS_FIXEDPOINTHOSPITAL">DELETE FROM SPS_FIXEDPOINTHOSPITAL WHERE ID=#{id}</delete>
+    <!-- 定点医院 列表总数-->
+    <select id="CountFindAllSPS_FIXEDPOINTHOSPITAL"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_FIXEDPOINTHOSPITAL</select>
+    <select id="CountSPS_FIXEDPOINTHOSPITAL"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_FIXEDPOINTHOSPITAL WHERE ID=#{id}</select>
+    <!-- 根据id查询 定点医院 -->
+    <select id="FindByPK" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="Object">SELECT
+        <include refid="Base_Column_List"/>
+        FROM SPS_FIXEDPOINTHOSPITAL WHERE ID=#{id}
+    </select>
+
+    <!-- 根据各字段条件带模糊查询  定点医院 -->
+    <select id="FreeFindSPS_FIXEDPOINTHOSPITAL" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SPS_FIXEDPOINTHOSPITAL
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带模糊查询  定点医院 记录数 -->
+    <select id="CountFreeFindSPS_FIXEDPOINTHOSPITAL" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM SPS_FIXEDPOINTHOSPITAL
+        <include refid="Example_Where_Clause2"/>
+    </select>
+    <!-- 根据各字段条件带排序  定点医院 -->
+    <select id="FreeFindSPS_FIXEDPOINTHOSPITALOrdered" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL"
+            parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SPS_FIXEDPOINTHOSPITAL
+        <include refid="Example_Where_Clause2"/>
+        ORDER BY ${_orderBy}
+    </select>
+
+    <!-- *****************************  温馨提示：  ***************************** -->
+    <!-- **                                                                    ** -->
+    <!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+    <!-- **                                             ** 2016/04/20 12:05:11 ** -->
+    <!-- ************************************************************************ -->
+
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause_or_meng">
+        <trim prefix=" WHERE " prefixOverrides="OR ">
+            <if test="id != null">AND id = #{id}</if>
+            <if test="areaId != null">AND area_id = '${areaId}'</if>
+            <if test="hospitalCode != null">OR hospital_code like '%${hospitalCode}%'</if>
+            <if test="hospitalCodeEq != null">AND hospital_code = #{hospitalCodeEq}</if>
+            <if test="fullName != null">OR full_name like '%${fullName}%'</if>
+            <if test="fullNameEq != null">AND full_name = #{fullNameEq}</if>
+            <if test="abbreviation != null">OR abbreviation like '%${abbreviation}%'</if>
+            <if test="abbreviationEq != null">AND abbreviation = #{abbreviationEq}</if>
+            <if test="region != null">OR region like '%${region}%'</if>
+            <if test="regionEq != null">AND region = #{regionEq}</if>
+            <if test="hospitalType != null">OR hospital_type like '%${hospitalType}%'</if>
+            <if test="hospitalTypeEq != null">AND hospital_type = #{hospitalTypeEq}</if>
+            <if test="hospitalLevel != null">OR hospital_level like '%${hospitalLevel}%'</if>
+            <if test="hospitalLevelEq != null">AND hospital_level = #{hospitalLevelEq}</if>
+            <if test="hospitalAddress != null">OR hospital_address like '%${hospitalAddress}%'</if>
+            <if test="hospitalAddressEq != null">AND hospital_address = #{hospitalAddressEq}</if>
+            <if test="hospitalCoordinate != null">AND hospital_coordinate like '%${hospitalCoordinate}%'</if>
+            <if test="hospitalCoordinateEq != null">AND hospital_coordinate = #{hospitalCoordinateEq}</if>
+        </trim>
+    </sql>
+
+    <!-- 随便查询50条  定点医院 -->
+    <select id="FreeFindSPS_FIXEDPOINTHOSPITAL_free" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SPS_FIXEDPOINTHOSPITAL limit 50
+    </select>
+
+
+    <!-- 根据各字段条件带模糊查询  定点医院  或关系-->
+    <select id="FreeFindSPS_FIXEDPOINTHOSPITAL_meng" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL"
+            parameterType="Object">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM SPS_FIXEDPOINTHOSPITAL
+        <include refid="Example_Where_Clause_or_meng"/>
+    </select>
+
+    <!-- 根据各字段条件带模糊查询  定点医院 记录数  或关系-->
+    <select id="CountFreeFindSPS_FIXEDPOINTHOSPITAL_meng" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM SPS_FIXEDPOINTHOSPITAL
+        <include refid="Example_Where_Clause_or_meng"/>
+    </select>
+
+    <!-- 根据各字段条件带模糊查询  定点医院  或关系-->
+    <select id="getFixHosptialByRegionId" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+		SELECT hosp.* from sps_fixedpointhospital hosp
+		LEFT JOIN bs_area area on  hosp.region = area.name
+		where 1=1 AND area.areaCode =#{0}
+        ORDER BY hospital_level
+	</select>
+
+
+    <!-- 根据各字段条件带模糊查询  定点医院  或关系-->
+    <select id="getFixHosptialByHospitalCodes" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+        SELECT  <include refid="Base_Column_List"/>
+        from sps_fixedpointhospital
+        where  hospital_code IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <!-- 根据地区和医院类型查询-->
+    <select id="getHospitalByAreaIdAndType" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="java.util.Map">
+
+        SELECT hosp.* from sps_fixedpointhospital hosp
+		LEFT JOIN bs_area area on  hosp.region = area.name
+		where 1=1
+        <if test="areaCode != null">AND area.areaCode =#{areaCode}</if>
+        <if test="reginCode != null">AND area.belong_city =#{reginCode}</if>
+        <if test="hosptialType != null">and  hospital_type LIKE '%${hosptialType}%'</if>
+        <if test="condition != null">and   concat(hospital_code,full_name,region)  LIKE '%${condition}%' </if>
+
+        ORDER BY hospital_level
+
+    </select>
+
+
+    <!-- 根据地区和医院类型查询-->
+    <select id="getHospitalByAreaIdAndTypeCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+
+        SELECT COUNT(1) from sps_fixedpointhospital hosp
+        LEFT JOIN bs_area area on  hosp.region = area.name
+        where 1=1
+        <if test="areaCode != null">AND area.areaCode =#{areaCode}</if>
+        <if test="reginCode != null">AND area.belong_city =#{reginCode}</if>
+        <if test="hosptialType != null">and  hospital_type LIKE '%${hosptialType}%'</if>
+        <if test="condition != null">and   concat(hospital_code,full_name,region)  LIKE '%${condition}%' </if>
+
+    </select>
+
+
+    <!-- 根据条件模糊查询-->
+    <select id="getHospitalByCondition" resultMap="result_map_SPS_FIXEDPOINTHOSPITAL" parameterType="Object">
+
+        SELECT o.* FROM sps_fixedpointhospital o
+        where concat(o.hospital_code,o.full_name,o.region)  LIKE '%'#{condition}'%'
+        ORDER BY hospital_level;
+
+    </select>
+
+
+</mapper>

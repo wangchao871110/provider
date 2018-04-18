@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_FEE_CORPONCE" >
+	<!-- Result Map-->
+	<resultMap id="result_map_SPS_FEE_CORPONCE" type="com.xfs.bill.model.SpsFeeCorponce" >
+		<result column="id" property="id"/>
+		<result column="cp_id" property="cpId"/>
+		<result column="sp_id" property="spId"/>
+		<result column="scheme_id" property="schemeId"/>
+		<result column="period" property="period"/>
+		<result column="item" property="item"/>
+		<result column="price" property="price"/>
+		<result column="num" property="num"/>
+		<result column="unit" property="unit"/>
+		<result column="official_fee" property="officialFee"/>
+		<result column="service_fee" property="serviceFee"/>
+		<result column="source" property="source"/>
+		<result column="sourceid" property="sourceid"/>
+		<result column="fee_type" property="feeType"/>
+		<result column="insured_month" property="insuredMonth"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_dt" property="createDt"/>
+		<result column="modify_by" property="modifyBy"/>
+		<result column="modify_dt" property="modifyDt"/>
+		<result column="dr" property="dr"/>
+	</resultMap>
+
+	<!-- sps_fee_corponce table all fields -->
+	<sql id="Base_Column_List" >
+		id,cp_id,sp_id,scheme_id,period,item,price,num,unit,official_fee,service_fee,source,sourceid,fee_type,insured_month,create_by,create_dt,modify_by,modify_dt,dr
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null" >and id = #{id}</if>
+			<if test="cpId != null" >and cp_id = #{cpId}</if>
+			<if test="spId != null" >and sp_id = #{spId}</if>
+			<if test="schemeId != null" >and scheme_id = #{schemeId}</if>
+			<if test="period != null" >and period = #{period}</if>
+			<if test="item != null" >and item = #{item}</if>
+			<if test="price != null" >and price = #{price}</if>
+			<if test="num != null" >and num = #{num}</if>
+			<if test="unit != null" >and unit = #{unit}</if>
+			<if test="officialFee != null" >and official_fee = #{officialFee}</if>
+			<if test="serviceFee != null" >and service_fee = #{serviceFee}</if>
+			<if test="source != null" >and source = #{source}</if>
+			<if test="sourceid != null" >and sourceid = #{sourceid}</if>
+			<if test="feeType != null" >and fee_type = #{feeType}</if>
+			<if test="insuredMonth != null" >and insured_month = #{insuredMonth}</if>
+			<if test="createBy != null" >and create_by = #{createBy}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="dr != null" >and dr = #{dr}</if>
+		</trim>
+	</sql>
+
+	<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+	<sql id="Example_Where_Clause2">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null">AND id = #{id}</if>
+			<if test="cpId != null">AND cp_id = #{cpId}</if>
+			<if test="spId != null">AND sp_id = #{spId}</if>
+			<if test="schemeId != null">AND scheme_id = #{schemeId}</if>
+			<if test="period != null">AND period like '%${period}%'</if>
+			<if test="periodEq != null">AND period = #{periodEq}</if>
+			<if test="item != null">AND item like '%${item}%'</if>
+			<if test="itemEq != null">AND item = #{itemEq}</if>
+			<if test="price != null">AND price like '%${price}%'</if>
+			<if test="num != null">AND num = #{num}</if>
+			<if test="unit != null">AND unit like '%${unit}%'</if>
+			<if test="unitEq != null">AND unit = #{unitEq}</if>
+			<if test="officialFee != null">AND official_fee like '%${officialFee}%'</if>
+			<if test="serviceFee != null">AND service_fee like '%${serviceFee}%'</if>
+			<if test="source != null">AND source = #{source}</if>
+			<if test="sourceid != null">AND sourceid = #{sourceid}</if>
+			<if test="feeType != null">AND fee_type like '%${feeType}%'</if>
+			<if test="feeTypeEq != null">AND fee_type = #{feeTypeEq}</if>
+			<if test="insuredMonth != null">AND insured_month like '%${insuredMonth}%'</if>
+			<if test="insuredMonthEq != null">AND insured_month = #{insuredMonthEq}</if>
+			<if test="createBy != null">AND create_by = #{createBy}</if>
+			<if test="createDt != null">AND create_dt = #{createDt}</if>
+			<if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+			<if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+			<if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+			<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+			<if test="dr != null">AND dr = #{dr}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertSPS_FEE_CORPONCE" parameterType="Object" >
+		INSERT INTO SPS_FEE_CORPONCE (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,id</if>
+			<if test="cpId != null ">,cp_id</if>
+			<if test="spId != null ">,sp_id</if>
+			<if test="schemeId != null ">,scheme_id</if>
+			<if test="period != null ">,period</if>
+			<if test="item != null ">,item</if>
+			<if test="price != null ">,price</if>
+			<if test="num != null ">,num</if>
+			<if test="unit != null ">,unit</if>
+			<if test="officialFee != null ">,official_fee</if>
+			<if test="serviceFee != null ">,service_fee</if>
+			<if test="source != null ">,source</if>
+			<if test="sourceid != null ">,sourceid</if>
+			<if test="feeType != null ">,fee_type</if>
+			<if test="insuredMonth != null ">,insured_month</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,#{id}</if>
+			<if test="cpId != null ">,#{cpId}</if>
+			<if test="spId != null ">,#{spId}</if>
+			<if test="schemeId != null ">,#{schemeId}</if>
+			<if test="period != null ">,#{period}</if>
+			<if test="item != null ">,#{item}</if>
+			<if test="price != null ">,#{price}</if>
+			<if test="num != null ">,#{num}</if>
+			<if test="unit != null ">,#{unit}</if>
+			<if test="officialFee != null ">,#{officialFee}</if>
+			<if test="serviceFee != null ">,#{serviceFee}</if>
+			<if test="source != null ">,#{source}</if>
+			<if test="sourceid != null ">,#{sourceid}</if>
+			<if test="feeType != null ">,#{feeType}</if>
+			<if test="insuredMonth != null ">,#{insuredMonth}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateSPS_FEE_CORPONCE" parameterType="Object" >
+		UPDATE SPS_FEE_CORPONCE
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="id != null ">,id=#{id}</if>
+			<if test="cpId != null ">,cp_id=#{cpId}</if>
+			<if test="spId != null ">,sp_id=#{spId}</if>
+			<if test="schemeId != null ">,scheme_id=#{schemeId}</if>
+			<if test="period != null ">,period=#{period}</if>
+			<if test="item != null ">,item=#{item}</if>
+			<if test="price != null ">,price=#{price}</if>
+			<if test="num != null ">,num=#{num}</if>
+			<if test="unit != null ">,unit=#{unit}</if>
+			<if test="officialFee != null ">,official_fee=#{officialFee}</if>
+			<if test="serviceFee != null ">,service_fee=#{serviceFee}</if>
+			<if test="source != null ">,source=#{source}</if>
+			<if test="sourceid != null ">,sourceid=#{sourceid}</if>
+			<if test="feeType != null ">,fee_type=#{feeType}</if>
+			<if test="insuredMonth != null ">,insured_month=#{insuredMonth}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteSPS_FEE_CORPONCE">DELETE FROM SPS_FEE_CORPONCE WHERE ID=#{id}</delete>
+	<!-- 任务单历史 列表总数-->
+	<select id="CountFindAllSPS_FEE_CORPONCE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_FEE_CORPONCE</select>
+	<select id="CountSPS_FEE_CORPONCE" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_FEE_CORPONCE WHERE ID=#{id}</select>
+	<!-- 根据id查询 任务单历史 -->
+	<select id="FindByPK" resultMap="result_map_SPS_FEE_CORPONCE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_FEE_CORPONCE WHERE ID=#{id}</select>
+
+	<!-- 根据各字段条件带模糊查询  任务单历史 -->
+	<select id="FreeFindSPS_FEE_CORPONCE" resultMap="result_map_SPS_FEE_CORPONCE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_FEE_CORPONCE
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带模糊查询  任务单历史 记录数 -->
+	<select id="CountFreeFindSPS_FEE_CORPONCE" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM SPS_FEE_CORPONCE
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带排序  任务单历史 -->
+	<select id="FreeFindSPS_FEE_CORPONCEOrdered" resultMap="result_map_SPS_FEE_CORPONCE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_FEE_CORPONCE
+		<include refid="Example_Where_Clause2" />
+		ORDER BY ${_orderBy}
+	</select>
+
+	<!-- *****************************  温馨提示：  ***************************** -->
+	<!-- **                                                                    ** -->
+	<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+	<!-- **                                             ** 2016/08/05 09:33:07 ** -->
+	<!-- ************************************************************************ -->
+
+
+	<!-- 获取单次费用汇总列表总数 -->
+	<select id="QUERY_FEE_ONCE_CP_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT count(1) as value FROM (
+		SELECT re.cp_id FROM sp_cm_relation re
+		INNER JOIN cm_corp corp ON corp.cp_id = re.cp_id AND corp.dr = 0
+		<if test="corp_name != null ">AND corp.corp_name LIKE CONCAT('%',#{corp_name},'%')</if>
+		INNER JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND re.sp_id = #{sp_id} AND scheme.dr = 0 AND scheme.state = 'USE'
+		<if test="authority != 'ALL'"> 
+			where corp.cp_id in (${authority})
+		 </if>
+		GROUP BY scheme.cp_id ) t
+	</select>
+
+	<!-- 获取单次费用汇总列表 -->
+	<select id="QUERY_FEE_ONCE_CP_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT corp.cp_id,corp.corp_name,scheme.scheme_type,#{insurance_method} as insurance_method,(ifnull(s_corpfee.num,0)+ifnull(s_emponce.num,0)) as num,(ifnull(s_corpfee.s_fee,0)+ifnull(s_emponce.s_fee,0) ) as s_fee,(ifnull(s_corpfee.g_fee,0) + ifnull(s_emponce.g_fee,0)) as g_fee FROM sp_cm_relation re
+		INNER JOIN cm_corp corp ON corp.cp_id = re.cp_id AND corp.dr = 0
+		<if test="corp_name != null ">AND corp.corp_name LIKE CONCAT('%',#{corp_name},'%')</if>
+		INNER JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND re.sp_id = #{sp_id} AND scheme.dr = 0 AND scheme.state = 'USE'
+		LEFT JOIN
+		(
+		SELECT count(corponce.id) as num ,SUM(ifnull(corponce.service_fee,0)) as s_fee,SUM(ifnull(corponce.official_fee,0)) as g_fee,corponce.cp_id,corponce.scheme_id FROM sps_fee_corponce corponce where
+		corponce.sp_id = #{sp_id} AND corponce.period = #{insurance_method} AND corponce.dr = 0
+		GROUP BY corponce.cp_id
+		) s_corpfee ON re.cp_id = s_corpfee.cp_id
+		LEFT JOIN
+		(
+		SELECT count(emponce.id) as num ,SUM(emponce.official_fee) as g_fee,SUM(ifnull(emponce.service_fee,0)) as s_fee,emponce.cp_id FROM sps_fee_emponce emponce where
+		emponce.sp_id = #{sp_id} AND emponce.period = #{insurance_method} AND emponce.dr = 0 GROUP BY emponce.cp_id
+		) s_emponce ON re.cp_id = s_emponce.cp_id
+		<if test="authority != 'ALL'">
+			where corp.cp_id in (${authority})
+		</if>
+		GROUP BY scheme.cp_id ORDER BY re.cp_id DESC
+	</select>
+
+	<!-- 根据服务商与企业获取方案列表 -->
+	<select id="QUERY_SCHEMES_BY_SPID" resultType="java.util.Map" parameterType="Object">
+		SELECT scheme.scheme_id,re.cp_id,scheme.`name`,bs_area.fullname,bs_area.area_id FROM sps_scheme scheme
+		INNER JOIN sp_cm_relation re ON
+		scheme.cp_id = re.cp_id AND re.sp_id = scheme.sp_id AND re.sp_id = #{sp_id} AND re.cp_id = #{cp_id} AND scheme.dr = 0 AND scheme.state = 'USE'
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+	</select>
+
+	<!-- 企业一次性费用列表 -->
+	<select id="QUERY_SCHEMES_COUNT_BY_SPID_CPID" resultType="java.lang.Integer" parameterType="Object">
+		SELECT count(1) as value FROM (
+			SELECT cor.scheme_id,cor.cp_id,c.corp_name as name,cor.official_fee as g_fee,cor.service_fee as s_fee,cor.modify_dt FROM sps_fee_corponce cor INNER JOIN
+			cm_corp c ON c.cp_id = cor.cp_id WHERE
+			cor.scheme_id is NULL AND cor.cp_id = #{cp_id} AND cor.sp_id = #{sp_id} AND cor.period = #{period}
+			AND cor.dr = 0
+		    GROUP BY cor.cp_id
+			UNION ALL
+			SELECT scheme.scheme_id,re.cp_id,scheme.`name`,IFNULL(sum(corponce.official_fee),0) as g_fee,IFNULL(sum(corponce.service_fee),0) as s_fee,MAX(corponce.modify_dt) as modify_dt FROM sps_scheme scheme INNER JOIN sp_cm_relation re ON
+			scheme.cp_id = re.cp_id AND re.sp_id = scheme.sp_id AND re.sp_id = #{sp_id} AND re.cp_id = #{cp_id} AND scheme.dr = 0 AND scheme.state = 'USE'
+			<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+			LEFT JOIN sps_fee_corponce corponce ON corponce.scheme_id = scheme.scheme_id AND corponce.dr = 0
+			AND corponce.period = #{period}
+			GROUP BY scheme.scheme_id
+		) t
+	</select>
+	<select id="QUERY_SCHEMES_LIST_BY_SPID_CPID" resultType="java.util.Map" parameterType="Object">
+		SELECT cor.scheme_id,cor.cp_id,c.corp_name as name,SUM(IFNULL(cor.official_fee,0)) AS g_fee,
+		SUM(IFNULL(cor.service_fee,0)) AS s_fee,cor.modify_dt FROM sps_fee_corponce cor INNER JOIN
+		cm_corp c ON c.cp_id = cor.cp_id WHERE
+		cor.scheme_id = -1 AND cor.cp_id = #{cp_id} AND cor.sp_id = #{sp_id} AND cor.period = #{period}
+		AND cor.dr = 0
+		GROUP BY cor.cp_id
+		UNION ALL
+		SELECT scheme.scheme_id,re.cp_id,scheme.`name`,IFNULL(sum(corponce.official_fee),0) as g_fee,IFNULL(sum(corponce.service_fee),0) as s_fee,MAX(corponce.modify_dt) as modify_dt FROM sps_scheme scheme INNER JOIN sp_cm_relation re ON
+		scheme.cp_id = re.cp_id AND re.sp_id = scheme.sp_id AND re.sp_id = #{sp_id} AND re.cp_id = #{cp_id} AND scheme.dr = 0 AND scheme.state = 'USE'
+		<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+		LEFT JOIN sps_fee_corponce corponce ON corponce.scheme_id = scheme.scheme_id AND corponce.dr = 0
+		AND corponce.period = #{period}
+		GROUP BY scheme.scheme_id
+	</select>
+	<!-- 人员对应一次性费用列表 -->
+	<select id="QUERY_EMP_ONCE_BY_SCHEME_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT count(1) as value FROM sps_scheme scheme
+		INNER JOIN sp_cm_relation re ON
+		scheme.cp_id = re.cp_id AND re.sp_id = scheme.sp_id AND re.sp_id = #{sp_id} AND re.cp_id = #{cp_id}
+		 AND scheme.dr = 0 AND scheme.state = 'USE'
+		INNER JOIN sps_scheme_emp semp ON semp.`scheme_id` = scheme.`scheme_id`
+		INNER JOIN cm_employee emp ON emp.emp_id = semp.emp_id AND  emp.dr = 0
+		<if test="null != search_word">
+			AND (emp.`name` like CONCAT('%','${search_word}','%') OR emp.identity_code LIKE CONCAT('%','${search_word}','%'))
+		</if>
+		<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+	</select>
+	<select id="QUERY_EMP_ONCE_BY_SCHEME_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT emp.emp_id,emp.name,emp.identity_code,emp.name,bs_area.`name` as areaname,bs_area.area_id,IFNULL(sum(emponce.official_fee),0) as g_fee,IFNULL(sum(emponce.service_fee),0) as s_fee,MAX(emponce.modify_dt) as modify_dt  FROM sps_scheme scheme
+		INNER JOIN sp_cm_relation re ON
+		scheme.cp_id = re.cp_id AND re.sp_id = scheme.sp_id AND re.sp_id = #{sp_id} AND re.cp_id = #{cp_id}
+	    AND scheme.dr = 0 AND scheme.state = 'USE'
+		INNER JOIN sps_scheme_emp semp ON semp.`scheme_id` = scheme.`scheme_id`
+		INNER JOIN cm_employee emp ON emp.emp_id = semp.emp_id AND  emp.dr = 0
+		<if test="null != search_word">
+			AND (emp.`name` like CONCAT('%','${search_word}','%') OR emp.identity_code LIKE CONCAT('%','${search_word}','%'))
+		</if>
+		<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+		LEFT JOIN sps_fee_emponce emponce ON emponce.emp_id = emp.emp_id  AND emponce.dr = 0
+		<if test="period != null "> AND emponce.period = #{period} </if>
+		and emponce.cp_id=re.cp_id
+		and emponce.sp_id=re.sp_id
+		GROUP BY emp.emp_id DESC
+	</select>
+
+	<!-- 查询企业当月费用调整记录 -->
+	<select id="QUERY_CROP_ITEMS_BY_PERIOD" resultMap="result_map_SPS_FEE_CORPONCE" parameterType="Object">
+		SELECT corponce.* FROM sps_fee_corponce corponce
+		where corponce.sp_id = #{sp_id} AND corponce.cp_id = #{cp_id} AND corponce.period = #{period}
+		AND corponce.dr = 0
+		<if test="scheme_id != null and scheme_id != -1"> AND corponce.scheme_id = #{scheme_id}</if>
+		<if test="scheme_id == -1 "> AND (corponce.scheme_id = -1) </if>
+		<if test="scheme_id == null "> AND corponce.scheme_id is NOT NULL</if>
+	</select>
+
+	<!-- 逻辑删除费用调整记录 -->
+	<update id="DEL_CROP_ITEMS_BY_ID"  parameterType="Object">
+		UPDATE SPS_FEE_CORPONCE SET dr = #{dr}
+		WHERE ID=#{id} AND sp_id=#{sp_id} AND cp_id=#{cp_id}
+	</update>
+
+	<!-- 查询子帐单一次性费用 -->
+	<select id="QUERY_CHILD_BILL_CORP_ITEMS" resultType="java.util.Map" parameterType="Object">
+		<!-- SELECT corponce.id,corponce.cp_id,corponce.sp_id,corponce.period,corponce.item,corponce.price,corponce.num,corponce.unit,corponce.official_fee,corponce.service_fee,corponce.source,corponce.fee_type,corponce.insured_month,corponce.create_by,corponce.create_dt,corponce.modify_by,corponce.modify_dt,corponce.dr,p_scheme.scheme_id FROM sps_fee_corponce corponce
+		INNER JOIN sps_scheme scheme ON scheme.scheme_id = corponce.scheme_id
+		INNER JOIN sps_scheme p_scheme ON p_scheme.scheme_id = scheme.parent_id
+		WHERE
+		NOT EXISTS (SELECT id FROM sps_fee_corponce once WHERE once.sourceid=corponce.id AND once.cp_id = #{cp_id}
+		AND once.sp_id = #{sp_id} AND once.dr = 0 AND once.period = #{period}) AND corponce.cp_id = #{cp_id}
+		<![CDATA[ AND corponce.sp_id in (${p_sp_id})]]>
+		AND corponce.dr = 0 AND corponce.period = #{period} -->
+		
+		SELECT corponce.id,corponce.cp_id,corponce.sp_id,corponce.period,corponce.item,corponce.price,corponce.num,corponce.unit,corponce.official_fee,corponce.service_fee,corponce.source,corponce.fee_type,corponce.insured_month,corponce.create_by,corponce.create_dt,corponce.modify_by,corponce.modify_dt,corponce.dr FROM sps_fee_corponce corponce
+		
+		WHERE
+		NOT EXISTS (SELECT id FROM sps_fee_corponce once WHERE once.sourceid=corponce.id AND once.cp_id = #{cp_id} AND once.source = 2
+		AND once.sp_id = #{sp_id} AND once.dr = 0 AND once.period = #{period}) AND corponce.cp_id = #{cp_id}
+		<![CDATA[ AND corponce.sp_id in (${p_sp_id})]]>
+		AND corponce.dr = 0 AND corponce.period = #{period}
+	</select>
+
+</mapper>   

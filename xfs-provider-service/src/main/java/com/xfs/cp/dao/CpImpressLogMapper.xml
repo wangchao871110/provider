@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_IMPRESS_LOG" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_IMPRESS_LOG" type="com.xfs.cp.model.CpImpressLog" >
+	<result column="id" property="id"/>
+	<result column="sp_id_by" property="spIdBy"/>
+	<result column="sp_id" property="spId"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="impress_id" property="impressId"/>
+</resultMap>
+       
+<!-- cp_impress_log table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id_by,sp_id,create_dt,impress_id
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spIdBy != null" >and sp_id_by = #{spIdBy}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="impressId != null" >and impress_id = #{impressId}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spIdBy != null">AND sp_id_by = #{spIdBy}</if>
+    <if test="spId != null">AND sp_id = #{spId}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="impressId != null">AND impress_id = #{impressId}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_IMPRESS_LOG" parameterType="Object" >
+  INSERT INTO CP_IMPRESS_LOG (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spIdBy != null ">,sp_id_by</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="impressId != null ">,impress_id</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spIdBy != null ">,#{spIdBy}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="impressId != null ">,#{impressId}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_IMPRESS_LOG" parameterType="Object" >
+UPDATE CP_IMPRESS_LOG 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spIdBy != null ">,sp_id_by=#{spIdBy}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="impressId != null ">,impress_id=#{impressId}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_IMPRESS_LOG">DELETE FROM CP_IMPRESS_LOG WHERE ID=#{id}</delete>
+<!-- 点评详情表 列表总数-->
+<select id="CountFindAllCP_IMPRESS_LOG" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_IMPRESS_LOG</select>
+<select id="CountCP_IMPRESS_LOG" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_IMPRESS_LOG WHERE ID=#{id}</select>
+<!-- 根据id查询 点评详情表 -->
+<select id="FindByPK" resultMap="result_map_CP_IMPRESS_LOG" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_IMPRESS_LOG WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  点评详情表 -->
+<select id="FreeFindCP_IMPRESS_LOG" resultMap="result_map_CP_IMPRESS_LOG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_IMPRESS_LOG 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  点评详情表 记录数 -->
+<select id="CountFreeFindCP_IMPRESS_LOG" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_IMPRESS_LOG 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  点评详情表 -->
+<select id="FreeFindCP_IMPRESS_LOGOrdered" resultMap="result_map_CP_IMPRESS_LOG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_IMPRESS_LOG 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/12 16:41:44 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 根据各字段条件带模糊查询  协作服务商印象记录表 -->
+<select id="findByCpId" resultType="java.util.Map" parameterType="Object">
+ 	select i.name,ifnull(sum(il.impress_id),0) as countNum from cp_impress i 
+	left join CP_IMPRESS_LOG il on i.id=il.impress_id  and il.sp_id_by=#{spIdBy}
+	group by i.`id`
+	order by countNum desc LIMIT 0,3 ;
+</select>
+
+</mapper>   

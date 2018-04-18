@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_BILL_DETAIL" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_BILL_DETAIL" type="com.xfs.bill.model.SpsBillDetail" >
+	<result column="id" property="id"/>
+	<result column="bill_emp_id" property="billEmpId"/>
+	<result column="insurance_type" property="insuranceType"/>
+	<result column="corp_paybase" property="corpPaybase"/>
+	<result column="emp_paybase" property="empPaybase"/>
+	<result column="emp_ratio" property="empRatio"/>
+	<result column="corp_ratio" property="corpRatio"/>
+	<result column="emp_payment" property="empPayment"/>
+	<result column="corp_payment" property="corpPayment"/>
+	<result column="corp_addition" property="corpAddition"/>
+	<result column="psn_addition" property="psnAddition"/>
+
+</resultMap>
+       
+<!-- sps_bill_detail table all fields -->
+<sql id="Base_Column_List" >
+	 id,bill_emp_id,insurance_type,corp_paybase,emp_paybase,emp_ratio,corp_ratio,emp_payment,corp_payment,corp_addition,psn_addition
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="billEmpId != null" >and bill_emp_id = #{billEmpId}</if>
+	<if test="insuranceType != null" >and insurance_type = #{insuranceType}</if>
+	<if test="corpPaybase != null" >and corp_paybase = #{corpPaybase}</if>
+	<if test="empPaybase != null" >and emp_paybase = #{empPaybase}</if>
+	<if test="empRatio != null" >and emp_ratio = #{empRatio}</if>
+	<if test="corpRatio != null" >and corp_ratio = #{corpRatio}</if>
+	<if test="empPayment != null" >and emp_payment = #{empPayment}</if>
+	<if test="corpPayment != null" >and corp_payment = #{corpPayment}</if>
+	  <if test="corpAddition != null" >and corp_addition = #{corpAddition}</if>
+	  <if test="psnAddition != null" >and psn_addition = #{psnAddition}</if>
+</trim>
+</sql>
+
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_BILL_DETAIL" parameterType="Object" >
+  INSERT INTO SPS_BILL_DETAIL (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="billEmpId != null ">,bill_emp_id</if>
+	<if test="insuranceType != null ">,insurance_type</if>
+	<if test="corpPaybase != null ">,corp_paybase</if>
+	<if test="empPaybase != null ">,emp_paybase</if>
+	<if test="empRatio != null ">,emp_ratio</if>
+	<if test="corpRatio != null ">,corp_ratio</if>
+	<if test="empPayment != null ">,emp_payment</if>
+	<if test="corpPayment != null ">,corp_payment</if>
+	  <if test="corpAddition != null ">,corp_addition</if>
+	  <if test="psnAddition != null ">,psn_addition</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="billEmpId != null ">,#{billEmpId}</if>
+	<if test="insuranceType != null ">,#{insuranceType}</if>
+	<if test="corpPaybase != null ">,#{corpPaybase}</if>
+	<if test="empPaybase != null ">,#{empPaybase}</if>
+	<if test="empRatio != null ">,#{empRatio}</if>
+	<if test="corpRatio != null ">,#{corpRatio}</if>
+	<if test="empPayment != null ">,#{empPayment}</if>
+	<if test="corpPayment != null ">,#{corpPayment}</if>
+	  <if test="corpAddition != null ">,#{corpAddition}</if>
+	  <if test="psnAddition != null ">,#{psnAddition}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_BILL_DETAIL" parameterType="Object" >
+UPDATE SPS_BILL_DETAIL 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="billEmpId != null ">,bill_emp_id=#{billEmpId}</if>
+	<if test="insuranceType != null ">,insurance_type=#{insuranceType}</if>
+	<if test="corpPaybase != null ">,corp_paybase=#{corpPaybase}</if>
+	<if test="empPaybase != null ">,emp_paybase=#{empPaybase}</if>
+	<if test="empRatio != null ">,emp_ratio=#{empRatio}</if>
+	<if test="corpRatio != null ">,corp_ratio=#{corpRatio}</if>
+	<if test="empPayment != null ">,emp_payment=#{empPayment}</if>
+	<if test="corpPayment != null ">,corp_payment=#{corpPayment}</if>
+	  <if test="corpAddition != null ">,corp_addition=#{corpAddition}</if>
+	  <if test="psnAddition != null ">,psn_addition=#{psnAddition}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_BILL_DETAIL">DELETE FROM SPS_BILL_DETAIL WHERE ID=#{id}</delete>
+<!-- 账单详情 列表总数-->
+<select id="CountFindAllSPS_BILL_DETAIL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL_DETAIL</select>
+<select id="CountSPS_BILL_DETAIL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL_DETAIL WHERE ID=#{id}</select>
+<!-- 根据id查询 账单详情 -->
+<select id="FindByPK" resultMap="result_map_SPS_BILL_DETAIL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_DETAIL WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带查询  账单详情 -->
+<select id="FreeFindSPS_BILL_DETAIL" resultMap="result_map_SPS_BILL_DETAIL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_DETAIL 
+	 <include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带查询  账单详情 记录数 -->
+<select id="CountFreeFindSPS_BILL_DETAIL" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_BILL_DETAIL 
+ <include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带排序  账单详情 -->
+<select id="FreeFindSPS_BILL_DETAILOrdered" resultMap="result_map_SPS_BILL_DETAIL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_DETAIL 
+	 <include refid="Example_Where_Clause" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/05/16 15:32:02 ** -->
+<!-- ************************************************************************ -->
+
+	<!--获取员工社保账单详细列表-->
+	<select id="QUERY_EM_BILL_DETAIL_LIST" resultType="java.util.Map" parameterType="Object">
+		<if test="insType == 'BILL' ">
+			SELECT ins.code,ins.`name`,detail.id,detail.bill_emp_id,detail.insurance_type,detail.emp_ratio,detail.corp_ratio,detail.corp_payment,detail.emp_payment,detail.emp_paybase,detail.psn_addition,detail.corp_paybase,detail.corp_paybase as apaybase,IFNULL(detail.psn_addition,0) as emp_addition,IFNULL(detail.corp_addition,0) as corp_addition,(emp_payment+corp_payment) as total_sum,carea.name as fund_area,insu.name as insurance_area,ins.insurance_fund_type as ins_type FROM sps_bill_detail detail
+			INNER JOIN sps_bill_emp emp ON detail.bill_emp_id = emp.id AND emp.id = #{bill_emp_id}
+			<if test="id != null "> AND emp.id = #{id}</if>
+			INNER JOIN bd_insurance ins ON detail.insurance_type=ins.insurance_id
+			<if test="in_type != null "> AND ins.insurance_fund_type = #{in_type}</if>
+			LEFT JOIN bs_area fun ON fun.area_id = emp.fund_area
+			LEFT JOIN bs_area carea ON carea.area_id = fun.belong_city
+			LEFT JOIN bs_area insu ON insu.area_id = emp.insurance_area
+			ORDER BY ins.insurance_fund_type DESC
+		</if>
+		<if test="insType == 'INSDETAIL' ">
+			SELECT ins.code,ins.`name`,detail.id,ins.insurance_id as insurance_type,detail.emp_ratio,detail.corp_ratio,detail.corp_payment,detail.emp_payment,detail.emp_paybase,detail.psn_addition,detail.corp_paybase,detail.corp_paybase as apaybase,IFNULL(detail.psn_addition,0) as emp_addition,IFNULL(detail.corp_addition,0) as corp_addition,(emp_payment+corp_payment) as total_sum,carea.name as fund_area,insu.name as insurance_area,ins.insurance_fund_type as ins_type
+			FROM cm_employee_insurance detail
+			INNER JOIN cm_employee emp ON detail.emp_id = emp.emp_id AND detail.pay_type = 'MONTH' AND emp.emp_id = #{bill_emp_id} AND detail.dr = 0
+			<if test="period != null">
+				AND #{period} BETWEEN detail.begin_period
+				AND IFNULL(
+				detail.end_period,
+				'2099-09'
+				)
+			</if>
+			INNER JOIN bd_insurance ins ON detail.insurance_id=ins.insurance_id
+			INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+			INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id
+			LEFT  JOIN sps_account fundacc ON fundacc.acc_id = IFNULL(scheme.fund_account_id,-1)
+			LEFT JOIN sps_account insacc ON insacc.acc_id = IFNULL(scheme.insurance_account_id,-1)
+			LEFT JOIN bs_area fun ON fun.area_id = fundacc.area_id
+			LEFT JOIN bs_area carea ON carea.area_id = fun.belong_city
+			LEFT JOIN bs_area insu ON insu.area_id = fundacc.area_id
+			ORDER BY ins.insurance_fund_type DESC
+		</if>
+	</select>
+
+	<!-- 获取差额详情 -->
+	<select id="FIND_BILL_MARGIN_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT * FROM (
+			SELECT b.`bill_type`, bd.`insurance_type` AS insurance_id, IFNULL(bd.`emp_paybase`, 0) AS emp_paybase, IFNULL(bd.`corp_paybase`, 0) AS corp_paybase,
+				IFNULL(bd.`emp_ratio`, 0) AS emp_ratio,IFNULL(bd.`corp_ratio`, 0) AS corp_ratio,
+				IFNULL(bd.`emp_payment`, 0) AS emp_payment, IFNULL(bd.`corp_payment`, 0) AS corp_payment,
+				i.`code`, i.`name`, i.`insurance_fund_type`,be.adjust_reason
+				FROM sps_bill b
+				INNER JOIN sps_bill_emp be ON b.`bill_id` = be.`bill_id`
+				INNER JOIN sps_bill_detail bd ON be.`id` = bd.`bill_emp_id`
+				INNER JOIN bd_insurance i ON bd.`insurance_type` = i.`insurance_id`
+				WHERE be.`bill_id` = #{billId} AND be.`emp_id` = #{empId} AND b.`cp_id` = #{cpId}
+				<if test="spId != null "> and b.sp_id=#{spId} </if>
+				 AND  b.dr = 0 AND be.insured_month = #{insuredMonth} AND be.pay_type = #{payType}
+			UNION ALL
+			SELECT b.`bill_type`, bd.`insurance_type` AS insurance_id, IFNULL(bd.`emp_paybase`, 0) AS emp_paybase, IFNULL(bd.`corp_paybase`, 0) AS corp_paybase,
+				IFNULL(bd.`emp_ratio`, 0) AS emp_ratio,IFNULL(bd.`corp_ratio`, 0) AS corp_ratio,
+				IFNULL(bd.`emp_payment`, 0) AS emp_payment, IFNULL(bd.`corp_payment`, 0) AS corp_payment,
+				i.`code`, i.`name`, i.`insurance_fund_type`,be.adjust_reason
+				FROM sps_bill b
+				INNER JOIN sps_bill_emp be ON b.`bill_id` = be.`bill_id`
+				INNER JOIN sps_bill_detail bd ON be.`id` = bd.`bill_emp_id`
+				INNER JOIN bd_insurance i ON bd.`insurance_type` = i.`insurance_id`
+				WHERE b.`rel_bill_id` = #{billId} AND be.`emp_id` = #{empId} AND b.`cp_id` = #{cpId}
+				<if test="spId != null "> and b.sp_id=#{spId} </if>
+				AND b.dr = 0 AND be.insured_month = #{insuredMonth} AND be.pay_type = #{payType}
+		) tab ORDER BY tab.bill_type ASC, tab.insurance_fund_type DESC, tab.insurance_id ASC
+	</select>
+
+</mapper>   

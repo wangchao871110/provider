@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_MALL_ITEM_CATEGORY" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_MALL_ITEM_CATEGORY" type="com.xfs.mall.item.model.BsMallItemCategory" >
+	<result column="category_id" property="categoryId"/>
+	<result column="pid" property="pid"/>
+	<result column="category_name" property="categoryName"/>
+	<result column="orderby" property="orderby"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="pinyin" property="pinyin"/>
+	<result column="category_type" property="categoryType"/>
+</resultMap>
+       
+<!-- bs_mall_item_category table all fields -->
+<sql id="Base_Column_List" >
+	 category_id,pid,category_name,pinyin,category_type,orderby,create_by,create_dt,modify_by,modify_dt,dr
+
+</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="categoryId != null" >and category_id = #{categoryId}</if>
+			<if test="pid != null" >and pid = #{pid}</if>
+			<if test="categoryName != null" >and category_name = #{categoryName}</if>
+			<if test="pinyin != null" >and pinyin = #{pinyin}</if>
+			<if test="categoryType != null" >and category_type = #{categoryType}</if>
+			<if test="orderby != null" >and orderby = #{orderby}</if>
+			<if test="createBy != null" >and create_by = #{createBy}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="dr != null" >and dr = #{dr}</if>
+		</trim>
+	</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="categoryId != null">AND category_id = '${categoryId}'</if>
+    <if test="pid != null">AND pid = '${pid}'</if>
+    <if test="categoryName != null">AND category_name like '%${categoryName}%'</if>
+    <if test="categoryNameEq != null">AND category_name = #{categoryNameEq}</if>
+    <if test="categoryType != null">AND category_type like '%${categoryType}%'</if>
+    <if test="categoryTypeEq != null">AND category_type = #{categoryTypeEq}</if>
+    <if test="orderby != null">AND orderby like '%${orderby}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertBS_MALL_ITEM_CATEGORY" parameterType="Object" >
+		INSERT INTO BS_MALL_ITEM_CATEGORY (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="categoryId != null ">,category_id</if>
+			<if test="pid != null ">,pid</if>
+			<if test="categoryName != null ">,category_name</if>
+			<if test="pinyin != null ">,pinyin</if>
+			<if test="categoryType != null ">,category_type</if>
+			<if test="orderby != null ">,orderby</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="categoryId != null ">,#{categoryId}</if>
+			<if test="pid != null ">,#{pid}</if>
+			<if test="categoryName != null ">,#{categoryName}</if>
+			<if test="pinyin != null ">,#{pinyin}</if>
+			<if test="categoryType != null ">,#{categoryType}</if>
+			<if test="orderby != null ">,#{orderby}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="categoryId">
+			SELECT LAST_INSERT_ID() AS CATEGORY_ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateBS_MALL_ITEM_CATEGORY" parameterType="Object" >
+		UPDATE BS_MALL_ITEM_CATEGORY
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="categoryId != null ">,category_id=#{categoryId}</if>
+			<if test="pid != null ">,pid=#{pid}</if>
+			<if test="categoryName != null ">,category_name=#{categoryName}</if>
+			<if test="pinyin != null ">,pinyin=#{pinyin}</if>
+			<if test="categoryType != null ">,category_type=#{categoryType}</if>
+			<if test="orderby != null ">,orderby=#{orderby}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+		</trim>
+		WHERE CATEGORY_ID=#{categoryId}
+	</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_MALL_ITEM_CATEGORY">DELETE FROM BS_MALL_ITEM_CATEGORY WHERE CATEGORY_ID=#{categoryId}</delete>
+<!-- bs_mall_item_category 列表总数-->
+<select id="CountFindAllBS_MALL_ITEM_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_ITEM_CATEGORY</select>
+<select id="CountBS_MALL_ITEM_CATEGORY" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_ITEM_CATEGORY WHERE CATEGORY_ID=#{categoryId}</select>
+<!-- 根据id查询 bs_mall_item_category -->
+<select id="FindByPK" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM_CATEGORY WHERE CATEGORY_ID=#{categoryId}</select>
+
+<!-- 根据各字段条件带模糊查询  bs_mall_item_category -->
+<select id="FreeFindBS_MALL_ITEM_CATEGORY" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM_CATEGORY 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  bs_mall_item_category 记录数 -->
+<select id="CountFreeFindBS_MALL_ITEM_CATEGORY" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_MALL_ITEM_CATEGORY 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  bs_mall_item_category -->
+<select id="FreeFindBS_MALL_ITEM_CATEGORYOrdered" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_ITEM_CATEGORY 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/07 11:08:17 ** -->
+<!-- ************************************************************************ -->
+
+	<select id="findAllSecondCategory" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">
+		SELECT * FROM bs_mall_item_category WHERE pid != 0 and dr = 0
+	</select>
+
+	<!-- 根据ID 获取名称 -->
+	<select id="findNameInId" resultType="java.lang.String" parameterType="java.lang.String">
+		select GROUP_CONCAT(category_name)
+		FROM bs_mall_item_category
+		<if test="categoryId != null" >where CATEGORY_ID in(${categoryId})</if>
+	</select>
+	<!-- 根据服务商ID 获取主营业务名称 -->
+	<select id="findNameBySpId" resultType="java.lang.String" parameterType="java.lang.Integer">
+		select GROUP_CONCAT(c.category_name)
+		FROM cp_business b, bs_mall_item_category c
+		where b.business_id = c.category_id and b.sp_id = #{spId} and b.dr=0
+	</select>
+
+	<!-- 查询pid 相应的 数据  modify by zhangxiyan 20160622 暂且无维护 项目分类页面 查询dr=0的数据-->
+	<select id="findOneLevAll" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">
+		select category_id,category_name from bs_mall_item_category where pid = #{pid} and ifnull(category_type, 'default') != 'CI' and dr=0 order by category_id
+	</select>
+	<select id="findCiCategory" resultMap="result_map_BS_MALL_ITEM_CATEGORY" parameterType="Object">
+		select <include refid="Base_Column_List" />
+		from bs_mall_item_category s
+		where pid in (select t.category_id
+		from bs_mall_item_category t
+		where t.category_type = 'CI' and t.dr = 0) and s.dr = 0
+	</select>
+
+	<select id="FreeFindChildrenCategory" resultType="java.util.Map" parameterType="Object">
+		SELECT category_id as categoryId,pid,category_name as categoryName,orderby,dr FROM bs_mall_item_category WHERE pid != 0;
+	</select>
+
+</mapper>   

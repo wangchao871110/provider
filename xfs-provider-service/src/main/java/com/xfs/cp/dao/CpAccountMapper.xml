@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_ACCOUNT" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_ACCOUNT" type="com.xfs.cp.model.CpAccount" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="name" property="name"/>
+	<result column="code" property="code"/>
+	<result column="bank" property="bank"/>
+	<result column="city" property="city"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- cp_account table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,name,code,bank,city,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="name != null" >and name = #{name}</if>
+	<if test="code != null" >and code = #{code}</if>
+	<if test="bank != null" >and bank = #{bank}</if>
+	<if test="city != null" >and city = #{city}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = #{spId}</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+    <if test="code != null">AND code like '%${code}%'</if>
+    <if test="codeEq != null">AND code = #{codeEq}</if>
+    <if test="bank != null">AND bank like '%${bank}%'</if>
+    <if test="bankEq != null">AND bank = #{bankEq}</if>
+    <if test="city != null">AND city like '%${city}%'</if>
+    <if test="cityEq != null">AND city = #{cityEq}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+
+<!-- 获取账户信息 -->
+<select id="getAccountById" resultMap="result_map_CP_ACCOUNT" parameterType="Object">
+	SELECT ca.sp_id,ca.name,ca.code,ca.bank,ca.city
+	FROM cp_account ca
+	where ca.sp_id=#{spId}
+</select>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_ACCOUNT" parameterType="Object" >
+  INSERT INTO CP_ACCOUNT (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="name != null ">,name</if>
+	<if test="code != null ">,code</if>
+	<if test="bank != null ">,bank</if>
+	<if test="city != null ">,city</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="name != null ">,#{name}</if>
+	<if test="code != null ">,#{code}</if>
+	<if test="bank != null ">,#{bank}</if>
+	<if test="city != null ">,#{city}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_ACCOUNT" parameterType="Object" >
+UPDATE CP_ACCOUNT 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="name != null ">,name=#{name}</if>
+	<if test="code != null ">,code=#{code}</if>
+	<if test="bank != null ">,bank=#{bank}</if>
+	<if test="city != null ">,city=#{city}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE sp_id=#{spId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_ACCOUNT">DELETE FROM CP_ACCOUNT WHERE ID=#{id}</delete>
+<!-- 账户 列表总数-->
+<select id="CountFindAllCP_ACCOUNT" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_ACCOUNT</select>
+<select id="CountCP_ACCOUNT" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_ACCOUNT WHERE sp_id=#{spId}</select>
+<!-- 根据id查询 账户 -->
+<select id="FindByPK" resultMap="result_map_CP_ACCOUNT" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_ACCOUNT WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  账户 -->
+<select id="FreeFindCP_ACCOUNT" resultMap="result_map_CP_ACCOUNT" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_ACCOUNT 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  账户 记录数 -->
+<select id="CountFreeFindCP_ACCOUNT" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_ACCOUNT 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  账户 -->
+<select id="FreeFindCP_ACCOUNTOrdered" resultMap="result_map_CP_ACCOUNT" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_ACCOUNT 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/11 21:59:58 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

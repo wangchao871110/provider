@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_AREARATIO" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_AREARATIO" type="com.xfs.business.model.BsArearatio" >
+	<result column="ratio_id" property="ratioId"/>
+	<result column="area_id" property="areaId"/>
+	<result column="insurance_id" property="insuranceId"/>
+	<result column="name" property="name"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="corp_calc_method" property="corpCalcMethod"/>
+	<result column="corp_precision" property="corpPrecision"/>
+	<result column="psn_calc_method" property="psnCalcMethod"/>
+	<result column="psn_precision" property="psnPrecision"/>
+	<result column="billing_cycle" property="billingCycle"/>
+	<result column="pay_period" property="payPeriod"/>
+</resultMap>
+       
+<!-- bs_arearatio table all fields -->
+<sql id="Base_Column_List" >
+	 ratio_id,area_id,insurance_id,name,create_by,create_dt,modify_by,modify_dt,dr,corp_calc_method,corp_precision,psn_calc_method,psn_precision,billing_cycle,pay_period
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="ratioId != null" >and ratio_id = #{ratioId}</if>
+	<if test="areaId != null" >and area_id = #{areaId}</if>
+	<if test="insuranceId != null" >and insurance_id = #{insuranceId}</if>
+	<if test="name != null" >and name = #{name}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="corpCalcMethod != null" >and corp_calc_method = #{corpCalcMethod}</if>
+	<if test="corpPrecision != null" >and corp_precision = #{corpPrecision}</if>
+	<if test="psnCalcMethod != null" >and psn_calc_method = #{psnCalcMethod}</if>
+	<if test="psnPrecision != null" >and psn_precision = #{psnPrecision}</if>
+	<if test="billingCycle != null" >and billing_cycle = #{billingCycle}</if>
+	<if test="payPeriod != null" >and pay_period = #{payPeriod}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="ratioId != null">AND ratio_id = #{ratioId}</if>
+    <if test="areaId != null">AND area_id = #{areaId}</if>
+    <if test="insuranceId != null">AND insurance_id = #{insuranceId}</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+    <if test="corpCalcMethod != null">AND corp_calc_method like '%${corpCalcMethod}%'</if>
+    <if test="corpCalcMethodEq != null">AND corp_calc_method = #{corpCalcMethodEq}</if>
+    <if test="corpPrecision != null">AND corp_precision = #{corpPrecision}</if>
+    <if test="psnCalcMethod != null">AND psn_calc_method like '%${psnCalcMethod}%'</if>
+    <if test="psnCalcMethodEq != null">AND psn_calc_method = #{psnCalcMethodEq}</if>
+    <if test="psnPrecision != null">AND psn_precision = #{psnPrecision}</if>
+    <if test="billingCycle != null">AND billing_cycle like '%${billingCycle}%'</if>
+    <if test="billingCycleEq != null">AND billing_cycle = #{billingCycleEq}</if>
+    <if test="payPeriod != null">AND pay_period = #{payPeriod}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_AREARATIO" parameterType="Object" >
+  INSERT INTO BS_AREARATIO (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="ratioId != null ">,ratio_id</if>
+	<if test="areaId != null ">,area_id</if>
+	<if test="insuranceId != null ">,insurance_id</if>
+	<if test="name != null ">,name</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="corpCalcMethod != null ">,corp_calc_method</if>
+	<if test="corpPrecision != null ">,corp_precision</if>
+	<if test="psnCalcMethod != null ">,psn_calc_method</if>
+	<if test="psnPrecision != null ">,psn_precision</if>
+	<if test="billingCycle != null ">,billing_cycle</if>
+	<if test="payPeriod != null ">,pay_period</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="ratioId != null ">,#{ratioId}</if>
+	<if test="areaId != null ">,#{areaId}</if>
+	<if test="insuranceId != null ">,#{insuranceId}</if>
+	<if test="name != null ">,#{name}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="corpCalcMethod != null ">,#{corpCalcMethod}</if>
+	<if test="corpPrecision != null ">,#{corpPrecision}</if>
+	<if test="psnCalcMethod != null ">,#{psnCalcMethod}</if>
+	<if test="psnPrecision != null ">,#{psnPrecision}</if>
+	<if test="billingCycle != null ">,#{billingCycle}</if>
+	<if test="payPeriod != null ">,#{payPeriod}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="ratioId">
+	SELECT LAST_INSERT_ID() AS RATIO_ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_AREARATIO" parameterType="Object" >
+UPDATE BS_AREARATIO 
+  <trim prefix=" SET " prefixOverrides=",">
+	ratio_id=#{ratioId}
+	,area_id=#{areaId}
+	,insurance_id=#{insuranceId}
+	,name=#{name}
+	,create_by=#{createBy}
+	,create_dt=#{createDt}
+	,modify_by=#{modifyBy}
+	,modify_dt=#{modifyDt}
+	,dr=#{dr}
+	,corp_calc_method=#{corpCalcMethod}
+	,corp_precision=#{corpPrecision}
+	,psn_calc_method=#{psnCalcMethod}
+	,psn_precision=#{psnPrecision}
+	,billing_cycle=#{billingCycle}
+	,pay_period=#{payPeriod}
+  </trim>
+WHERE RATIO_ID=#{ratioId}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_AREARATIO">DELETE FROM BS_AREARATIO WHERE RATIO_ID=#{ratioId}</delete>
+<!-- 地区险种比例 列表总数-->
+<select id="CountFindAllBS_AREARATIO" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREARATIO</select>
+<select id="CountBS_AREARATIO" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREARATIO WHERE RATIO_ID=#{ratioId}</select>
+<!-- 根据id查询 地区险种比例 -->
+<select id="FindByPK" resultMap="result_map_BS_AREARATIO" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIO WHERE RATIO_ID=#{ratioId}</select>
+
+<!-- 根据各字段条件带模糊查询  地区险种比例 -->
+<select id="FreeFindBS_AREARATIO" resultMap="result_map_BS_AREARATIO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIO 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  地区险种比例 记录数 -->
+<select id="CountFreeFindBS_AREARATIO" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_AREARATIO 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  地区险种比例 -->
+<select id="FreeFindBS_AREARATIOOrdered" resultMap="result_map_BS_AREARATIO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIO 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/21 20:03:17 ** -->
+<!-- ************************************************************************ -->
+    <select id="find_AreaRatio_Detail_Info" resultType="java.util.Map" parameterType="Object">
+      select bt.*, bi.name as insurance_name from bs_arearatio bt
+      INNER JOIN bd_insurance bi
+      on bt.insurance_id = bi.insurance_id
+      where
+      bt.ratio_id =#{ratioId}
+	  <if test="dr != null">and bt.dr = #{dr}</if>
+    </select>
+
+	<resultMap id="result_map_BS_AREARATIO_with_vers" type="com.xfs.business.model.BsArearatio" >
+		<result column="ratio_id" property="ratioId"/>
+		<result column="area_id" property="areaId"/>
+		<result column="insurance_id" property="insuranceId"/>
+		<result column="name" property="name"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_dt" property="createDt"/>
+		<result column="modify_by" property="modifyBy"/>
+		<result column="modify_dt" property="modifyDt"/>
+		<result column="dr" property="dr"/>
+		<result column="corp_calc_method" property="corpCalcMethod"/>
+		<result column="corp_precision" property="corpPrecision"/>
+		<result column="psn_calc_method" property="psnCalcMethod"/>
+		<result column="psn_precision" property="psnPrecision"/>
+		<result column="billing_cycle" property="billingCycle"/>
+		<result column="pay_period" property="payPeriod"/>
+		<collection property="bsArearatiovers" javaType="list" ofType="com.xfs.business.model.BsArearatiover" column="ratio_id">
+			<result column="v_id" property="id"/>
+			<result column="v_ratio_id" property="ratioId"/>
+			<result column="v_begin_period" property="beginPeriod"/>
+			<result column="v_end_period" property="endPeriod"/>
+			<result column="v_corp_base_lower" property="corpBaseLower"/>
+			<result column="v_corp_base_upper" property="corpBaseUpper"/>
+			<result column="v_psn_base_lower" property="psnBaseLower"/>
+			<result column="v_psn_base_upper" property="psnBaseUpper"/>
+			<result column="v_corp_ratio" property="corpRatio"/>
+			<result column="v_psn_ratio" property="psnRatio"/>
+			<result column="v_corp_addition" property="corpAddition"/>
+			<result column="v_psn_addition" property="psnAddition"/>
+			<result column="v_create_by" property="createBy"/>
+			<result column="v_create_dt" property="createDt"/>
+			<result column="v_modify_by" property="modifyBy"/>
+			<result column="v_modify_dt" property="modifyDt"/>
+			<result column="v_dr" property="dr"/>
+		</collection>
+	</resultMap>
+	
+	<select id="Find_BS_AREARATIO_with_vers" resultMap="result_map_BS_AREARATIO_with_vers" parameterType="Object">
+		SELECT r.ratio_id,r.area_id,r.insurance_id,r.name,r.create_by,r.create_dt,r.modify_by,r.modify_dt,r.dr,
+		r.corp_calc_method,r.corp_precision,r.psn_calc_method,r.psn_precision,r.billing_cycle,r.pay_period,
+		v.id as v_id,v.ratio_id as v_ratio_id,ifnull(v.begin_period,'1900-01') as v_begin_period,ifnull(v.end_period,'2099-12') as v_end_period,v.corp_base_lower as v_corp_base_lower,
+		v.corp_base_upper as v_corp_base_upper,v.psn_base_lower as v_psn_base_lower,v.psn_base_upper as v_psn_base_upper,
+		v.corp_ratio as v_corp_ratio,v.psn_ratio as v_psn_ratio,v.corp_addition as v_corp_addition,v.psn_addition as v_psn_addition,
+		v.create_by as v_create_by,v.create_dt as v_create_dt,v.modify_by as v_modify_by,v.modify_dt as v_modify_dt,v.dr as v_dr
+		from BS_AREARATIO r
+		left join bs_arearatiover v on r.ratio_id = v.ratio_id
+		where ifnull(v.dr,0)=0
+		<if test="ratioId != null" >and r.ratio_id = #{ratioId}</if>
+		GROUP BY v.begin_period ASC
+	</select>
+	<!-- 根据areaId查询 险种信息-->
+    <select id="findRatiosByAreaId" resultType="java.util.Map" parameterType="Object">
+         select t.ratio_id,t.insurance_id,i.`name` as insurance_name,t.`name`,
+         r.corp_ratio*100 corp_ratio,r.psn_ratio*100 psn_ratio,r.corp_addition,r.psn_addition,
+		 (select group_concat(s.living_type) from bs_arearatioscope s where s.ratio_id=t.ratio_id) as live_types
+		 from ( select * from bs_arearatio where area_id = #{area_id} ) t inner join bs_arearatiover r on t.ratio_id = r.ratio_id
+		 inner join bd_insurance i on t.insurance_id=i.insurance_id 
+		 where ((r.begin_period &lt;= DATE_FORMAT(NOW(),'%Y-%m') and r.end_period  &gt;=DATE_FORMAT(NOW(),'%Y-%m'))  
+		 or (r.begin_period &lt;= DATE_FORMAT(NOW(),'%Y-%m') and r.end_period is null)) and i.insurance_fund_type= #{ins_fund_type}
+		 and t.dr=0  order by t.insurance_id
+    </select>
+
+	<!-- 根据区域查询该区域城市比例 -->
+	<select id="FreeFindBS_RuleList_By_QueryList" resultType="java.util.Map" parameterType="Map">
+		SELECT
+		ratio.ratio_id,
+		ratio.`name`,
+		ratio.insurance_id,
+		ver.corp_ratio,
+		ver.psn_ratio,
+		corp_base_lower,
+		corp_base_upper,
+		psn_base_lower,
+		psn_base_upper,
+		corp_addition,
+		psn_addition,
+		insu.`name` insuranceName
+		FROM
+		bs_arearatio ratio
+		LEFT JOIN bs_arearatiover ver on ratio.ratio_id = ver.ratio_id
+		and (DATE_FORMAT(NOW(), '%Y-%m') between begin_period and end_period
+		or ( (ver.end_period = '' or ver.end_period is null) and DATE_FORMAT(NOW(), '%Y-%m')   &gt;= ver.begin_period ))
+		LEFT JOIN bd_insurance insu on insu.insurance_id = ratio.insurance_id
+		WHERE
+		ratio.area_id = #{areaId}
+		<if test="insuranceId != null and insuranceId != '' "> AND ratio.insurance_id = #{insuranceId}</if>
+		<if test="ratioName != null and ratioName != '' "> AND ratio.`name` like '%${ratioName}%'</if>
+		AND ratio.dr = 0
+		ORDER BY ratio.insurance_id
+	</select>
+
+	<!-- 根据区域id获取社保规则数目 -->
+	<select id="CountFreeFindBS_RULEByAreaId" resultType="java.lang.Integer" parameterType="Map">
+		SELECT
+		count(1)
+		FROM
+		bs_arearatio ratio
+		LEFT JOIN bs_arearatiover ver on ratio.ratio_id = ver.ratio_id
+		and (DATE_FORMAT(NOW(), '%Y-%m') between begin_period and end_period
+		or ( ver.end_period is null and DATE_FORMAT(NOW(), '%Y-%m')   &gt; ver.begin_period ))
+		LEFT JOIN bd_insurance insu on insu.insurance_id = ratio.insurance_id
+		WHERE
+		ratio.area_id = #{areaId}
+		<if test="insuranceId != null and insuranceId != '' "> AND ratio.insurance_id = #{insuranceId}</if>
+		<if test="ratioName != null and ratioName != '' "> AND ratio.`name` like '%${ratioName}%'</if>
+		AND ratio.dr = 0
+	</select>
+	<!-- 不带模糊查询规则主表 -->
+	<select id="FindBS_AREARATIO" resultMap="result_map_BS_AREARATIO" parameterType="Object">
+		select * from bs_arearatio
+		where area_id = #{areaId}
+		and insurance_id = #{insuranceId}
+		and name = #{name}
+		and dr != 1
+		<if test="ratioId != null" > and ratio_id != #{ratioId}</if>
+	</select>
+	<!-- 根据城市id查保险id -->
+	<select id="FindInsuranceIdsByAreaId" resultType="java.lang.Integer" parameterType="Object">
+		SELECT DISTINCT insurance_id
+		FROM
+		bs_arearatio
+		WHERE
+		area_id = #{areaId}
+		and dr = 0
+		ORDER BY insurance_id
+	</select>
+ 
+	<!--批量修改比例 查询比例-->
+	<select id="FindRatioJoinByQuery" resultType="java.util.Map" parameterType="Object">
+		select ra.ratio_id,ra.insurance_id,ov.id as vs_id,ra.`name`,ov.corp_base_lower,ov.corp_base_upper,ov.psn_base_lower,ov.psn_base_upper,ov.corp_ratio,ov.psn_ratio,IFNULL(ov.corp_addition,0) as corp_addition,IFNULL(ov.psn_addition,0) as psn_addition from bs_arearatio ra
+		<if test="livingType != null">INNER JOIN bs_arearatioscope sp on ra.ratio_id = sp.ratio_id AND sp.living_type = #{livingType}</if>
+		<if test="beginMonth == null">LEFT JOIN (SELECT ver.* FROM bs_arearatio ratio INNER JOIN bs_arearatiover ver ON ratio.ratio_id = ver.ratio_id
+			WHERE ver.begin_period = (SELECT MAX(v.begin_period) FROM bs_arearatiover v where v.ratio_id = ratio.ratio_id)
+			) ov on ra.ratio_id=ov.ratio_id</if>
+		<if test="beginMonth != null">LEFT JOIN bs_arearatiover ov on ra.ratio_id=ov.ratio_id </if>
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="areaId != null">AND ra.area_id = #{areaId}</if>
+			<if test="insuranceId != null">AND ra.insurance_id = #{insuranceId}</if>
+			<if test="ratioIdNe != null">AND ra.ratio_id != #{ratioIdNe}</if>
+			<if test="ratioId != null">AND ra.ratio_id = #{ratioId}</if>
+			<if test="beginMonth != null">AND  ov.begin_period &lt;= #{beginMonth} and (ov.end_period is null OR ov.end_period &gt;= #{beginMonth} )</if>
+			<if test="dr != null"> and ra.dr=#{dr}</if>
+		</trim>
+		ORDER BY <if test="livingType != null">sp.living_type,ifnull(sp.isdefault,'N') desc,</if>ifnull(ov.corp_ratio,0)+ifnull(ov.psn_ratio,0) desc,ra.ratio_id
+	</select>
+
+	<!-- 查询比例所属险种类型-->
+	<select id="FindRatioInsuranceType" resultType="java.lang.String" parameterType="Object">
+		select i.insurance_fund_type as value from bs_arearatio o LEFT JOIN bd_insurance i on o.insurance_id= i.insurance_id where o.ratio_id=#{ratioId}
+	</select>
+
+	<!--取地区的社保缴交基数中最高的下限-->
+	<select id="FindInsuBaseLower" resultType="java.lang.Integer" parameterType="Object">
+		select IFNULL(v.corp_base_lower,2000) as value from bs_arearatio o INNER JOIN bs_arearatiover v ON o.ratio_id=v.ratio_id where o.area_id = ${areaId} AND  o.insurance_id IN(1,2,3,4,5) and v.corp_base_lower BETWEEN 2000 and 10000 ORDER BY v.corp_base_lower desc LIMIT 0,1
+	</select>
+	<!--取默认缴纳比例-->
+	<select id="findDefaultRatioId" resultType="java.lang.Integer" parameterType="Object">
+		select ratio.ratio_id from bs_arearatio ratio
+		left join bs_arearatioscope scope on ratio.ratio_id = scope.ratio_id 
+		inner join bs_arearatiover ver on ver.ratio_id = ratio.ratio_id and ifnull(ver.begin_period,'1900-01') &lt;= #{period} and ifnull(ver.end_period,'2099-12') &gt;= #{period}
+		where ratio.area_id = #{areaId}  and ratio.insurance_id = #{insuranceId} 
+		<if test="livingType != null">and scope.living_type = #{livingType}</if>
+		order by scope.living_type,ifnull(scope.isdefault,'N') desc,ifnull(ver.corp_ratio,0)+ifnull(ver.psn_ratio,0) desc,ratio.ratio_id limit 1;
+	</select>
+
+
+	<!--取地区的社保缴交基数中最低高的上限-->
+	<select id="queryInsuMin" resultType="java.lang.Integer" parameterType="Object">
+		select v.corp_base_lower as value from bs_arearatio o INNER JOIN bs_arearatiover v ON o.ratio_id=v.ratio_id where o.area_id = ${areaId}  AND  o.insurance_id IN(1,2,3,4,5) ORDER BY v.corp_base_lower desc LIMIT 0,1
+	</select>
+
+	<!--取地区的社保缴交基数中最高的上限-->
+	<select id="queryInsuMax" resultType="java.lang.Integer" parameterType="Object">
+		select v.corp_base_upper as value from bs_arearatio o INNER JOIN bs_arearatiover v ON o.ratio_id=v.ratio_id where o.area_id = ${areaId} AND  o.insurance_id IN(1,2,3,4,5) ORDER BY v.corp_base_upper desc LIMIT 0,1
+	</select>
+
+
+	<!--取地区的社保缴交基数中最低高的上限-->
+	<select id="queryFundMin" resultType="java.lang.Integer" parameterType="Object">
+		select v.corp_base_lower as value from bs_arearatio o INNER JOIN bs_arearatiover v ON o.ratio_id=v.ratio_id where o.area_id = ${areaId}  AND  o.insurance_id =6 ORDER BY v.corp_base_lower desc LIMIT 0,1
+	</select>
+
+	<!--取地区的社保缴交基数中最高的上限-->
+	<select id="queryFundMax" resultType="java.lang.Integer" parameterType="Object">
+		select v.corp_base_upper as value from bs_arearatio o INNER JOIN bs_arearatiover v ON o.ratio_id=v.ratio_id where o.area_id = ${areaId} AND  o.insurance_id =6 ORDER BY v.corp_base_upper desc LIMIT 0,1
+	</select>
+	
+	<!--根据城市获取薪福邦小助手数据-->
+	<select id="findInsuranceFundPeopleType" resultType="com.xfs.business.model.InsuranceFundPeopleType" parameterType="Object">
+		SELECT  aa.code as peopleTypeCode,aa.peopleTypeName,
+	       CONCAT(sum(aa.insuranceScopeSta),'-',sum(aa.insuranceScopeEnd)) as insuranceScope,
+	       CONCAT(sum(aa.fundScopeSta),'-',sum(aa.fundScopeEnd)) as fundScope,
+	       CONCAT(TRUNCATE(sum(aa.corpSta)*100,2),'%~',TRUNCATE(TRUNCATE(sum(aa.corpEnd),4)*100,2),'%+',TRUNCATE(sum(aa.psnSta)*100,2),'%~',TRUNCATE(TRUNCATE(sum(aa.psnEnd),4)*100,2),'%') as fundRatio,
+	       aa.bs1endday as insuranceStopDt,
+	       aa.bs2endday as fundStopDt,
+	       aa.bs3endday as insuranceAdjustDt,
+	       aa.bs4endday as fundAdjustDt,
+	       aa.in1required as residual, 
+	       aa.in2required as bigMedical 
+	    from
+  			( SELECT 
+  					 dict.code as code,dict.name AS peopleTypeName,min(ver.`corp_base_lower`) AS insuranceScopeSta,max(ver.corp_base_upper) AS insuranceScopeEnd
+  					,'' AS fundScopeSta,'' AS fundScopeEnd,'' AS corpSta,'' AS corpEnd,'' AS psnSta,'' AS psnEnd
+  					,CONCAT(IF(bs1.effect='NEXTMONTH','次月','当月'),bs1.end_day,'日')as bs1endday
+					,CONCAT(IF(bs1.effect='NEXTMONTH','次月','当月'),bs2.end_day,'日')as bs2endday
+					,CONCAT('每年',ifnull(bs3.end_day,''),'月') as bs3endday
+					,CONCAT('每年',ifnull(bs4.end_day,''),'月') as bs4endday
+  					,ifnull(in1.required,'N') AS in1required
+  					,ifnull(in2.required,'N') AS in2required
+   				FROM bs_arearatio ratio
+	   				INNER JOIN bs_arearatiover ver ON ratio.ratio_id = ver.ratio_id AND ver.`begin_period` &lt;= date_format(now(),'%Y-%m-%d') AND ifnull(ver.end_period,'2099-12') &gt;= date_format(now(),'%Y-%m-%d')
+	   				INNER JOIN bd_insurance ins ON ratio.insurance_id = ins.insurance_id AND insurance_fund_type = 'INSURANCE'
+	   				LEFT JOIN bs_arearatioscope SCOPE ON scope.ratio_id = ratio.ratio_id
+	   				INNER JOIN sys_dictitem dict ON dict.dictionary = 93 AND dict.area_id = ratio.area_id AND scope.living_type = dict.code
+	   				LEFT JOIN bd_bsareatype bs1 ON bs1.bstype_id = 2 AND bs1.area_id = #{areaId}
+	   				LEFT JOIN bd_bsareatype bs2 ON bs2.bstype_id = 10 AND bs2.area_id = #{areaId}
+					LEFT JOIN bd_bsareatype bs3 ON bs3.bstype_id = 31 AND bs3.area_id = #{areaId}
+					LEFT JOIN bd_bsareatype bs4 ON bs4.bstype_id = 32 AND bs4.area_id = #{areaId}
+					LEFT JOIN bd_insurancearea in1 ON in1.insurance_id = 8 AND in1.area_id = #{areaId}
+					LEFT JOIN bd_insurancearea in2 ON in2.insurance_id = 7 AND in2.area_id = #{areaId}
+   				WHERE ratio.area_id = #{areaId}
+   				GROUP BY dict.name
+   				UNION 
+   				SELECT 
+   					 dict.code as code,dict.name AS peopleTypeName,'' AS insuranceScopeSta,'' AS insuranceScopeEnd,min(ver.`corp_base_lower`) AS fundScopeSta
+   					,max(ver.corp_base_upper) AS fundScopeEnd,min(ver.corp_ratio) AS corpSta,max(ver.corp_ratio) AS corpEnd
+   					,min(ver.psn_ratio) psnSta,max(ver.`psn_ratio`) AS psnEnd,'' AS bs1endday,'' AS bs2endday,'' AS bs3endday
+   					,'' AS bs4endday,'' AS in1required,'' AS in2required
+			   	FROM bs_arearatio ratio
+			   		INNER JOIN bs_arearatiover ver ON ratio.ratio_id = ver.ratio_id AND ver.`begin_period` &lt;= date_format(now(),'%Y-%m-%d') AND ifnull(ver.end_period,'2099-12') &gt;= date_format(now(),'%Y-%m-%d')
+			   		INNER JOIN bd_insurance ins ON ratio.insurance_id = ins.insurance_id AND insurance_fund_type='FUND'
+			   		INNER JOIN sys_dictitem dict ON dict.dictionary = 93 AND dict.area_id = ratio.area_id
+			   	WHERE ratio.area_id = #{areaId}
+			   	GROUP BY dict.name) aa
+			GROUP BY aa.peopleTypeName
+	</select>
+	<!--根据城市获取薪福邦小助手数据-->
+	<select id="findInsuranceFundType" resultType="com.xfs.business.model.InsuranceFundType" parameterType="Object">
+		select ins.name as insuranceName, ver.corp_base_lower as lowerNum,  ver.corp_base_upper as upperNum,  
+		TRUNCATE(TRUNCATE(ver.`corp_ratio`,4)*100,2) as corpRatio ,ver.corp_addition as corpAddition
+		,TRUNCATE(TRUNCATE(ver.`psn_ratio`,4)*100,2) as psnRatio,ver.psn_addition as psnAddition,
+		scope.isdefault as isdefault 
+		from 
+		  bs_arearatio ratio 
+		  inner join bd_insurance ins on ratio.insurance_id = ins.insurance_id 
+		  left join bs_arearatioscope scope on scope.ratio_id = ratio.ratio_id 
+		  inner join bs_arearatiover ver on ratio.ratio_id = ver.ratio_id  and ver.begin_period &lt;= date_format(now(), '%Y-%m-%d')  and ifnull(ver.end_period, '2099-12') &gt;= date_format(now(), '%Y-%m-%d') 
+		where ratio.area_id = #{areaId} and scope.living_type = #{peopleTypeCode}
+		ORDER BY 
+  			ifnull(scope.isdefault, 'N') desc,ifnull(ver.corp_ratio, 0)+ ifnull(ver.psn_ratio, 0) desc, ratio.ratio_id
+  	</select>
+</mapper>   

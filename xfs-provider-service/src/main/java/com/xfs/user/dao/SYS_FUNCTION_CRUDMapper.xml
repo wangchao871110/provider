@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_FUNCTION_CRUD">
+  <resultMap id="result_map_SYS_FUNCTION_CRUD" type="com.xfs.user.model.SysFunctionCrud">
+    <id property="relId" column="REL_ID" jdbcType="INTEGER" />
+    <result property="alias" column="ALIAS" jdbcType="VARCHAR" />
+    <result property="description" column="DESCRIPTION" jdbcType="VARCHAR" />
+    <result property="url" column="URL" jdbcType="VARCHAR" />
+    <result property="priority" column="PRIORITY" jdbcType="INTEGER" />
+    <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR" />
+    <result property="createdDt" column="CREATED_DT" jdbcType="TIMESTAMP" />
+    <result property="functionId" column="FUNCTION_ID" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="InsertSYS_FUNCTION_CRUD">
+    INSERT INTO SYS_FUNCTION_CRUD (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="relId != null ">,REL_ID</if>
+      <if test="alias != null ">,ALIAS</if>
+      <if test="description != null ">,DESCRIPTION</if>
+      <if test="url != null ">,URL</if>
+      <if test="priority != null ">,PRIORITY</if>
+      <if test="createdBy != null ">,CREATED_BY</if>
+      <if test="createdDt != null ">,CREATED_DT</if>
+      <if test="functionId != null ">,FUNCTION_ID</if>
+    </trim>
+    )  VALUES (
+    <trim prefix=" " prefixOverrides=",">
+      <if test="relId != null ">,#{relId,jdbcType=INTEGER}</if>
+      <if test="alias != null ">,#{alias,jdbcType=VARCHAR}</if>
+      <if test="description != null ">,#{description,jdbcType=VARCHAR}</if>
+      <if test="url != null ">,#{url,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">,#{priority,jdbcType=INTEGER}</if>
+      <if test="createdBy != null ">,#{createdBy,jdbcType=VARCHAR}</if>
+      <if test="createdDt != null ">,#{createdDt,jdbcType=TIMESTAMP}</if>
+      <if test="functionId != null ">,#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+    )
+  </insert>
+  <update id="UpdateSYS_FUNCTION_CRUD">
+    UPDATE SYS_FUNCTION_CRUD 
+    <trim prefix=" SET " prefixOverrides=",">
+      <if test="alias != null ">,ALIAS=#{alias,jdbcType=VARCHAR}</if>
+      <if test="description != null ">,DESCRIPTION=#{description,jdbcType=VARCHAR}</if>
+      <if test="url != null ">,URL=#{url,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">,PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="createdBy != null ">,CREATED_BY=#{createdBy,jdbcType=VARCHAR}</if>
+      <if test="createdDt != null ">,CREATED_DT=#{createdDt,jdbcType=TIMESTAMP}</if>
+      <if test="functionId != null ">,FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+     WHERE REL_ID=#{relId,jdbcType=INTEGER}
+  </update>
+  <delete id="DeleteSYS_FUNCTION_CRUD">DELETE FROM SYS_FUNCTION_CRUD WHERE REL_ID=#{relId,jdbcType=INTEGER}</delete>
+  <select id="FindSYS_FUNCTION_CRUDForSYS_FUNCTION_functionCrudList" resultMap="result_map_SYS_FUNCTION_CRUD">
+    SELECT REL_ID,ALIAS,DESCRIPTION,URL,PRIORITY,CREATED_BY,CREATED_DT,FUNCTION_ID FROM SYS_FUNCTION_CRUD
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="functionId == null ">AND 1=2</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+  </select>
+  <select id="CountFindAllSYS_FUNCTION_CRUD" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_FUNCTION_CRUD</select>
+  <select id="CountSYS_FUNCTION_CRUD" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_FUNCTION_CRUD WHERE REL_ID=#{relId,jdbcType=INTEGER}</select>
+  <select id="FindByPKSYS_FUNCTION_CRUD" resultMap="result_map_SYS_FUNCTION_CRUD">SELECT REL_ID,ALIAS,DESCRIPTION,URL,PRIORITY,CREATED_BY,CREATED_DT,FUNCTION_ID FROM SYS_FUNCTION_CRUD WHERE REL_ID=#{relId,jdbcType=INTEGER}</select>
+  <select id="FreeFindSYS_FUNCTION_CRUD" resultMap="result_map_SYS_FUNCTION_CRUD">
+    SELECT REL_ID,ALIAS,DESCRIPTION,URL,PRIORITY,CREATED_BY,CREATED_DT,FUNCTION_ID FROM SYS_FUNCTION_CRUD
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="relId != null ">AND REL_ID=#{relId,jdbcType=INTEGER}</if>
+      <if test="alias != null ">AND ALIAS like '%${alias}%'</if>
+      <if test="aliasEq != null ">AND ALIAS=#{aliasEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="url != null ">AND URL like '%${url}%'</if>
+      <if test="urlEq != null ">AND URL=#{urlEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="createdBy != null ">AND CREATED_BY like '%${createdBy}%'</if>
+      <if test="createdByEq != null ">AND CREATED_BY=#{createdByEq,jdbcType=VARCHAR}</if>
+      <if test="createdDt != null ">AND CREATED_DT=#{createdDt,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtFrom != null ">AND CREATED_DT&gt;=#{createdDtFrom,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtTo != null ">AND CREATED_DT&lt;=#{createdDtTo,jdbcType=TIMESTAMP}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+  </select>
+  <select id="CountFreeFindSYS_FUNCTION_CRUD" resultType="java.lang.Integer">
+    SELECT count(1) as value FROM SYS_FUNCTION_CRUD
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="relId != null ">AND REL_ID=#{relId,jdbcType=INTEGER}</if>
+      <if test="alias != null ">AND ALIAS like '%${alias}%'</if>
+      <if test="aliasEq != null ">AND ALIAS=#{aliasEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="url != null ">AND URL like '%${url}%'</if>
+      <if test="urlEq != null ">AND URL=#{urlEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="createdBy != null ">AND CREATED_BY like '%${createdBy}%'</if>
+      <if test="createdByEq != null ">AND CREATED_BY=#{createdByEq,jdbcType=VARCHAR}</if>
+      <if test="createdDt != null ">AND CREATED_DT=#{createdDt,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtFrom != null ">AND CREATED_DT&gt;=#{createdDtFrom,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtTo != null ">AND CREATED_DT&lt;=#{createdDtTo,jdbcType=TIMESTAMP}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+  </select>
+  <select id="FreeFindSYS_FUNCTION_CRUDOrdered" resultMap="result_map_SYS_FUNCTION_CRUD">
+    SELECT REL_ID,ALIAS,DESCRIPTION,URL,PRIORITY,CREATED_BY,CREATED_DT,FUNCTION_ID FROM SYS_FUNCTION_CRUD
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+      <if test="relId != null ">AND REL_ID=#{relId,jdbcType=INTEGER}</if>
+      <if test="alias != null ">AND ALIAS like '%${alias}%'</if>
+      <if test="aliasEq != null ">AND ALIAS=#{aliasEq,jdbcType=VARCHAR}</if>
+      <if test="description != null ">AND DESCRIPTION like '%${description}%'</if>
+      <if test="descriptionEq != null ">AND DESCRIPTION=#{descriptionEq,jdbcType=VARCHAR}</if>
+      <if test="url != null ">AND URL like '%${url}%'</if>
+      <if test="urlEq != null ">AND URL=#{urlEq,jdbcType=VARCHAR}</if>
+      <if test="priority != null ">AND PRIORITY=#{priority,jdbcType=INTEGER}</if>
+      <if test="createdBy != null ">AND CREATED_BY like '%${createdBy}%'</if>
+      <if test="createdByEq != null ">AND CREATED_BY=#{createdByEq,jdbcType=VARCHAR}</if>
+      <if test="createdDt != null ">AND CREATED_DT=#{createdDt,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtFrom != null ">AND CREATED_DT&gt;=#{createdDtFrom,jdbcType=TIMESTAMP}</if>
+      <if test="createdDtTo != null ">AND CREATED_DT&lt;=#{createdDtTo,jdbcType=TIMESTAMP}</if>
+      <if test="functionId != null ">AND FUNCTION_ID=#{functionId,jdbcType=INTEGER}</if>
+    </trim>
+     ORDER BY ${_orderBy}
+  </select>
+
+
+  <select id="QUERY_ROLEIDS_BY_URL" resultType="java.lang.String" parameterType="Object">
+    SELECT if(isnull(GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC)),'',GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC))as roleids FROM sys_role role
+    INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id AND role.sys_code = 'SAAS'
+    INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.url = #{url}
+  </select>
+
+  <select id="CS_QUERY_ROLEIDS_BY_URL" resultType="java.lang.String" parameterType="Object">
+    SELECT if(isnull(GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC)),'',GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC))as roleids FROM sys_role role
+    INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id
+    INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.url = #{url}
+    INNER JOIN (
+    SELECT t1.* FROM
+    (SELECT cp_id,UPPER(app_type) as appType,end_open_time,app_version,create_dt FROM cm_corp_open_app where cp_id = #{cpId}) t1
+    INNER JOIN
+    (SELECT cp_id,UPPER(app_type) as appType,end_open_time,app_version,MAX(create_dt) as create_dt FROM cm_corp_open_app where cp_id = #{cpId} GROUP BY app_type) t2
+    ON t1.appType = t2.appType AND t2.create_dt = t1.create_dt
+    ) app ON  app.appType = role.sys_code
+  </select>
+
+  <select id="BS_QUERY_ROLEIDS_BY_URL" resultType="java.lang.String" parameterType="Object">
+    SELECT GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC) as roleids FROM sys_role role
+    INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id AND role.sys_code = 'OP'
+    INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.url = #{url}
+  </select>
+
+  <select id="COOP_QUERY_ROLEIDS_BY_URL" resultType="java.lang.String" parameterType="Object">
+    SELECT if(isnull(GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC)),'',GROUP_CONCAT(role.role_id ORDER BY role.role_id ASC))as roleids FROM sys_role role
+    INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id AND role.sys_code = 'SAAS'
+    INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.url = #{url}
+  </select>
+
+<select id="FindByPK" resultMap="result_map_SYS_FUNCTION_CRUD" parameterType="Object">
+	select rel_id,alias,description,url,priority,created_by,created_dt,function_id  from sys_function_crud where rel_id = #{relId}
+</select>
+
+  <select id="CP_QUERY_ROLEIDS_NO_AUTH_URL" resultMap="result_map_SYS_FUNCTION_CRUD" parameterType="Object">
+    SELECT * FROM (
+     SELECT crud.* FROM sys_role role
+        INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id AND role.sys_code = 'XFS_SS'
+        INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.function_id = -1
+    ) t where NOT EXISTS (
+     SELECT crud.* FROM sys_role role
+        INNER JOIN sys_rel_role_func rel ON role.role_id = rel.role_id AND role.sys_code = 'XFS_SS'
+        INNER JOIN sys_function_crud crud ON crud.rel_id = rel.rel_id AND crud.function_id = -1 AND role.role_id in (${roleIds})
+         WHERE crud.url = t.url
+    )
+  </select>
+
+</mapper>

@@ -1,0 +1,2454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_BILL" >
+	<!-- Result Map-->
+	<resultMap id="result_map_SPS_BILL" type="com.xfs.bill.model.SpsBill" >
+		<result column="bill_id" property="billId"/>
+		<result column="period" property="period"/>
+		<result column="sp_id" property="spId"/>
+		<result column="depute_sp_id" property="deputeSpId"/>
+		<result column="cp_id" property="cpId"/>
+		<result column="bill_day" property="billDay"/>
+		<result column="billamount" property="billamount"/>
+		<result column="bill_state" property="billState"/>
+		<result column="build_date" property="buildDate"/>
+		<result column="fee_pay_status" property="feePayStatus"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_dt" property="createDt"/>
+		<result column="modify_by" property="modifyBy"/>
+		<result column="modify_dt" property="modifyDt"/>
+		<result column="dr" property="dr"/>
+		<result column="file_id" property="fileId"/>
+		<result column="scheme_ids" property="schemeIds"/>
+		<result column="bill_type" property="billType"/>
+		<result column="depute_type" property="deputeType"/>
+		<result column="rel_bill_id" property="relBillId"/>
+		<result column="offset_ids" property="offsetIds"/>
+		<result column="evidence_ids" property="evidenceIds"/>
+		<result column="perpay_office_fee" property="perpayOfficeFee"/>
+		<result column="perpay_service_fee" property="perpayServiceFee"/>
+		<result column="bill_office_fee" property="billOfficeFee"/>
+		<result column="bill_service_fee" property="billServiceFee"/>
+		<result column="margin_office_fee" property="marginOfficeFee"/>
+		<result column="margin_service_fee" property="marginServiceFee"/>
+		<result column="actual_office_fee" property="actualOfficeFee"/>
+		<result column="actual_service_fee" property="actualServiceFee"/>
+		<result column="expend_office_fee" property="expendOfficeFee"/>
+		<result column="expend_service_fee" property="expendServiceFee"/>
+		<result column="gain" property="gain"/>
+		<result column="expend_status" property="expendStatus"/>
+		<result column="expend_time" property="expendTime"/>
+		<result column="expend_service_status" property="expendServiceStatus"/>
+		<result column="expend_service_time" property="expendServiceTime"/>
+		<result column="bill_num" property="billNum"/>
+		<result column="entrusted_billids" property="entrustedBillids"/>
+		<result column="checked_type" property="checkedType"/>
+		<result column="remark" property="remark"/>
+	</resultMap>
+
+
+	<resultMap id="result_map_SPS_BILL_BY_HR" type="com.xfs.bill.dto.SpsBillDto" >
+		<result column="billName" property="billName"/>
+		<result column="bill_id" property="billId"/>
+		<result column="period" property="period"/>
+		<result column="sp_id" property="spId"/>
+		<result column="depute_sp_id" property="deputeSpId"/>
+		<result column="cp_id" property="cpId"/>
+		<result column="bill_day" property="billDay"/>
+		<result column="billamount" property="billamount"/>
+		<result column="bill_state" property="billState"/>
+		<result column="build_date" property="buildDate"/>
+		<result column="fee_pay_status" property="feePayStatus"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_dt" property="createDt"/>
+		<result column="modify_by" property="modifyBy"/>
+		<result column="modify_dt" property="modifyDt"/>
+		<result column="dr" property="dr"/>
+		<result column="file_id" property="fileId"/>
+		<result column="scheme_ids" property="schemeIds"/>
+		<result column="bill_type" property="billType"/>
+		<result column="depute_type" property="deputeType"/>
+		<result column="rel_bill_id" property="relBillId"/>
+		<result column="offset_ids" property="offsetIds"/>
+		<result column="evidence_ids" property="evidenceIds"/>
+		<result column="perpay_office_fee" property="perpayOfficeFee"/>
+		<result column="perpay_service_fee" property="perpayServiceFee"/>
+		<result column="bill_office_fee" property="billOfficeFee"/>
+		<result column="bill_service_fee" property="billServiceFee"/>
+		<result column="margin_office_fee" property="marginOfficeFee"/>
+		<result column="margin_service_fee" property="marginServiceFee"/>
+		<result column="actual_office_fee" property="actualOfficeFee"/>
+		<result column="actual_service_fee" property="actualServiceFee"/>
+		<result column="expend_office_fee" property="expendOfficeFee"/>
+		<result column="expend_service_fee" property="expendServiceFee"/>
+		<result column="gain" property="gain"/>
+		<result column="expend_status" property="expendStatus"/>
+		<result column="expend_time" property="expendTime"/>
+		<result column="expend_service_status" property="expendServiceStatus"/>
+		<result column="expend_service_time" property="expendServiceTime"/>
+		<result column="bill_num" property="billNum"/>
+		<result column="entrusted_billids" property="entrustedBillids"/>
+		<result column="checked_type" property="checkedType"/>
+		<result column="remark" property="remark"/>
+	</resultMap>
+
+
+	<resultMap id="result_map_SPS_EMP_BILL_DETAIL" type="com.xfs.bill.dto.InsureEmpDetail" >
+		<result column="bill_id" property="billId"/>
+		<result column="bill_id" property="billState"/>
+		<result column="insureName" property="insureName"/>
+		<result column="areaName" property="areaName"/>
+		<result column="corpPayment" property="corpPayment"/>
+		<result column="empPayment" property="empPayment"/>
+		<result column="totalPayment" property="totalPayment"/>
+		<result column="period" property="period"/>
+		<result column="remark" property="remark"/>
+		<result column="code" property="code"/>
+		<result column="insurance_fund_type" property="insuranceFundType"/>
+		<result column="corp_addition" property="corpAddition"/>
+		<result column="psn_addition" property="empAddition"/>
+	</resultMap>
+
+	<!-- sps_bill table all fields -->
+	<sql id="Base_Column_List" >
+		bill_id,period,sp_id,remark,entrusted_billids,checked_type,bill_service_fee,bill_office_fee,margin_office_fee,margin_service_fee,depute_sp_id,cp_id,bill_day,billamount,bill_state,build_date,fee_pay_status,create_by,create_dt,modify_by,modify_dt,dr,file_id,scheme_ids,bill_type,depute_type,rel_bill_id,offset_ids,evidence_ids,perpay_office_fee,perpay_service_fee,actual_office_fee,actual_service_fee,expend_office_fee,expend_service_fee,gain,expend_status,expend_service_status,expend_time,expend_service_time,bill_num
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="billId != null" >and bill_id = #{billId}</if>
+			<if test="period != null" >and period = #{period}</if>
+			<if test="spId != null" >and sp_id = #{spId}</if>
+			<if test="deputeSpId != null" >and depute_sp_id = #{deputeSpId}</if>
+			<if test="cpId != null" >and cp_id = #{cpId}</if>
+			<if test="billDay != null" >and bill_day = #{billDay}</if>
+			<if test="billamount != null" >and billamount = #{billamount}</if>
+			<if test="billState != null" >and bill_state = #{billState}</if>
+			<if test="buildDate != null" >and build_date = #{buildDate}</if>
+			<if test="feePayStatus != null" >and fee_pay_status = #{feePayStatus}</if>
+			<if test="createBy != null" >and create_by = #{createBy}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="dr != null" >and dr = #{dr}</if>
+			<if test="fileId != null" >and file_id = #{fileId}</if>
+			<if test="schemeIds != null" >and scheme_ids = #{schemeIds}</if>
+			<if test="billType != null" >and bill_type = #{billType}</if>
+			<if test="deputeType != null" >and depute_type = #{deputeType}</if>
+			<if test="relBillId != null" >and rel_bill_id = #{relBillId}</if>
+			<if test="offsetIds != null" >and offset_ids = #{offsetIds}</if>
+			<if test="evidenceIds != null" >and evidence_ids = #{evidenceIds}</if>
+			<if test="perpayOfficeFee != null" >and perpay_office_fee = #{perpayOfficeFee}</if>
+			<if test="perpayServiceFee != null" >and perpay_service_fee = #{perpayServiceFee}</if>
+			<if test="actualOfficeFee != null" >and actual_office_fee = #{actualOfficeFee}</if>
+			<if test="actualServiceFee != null" >and actual_service_fee = #{actualServiceFee}</if>
+			<if test="expendOfficeFee != null" >and expend_office_fee = #{expendOfficeFee}</if>
+			<if test="expendServiceFee != null" >and expend_service_fee = #{expendServiceFee}</if>
+			<if test="gain != null" >and gain = #{gain}</if>
+			<if test="expendStatus != null" >and expend_status = #{expendStatus}</if>
+			<if test="expendTime != null" >and expend_time = #{expendTime}</if>
+			<if test="expendServiceStatus != null" > and expend_service_status = #{expendServiceStatus}</if>
+			<if test="expendServiceTime != null" > and expend_service_time = #{expendServiceTime}</if>
+			<if test="billNum != null" >and bill_num = #{billNum}</if>
+			<if test="entrustedBillids != null" >and entrusted_billids = #{entrustedBillids}</if>
+			<if test="checkedType != null" >and checked_type = #{checkedType}</if>
+		</trim>
+	</sql>
+
+	<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+	<sql id="Example_Where_Clause2">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="billId != null">AND bill_id = #{billId}</if>
+			<if test="period != null">AND period like '%${period}%'</if>
+			<if test="periodEq != null">AND period = #{periodEq}</if>
+			<if test="spId != null">AND sp_id = #{spId}</if>
+			<if test="deputeSpId != null">AND depute_sp_id = #{deputeSpId}</if>
+			<if test="cpId != null">AND cp_id = #{cpId}</if>
+			<if test="billDay != null">AND bill_day = #{billDay}</if>
+			<if test="billamount != null">AND billamount like '%${billamount}%'</if>
+			<if test="billState != null">AND bill_state like '%${billState}%'</if>
+			<if test="billStateEq != null">AND bill_state = #{billStateEq}</if>
+			<if test="buildDate != null">AND build_date = #{buildDate}</if>
+			<if test="buildDateFrom != null">AND build_date&gt;=#{buildDateFrom}</if>
+			<if test="buildDateTo != null">AND build_date&lt;=#{buildDateTo}</if>
+			<if test="feePayStatus != null">AND fee_pay_status = #{feePayStatus}</if>
+			<if test="createBy != null">AND create_by = #{createBy}</if>
+			<if test="createDt != null">AND create_dt = #{createDt}</if>
+			<if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+			<if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+			<if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+			<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+			<if test="dr != null">AND dr = #{dr}</if>
+			<if test="fileId != null">AND file_id like '%${fileId}%'</if>
+			<if test="fileIdEq != null">AND file_id = #{fileIdEq}</if>
+			<if test="schemeIds != null">AND scheme_ids like '%${schemeIds}%'</if>
+			<if test="schemeIdsEq != null">AND scheme_ids = #{schemeIdsEq}</if>
+			<if test="billType != null">AND bill_type like '%${billType}%'</if>
+			<if test="billTypeEq != null">AND bill_type = #{billTypeEq}</if>
+			<if test="deputeType != null">AND depute_type like '%${deputeType}%'</if>
+			<if test="deputeTypeEq != null">AND depute_type = #{deputeTypeEq}</if>
+			<if test="relBillId != null">AND rel_bill_id = #{relBillId}</if>
+			<if test="offsetIds != null">AND offset_ids like '%${offsetIds}%'</if>
+			<if test="offsetIdsEq != null">AND offset_ids = #{offsetIdsEq}</if>
+			<if test="evidenceIds != null">AND evidence_ids like '%${evidenceIds}%'</if>
+			<if test="evidenceIdsEq != null">AND evidence_ids = #{evidenceIdsEq}</if>
+			<if test="perpayOfficeFee != null">AND perpay_office_fee like '%${perpayOfficeFee}%'</if>
+			<if test="perpayServiceFee != null">AND perpay_service_fee like '%${perpayServiceFee}%'</if>
+			<if test="actualOfficeFee != null">AND actual_office_fee like '%${actualOfficeFee}%'</if>
+			<if test="actualServiceFee != null">AND actual_service_fee like '%${actualServiceFee}%'</if>
+			<if test="expendOfficeFee != null">AND expend_office_fee like '%${expendOfficeFee}%'</if>
+			<if test="expendServiceFee != null">AND expend_service_fee like '%${expendServiceFee}%'</if>
+			<if test="gain != null">AND gain like '%${gain}%'</if>
+			<if test="expendStatus != null">AND expend_status = #{expendStatus}</if>
+			<if test="expendTime != null">AND expend_time = #{expendTime}</if>
+			<if test="expendTimeFrom != null">AND expend_time&gt;=#{expendTimeFrom}</if>
+			<if test="expendTimeTo != null">AND expend_time&lt;=#{expendTimeTo}</if>
+			<if test="expendServiceStatus != null" > and expend_service_status = #{expendServiceStatus}</if>
+			<if test="expendServiceTime != null" > and expend_service_time = #{expendServiceTime}</if>
+			<if test="billNum != null">AND bill_num like '%${billNum}%'</if>
+			<if test="billNumEq != null">AND bill_num = #{billNumEq}</if>
+			<if test="entrustedBillids != null" >and entrusted_billids = #{entrustedBillids}</if>
+			<if test="checkedType != null" >and checked_type = #{checkedType}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertSPS_BILL" parameterType="Object" >
+		INSERT INTO SPS_BILL (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="billId != null ">,bill_id</if>
+			<if test="period != null ">,period</if>
+			<if test="spId != null ">,sp_id</if>
+			<if test="deputeSpId != null ">,depute_sp_id</if>
+			<if test="cpId != null ">,cp_id</if>
+			<if test="billDay != null ">,bill_day</if>
+			<if test="billamount != null ">,billamount</if>
+			<if test="billState != null ">,bill_state</if>
+			<if test="buildDate != null ">,build_date</if>
+			<if test="feePayStatus != null ">,fee_pay_status</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+			<if test="fileId != null ">,file_id</if>
+			<if test="schemeIds != null ">,scheme_ids</if>
+			<if test="billType != null ">,bill_type</if>
+			<if test="deputeType != null ">,depute_type</if>
+			<if test="relBillId != null ">,rel_bill_id</if>
+			<if test="offsetIds != null ">,offset_ids</if>
+			<if test="evidenceIds != null ">,evidence_ids</if>
+			<if test="perpayOfficeFee != null ">,perpay_office_fee</if>
+			<if test="perpayServiceFee != null ">,perpay_service_fee</if>
+			<if test="actualOfficeFee != null ">,actual_office_fee</if>
+			<if test="actualServiceFee != null ">,actual_service_fee</if>
+			<if test="expendOfficeFee != null ">,expend_office_fee</if>
+			<if test="expendServiceFee != null ">,expend_service_fee</if>
+			<if test="billOfficeFee != null ">,bill_office_fee</if>
+			<if test="billServiceFee != null ">,bill_service_fee</if>
+			<if test="marginOfficeFee != null ">,margin_office_fee</if>
+			<if test="marginServiceFee != null ">,margin_service_fee</if>
+			<if test="gain != null ">,gain</if>
+			<if test="expendStatus != null ">,expend_status</if>
+			<if test="expendTime != null ">,expend_time</if>
+			<if test="expendServiceStatus != null" >,expend_service_status</if>
+			<if test="expendServiceTime != null" >,expend_service_time</if>
+			<if test="billNum != null ">,bill_num</if>
+			<if test="entrustedBillids != null" >,entrusted_billids</if>
+			<if test="checkedType != null" >,checked_type</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="billId != null ">,#{billId}</if>
+			<if test="period != null ">,#{period}</if>
+			<if test="spId != null ">,#{spId}</if>
+			<if test="deputeSpId != null ">,#{deputeSpId}</if>
+			<if test="cpId != null ">,#{cpId}</if>
+			<if test="billDay != null ">,#{billDay}</if>
+			<if test="billamount != null ">,#{billamount}</if>
+			<if test="billState != null ">,#{billState}</if>
+			<if test="buildDate != null ">,#{buildDate}</if>
+			<if test="feePayStatus != null ">,#{feePayStatus}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+			<if test="fileId != null ">,#{fileId}</if>
+			<if test="schemeIds != null ">,#{schemeIds}</if>
+			<if test="billType != null ">,#{billType}</if>
+			<if test="deputeType != null ">,#{deputeType}</if>
+			<if test="relBillId != null ">,#{relBillId}</if>
+			<if test="offsetIds != null ">,#{offsetIds}</if>
+			<if test="evidenceIds != null ">,#{evidenceIds}</if>
+			<if test="perpayOfficeFee != null ">,#{perpayOfficeFee}</if>
+			<if test="perpayServiceFee != null ">,#{perpayServiceFee}</if>
+			<if test="actualOfficeFee != null ">,#{actualOfficeFee}</if>
+			<if test="actualServiceFee != null ">,#{actualServiceFee}</if>
+			<if test="expendOfficeFee != null ">,#{expendOfficeFee}</if>
+			<if test="expendServiceFee != null ">,#{expendServiceFee}</if>
+			<if test="billOfficeFee != null ">,#{billOfficeFee}</if>
+			<if test="billServiceFee != null ">,#{billServiceFee}</if>
+			<if test="marginOfficeFee != null ">,#{marginOfficeFee}</if>
+			<if test="marginServiceFee != null ">,#{marginServiceFee}</if>
+			<if test="gain != null ">,#{gain}</if>
+			<if test="expendStatus != null ">,#{expendStatus}</if>
+			<if test="expendTime != null ">,#{expendTime}</if>
+			<if test="expendServiceStatus != null" >,#{expendServiceStatus}</if>
+			<if test="expendServiceTime != null" >,#{expendServiceTime}</if>
+			<if test="billNum != null ">,#{billNum}</if>
+			<if test="entrustedBillids != null" >,#{entrustedBillids}</if>
+			<if test="checkedType != null" >,#{checkedType}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="billId">
+			SELECT LAST_INSERT_ID() AS BILL_ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateSPS_BILL" parameterType="Object" >
+		UPDATE SPS_BILL
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="billId != null ">,bill_id=#{billId}</if>
+			<if test="period != null ">,period=#{period}</if>
+			<if test="spId != null ">,sp_id=#{spId}</if>
+			<if test="deputeSpId != null ">,depute_sp_id=#{deputeSpId}</if>
+			<if test="cpId != null ">,cp_id=#{cpId}</if>
+			<if test="billDay != null ">,bill_day=#{billDay}</if>
+			<if test="billamount != null ">,billamount=#{billamount}</if>
+			<if test="billState != null ">,bill_state=#{billState}</if>
+			<if test="buildDate != null ">,build_date=#{buildDate}</if>
+			<if test="feePayStatus != null ">,fee_pay_status=#{feePayStatus}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+			<if test="fileId != null ">,file_id=#{fileId}</if>
+			<if test="schemeIds != null ">,scheme_ids=#{schemeIds}</if>
+			<if test="billType != null ">,bill_type=#{billType}</if>
+			<if test="deputeType != null ">,depute_type=#{deputeType}</if>
+			<if test="relBillId != null ">,rel_bill_id=#{relBillId}</if>
+			<if test="offsetIds != null ">,offset_ids=#{offsetIds}</if>
+			<if test="evidenceIds != null ">,evidence_ids=#{evidenceIds}</if>
+			<if test="perpayOfficeFee != null ">,perpay_office_fee=#{perpayOfficeFee}</if>
+			<if test="perpayServiceFee != null ">,perpay_service_fee=#{perpayServiceFee}</if>
+			<if test="actualOfficeFee != null ">,actual_office_fee=#{actualOfficeFee}</if>
+			<if test="actualServiceFee != null ">,actual_service_fee=#{actualServiceFee}</if>
+			<if test="expendOfficeFee != null ">,expend_office_fee=#{expendOfficeFee}</if>
+			<if test="expendServiceFee != null ">,expend_service_fee=#{expendServiceFee}</if>
+			<if test="billOfficeFee != null ">,bill_office_fee=#{billOfficeFee}</if>
+			<if test="billServiceFee != null ">,bill_service_fee=#{billServiceFee}</if>
+			<if test="marginOfficeFee != null ">,margin_office_fee=#{marginOfficeFee}</if>
+			<if test="marginServiceFee != null ">,margin_service_fee=#{marginServiceFee}</if>
+			<if test="gain != null ">,gain=#{gain}</if>
+			<if test="expendStatus != null ">,expend_status=#{expendStatus}</if>
+			<if test="expendTime != null ">,expend_time=#{expendTime}</if>
+			<if test="expendServiceStatus != null" >,expend_service_status = #{expendServiceStatus}</if>
+			<if test="expendServiceTime != null" >,expend_service_time = #{expendServiceTime}</if>
+			<if test="billNum != null ">,bill_num=#{billNum}</if>
+			<if test="entrustedBillids != null" >,entrusted_billids = #{entrustedBillids}</if>
+			<if test="checkedType != null" >,checked_type = #{checkedType}</if>
+			<if test="remark != null" >,remark = #{remark}</if>
+			<if test="expendServicefeeby != null" >,expend_servicefeeby = #{expendServicefeeby}</if>
+			<if test="expendOfficefeeby != null" >,expend_officefeeby = #{expendOfficefeeby}</if>
+		</trim>
+		WHERE BILL_ID=#{billId}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteSPS_BILL">DELETE FROM SPS_BILL WHERE BILL_ID=#{billId}</delete>
+	<!-- 任务单历史 列表总数-->
+	<select id="CountFindAllSPS_BILL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL</select>
+	<select id="CountSPS_BILL" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL WHERE BILL_ID=#{billId}</select>
+	<!-- 根据id查询 任务单历史 -->
+	<select id="FindByPK" resultMap="result_map_SPS_BILL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_BILL WHERE BILL_ID=#{billId}</select>
+
+	<!-- 根据各字段条件带模糊查询  任务单历史 -->
+	<select id="FreeFindSPS_BILL" resultMap="result_map_SPS_BILL" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_BILL
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带模糊查询  任务单历史 记录数 -->
+	<select id="CountFreeFindSPS_BILL" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM SPS_BILL
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带排序  任务单历史 -->
+	<select id="FreeFindSPS_BILLOrdered" resultMap="result_map_SPS_BILL" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_BILL
+		<include refid="Example_Where_Clause2" />
+		ORDER BY ${_orderBy}
+	</select>
+
+	<!-- *****************************  温馨提示：  ***************************** -->
+	<!-- **                                                                    ** -->
+	<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+	<!-- **                                             ** 2016/08/24 10:13:49 ** -->
+	<!-- ************************************************************************ -->
+
+
+	<select id="FindByBillNum" resultMap="result_map_SPS_BILL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_BILL WHERE BILL_ID=#{billId}</select>
+
+	<!-- 查询符合条件的企业账单个数 -->
+	<select id="QUERY_CORP_ALL_BILL_LIST_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM sps_bill b
+		INNER JOIN cm_corp cm ON b.cp_id = cm.cp_id
+		<if test="fee_pay_status != null"> AND b.fee_pay_status=#{fee_pay_status}</if>
+		INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+		WHERE b.cp_id = ${cpid} AND b.dr = 0 AND b.bill_state = 'SEND' AND  b.bill_type = 'PREPAY' AND b.depute_type = 'HR'
+		<if test="period != null "> AND b.period = #{period}</if>
+	</select>
+
+	<!-- 查询符合条件的企业账单列表 -->
+	<select id="QUERY_CORP_ALL_BILL_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT b.*,cm.corp_name,re.insurance_type,re.fund_type,count(DISTINCT emp.emp_id) as pnum FROM sps_bill b
+		INNER JOIN cm_corp cm ON b.cp_id = cm.cp_id
+		<if test="fee_pay_status != null"> AND b.fee_pay_status=#{fee_pay_status}</if>
+		INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+		INNER JOIN sps_bill_emp emp ON  emp.bill_id = b.bill_id
+		WHERE b.cp_id = ${cpid} AND b.dr = 0  AND b.bill_state = 'SEND' AND  b.bill_type = 'PREPAY' AND b.depute_type = 'HR'
+		<if test="period != null "> AND b.period = #{period}</if>
+		<if test="bill_id != null "> AND b.bill_id = #{bill_id}</if>
+		GROUP BY b.cp_id,b.period
+	</select>
+
+
+	<select id="QUERY_CORP_BILL_DETAIL_BY_CPID" resultMap="result_map_SPS_BILL" parameterType="Object">
+		SELECT b.* FROM sps_bill b
+		INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+		WHERE b.cp_id = ${cpId} AND b.dr = 0 AND  b.sp_id=${spId} AND  b.bill_type = 'PREPAY' AND b.depute_type = 'HR'
+		AND b.period = #{period}
+	</select>
+
+	<!-- 查询符合条件的账单个数 -->
+	<select id="QUERY_ALL_BILL_LIST_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT SUM(tb.count_) FROM (
+		    <!-- 查询已发送 已生成账单列表 -->
+			SELECT COUNT(1) AS count_ FROM (
+					SELECT COUNT(1) AS w FROM sps_bill b
+						INNER JOIN cm_corp cm ON b.cp_id = cm.cp_id and b.bill_type='PREPAY' AND cm.dr = 0
+						INNER JOIN sp_service sp ON b.sp_id = sp.sp_id
+						INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+						LEFT JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND scheme.dr = 0 AND scheme.state = 'USE'
+						WHERE b.sp_id = ${spid} AND b.dr = 0
+						<if test="cmName != null "> AND cm.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+						<if test="state != null and state == 'BACK'"> AND b.bill_state = 'GENERATED' AND b.remark is not NULL </if>
+						<if test="state != null and state != 'BACK'"> AND bill_state = #{state} </if>
+						<if test="day != null ">  AND scheme.bill_date = ${day}</if>
+						<if test="period != null "> AND b.period = #{period}</if>
+						<if test="authority != 'ALL'"> 
+							AND b.cp_id in (${authority})
+						 </if>
+						GROUP by b.cp_id
+			) m
+			UNION ALL
+		     <!-- 查询为未生产账单列表 -->
+			SELECT COUNT(1) AS count_ FROM (
+				SELECT COUNT(1) AS c FROM sp_cm_relation re
+					INNER JOIN cm_corp cm ON re.cp_id = cm.cp_id AND re.sp_id = ${spid} AND cm.dr = 0
+					INNER JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND scheme.dr = 0 AND scheme.state = 'USE'
+					WHERE NOT EXISTS (SELECT b.bill_id FROM sps_bill b WHERE b.bill_type='PREPAY' and re.cp_id = b.cp_id AND re.sp_id = b.sp_id AND b.period = #{period} AND b.dr = 0)
+					<if test="state != null "> AND '-1' = #{state} </if>
+					<if test="day != null "> AND re.bill_day = ${day}</if>
+					<if test="cmName != null "> AND cm.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+					<if test="authority != 'ALL'"> 
+						AND scheme.cp_id in (${authority})
+					 </if>
+					GROUP BY scheme.cp_id
+			) t
+		) tb
+	</select>
+
+	<!-- 查询符合条件的账单列表 -->
+	<select id="QUERY_ALL_BILL_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT * FROM (
+			<!-- 查询已发送 已生成账单列表 -->
+			SELECT b.depute_type,b.bill_id,b.bill_num,b.cp_id,cm.corp_name,b.period,scheme.bill_date,b.bill_state,re.insurance_type,re.fund_type,re.bill_liaison,re.bill_mail,b.fee_pay_status,b.create_dt,b.billamount,scheme.scheme_type,
+			count(DISTINCT emp.emp_id) as pnum,b.remark
+			FROM sps_bill b
+				INNER JOIN cm_corp cm ON b.cp_id = cm.cp_id and b.bill_type='PREPAY' AND cm.dr = 0
+				INNER JOIN sp_service sp ON b.sp_id = sp.sp_id
+				INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+				LEFT JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND scheme.dr = 0 AND scheme.state = 'USE'
+		        LEFT JOIN sps_bill_emp emp ON emp.bill_id = b.bill_id
+				WHERE b.sp_id = ${spid} AND b.dr = 0
+				<if test="cmName != null "> AND cm.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+				<if test="state != null and state == 'BACK'"> AND b.bill_state = 'GENERATED' AND b.remark is not NULL </if>
+		        <if test="state != null and state != 'BACK'"> AND bill_state = #{state} </if>
+				<if test="day != null "> AND scheme.bill_date = ${day}</if>
+				<if test="period != null "> AND b.period = #{period}</if>
+				<if test="authority != 'ALL'"> 
+					AND b.cp_id in (${authority})
+				 </if>
+		        GROUP BY b.cp_id
+			UNION ALL
+				<!-- 查询为未生产账单列表 -->
+				SELECT -1,-1,-1,re.cp_id,cm.corp_name,#{period},scheme.bill_date,-1,re.insurance_type,re.fund_type,re.bill_liaison,re.bill_mail,0,cm.create_dt,'--',scheme.scheme_type,
+				count(DISTINCT cmemp.emp_id) as pnum,'' as remark
+				FROM sp_cm_relation re
+				INNER JOIN cm_corp cm ON re.cp_id = cm.cp_id AND re.sp_id = ${spid} AND cm.dr = 0
+				INNER JOIN sps_scheme scheme ON re.sp_id = scheme.sp_id AND re.cp_id = scheme.cp_id AND scheme.dr = 0 AND scheme.state = 'USE'
+				LEFT JOIN sps_scheme_emp emp ON emp.scheme_id = scheme.scheme_id AND emp.state = 'USE'
+				LEFT JOIN cm_employee cmemp ON cmemp.emp_id = emp.emp_id AND (cmemp.fund_state = 'ON' OR cmemp.insurance_state = 'ON') AND cmemp.dr = 0
+				LEFT JOIN cm_employee_insurance ins ON ins.emp_id = cmemp.emp_id AND ins.begin_period >= #{period} and ins.pay_type = 'MONTH'
+				WHERE NOT EXISTS (SELECT b.bill_id FROM sps_bill b WHERE b.bill_type='PREPAY' and re.cp_id = b.cp_id AND re.sp_id = b.sp_id AND b.period = #{period} AND b.dr = 0)
+				<if test="state != null "> AND '-1' = #{state} </if>
+				<if test="day != null "> AND re.bill_day = ${day}</if>
+				<if test="cmName != null "> AND cm.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+				<if test="authority != 'ALL'"> 
+					AND scheme.cp_id in (${authority})
+				 </if>
+				GROUP BY scheme.cp_id
+		) ut ORDER BY ut.period DESC,ut.create_dt DESC
+	</select>
+
+	<!-- 查询账单详情 -->
+	<select id="QUERY_BILL_DETAIL" resultType="java.util.Map" parameterType="Object">
+          SELECT cm.corp_name,cm.cp_id,u.real_name,b.build_date,b.period,b.billamount,b.file_id,b.period,b.fee_pay_status,b.bill_state,b.bill_num,fi.id as upload_file_id,b.perpay_office_fee,b.perpay_service_fee FROM sps_bill b
+          INNER JOIN cm_corp cm ON b.sp_id = #{spid} AND b.cp_id = #{cmid}
+		  <if test="bill_id != null"> AND b.bill_id = #{bill_id} </if>
+		  <if test='bill_id == null or bill_id == ""'> AND b.period = DATE_FORMAT(NOW(), '%Y-%m') </if>
+		  AND b.cp_id = cm.cp_id
+          LEFT JOIN sys_user u ON u.user_id = b.create_by
+		  LEFT JOIN sys_uploadfile fi ON b.file_id = fi.savename
+	</select>
+
+	<!-- 查询企业账单详情 -->
+	<select id="QUERY_CORP_BILL_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT cm.corp_name,u.real_name,b.build_date,b.period,b.billamount,b.file_id,b.period FROM sps_bill b
+		INNER JOIN cm_corp cm ON b.cp_id = #{cmid} AND b.bill_id = #{bill_id} AND b.cp_id = cm.cp_id AND b.bill_state = 'SEND'
+		INNER JOIN sys_user u ON u.user_id = b.create_by
+	</select>
+
+	<!-- 账单详情包含差额信息 -->
+	<select id="QUERY_BILL_DETAIL_MARGE" resultType="java.util.Map" parameterType="Object">
+		SELECT
+		bill.*, sum(
+		ifnull(margin.service_fee, 0)
+		) AS s_fee,
+		sum(
+		ifnull(margin.office_fee, 0)
+		) AS g_fee
+		FROM
+		sps_bill bill,
+		sps_bill_margin margin
+		WHERE
+		FIND_IN_SET(margin.id, bill.offset_ids)
+		AND bill.cp_id = #{cmid}
+		AND bill.bill_id = #{bill_id}
+		AND bill.sp_id = #{spid}
+	</select>
+
+	<!-- 删除企业当月账单-->
+	<update id="DEL_CM_BILL_BY_MONTH" parameterType="Object" >
+		UPDATE SPS_BILL SET dr = 1 WHERE period = #{period} AND sp_id = #{spid} AND cp_id = #{cmid}
+	</update>
+
+	<!-- 获取账单收款个数 -->
+	<select id="QUERY_BILL_PAYMENT_LIST_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.sp_id = #{spid} AND bill.dr = 0 AND corp.dr = 0
+		AND bill.bill_type='PREPAY' AND bill.bill_state='SEND'
+		<if test="cmName != null "> AND corp.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+		<if test="period != null "> AND bill.period = #{period}</if>
+		<if test="feePayStatus != null "> AND bill.fee_pay_status = #{feePayStatus}</if>
+		<if test="authority != 'ALL'"> 
+			AND corp.cp_id in (${authority})
+		 </if>
+	</select>
+
+	<!-- 获取账单收款列表 -->
+	<select id="QUERY_BILL_PAYMENT_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT bill.bill_id,bill.cp_id,corp.corp_name
+		,(select count(DISTINCT be.emp_id) from sps_bill_emp be where be.bill_id=bill.bill_id) as count
+		,bill.period
+		,bill.perpay_office_fee
+    	,bill.perpay_service_fee
+    	,bill.actual_office_fee
+    	,bill.actual_service_fee
+		,bill.fee_pay_status
+		,bill.checked_type
+		,scheme.scheme_type
+		FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.sp_id = #{spid} AND bill.dr = 0 AND corp.dr = 0
+		AND bill.bill_type='PREPAY'
+		<if test="cmName != null "> AND corp.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+		<if test="period != null "> AND bill.period = #{period}</if>
+		<if test="feePayStatus != null "> AND bill.fee_pay_status = #{feePayStatus}</if>
+		<if test="authority != 'ALL'"> 
+			AND corp.cp_id in (${authority})
+		 </if>
+		LEFT JOIN sps_scheme scheme ON corp.cp_id = scheme.cp_id
+		AND scheme.sp_id = #{spid}
+		AND scheme.dr = 0
+		AND scheme.state = 'USE' AND scheme.scheme_type = 'ENTRUSTED'
+		ORDER BY bill.bill_id DESC
+	</select>
+
+	<!-- 账目核销-修改实收官费和实收服务费 -->
+	<update id="modifyFeeOfOfficeAndService" parameterType="Object" >
+		update sps_bill sb
+		set sb.actual_office_fee=#{actualOfficeFee}
+		,sb.actual_service_fee=#{actualServiceFee}
+		,sb.fee_pay_status=1
+		,sb.checked_type = #{checkedType}
+		where sb.bill_id=#{billId} and sb.sp_id =#{spId}
+	</update>
+
+	<!--财务处理 实缴账单列表个数 -->
+	<select id="QUERY_BILL_PIAD_LIST_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) AS count_ 
+		FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.sp_id = #{spId} AND bill.dr = 0  AND corp.dr = 0
+		AND bill.bill_type='PREPAY'
+		<if test="authority != 'ALL'"> 
+			and corp.cp_id in (${authority})
+		 </if>
+		<if test="cmName != null "> AND corp.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+		<if test="period != null "> AND bill.period = #{period}</if>
+		LEFT JOIN sps_bill_margin sbm ON sbm.prepay_bill_id=bill.bill_id and sbm.sp_id=bill.sp_id and sbm.dr=0
+		LEFT JOIN sps_bill paid_bill ON sbm.depute_bill_id = paid_bill.bill_id AND paid_bill.sp_id = #{spId} AND paid_bill.dr = 0 
+		AND paid_bill.bill_type='PAID'
+		<if test="sand_status != null and sand_status == 1">
+			WHERE paid_bill.bill_state='SEND'
+		</if>
+		<if test="sand_status != null and sand_status != 1">
+			WHERE paid_bill.bill_state !='SEND'
+		</if>
+
+		
+	</select>
+
+	<!--财务处理 实缴账单列表 -->
+	<select id="QUERY_BILL_PIAD_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT bill.bill_id as prepay_bill_id,paid_bill.bill_id,bill.cp_id,corp.corp_name,corp.mail
+		,(select count(DISTINCT be.emp_id) from sps_bill_emp be where be.bill_id=paid_bill.bill_id) as count
+		,bill.period
+    	,ifnull(paid_bill.actual_office_fee,0) as actual_office_fee
+    	,ifnull(paid_bill.actual_service_fee,0) as actual_service_fee
+		,paid_bill.fee_pay_status
+		,sum(ifnull(sbm.office_fee,0)) as office_fee
+		,sum(ifnull(sbm.service_fee,0)) as service_fee
+		,ifnull(paid_bill.billamount,0) as billamount
+		,paid_bill.evidence_ids
+		,paid_bill.bill_state
+		,paid_bill.file_id
+		,paid_bill.depute_type
+		,scheme.scheme_type
+		,sum(
+		ifnull(sbm.service_fee, 0)
+		) AS s_fee,
+		sum(
+		ifnull(sbm.office_fee, 0)
+		) AS g_fee
+		,ifnull(bill.actual_office_fee,0) as perpay_office_fee
+		,ifnull(bill.actual_service_fee,0) as perpay_service_fee
+		,paid_bill.bill_office_fee
+		,paid_bill.bill_service_fee
+		FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.sp_id = #{spId} AND bill.dr = 0 AND corp.dr = 0
+		AND bill.bill_type='PREPAY'
+		<if test="cmName != null "> AND corp.corp_name LIKE CONCAT('%',#{cmName},'%')</if>
+		<if test="period != null "> AND bill.period = #{period}</if>
+		<if test="authority != 'ALL'"> 
+			AND corp.cp_id in (${authority})
+		 </if>
+		LEFT JOIN sps_scheme scheme ON corp.cp_id = scheme.cp_id
+		AND scheme.sp_id = #{spId}
+		AND scheme.dr = 0
+		AND scheme.state = 'USE' AND scheme.scheme_type = 'ENTRUSTED'
+		LEFT JOIN sps_bill_margin sbm ON sbm.prepay_bill_id=bill.bill_id and sbm.sp_id=bill.sp_id and sbm.dr=0
+		LEFT JOIN sps_bill paid_bill ON sbm.depute_bill_id = paid_bill.bill_id AND paid_bill.sp_id = #{spId} AND paid_bill.dr = 0 
+		AND paid_bill.bill_type='PAID'
+		<if test="sand_status != null and sand_status == 1">
+			WHERE paid_bill.bill_state='SEND'
+		</if>
+		<if test="sand_status != null and sand_status != 1">
+			WHERE paid_bill.bill_state !='SEND'
+		</if>
+		GROUP BY bill.bill_id
+		ORDER BY bill.bill_id DESC
+
+		
+	</select>
+
+	<!--财务处理 实缴账单 修改实缴凭证 -->
+	<update id="modifyPaidEvidence" parameterType="Object">
+		update sps_bill 
+		set evidence_ids=#{evidenceIds}
+		where bill_id=#{billId}
+	</update>
+
+	<!--协作平台 委托实缴账单列表个数 -->
+	<select id="queryDeputePiadListCount" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM (
+		SELECT t.sp_id,t.sp_name,t.fullname,count(t.cp_id) as num,sum(t.c_emp) as pnum,sum(bill.perpay_office_fee) as perpay_office_fee,sum(bill.perpay_service_fee) as perpay_service_fee,sum(bill.billamount) as billamount,t.person,t.mobile FROM (
+		SELECT scheme.scheme_id as scheme_ids,sp.sp_id,sp.sp_name,scheme.cp_id,count(emp.emp_id) as c_emp,coo.person,coo.mobile,bs_area.fullname FROM cp_cooperation coo
+		INNER JOIN sp_service sp ON coo.partner_sp_id = sp.sp_id AND coo.sp_id = #{sp_id} and coo.relation = 'DEPUTE' AND coo.state = 'SIGNED'
+		<if test="spname != null "> AND sp.sp_name LIKE CONCAT('%',#{spname},'%')</if>
+		LEFT JOIN sps_scheme scheme ON scheme.parent_sp_id = coo.sp_id AND scheme.sp_id = sp.sp_id  AND scheme.dr = 0 AND scheme.parent_sp_id = #{sp_id} AND scheme.scheme_type = 'ENTRUSTED'
+		<if test="authority != 'ALL'">
+			and scheme.cp_id in (${authority})
+		</if>
+		LEFT JOIN sps_scheme_emp emp ON emp.scheme_id = scheme.scheme_id AND emp.state = 'USE'
+		INNER JOIN bs_area area ON area.area_id = sp.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+		GROUP BY scheme.cp_id,scheme.sp_id
+		) t
+		INNER JOIN sps_bill bill ON bill.sp_id = t.sp_id AND bill.cp_id = t.cp_id AND
+		bill.dr=0 AND bill.bill_type = 'PAID' AND bill.depute_type = 'SP'
+		<if test="authority != 'ALL'">
+			and bill.cp_id in (${authority})
+		</if>
+		<if test="bill_month != null ">
+			AND bill.period = #{bill_month}
+		</if>
+		GROUP BY t.sp_id,bill.period
+		)m
+	</select>
+
+	<!--协作平台 委托实缴账单列表 -->
+	<select id="queryDeputePiadList" resultType="java.util.Map" parameterType="Object">
+	select tab1.*,be.id as evaluation_id
+	from (
+		SELECT t.sp_id,t.sp_name,t.fullname,bill.period,count(t.cp_id) as num,sum(t.c_emp) as pnum,sum(bill.actual_office_fee) as actual_office_fee,sum(bill.actual_service_fee) as actual_service_fee,sum(bill.billamount) as billamount,	sum(ifnull(sbm.office_fee,0)) as office_fee,
+		sum(ifnull(sbm.service_fee,0)) as service_fee,t.person,t.mobile,sum(
+		ifnull(margin.service_fee, 0)
+		) AS s_fee,
+		sum(
+		ifnull(margin.office_fee, 0)
+		) AS g_fee,
+		bill.perpay_office_fee,
+		bill.perpay_service_fee
+		FROM (
+		SELECT scheme.scheme_id as scheme_ids,sp.sp_id,sp.sp_name,scheme.cp_id,count(DISTINCT emp.emp_id) as c_emp,coo.person,coo.mobile,bs_area.fullname FROM cp_cooperation coo
+		INNER JOIN sp_service sp ON coo.partner_sp_id = sp.sp_id AND coo.sp_id = #{sp_id} and coo.relation = 'DEPUTE' AND coo.state = 'SIGNED'
+		<if test="spname != null "> AND sp.sp_name LIKE CONCAT('%',#{spname},'%')</if>
+		LEFT JOIN sps_scheme scheme ON scheme.parent_sp_id = coo.sp_id AND scheme.sp_id = sp.sp_id  AND scheme.dr = 0 AND scheme.parent_sp_id = #{sp_id} AND scheme.scheme_type = 'ENTRUSTED'
+		<if test="authority != 'ALL'">
+			and scheme.cp_id in (${authority})
+		</if>
+		LEFT JOIN sps_scheme_emp emp ON emp.scheme_id = scheme.scheme_id AND emp.state = 'USE'
+		INNER JOIN bs_area area ON area.area_id = sp.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+		GROUP BY scheme.cp_id,scheme.sp_id
+		) t
+		INNER JOIN sps_bill perbill ON perbill.cp_id = t.cp_id AND perbill.sp_id = t.sp_id AND perbill.dr = 0
+		AND perbill.bill_type='PREPAY' AND perbill.depute_type = 'SP'
+		INNER JOIN sps_bill bill ON bill.sp_id = t.sp_id AND bill.cp_id = t.cp_id AND
+		bill.dr=0 AND bill.bill_type = 'PAID' AND bill.depute_type = 'SP'
+		<if test="authority != 'ALL'">
+			and bill.cp_id in (${authority})
+		</if>
+		<if test="bill_month != null ">
+			AND bill.period = #{bill_month}
+		</if>
+		LEFT JOIN sps_bill_margin margin ON FIND_IN_SET(margin.id, perbill.offset_ids)
+		LEFT JOIN sps_bill_margin sbm ON sbm.depute_bill_id = bill.bill_id
+		AND sbm.sp_id = bill.sp_id
+		GROUP BY t.sp_id,bill.period
+	)tab1 
+	left join bd_evaluation be
+	on concat(tab1.sp_id,tab1.period)=be.evaluated_tagerid
+	and be.Evaluate_Tpye='SERVICE' and be.Evaluate_Userid=#{user_id}
+	and be.Evaluated_Org_Tpye='SERVICE' and be.Evaluated_Type='PARTNER'
+	</select>
+
+	<!--协作平台 委托实缴账单 详情列表个数 -->
+	<select id="queryDeputePaidDetailListCount" resultType="java.lang.Integer" parameterType="Object">
+	SELECT COUNT(1)
+	FROM sps_bill bill
+	INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.dr = 0 and bill.bill_state='SEND' AND bill.bill_type='PAID' AND bill.sp_id=#{partner_sp_id}
+	and bill.depute_type='SP' 
+	<if test="authority != 'ALL'"> 
+    	and corp.cp_id in (${authority})
+    </if>
+	LEFT JOIN sps_bill_margin sbm ON sbm.depute_bill_id=bill.bill_id and sbm.sp_id=bill.sp_id
+	</select>
+	
+	<!--协作平台 委托实缴账单 详情列表 -->
+	<select id="queryDeputePaidDetailList" resultType="java.util.Map" parameterType="Object">
+	SELECT bill.rel_bill_id as prepay_bill_id,bill.sp_id,bill.bill_id,bill.cp_id,corp.corp_name
+	,(select count(DISTINCT be.emp_id) from sps_bill_emp be where be.bill_id=bill.bill_id) as count
+	,bill.period
+	,ifnull(bill.actual_office_fee,0) as actual_office_fee
+	,ifnull(bill.actual_service_fee,0) as actual_service_fee
+	,ifnull(sbm.office_fee,0) as office_fee
+	,ifnull(sbm.service_fee,0) as service_fee
+	,ifnull(bill.billamount,0) as billamount
+	,bill.evidence_ids
+	FROM sps_bill bill
+	INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.dr = 0 and bill.bill_state='SEND' AND bill.bill_type='PAID' AND bill.sp_id=#{partner_sp_id}
+	and bill.depute_type='SP'
+	<if test="authority != 'ALL'"> 
+    	and corp.cp_id in (${authority})
+    </if>
+	LEFT JOIN sps_bill_margin sbm ON sbm.depute_bill_id=bill.bill_id and sbm.sp_id=bill.sp_id
+	</select>
+		
+	<!--财务处理 实缴账单列表 实缴详情列表个数 -->
+	<select id="queryPaidDetailListCount" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1)
+		FROM sps_bill_emp sbe
+		INNER JOIN sps_bill bill ON bill.bill_id = sbe.bill_id AND bill.sp_id = #{spId} AND bill.cp_id = #{cpId}
+		INNER JOIN cm_employee em ON em.emp_id = sbe.emp_id AND sbe.bill_id=#{bill_id} and bill.period=#{period}
+		<if test="empNameAndIdCode != null ">
+			AND (em.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR sbe.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		INNER JOIN bs_area ba ON ba.area_id = sbe.insurance_area 
+	</select>
+
+	<!--财务处理 实缴账单列表 实缴详情列表 -->
+	<select id="queryPaidDetailList" resultType="java.util.Map" parameterType="Object">
+		SELECT em.emp_id,em.name,sbe.identity_code,sbe.insured_month,ba.fullname,sbe.insurance_base,sbe.fund_base
+		,sbe.insurance_official_fee,sbe.fund_official_fee,sbe.service_fee,sbe.pay_type,sbe.id,sbe.insurance_is_new,sbe.fund_is_new
+		FROM sps_bill_emp sbe
+		INNER JOIN sps_bill bill ON bill.bill_id = sbe.bill_id AND bill.sp_id = #{spId} AND bill.cp_id = #{cpId}
+		INNER JOIN cm_employee em ON em.emp_id = sbe.emp_id AND sbe.bill_id=#{bill_id} and bill.period=#{period}
+		<if test="empNameAndIdCode != null ">
+			AND (em.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR sbe.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		INNER JOIN bs_area ba ON ba.area_id = sbe.insurance_area
+		ORDER BY em.name ASC,sbe.insured_month DESC
+	</select>
+	
+	<!--协作平台 委托实缴账单 详情 实缴详情个数 -->
+	<select id="queryPaidDetailOfDeputeListCount" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1)
+		FROM sps_bill_emp sbe 
+		INNER JOIN cm_employee em ON em.emp_id = sbe.emp_id AND sbe.bill_id=#{bill_id}
+		<if test="empNameAndIdCode != null ">
+			AND (em.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR sbe.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		INNER JOIN bs_area ba ON ba.area_id = sbe.insurance_area 
+	</select>
+
+	<!--协作平台 委托实缴账单 详情 实缴详情 -->
+	<select id="queryPaidDetailOfDeputeList" resultType="java.util.Map" parameterType="Object">
+		SELECT em.emp_id,em.name,sbe.identity_code,sbe.insured_month,ba.fullname,sbe.insurance_base,sbe.fund_base
+		,sbe.insurance_official_fee,sbe.fund_official_fee,sbe.service_fee,sbe.id,
+		sbe.pay_type
+		FROM sps_bill_emp sbe 
+		INNER JOIN cm_employee em ON em.emp_id = sbe.emp_id AND sbe.bill_id=#{bill_id}
+		<if test="empNameAndIdCode != null ">
+			AND (em.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR sbe.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		INNER JOIN bs_area ba ON ba.area_id = sbe.insurance_area 
+		ORDER BY em.name ASC
+	</select>
+
+	<!--财务处理 实缴账单列表 差额详情列表个数 -->
+	<select id="queryMarginDetailListCount" resultType="java.lang.Integer" parameterType="Object">
+		select count(1)
+		from (
+			select tab2.emp_id,tab2.name,tab2.identity_code
+			,tab2.insured_month
+			,tab2.p_bill_id
+			,(tab2.p_insurance_official_fee+tab2.p_fund_official_fee) p_official_fee
+			,tab2.p_service_fee
+			,tab2.bill_id
+			,(tab2.insurance_official_fee+tab2.fund_official_fee) official_fee
+			,tab2.service_fee
+			,tab2.pay_type
+			from (
+			select ce.emp_id,ce.name,ce.identity_code
+			,tab1.insured_month
+			,ifnull(tab1.p_bill_id,0) as p_bill_id
+			,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+			,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+			,ifnull(tab1.p_service_fee,0) as p_service_fee
+			,ifnull(tab1.bill_id,0) as bill_id
+			,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+			,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+			,ifnull(tab1.service_fee,0) as service_fee
+			,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+			from (
+			select 
+			prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+			,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+			,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+			,prebillemp.insured_month,paidbillemp.service_fee
+			from sps_bill_emp prebillemp
+			left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id and paidbill.dr = 0 AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+			left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+			where prebillemp.bill_id = #{prepay_bill_id}
+			union
+			select 
+			prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+			,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+			,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+			,paidbillemp.insured_month,paidbillemp.service_fee
+			from sps_bill_emp paidbillemp
+			left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id and paidbill.dr = 0  AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+			left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+			where paidbillemp.bill_id = #{bill_id}
+			)tab1
+			inner join cm_employee ce
+			on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+			<if test="empNameAndIdCode != null ">
+				AND (ce.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR ce.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+			</if>
+			)tab2
+			where (
+			(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+			 or
+			(tab2.p_service_fee-tab2.service_fee)!=0 
+			) 
+		)tab3
+	</select>
+
+	<!--财务处理 实缴账单列表 差额详情列表 -->
+	<select id="queryMarginDetailList" resultType="java.util.Map" parameterType="Object">
+		select tab2.emp_id,tab2.name,tab2.identity_code
+		,tab2.insured_month
+		,tab2.p_bill_id
+		,tab2.p_insurance_official_fee
+		,tab2.p_fund_official_fee
+		,tab2.p_service_fee
+		,tab2.bill_id
+		,tab2.insurance_official_fee
+		,tab2.fund_official_fee
+		,tab2.service_fee
+		,tab2.pay_type
+		,tab2.insurance_is_new
+		,tab2.fund_is_new
+		from (
+		select ce.emp_id,ce.name,ce.identity_code
+		,tab1.insured_month
+		,ifnull(tab1.p_bill_id,0) as p_bill_id
+		,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+		,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+		,ifnull(tab1.p_service_fee,0) as p_service_fee
+		,ifnull(tab1.bill_id,0) as bill_id
+		,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+		,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+		,ifnull(tab1.service_fee,0) as service_fee
+		,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+		,tab1.insurance_is_new
+		,tab1.fund_is_new
+		from (
+		select 
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+		,prebillemp.insured_month,paidbillemp.service_fee,prebillemp.insurance_is_new,prebillemp.fund_is_new
+		from sps_bill_emp prebillemp
+		left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id and paidbill.dr = 0 AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+		where prebillemp.bill_id = #{prepay_bill_id}
+		union
+		select 
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+		,paidbillemp.insured_month,paidbillemp.service_fee,paidbillemp.insurance_is_new,paidbillemp.fund_is_new
+		from sps_bill_emp paidbillemp
+		left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id and paidbill.dr = 0  AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+		where paidbillemp.bill_id = #{bill_id}
+		)tab1
+		inner join cm_employee ce
+		on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+		<if test="empNameAndIdCode != null ">
+			AND (ce.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR ce.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		)tab2
+		where (
+		(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+		 or
+		(tab2.p_service_fee-tab2.service_fee)!=0 
+		)
+	</select>
+
+	<!--协作平台 详情 差额详情列表个数 -->
+	<select id="queryMarginDetailOfDeputeListCount" resultType="java.lang.Integer" parameterType="Object">
+		select count(1)
+		from (
+			select tab2.emp_id,tab2.name,tab2.identity_code
+			,tab2.insured_month
+			,tab2.p_bill_id
+			,(tab2.p_insurance_official_fee+tab2.p_fund_official_fee) p_official_fee
+			,tab2.p_service_fee
+			,tab2.bill_id
+			,(tab2.insurance_official_fee+tab2.fund_official_fee) official_fee
+			,tab2.service_fee
+			,tab2.pay_type
+			from (
+			select ce.emp_id,ce.name,ce.identity_code
+			,tab1.insured_month
+			,ifnull(tab1.p_bill_id,0) as p_bill_id
+			,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+			,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+			,ifnull(tab1.p_service_fee,0) as p_service_fee
+			,ifnull(tab1.bill_id,0) as bill_id
+			,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+			,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+			,ifnull(tab1.service_fee,0) as service_fee
+			,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+			from (
+			select 
+			prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+			,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+			,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+			,prebillemp.insured_month,paidbillemp.service_fee
+			from sps_bill_emp prebillemp
+			left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id  and paidbill.dr = 0  AND paidbill.cp_id = #{cpId}
+			left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+			where prebillemp.bill_id = #{prepay_bill_id}
+			union
+			select 
+			prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+			,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+			,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+			,paidbillemp.insured_month,paidbillemp.service_fee
+			from sps_bill_emp paidbillemp
+			left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id  and paidbill.dr = 0  AND paidbill.cp_id = #{cpId}
+			left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+			where paidbillemp.bill_id = #{bill_id}
+			)tab1
+			inner join cm_employee ce
+			on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+			<if test="empNameAndIdCode != null ">
+				AND (ce.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR ce.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+			</if>
+			)tab2
+			where (
+			(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+			 or
+			(tab2.p_service_fee-tab2.service_fee)!=0 
+			) 
+		)tab3
+	</select>
+
+	<!--协作平台 详情 差额详情列表 -->
+	<select id="queryMarginDetailOfDeputeList" resultType="java.util.Map" parameterType="Object">
+		select tab2.emp_id,tab2.name,tab2.identity_code
+		,tab2.insured_month
+		,tab2.p_bill_id
+		,tab2.p_insurance_official_fee
+	    ,tab2.p_fund_official_fee
+		,tab2.p_service_fee
+		,tab2.bill_id
+		,tab2.insurance_official_fee
+		,tab2.fund_official_fee
+		,tab2.service_fee
+		,tab2.pay_type
+		,tab2.insurance_is_new
+		,tab2.fund_is_new
+		from (
+		select ce.emp_id,ce.name,ce.identity_code
+		,tab1.insured_month
+		,ifnull(tab1.p_bill_id,0) as p_bill_id
+		,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+		,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+		,ifnull(tab1.p_service_fee,0) as p_service_fee
+		,ifnull(tab1.bill_id,0) as bill_id
+		,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+		,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+		,ifnull(tab1.service_fee,0) as service_fee
+		,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+		,tab1.insurance_is_new
+		,tab1.fund_is_new
+		from (
+		select 
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+		,prebillemp.insured_month,paidbillemp.service_fee,prebillemp.insurance_is_new,prebillemp.fund_is_new
+		from sps_bill_emp prebillemp
+		left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id  and paidbill.dr = 0  AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+		where prebillemp.bill_id = #{prepay_bill_id}
+		union
+		select 
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee 
+		,paidbillemp.insured_month,paidbillemp.service_fee,paidbillemp.insurance_is_new,paidbillemp.fund_is_new
+		from sps_bill_emp paidbillemp
+		left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id  and paidbill.dr = 0  AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type 
+		where paidbillemp.bill_id = #{bill_id}
+		)tab1
+		inner join cm_employee ce
+		on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+		<if test="empNameAndIdCode != null ">
+			AND (ce.name LIKE CONCAT('%',#{empNameAndIdCode},'%') OR ce.identity_code LIKE CONCAT('%',#{empNameAndIdCode},'%'))
+		</if>
+		)tab2
+		where (
+		(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+		 or
+		(tab2.p_service_fee-tab2.service_fee)!=0 
+		)
+	</select>
+
+	<select id="QUERY_CORP_BILL_PAYMENT_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT bill.bill_id,bill.cp_id,corp.corp_name,bill.period,bill.fee_pay_status
+		,bill.actual_office_fee
+        ,bill.actual_service_fee
+		FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.sp_id = #{spid} AND bill.dr = 0 AND bill.bill_id = #{billid} AND
+		bill.cp_id = #{cpid}
+		ORDER BY bill.bill_id DESC
+	</select>
+
+	<!-- 获取付款详情 -->
+	<select id="QUERY_BILL_PAYMENT_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT b.*,cm.corp_name,re.insurance_type,re.fund_type,count(DISTINCT emp.emp_id) as pnum,sp.sp_name FROM sps_bill b
+		INNER JOIN cm_corp cm ON b.cp_id = cm.cp_id
+		INNER JOIN sp_cm_relation re ON (re.sp_id = b.sp_id AND re.cp_id = b.cp_id)
+		LEFT JOIN sps_bill_emp emp ON  emp.bill_id = b.bill_id
+		INNER JOIN sp_service sp ON sp.sp_id = re.sp_id
+		WHERE b.cp_id = ${cpid} AND b.dr = 0
+		AND b.bill_id = #{billid}
+		GROUP BY b.cp_id,b.period
+	</select>
+
+	<!-- 企业实缴列表数据 -->
+	<select id="FIND_SPSBILL_BY_BILLTYPE" resultType="java.util.Map" parameterType="Object">
+		select tab1.*,ben.id as evaluation_id
+		from (
+		SELECT b.`bill_id`,b.sp_id, b.`period`, IFNULL(b.`actual_office_fee`, 0) AS actual_office_fee, IFNULL(b.`actual_service_fee`, 0) AS actual_service_fee,
+		IFNULL(bm.office_fee, 0) AS office_fee, IFNULL(bm.service_fee, 0) AS service_fee,
+		COUNT(DISTINCT be.`emp_id`) AS total_emp_num, b.`evidence_ids`,b.rel_bill_id
+		FROM sps_bill b
+		LEFT JOIN sps_bill_margin bm ON b.`bill_id` = bm.depute_bill_id
+		LEFT JOIN sps_bill_emp be ON b.`bill_id` = be.`bill_id`
+		WHERE b.`bill_type` = #{billType} AND b.`dr` = 0 AND b.cp_id = #{cpId} AND b.bill_state = 'SEND' AND  b.bill_type = 'PAID' AND b.depute_type = 'HR'
+
+		<if test="period != null"> AND b.`period` = #{period}</if>
+		GROUP BY b.`bill_id`
+		)tab1
+		left join bd_evaluation ben
+		on tab1.bill_id=ben.evaluated_tagerid
+		and ben.Evaluate_Tpye='CORP' and ben.Evaluate_Userid=351
+		and ben.Evaluated_Org_Tpye='SERVICE' and ben.Evaluated_Type='BILL'
+		and ben.evaluated_orgid=tab1.sp_id
+
+		ORDER BY tab1.`bill_id` DESC
+	</select>
+
+	<!-- 实缴账单详情 -->
+	<select id="FIND_PAIDBILL_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT b.`bill_id`, IFNULL(b.`actual_office_fee`, 0) AS actual_office_fee, IFNULL(b.`actual_service_fee`, 0) AS actual_service_fee,
+		IFNULL(bm.office_fee, 0) AS office_fee, IFNULL(bm.service_fee, 0) AS service_fee
+		FROM sps_bill b
+		LEFT JOIN sps_bill_margin bm ON b.`bill_id` = bm.depute_bill_id
+		WHERE b.`cp_id` = #{cpId} AND b.`bill_id` = #{billId} AND b.`dr` = 0 AND b.bill_state = 'SEND'
+	</select>
+
+	<!-- 查询支付账单下的分包账单 -->
+	<select id="QUERY_PAY_BILL_SP_BILL_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT b.bill_num,b.sp_id,b.bill_id,b.cp_id,sp.sp_name,corp.corp_name,b.period,b.file_id FROM sps_bill b,
+		(SELECT CONCAT(bill.bill_id,',',IFNULL(bill.entrusted_billids,'')) as billlist FROM sps_bill bill where bill.dr = 0 AND bill.bill_num = #{billNum}) bi,
+		cm_corp corp ,
+		sp_service sp
+		where FIND_IN_SET(b.bill_id,billlist) AND b.dr = 0 AND b.cp_id = corp.cp_id AND sp.sp_id = b.sp_id
+	</select>
+
+	<!-- 获取业务联系人 -->
+	<select id="QUERY_BILL_COLLABORATOR" resultType="java.util.Map" parameterType="Object">
+		SELECT u.user_name,u.mobile FROM sys_user u INNER JOIN cm_corp corp ON u.user_id = corp.collaborator AND corp.cp_id = #{cpId}
+	</select>
+	<!--获取企业最新账单月份-->
+	<select id="QUERY_CORP_MAX_BILL_MONTH" resultType="java.lang.String" parameterType="Object">
+		SELECT IFNULL(MAX(period),"----") as period FROM sps_bill bill where bill.cp_id = #{cpId} AND bill.bill_state = 'SEND' AND bill.bill_type = 'PREPAY' AND bill.depute_type = 'HR' AND bill.dr = 0 ;
+	</select>
+
+	<!--协作管理 委托合作伙伴列表 -->
+	<select id="QUERY_BILL_COOPER_CP_COUNT" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM (
+			SELECT t.sp_id,t.sp_name,t.fullname,count(t.cp_id) as num,sum(t.c_emp) as pnum,sum(bill.perpay_office_fee) as perpay_office_fee,sum(bill.perpay_service_fee) as perpay_service_fee,sum(bill.billamount) as billamount,t.person,t.mobile FROM (
+			SELECT scheme.scheme_id as scheme_ids,sp.sp_id,sp.sp_name,scheme.cp_id,count(emp.emp_id) as c_emp,coo.person,coo.mobile,bs_area.fullname FROM cp_cooperation coo
+			INNER JOIN sp_service sp ON coo.partner_sp_id = sp.sp_id AND coo.sp_id = #{sp_id} and coo.relation = 'DEPUTE' AND coo.state = 'SIGNED'
+			<if test="spname != null "> AND sp.sp_name LIKE CONCAT('%',#{spname},'%')</if>
+		    LEFT JOIN sps_scheme scheme ON scheme.parent_sp_id = coo.sp_id AND scheme.sp_id = sp.sp_id  AND scheme.dr = 0 AND scheme.parent_sp_id = #{sp_id} AND scheme.scheme_type = 'ENTRUSTED'
+		    <if test="authority != 'ALL'"> 
+    			and scheme.cp_id in (${authority})
+   			</if>
+			LEFT JOIN sps_scheme_emp emp ON emp.scheme_id = scheme.scheme_id AND emp.state = 'USE'
+			INNER JOIN bs_area area ON area.area_id = sp.area_id
+			INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+			<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+			GROUP BY scheme.cp_id,scheme.sp_id
+			) t
+		    INNER JOIN sps_bill bill ON bill.sp_id = t.sp_id AND bill.cp_id = t.cp_id AND
+			bill.dr=0 AND bill.bill_type = 'PREPAY' AND bill.depute_type = 'SP' 
+			<if test="authority != 'ALL'"> 
+    			and bill.cp_id in (${authority})
+   			</if>
+			<if test="bill_month != null ">
+				AND bill.period = #{bill_month}
+			</if>
+		    GROUP BY t.sp_id,bill.period
+		)m
+
+	</select>
+
+	<select id="QUERY_BILL_COOPER_CP_LIST" resultType="java.util.Map" parameterType="Object">
+			SELECT t.sp_id,t.sp_name,t.fullname,bill.period,count(t.cp_id) as num,sum(t.c_emp) as pnum,sum(bill.perpay_office_fee) as perpay_office_fee,sum(bill.perpay_service_fee) as perpay_service_fee,sum(bill.billamount) as billamount,t.person,t.mobile FROM (
+			SELECT scheme.scheme_id as scheme_ids,sp.sp_id,sp.sp_name,scheme.cp_id,count(emp.emp_id) as c_emp,coo.person,coo.mobile,bs_area.fullname FROM cp_cooperation coo
+			INNER JOIN sp_service sp ON coo.partner_sp_id = sp.sp_id AND coo.sp_id = #{sp_id} and coo.relation = 'DEPUTE' AND coo.state = 'SIGNED'
+			<if test="spname != null "> AND sp.sp_name LIKE CONCAT('%',#{spname},'%')</if>
+		    LEFT JOIN sps_scheme scheme ON scheme.parent_sp_id = coo.sp_id AND scheme.sp_id = sp.sp_id  AND scheme.dr = 0 AND scheme.parent_sp_id = #{sp_id} AND scheme.scheme_type = 'ENTRUSTED'
+		    <if test="authority != 'ALL'"> 
+    			and scheme.cp_id in (${authority})
+   			</if>
+			LEFT JOIN sps_scheme_emp emp ON emp.scheme_id = scheme.scheme_id AND emp.state = 'USE'
+			INNER JOIN bs_area area ON area.area_id = sp.area_id
+			INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+			<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+			GROUP BY scheme.cp_id,scheme.sp_id
+			) t
+			INNER JOIN sps_bill bill ON bill.sp_id = t.sp_id AND bill.cp_id = t.cp_id AND
+			bill.dr=0 AND bill.bill_type = 'PREPAY' AND bill.depute_type = 'SP' 
+			<if test="authority != 'ALL'"> 
+    			and bill.cp_id in (${authority})
+   			</if>
+			<if test="bill_month != null ">
+				AND bill.period = #{bill_month}
+			</if>
+		    GROUP BY t.sp_id,bill.period
+			ORDER BY period DESC,bill.bill_id DESC
+	</select>
+
+
+	<!-- 协作管理 委托应收账单 委托客户  -->
+	<select id="QUERY_BILL_DEPUTE_CP_COUNT" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM (
+			SELECT count(1) FROM sps_scheme scheme
+			INNER JOIN cm_corp corp ON corp.cp_id = scheme.cp_id AND scheme.dr = 0 AND scheme.state = 'USE' AND scheme.sp_id = #{parent_sp_id} AND scheme.parent_sp_id = #{sp_id}
+			<if test="cp_name != null "> AND corp.corp_name LIKE CONCAT('%',#{cp_name},'%')</if>
+			LEFT JOIN sps_bill bill ON bill.sp_id = scheme.sp_id AND bill.cp_id = corp.cp_id AND bill.period = #{bill_month} AND bill.dr=0 AND bill.bill_type = 'PREPAY' AND bill.depute_type = 'SP'
+			LEFT JOIN sps_scheme_emp emp ON scheme.scheme_id = emp.scheme_id
+		    <if test="fee_pay_status != null "> AND bill.fee_pay_status = #{fee_pay_status}</if>
+			GROUP BY corp.cp_id
+		) t
+	</select>
+
+	<select id="QUERY_BILL_DEPUTE_CP_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT scheme.sp_id,corp.cp_id,corp.corp_name,count(emp.emp_id) as num,#{bill_month} as bill_month,bill.perpay_office_fee,bill.perpay_service_fee,bill.actual_office_fee,bill.actual_service_fee,bill.billamount,bill.fee_pay_status,bill.bill_id FROM sps_scheme scheme
+		INNER JOIN cm_corp corp ON corp.cp_id = scheme.cp_id  AND scheme.dr = 0 AND scheme.state = 'USE' AND scheme.sp_id = #{parent_sp_id} AND scheme.parent_sp_id = #{sp_id}
+		<if test="cp_name != null "> AND corp.corp_name LIKE CONCAT('%',#{cp_name},'%')</if>
+		LEFT JOIN sps_bill bill ON bill.sp_id = scheme.sp_id AND bill.cp_id = corp.cp_id AND bill.period = #{bill_month} AND bill.dr=0 AND bill.bill_type = 'PREPAY' AND bill.depute_type = 'SP'
+		LEFT JOIN sps_scheme_emp emp ON scheme.scheme_id = emp.scheme_id
+		 <if test="fee_pay_status != null "> AND bill.fee_pay_status = #{fee_pay_status}</if>
+		GROUP BY corp.cp_id
+	</select>
+
+	<!-- 协作管理 委托应收账单 委托客户  -->
+	<select id="QUERY_BILL_DEPUTE_CP_COUNT2" resultType="java.lang.Integer"  parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM (
+			SELECT scheme.sp_id,corp.cp_id,corp.corp_name,count(DISTINCT emp.emp_id) as num,#{bill_month} as bill_month,bill.perpay_office_fee,bill.perpay_service_fee,bill.actual_office_fee,bill.actual_service_fee,bill.billamount,bill.fee_pay_status,bill.bill_id FROM sps_scheme scheme
+			INNER JOIN cm_corp corp ON corp.cp_id = scheme.cp_id  AND scheme.dr = 0 AND scheme.state = 'USE' AND scheme.sp_id = #{parent_sp_id} AND scheme.parent_sp_id = #{sp_id}
+			<if test="cp_name != null "> AND corp.corp_name LIKE CONCAT('%',#{cp_name},'%')</if>
+			<if test="authority != 'ALL'"> 
+	    		and corp.cp_id in (${authority})
+	   		</if>
+			INNER JOIN sps_bill bill ON bill.sp_id = scheme.sp_id AND bill.cp_id = corp.cp_id AND bill.period = #{bill_month} AND bill.dr=0 AND bill.bill_type = 'PREPAY' 
+			AND bill.depute_type = 'SP' AND bill.bill_state='SEND'
+			<if test="fee_pay_status != null "> AND bill.fee_pay_status = #{fee_pay_status}</if>
+			LEFT JOIN sps_bill_emp emp ON emp.bill_id = bill.bill_id
+			 
+			GROUP BY corp.cp_id
+		) t
+	</select>
+
+	<select id="QUERY_BILL_DEPUTE_CP_LIST2" resultType="java.util.Map" parameterType="Object">
+		SELECT scheme.sp_id,corp.cp_id,corp.corp_name,count(DISTINCT emp.emp_id) as num,#{bill_month} as bill_month,bill.perpay_office_fee,bill.perpay_service_fee,bill.actual_office_fee,bill.actual_service_fee,bill.billamount,bill.fee_pay_status,bill.bill_id,
+		sum(
+		ifnull(margin.service_fee, 0)
+		) AS margin_service_fee,
+		sum(
+		ifnull(margin.office_fee, 0)
+		) AS margin_office_fee
+		FROM sps_scheme scheme
+		INNER JOIN cm_corp corp ON corp.cp_id = scheme.cp_id  AND scheme.dr = 0 AND scheme.state = 'USE' AND scheme.sp_id = #{parent_sp_id} AND scheme.parent_sp_id = #{sp_id}
+		<if test="cp_name != null "> AND corp.corp_name LIKE CONCAT('%',#{cp_name},'%')</if>
+		<if test="authority != 'ALL'"> 
+    		and corp.cp_id in (${authority})
+   		</if>
+		INNER JOIN sps_bill bill ON bill.sp_id = scheme.sp_id AND bill.cp_id = corp.cp_id AND bill.period = #{bill_month} AND bill.dr=0 AND bill.bill_type = 'PREPAY' 
+		AND bill.depute_type = 'SP' AND bill.bill_state='SEND'
+		<if test="fee_pay_status != null "> AND bill.fee_pay_status = #{fee_pay_status}</if>
+		LEFT JOIN sps_bill_emp emp ON emp.bill_id = bill.bill_id
+		LEFT JOIN sps_bill_margin margin ON FIND_IN_SET(margin.id, bill.offset_ids)
+		GROUP BY corp.cp_id
+	</select>
+
+	<!-- 检查当前服务商对应的企业账单 -->
+	<select id="CHECK_BILL_STATS_BY_SP" resultType="java.util.Map" parameterType="Object">
+		SELECT scheme.*,bill.bill_id,bill.bill_state FROM sps_scheme scheme
+		LEFT JOIN sps_bill bill ON bill.sp_id = scheme.sp_id AND bill.period = #{bill_month} AND bill.dr = 0
+		AND bill.bill_type = #{bill_type}
+        AND bill.depute_type = 'SP'
+		AND bill.cp_id = #{cp_id}
+		WHERE scheme.parent_sp_id = #{sp_id} AND scheme.cp_id = #{cp_id} AND scheme.scheme_type = 'ENTRUSTED' AND scheme.state = 'USE' AND scheme.dr = 0
+		GROUP BY scheme.sp_id
+	</select>
+	
+	<select id="queryBillCount" resultType="java.util.Map" parameterType="Map">
+		SELECT count(1) count FROM sps_bill bill where bill.bill_type = 'PREPAY' AND bill.dr = 0 
+		AND bill.period = #{period} AND bill.sp_id = #{spId} AND bill.fee_pay_status = #{fee_pay_status}
+		<if test="authority != 'ALL'"> 
+			AND bill.cp_id in (${authority})
+		 </if>
+	</select>
+	
+	<select id="queryBillMoney" resultType="java.util.Map" parameterType="Map">
+		SELECT SUM(bill.billamount)  money FROM sps_bill bill where bill.bill_type = 'PREPAY' AND bill.dr = 0 
+		AND bill.period = #{period} AND bill.sp_id = #{spId} AND bill.fee_pay_status = #{fee_pay_status}
+		<if test="authority != 'ALL'"> 
+			AND bill.cp_id in (${authority})
+		 </if>
+	</select>
+	
+	<select id="queryServiceMoney" resultType="java.util.Map" parameterType="Map">
+		SELECT SUM(bill.perpay_service_fee) money FROM sps_bill bill where bill.bill_type = 'PREPAY' AND bill.dr = 0 
+		 AND bill.sp_id = #{spId} 
+		 <if test="fee_pay_status != null"> 
+			AND bill.fee_pay_status = #{fee_pay_status}
+		 </if>
+		 <if test="authority != 'ALL'"> 
+			AND bill.cp_id in (${authority})
+		 </if>
+		<if test="period != null"> AND bill.period = #{period} </if>
+	</select>
+	<!-- 查询 年度营收入 -->
+	<select id="queryYearMoney" resultType="java.util.Map" parameterType="Map">
+		SELECT bill.period,SUM(bill.billamount) billMoney,SUM(bill.perpay_service_fee) serviceMoney FROM sps_bill bill
+		 where bill.bill_type = 'PREPAY' AND bill.dr = 0 
+		 AND bill.sp_id = #{spId} 
+		 <if test="authority != 'ALL'"> 
+			AND bill.cp_id in (${authority})
+		 </if>
+		<if test="beginPeriod != null"> AND bill.period &gt;= #{beginPeriod} </if>
+		<if test="endPeriod != null"> AND bill.period  &lt;= #{endPeriod} </if>
+		group by bill.period  order by bill.period
+	</select>
+
+	<!-- 根据账单对应的分包/总包获取是否存在关联关系 -->
+	<select id="QUERY_EXIST_RELATION_BILL" resultType="java.lang.Integer" parameterType="Map">
+		SELECT count(1) as value FROM sps_bill bill INNER JOIN sps_scheme scheme
+		ON bill.sp_id = scheme.sp_id AND bill.cp_id = scheme.cp_id AND scheme.parent_sp_id =#{parent_sp_id} AND bill.sp_id = #{spId} AND bill.cp_id = #{cpId}
+		AND scheme.state = 'USE' AND scheme.dr = 0 AND scheme.scheme_type = 'ENTRUSTED'
+	</select>
+
+	<!-- 根据委托账单修改总包账单状态 -->
+	<update id="UpdateSPS_BILLBYDEPUTE_BILLID" parameterType="Object" >
+		UPDATE sps_bill SET dr = 1 WHERE FIND_IN_SET(${bill_id},entrusted_billids) AND sp_id = #{spId}
+	</update>
+
+	<select id="QUERY_SPS_BILLBYDEPUTE_BILLID_COUNT" resultType="java.lang.Integer" parameterType="Map">
+		SELECT count(1) as value FROM sps_bill bill WHERE FIND_IN_SET(${bill_id},bill.entrusted_billids) AND bill.sp_id = #{spId} AND bill.dr = 0
+	</select>
+
+	<update id="UpdateDEPUTE_BILLID" parameterType="Object" >
+		UPDATE sps_bill SET bill_state = #{billState},remark=#{remark} WHERE 1=1
+		<if test="spId != null"> AND sp_id = #{spId}</if>
+		<if test="cpId != null"> AND cp_id = #{cpId}</if>
+		 AND bill_id = #{billId} AND bill_state = 'SEND'
+	</update>
+
+	<update id="UPDATE_SPS_BILL_SEND" parameterType="Object" >
+		UPDATE sps_bill SET bill_state = 'SEND' WHERE sp_id = #{spId} AND cp_id = #{cpId} AND dr = 0 AND period = DATE_FORMAT(NOW(),'%Y-%m') AND bill_type = 'PREPAY'
+	</update>
+
+
+
+	<!-- 官费管理 -->
+	<resultMap id="result_map_SP_SERVICE_Mange" type="com.xfs.bill.dto.Management" >
+		<result column="sp_name" property="spName"/>
+		<result column="sp_id" property="spId"/>
+		<result column="account_name" property="accountName"/>
+		<result column="account_bank" property="accountBank"/>
+		<result column="account_no" property="accountNo"/>
+		<result column="account_mobile" property="accountMobile"/>
+		<result column="account_branch_bank" property="accountBranchBank"/>
+		<result column="order_id" property="orderId"/>
+		<result column="bill_id" property="billId"/>
+		<result column="cp_id" property="cpId"/>
+		<result column="billamount" property="billAmount"/>
+		<result column="expend_office_fee" property="expendOfficeFee"/>
+		<result column="period" property="period"/>
+		<result column="expend_status" property="expendStatus"/>
+		<result column="bill_num" property="billNum"/>
+		<result column="bill_state" property="billState"/>
+		<result column="billing_day" property="billingDay"/>
+		<!-- <result column="fee_pay_status" property="fee_pay_status"/> -->
+		<result column="perpay_service_fee" property="perpayServiceFee"/>
+		<result column="gain" property="gain"/>
+		<result column="expend_service_fee" property="expendServiceFee"/>
+		<result column="expend_service_status" property="expendServiceStatus"/>
+		<result column="expend_service_time" property="expendServiceTime"/>
+		<!--  <result column="perpay_service_fee" property="perpayServiceFee"/> -->
+		<result column="remark" property="remark"/>
+		<result column="username" property="username"/>
+		<result column="servicefeeby" property="servicefeeby"/>
+		<result column="bill_type" property="billType"/>
+		<result column="corp_name" property="corp_name"/>
+	</resultMap>
+
+
+	<!-- 查询官费列表 包括通过机构名称和账单号模糊查询    -->
+	<select id="FreeFindAccount_Manage" resultMap="result_map_SP_SERVICE_Mange" parameterType="Object">
+		SELECT
+		sss.sp_name AS sp_name,
+		sss.sp_id AS sp_id,
+		corp.corp_name,
+		bbb.account_name AS account_name,
+		bbb.account_bank AS account_bank,
+		bbb.account_no as account_no,
+		bbb.account_mobile as account_mobile,
+		bill.bill_id AS billId,
+		bill.perpay_office_fee AS billAmount,
+		bill.expend_office_fee AS expendOfficeFee,
+		bill.expend_time as expendTime,
+		bill.expend_status AS expend_status,
+		bill.bill_num AS bill_num,
+		bill.bill_type AS billType,<!-- /*账单状态*/ -->
+		bill.period AS period,
+		bill.bill_state AS bill_state,
+		bill.fee_pay_status,
+		bill.cp_id as cp_id,
+		sss.billing_day as billingDay,
+		voucher.order_id as order_id,
+		bill.remark AS remark,
+		su.user_name AS username
+		FROM
+		sps_bill bill
+		INNER JOIN sp_service sss ON bill.sp_id = sss.sp_id
+		AND bill.dr = 0
+		AND bill.bill_type = 'PREPAY' AND bill.bill_state = 'SEND' AND  bill.fee_pay_status = 1 AND bill.checked_type = 'AUTO'
+		<if test="period != null">AND bill.period=#{period}</if>
+		<if test="spId != null">AND bill.sp_id=#{spId}</if>
+		<if test="billNum != null">AND CONCAT(sss.sp_name,IFNULL(bill.bill_num,'')) like concat('%',#{billNum},'%')</if>
+		<if test="expendStatus != null">AND bill.expend_status=#{expendStatus}</if>
+		<if test="billId != null">AND bill.bill_id=#{billId}</if>
+		<if test="billingDay != null">AND sss.billing_day=#{billingDay}</if>
+		INNER JOIN cm_corp corp ON corp.cp_id = bill.cp_id
+		LEFT JOIN sys_user su ON su.user_id=bill.expend_servicefeeby
+		LEFT JOIN bl_pay_voucher voucher  ON  voucher.outer_trade_no = bill.bill_num AND voucher.status = 1  AND voucher.buyer_id = bill.cp_id
+		LEFT JOIN bl_pay_account bbb ON bbb.`owner` = bill.sp_id AND bbb.ownert_type = 'SERVICE' AND bbb.account_type = 'office' AND bbb.dr = 0
+	</select>
+
+	<select id="FreeFindAccount_Count" resultType="java.lang.Integer">
+		SELECT
+		count(1) as value
+		FROM
+		sps_bill bill
+		INNER JOIN sp_service sss ON bill.sp_id = sss.sp_id
+		AND bill.dr = 0
+		AND bill.bill_type = 'PREPAY' AND bill.bill_state = 'SEND' AND  bill.fee_pay_status = 1 AND bill.checked_type = 'AUTO'
+		<if test="period != null">AND bill.period=#{period}</if>
+		<if test="spId != null">AND bill.sp_id=#{spId}</if>
+		<if test="billNum != null">AND CONCAT(sss.sp_name,IFNULL(bill.bill_num,'')) like concat('%',#{billNum},'%')</if>
+		<if test="expendStatus != null">AND bill.expend_status=#{expendStatus}</if>
+		<if test="billId != null">AND bill.bill_id=#{billId}</if>
+		INNER JOIN cm_corp corp ON corp.cp_id = bill.cp_id
+	</select>
+
+
+	<select id="QUERY_EXP_AMOUNT" resultType="java.util.Map">
+		SELECT SUM(expend_office_fee) AS expend_office_fee FROM sps_bill bill where bill.dr = 0 AND bill.bill_state = 'SEND' AND bill.fee_pay_status = 1 AND bill.bill_type = 'PREPAY' AND bill.expend_status = 0
+	</select>
+
+	<select id="QUERY_PAY_AMOUNT" resultType="java.util.Map">
+		SELECT SUM(expend_office_fee) AS expend_office_fee FROM sps_bill bill where bill.dr = 0 AND bill.bill_state = 'SEND' AND bill.fee_pay_status = 1 AND bill.bill_type = 'PREPAY' AND bill.expend_status = 1
+	</select>
+
+
+	<!-- 查询服务费列表 包括通过机构名称和账单号模糊查询    -->
+	<select id="FreeFindService_Manage" resultMap="result_map_SP_SERVICE_Mange" parameterType="Object">
+		SELECT
+		sss.sp_name AS sp_name,
+		sss.sp_id AS sp_id,
+		corp.corp_name,
+		bbb.account_name AS account_name,
+		bbb.account_bank AS account_bank,
+		bbb.account_no as account_no,
+		bbb.account_mobile as account_mobile,
+		bill.bill_id AS billId,
+		bill.bill_type AS billType,<!-- /*账单状态*/ -->
+		bill.perpay_service_fee AS perpayServiceFee,<!-- /*服务费总金额*/ -->
+		bill.gain AS gain,<!-- /*分润*/ -->
+		bill.expend_service_fee AS expendServiceFee,<!-- /*服务费请款金额 */ -->
+		bill.expend_service_time as expendServiceTime,<!-- /*服务费出纳审核时间*/ -->
+		bill.expend_service_status AS expendServiceStatus,<!-- /*请款服务费状态*/ -->
+		bill.bill_num AS bill_num,
+		bill.period AS period,
+		bill.bill_state AS bill_state,
+		bill.fee_pay_status,
+		bill.cp_id as cp_id,
+		sss.billing_day as billingDay,<!-- /*请款日*/ -->
+		voucher.order_id as order_id,<!-- /*支付流水号*/ -->
+		bill.remark AS remark,
+		su.user_name AS username,
+		bill.expend_servicefeeby as servicefeeby
+		FROM
+		sps_bill bill
+		INNER JOIN sp_service sss ON bill.sp_id = sss.sp_id
+		AND bill.dr = 0
+		AND bill.bill_type = 'PREPAY' AND bill.bill_state = 'SEND' AND  bill.fee_pay_status = 1  AND bill.checked_type = 'AUTO'
+
+		<if test="period != null">AND bill.period=#{period}</if>
+		<if test="spId != null">AND bill.sp_id=#{spId}</if>
+		<if test="billNum != null">AND CONCAT(sss.sp_name,IFNULL(bill.bill_num,'')) like concat('%',#{billNum},'%')</if>
+		<if test="expendServiceStatus != null">AND bill.expend_service_status=#{expendServiceStatus}</if>
+		<if test="billId != null">AND bill.bill_id=#{billId}</if>
+		<if test="billingDay != null">AND sss.billing_day=#{billingDay}</if>
+
+		INNER JOIN cm_corp corp ON corp.cp_id = bill.cp_id
+		LEFT JOIN sys_user su ON su.user_id=bill.expend_servicefeeby
+		LEFT JOIN bl_pay_voucher voucher  ON  voucher.outer_trade_no = bill.bill_num AND voucher.status = 1 AND voucher.buyer_id = bill.cp_id
+		LEFT JOIN bl_pay_account bbb ON bbb.`owner` = bill.sp_id AND bbb.ownert_type = 'SERVICE' AND bbb.account_type = 'service' AND bbb.dr = 0
+	</select>
+
+	<select id="FreeFindService_Count" resultType="java.lang.Integer">
+		SELECT
+		count(1) as value
+		FROM
+		sps_bill bill
+		INNER JOIN sp_service sss ON bill.sp_id = sss.sp_id
+		AND bill.dr = 0
+		AND bill.bill_type = 'PREPAY' AND bill.bill_state = 'SEND' AND  bill.fee_pay_status = 1 AND bill.checked_type = 'AUTO'
+		<if test="period != null">AND bill.period=#{period}</if>
+		<if test="spId != null">AND bill.sp_id=#{spId}</if>
+		<if test="billNum != null">AND CONCAT(sss.sp_name,IFNULL(bill.bill_num,'')) like concat('%',#{billNum},'%')</if>
+		<if test="expendServiceStatus != null">AND bill.expend_service_status=#{expendServiceStatus}</if>
+		<if test="billId != null">AND bill.bill_id=#{billId}</if>
+		INNER JOIN cm_corp corp ON corp.cp_id = bill.cp_id
+	</select>
+
+	<select id="QUERY_SERVICE_EXP_AMOUNT" resultType="java.util.Map">
+		SELECT SUM(expend_service_fee) AS expend_service_fee FROM sps_bill bill where bill.dr = 0 AND bill.bill_state = 'SEND' AND bill.fee_pay_status = 1 AND bill.bill_type = 'PREPAY' AND bill.expend_service_status = 0
+	</select>
+
+	<select id="QUERY_SERVICE_PAY_AMOUNT" resultType="java.util.Map">
+		SELECT SUM(expend_service_fee) AS expend_service_fee FROM sps_bill bill where bill.dr = 0 AND bill.bill_state = 'SEND' AND bill.fee_pay_status = 1 AND bill.bill_type = 'PREPAY' AND bill.expend_service_status = 1
+	</select>
+
+	<select id="QUERY_SERVICE_GAIN_AMOUNT" resultType="java.util.Map">
+		SELECT SUM(gain) AS gain FROM sps_bill bill where bill.dr = 0 AND bill.bill_state = 'SEND' AND bill.fee_pay_status = 1 AND bill.bill_type = 'PREPAY'
+	</select>
+
+	<!-- 根据账单编号获取账单信息 -->
+	<select id="QUERY_SPS_BILL_BY_BILLNUM" resultMap="result_map_SPS_BILL" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_BILL
+		WHERE bill_num = #{billNum} AND dr = 0
+	</select>
+
+    <!-- 查看企业实缴账单 -->
+    <select id="FINDCMbillInfo" resultType="java.util.Map" parameterType="Object">
+        SELECT sb.cp_id,sb.sp_id,sb.bill_id,s.sp_name,cc.corp_name,(SELECT COUNT(DISTINCT sbe.`emp_id`) FROM sps_bill_emp sbe WHERE sbe.bill_id = sb.bill_id) AS pnum,
+        sb.actual_office_fee,sb.actual_service_fee,sb.period
+        FROM sps_bill sb
+        LEFT JOIN sp_service s ON s.sp_id = sb.sp_id
+        LEFT JOIN cm_corp cc ON cc.cp_id = sb.cp_id
+        WHERE sb.dr=0
+        AND sb.bill_type="PAID"SELECT sss.sp_name,ccc.corp_name,sbb.* FROM sps_bill sbb JOIN  sp_service sss ON sbb.sp_id = sss.sp_id  JOIN
+		cm_corp ccc ON sbb.cp_id = ccc.cp_id  where sbb.bill_type = 'PREPAY' AND sbb.depute_type = 'HR' AND sbb.dr = 0 AND ccc.dr = 0 ;
+        and sb.bill_state = 'SEND'
+		and sb.depute_type = 'HR'
+        <if test="cpId != null">AND sb.cp_id=#{cpId}</if>
+    </select>
+
+    <select id="CountFINDCMbillInfo" resultType="java.lang.Integer" parameterType="Object">
+        SELECT COUNT(1)
+        FROM sps_bill sb
+        LEFT JOIN sp_service s ON s.sp_id = sb.sp_id
+        LEFT JOIN cm_corp cc ON cc.cp_id = sb.cp_id
+        WHERE sb.dr=0
+        AND sb.bill_type="PAID"
+        and sb.bill_state = 'SEND'
+		and sb.depute_type = 'HR'
+        <if test="cpId != null">AND sb.cp_id=#{cpId}</if>
+    </select>
+
+    <select id="countNoSureBill" resultType="Integer">
+        SELECT count(1)  from sps_bill where sp_id = #{spId} and cp_id = #{cpId}
+         and dr = 0 and fee_pay_status = 0
+    </select>
+
+	<select id="countCollection" resultType="Integer">
+		SELECT COUNT(1) AS total
+		FROM
+		sps_bill sbb
+		JOIN sp_service sss ON sbb.sp_id = sss.sp_id
+		JOIN cm_corp ccc ON sbb.cp_id = ccc.cp_id
+		LEFT JOIN bl_pay_voucher bpv
+		ON bpv.outer_trade_no = sbb.bill_num AND bpv.bus_id in(1,7) AND bpv.dr = 0
+		WHERE
+		sbb.bill_type = 'PREPAY'
+		AND sbb.depute_type = 'HR'
+		AND sbb.dr = 0
+		AND ccc.dr = 0
+		<if test="spName!=null">AND sss.sp_name=#{spName} </if>
+		<if test="corpName!=null">AND ccc.corp_name=#{corpName} </if>
+		<if test="period!=null">AND sbb.period=#{period} </if>
+		<if test="source==1">
+			AND (ccc.source='SAAS' OR ccc.source is NULL)
+		</if>
+		<if test="source==2">AND ccc.source='CP'
+		</if>
+		<if test="source==3">AND ccc.source='MALL'
+		</if>
+		<if test="actualType==0">
+			AND (sbb.perpay_office_fee+sbb.perpay_service_fee)!=0
+			AND  (
+			already_check = 0
+			OR already_check IS NULL
+			)
+		</if>
+		<if test="actualType==1">AND bpv.already_check !=0 AND
+			(bpv.already_check) &lt;(sbb.perpay_office_fee+sbb.perpay_service_fee)
+		</if>
+		<if test="actualType==2">AND bpv.already_check&gt;=(sbb.perpay_office_fee+sbb.perpay_service_fee)
+		</if>
+		<if test="payType==1">AND bpv.pay_type = 'OFFLINE'</if>
+		<if test="payType==2">AND bpv.pay_type != 'OFFLINE'</if>
+	</select>
+
+
+	<select id="queryCollectionList" resultType="java.util.Map" parameterType="Object">
+    SELECT
+	sss.sp_name,
+	sbb.sp_id,
+	ccc.corp_name,
+    ccc.cp_id,
+    sbb.bill_id,
+	ccc.source,
+	sbb.period,
+	sbb.checked_type,
+	sbb.perpay_office_fee,
+	sbb.perpay_service_fee,
+	sbb.actual_office_fee,
+	sbb.actual_service_fee,
+	sbb.actual_office_fee+sbb.actual_service_fee as actualTotalNum ,
+	sbb.create_dt,
+	sbb.perpay_office_fee+sbb.perpay_service_fee as perTotalNum,
+	bpv.already_check,bpv.pay_type,
+		bpv.id,
+		bpv.status,
+		bpv.voucher_file
+	FROM
+		sps_bill sbb
+	JOIN sp_service sss ON sbb.sp_id = sss.sp_id
+	JOIN cm_corp ccc ON sbb.cp_id = ccc.cp_id
+	LEFT JOIN bl_pay_voucher bpv
+	ON bpv.outer_trade_no = sbb.bill_num AND bpv.bus_id in(1,7) AND bpv.dr = 0
+	WHERE
+	sbb.bill_type = 'PREPAY'
+	AND sbb.depute_type = 'HR'
+	AND sbb.dr = 0
+	AND ccc.dr = 0
+
+	<if test="spName!=null">AND sss.sp_name=#{spName} </if>
+	<if test="corpName!=null">AND ccc.corp_name=#{corpName} </if>
+	<if test="period!=null">AND sbb.period=#{period} </if>
+	<if test="source==1">
+		AND (ccc.source='SAAS' OR ccc.source is NULL)
+	</if>
+	<if test="source==2">AND ccc.source='CP'
+	</if>
+	<if test="source==3">AND ccc.source='MALL'
+	</if>
+	<if test="actualType==0">
+		AND (sbb.perpay_office_fee+sbb.perpay_service_fee)!=0
+		AND  (
+		already_check = 0
+		OR already_check IS NULL
+		)
+	</if>
+	<if test="actualType==1">AND bpv.already_check !=0 AND
+		(bpv.already_check) &lt;(sbb.perpay_office_fee+sbb.perpay_service_fee)
+	</if>
+	<if test="actualType==2">AND bpv.already_check &gt;=(sbb.perpay_office_fee+sbb.perpay_service_fee)
+	</if>
+	<if test="payType==1">AND bpv.pay_type = 'OFFLINE'</if>
+	<if test="payType==2">AND bpv.pay_type != 'OFFLINE'</if>
+        ORDER  BY sbb.create_dt desc
+	</select>
+	<!-- 根据bill_num查询 任务单 -->
+	<select id="findByBillNum" resultMap="result_map_SPS_BILL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_BILL WHERE BILL_NUM=#{billNum} and dr =#{dr}</select>
+
+
+	<!-- 根据各字段条件带模糊查询 -->
+	<select id="FreeFindSPS_BILL_BY_HR" resultMap="result_map_SPS_BILL_BY_HR" parameterType="Object">
+		SELECT *,corp.corp_name as billName FROM sps_bill bill INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.cp_id = #{cpId}
+		WHERE 1 = 1 AND bill.dr = 0
+		<if test="period!=null"> AND bill.period=#{period} </if>
+		<if test="status!=null"> AND bill.bill_state=#{status} </if>
+		<if test="status == null "> AND bill.bill_state in ('SEND','PAING','PAID') </if>
+		ORDER BY bill.period DESC
+	</select>
+	<!-- 根据各字段条件带模糊查询 记录数 -->
+	<select id="CountFreeFindSPS_BILL_BY_HR" resultType="java.lang.Integer">
+		SELECT count(1) as value  FROM sps_bill bill INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.cp_id = #{cpId}
+		WHERE 1 = 1 AND bill.dr = 0
+		<if test="period!=null"> AND bill.period=#{period} </if>
+		<if test="status!=null"> AND bill.bill_state=#{status} </if>
+		<if test="status==null "> AND bill.bill_state in ('SEND','PAING','PAID') </if>
+	</select>
+
+	<!-- 待处理账单接口 -->
+	<select id="QUERY_TODO_BILL_LIST" resultMap="result_map_SPS_BILL_BY_HR" parameterType="Object">
+		SELECT bill.*,corp.corp_name as billName FROM sps_bill bill INNER JOIN cm_corp corp ON corp.cp_id = bill.cp_id
+		WHERE bill.cp_id = #{cpId} AND bill.dr = 0
+		AND  bill.bill_state in ('SEND','PAING')
+	</select>
+
+	<!-- 账单趋势图 -->
+	<select id="QUERY_BILL_TREND" resultType="java.util.Map" parameterType="Object">
+			SELECT
+			p.period AS period,
+			bins.insurance_fund_type,
+			sum(t.emp_payment) AS empPayment,
+			sum(t.corp_payment) AS corpPayment,
+			COUNT(DISTINCT t.emp_id) AS empNum
+			FROM
+			(
+			<foreach collection="months" index="index"  separator="UNION ALL" item="list">
+			SELECT #{list} AS period
+			</foreach>
+			) p
+			LEFT JOIN (
+			SELECT
+			ins.*
+			FROM
+			cm_employee_insurance ins
+			INNER JOIN cm_employee emp ON emp.emp_id = ins.emp_id
+			AND emp.dr = 0
+			AND ins.dr = 0
+			AND emp.cp_id = #{cpId} AND ins.pay_type = 'MONTH'
+			) t ON p.period BETWEEN t.begin_period
+			AND IFNULL(t.end_period, '2099-09')
+			INNER JOIN bd_insurance bins ON t.insurance_id = bins.insurance_id
+			INNER JOIN sps_scheme_emp semp ON semp.emp_id = t.emp_id
+			INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id
+			<if test="areaId!=null and areaId != -1">
+				AND scheme.area_id = #{areaId}
+			</if>
+			WHERE
+			1 = 1
+			<if test="authority != 'ALL'">
+				AND scheme.scheme_id in (${authority})
+			</if>
+			GROUP BY
+			bins.insurance_fund_type,
+			p.period
+	</select>
+
+	<!-- 按参保月查看 -->
+	<select id="QUERY_EMP_BILL_BY_INSMONTH" resultMap="result_map_SPS_EMP_BILL_DETAIL" parameterType="Object">
+		SELECT * FROM (
+			SELECT ins.`name` as insureName,a.`name` as areaname,empins.corp_payment as corpPayment,empins.emp_payment as empPayment,(empins.corp_payment + empins.emp_payment) as totalPayment,#{period}
+			 as period  FROM cm_employee_insurance empins INNER JOIN bd_insurance ins ON (empins.insurance_id = ins.insurance_id and empins.pay_type = 'MONTH' AND empins.emp_id = #{empId} AND empins.dr = 0) AND #{period} BETWEEN empins.begin_period AND IFNULL(empins.end_period,'2099-12')
+			INNER JOIN sps_scheme_emp semp ON semp.emp_id = empins.emp_id
+			INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId}
+			INNER JOIN bs_area a ON a.area_id = scheme.area_id
+			INNER JOIN bs_arearatio ratio ON ratio.ratio_id = empins.ratio_id AND ratio.insurance_id = ins.insurance_id
+			INNER JOIN bd_billrule rule ON rule.area_id = a.area_id
+			ORDER BY ins.insurance_fund_type DESC,ins.insurance_id ASC) a
+			UNION ALL
+			SELECT '服务费' as insureName,'--' as areaname,'--' as corpPayment,'--' as empPayment,scheme.price as totalPayment,#{period} as period FROM sps_scheme scheme INNER JOIN sps_scheme_emp semp ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId} AND semp.emp_id = #{empId}
+	</select>
+
+
+	<!-- 按账单月查看 -->
+	<select id="QUERY_EMP_BILL_BY_BILLMONTH" resultMap="result_map_SPS_EMP_BILL_DETAIL" parameterType="Object">
+		SELECT * FROM (
+		SELECT ins.`name` as insureName,a.`name` as areaname,detail.corp_payment as corpPayment,detail.emp_payment as empPayment,(detail.corp_payment + detail.emp_payment) as totalPayment,#{period} as period,'--' as bill_id,'--' as bill_state FROM cm_employee emp
+		INNER JOIN cm_employee_insurance detail ON emp.emp_id = detail.emp_id and detail.pay_type = 'MONTH' AND  emp.emp_id = #{empId} AND #{period} BETWEEN detail.begin_period AND IFNULL(detail.end_period,'2099-09') AND emp.dr = 0 AND detail.dr = 0
+		INNER JOIN bd_insurance ins ON ins.insurance_id =  detail.insurance_id
+		INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+		INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId} AND scheme.dr = 0 AND scheme.state = 'USE'
+		<if test="authority != 'ALL'">
+			AND scheme.scheme_id in (${authority})
+		</if>
+		INNER JOIN bs_area a ON a.area_id = scheme.area_id
+		ORDER BY ins.insurance_fund_type DESC,ins.insurance_id ASC) a
+		UNION ALL
+		SELECT '服务费' as insureName,'--' as areaname,'--' as corpPayment,'--' as empPayment,scheme.price as totalPayment,#{period} as period,'--' as bill_id,'--' as bill_state
+		FROM cm_employee emp
+		INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id AND emp.emp_id = #{empId}
+		INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId} AND scheme.dr = 0 AND scheme.state = 'USE'
+		<if test="authority != 'ALL'">
+			AND scheme.scheme_id in (${authority})
+		</if>
+	</select>
+
+	<!-- 按人员参保月份查看 -->
+	<select id="QUERY_EMP_BILL_BY_PAYMENT" resultMap="result_map_SPS_EMP_BILL_DETAIL" parameterType="Object">
+			SELECT * FROM (
+			SELECT *,CONCAT(truncate(cast(a.corpPayment as decimal(9,4))+ cast(a.empPayment as decimal(9,4)),2),'') as totalPayment FROM (
+			SELECT ins.`code`,ins.insurance_fund_type,detail.corp_addition,detail.psn_addition,
+			ins.`name` as insureName,a.`name` as areaname,
+			IFNULL(truncate((
+				case when 'MONTH_ANNUALY'=ar.`billing_cycle` or 'YEAR_ANNUALY'=ar.`billing_cycle` then
+				(case when month(str_to_date(#{period},'%Y-%m'))=ar.`pay_period` or #{period}=(select min(ccc.`begin_period`) from `cm_employee_insurance` ccc inner join `bs_arearatio` aaa on ccc.`ratio_id` = aaa.`ratio_id` and ccc.pay_type = 'MONTH' and aaa.`billing_cycle` in ('MONTH_ANNUALY','YEAR_ANNUALY') where ccc.emp_id = emp.emp_id and ccc.insurance_id = detail.insurance_id and ccc.dr=0) then  <!-- 当前月等于缴费月 或 等于起始月（自查询中可查出最小的起始月，因为有年缴费区分） -->
+					(case when 'MONTH_ANNUALY'=ar.`billing_cycle` then
+						(CASE WHEN 'ROUND' = ar.corp_calc_method THEN
+						ROUND(detail.corp_payment/(12.00/(
+						case when
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+						)),2)
+						WHEN 'CEIL' = ar.corp_calc_method AND ar.corp_precision = 0 THEN
+						CEIL(detail.corp_payment/(12.00/(
+						case when
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+						)))
+						WHEN 'CEIL' = ar.corp_calc_method AND ar.corp_precision > 0 THEN
+							case WHEN substring(substring_index(
+									detail.corp_payment/(12.00 /(
+									case when
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+									)),'.',-1),(ar.corp_precision+1),1) > 0 THEN
+										CASE WHEN ar.corp_precision = 1 THEN
+											TRUNCATE ((detail.corp_payment/(12.00/(
+											case when
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+											)) + 0.09),ar.corp_precision)
+										WHEN ar.corp_precision = 2 THEN
+											TRUNCATE ((detail.corp_payment/(12.00/(
+											case when
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+											(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+											)) + 0.009),ar.corp_precision)
+		  								END
+
+							END
+						WHEN 'FLOOR' = ar.corp_calc_method THEN
+						TRUNCATE(detail.corp_payment/(12.00/(
+						case when
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+						)),ar.corp_precision)
+						ELSE
+						ROUND(detail.corp_payment/(12.00/(
+						case when
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+						(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+						)),ar.corp_precision)
+						END)
+					else TRUNCATE(detail.corp_payment,2) end)
+				else 0 end)
+				else TRUNCATE(detail.corp_payment,2) end
+			)+0,2),'--') as corpPayment,
+			IFNULL(truncate((
+				case when 'MONTH_ANNUALY'=ar.`billing_cycle` or 'YEAR_ANNUALY'=ar.`billing_cycle` then
+					(case when month(str_to_date(#{period},'%Y-%m'))=ar.`pay_period` or #{period}=(select min(ccc.`begin_period`) from `cm_employee_insurance` ccc inner join `bs_arearatio` aaa on ccc.`ratio_id` = aaa.`ratio_id` and ccc.pay_type = 'MONTH' and aaa.`billing_cycle` in ('MONTH_ANNUALY','YEAR_ANNUALY') where ccc.emp_id = emp.emp_id and ccc.insurance_id = detail.insurance_id and ccc.dr=0) then
+						(case when 'MONTH_ANNUALY'=ar.`billing_cycle` then
+							(CASE WHEN 'ROUND' = ar.psn_calc_method THEN
+							ROUND(detail.emp_payment/(12.00/(
+							case when
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+							)),2)
+							WHEN 'CEIL' = ar.psn_calc_method AND ar.psn_precision = 0 THEN
+							CEIL(detail.emp_payment/(12.00/(
+							case when
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+							)))
+							WHEN 'CEIL' = ar.psn_calc_method AND ar.psn_precision > 0 THEN
+								case WHEN substring(substring_index(
+								detail.emp_payment/(12.00 /(
+								case when
+								(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+								(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+								(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+								)),'.',-1),(ar.psn_precision+1),1) > 0 THEN
+									CASE WHEN ar.psn_precision = 1 THEN
+									TRUNCATE ((detail.emp_payment/(12.00/(
+									case when
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+									)) + 0.09),ar.psn_precision)
+									WHEN ar.psn_precision = 2 THEN
+									TRUNCATE ((detail.emp_payment/(12.00/(
+									case when
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+									(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+									)) + 0.009),ar.psn_precision)
+									END
+								END
+							WHEN 'FLOOR' = ar.psn_calc_method THEN
+							TRUNCATE(detail.emp_payment/(12.00/(
+							case when
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+							)),ar.psn_precision)
+							ELSE
+							ROUND(detail.emp_payment/(12.00/(
+							case when
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) &lt;=0 then
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) + 12 else
+							(ar.`pay_period`-month(str_to_date(#{period},'%Y-%m'))) end
+							)),ar.psn_precision)
+							END)
+						else TRUNCATE(detail.emp_payment,2) end)
+					else 0 end)
+				else TRUNCATE(detail.emp_payment,2) end
+			)+0,2),'--') as empPayment,
+			(CASE WHEN detail.pay_type = 'MONTH' THEN
+			IFNULL(detail.period, #{period}) ELSE detail.begin_period END) AS period,
+		    '--' as bill_id,'--' as bill_state,
+			detail.corp_paybase as corpPaybase,detail.emp_paybase as empPaybase,detail.insurance_id as insurance_id,TRUNCATE(detail.corp_ratio,4) as corpRatio,TRUNCATE(detail.emp_ratio,4) as empRatio
+			FROM cm_employee emp
+			INNER JOIN cm_employee_insurance detail ON emp.emp_id = detail.emp_id AND emp.emp_id = #{empId}
+		     AND emp.dr = 0 AND detail.dr = 0
+			AND ((#{period} BETWEEN detail.begin_period
+			AND IFNULL(
+			detail.end_period,
+			'2099-09'
+			) AND detail.pay_type = 'MONTH') OR (detail.period = #{period} AND detail.pay_type = 'PATCH'))
+		    INNER JOIN bd_insurance ins ON ins.insurance_id =  detail.insurance_id
+			INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+			INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId} AND scheme.dr = 0 AND scheme.state = 'USE'
+			<if test="authority != 'ALL'"> 
+				AND scheme.scheme_id in (${authority})
+			</if>
+			INNER JOIN bs_area a ON a.area_id = scheme.area_id
+			left join bs_arearatio ar on detail.`ratio_id`=ar.`ratio_id` and ar.`dr`=0
+			left JOIN bd_insurance bi ON bi.insurance_id = detail.insurance_id
+			ORDER BY ins.insurance_fund_type DESC,ins.insurance_id ASC) a
+			UNION ALL
+			SELECT  '--' as	`code`,'--'  as insurance_fund_type,'--'  as corp_addition,'--'  as psn_addition,
+            '服务费' as insureName,'--' as areaname,'--' as corpPayment,'--' as empPayment,#{period} as period,'--' as bill_id,'--' as bill_state,
+			'--' as corpPaybase,'--' as empPaybase,'--' as insurance_id,'--' as corpRatio,'--' as empRatio ,scheme.price as totalPayment
+			FROM cm_employee emp
+			INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id AND emp.emp_id = #{empId}
+			INNER JOIN sps_scheme scheme ON scheme.scheme_id = semp.scheme_id AND scheme.cp_id = #{cpId} AND scheme.dr = 0 AND scheme.state = 'USE'
+			<if test="authority != 'ALL'"> 
+				AND scheme.scheme_id in (${authority})
+			</if>
+			) m
+			ORDER BY m.period DESC,
+			m.insurance_fund_type DESC,
+			m.insurance_id ASC
+	</select>
+
+	<!-- 汇总账单详情1 -->
+	<select id="QUERY_BILL_DETAIL_STEP_ONE" resultType="java.util.Map" parameterType="Object">
+		SELECT bill.period,bill.perpay_service_fee,bill.billamount,ubill.billamount as lastBillamount,corp.corp_name FROM sps_bill bill
+		INNER JOIN cm_corp corp ON bill.cp_id = corp.cp_id AND bill.cp_id = #{cpId}
+		LEFT JOIN sps_bill ubill ON ubill.sp_id = bill.sp_id AND ubill.cp_id = bill.cp_id
+		AND ubill.period = DATE_FORMAT(date_add(STR_TO_DATE(CONCAT(bill.period,'-01'),'%Y-%m-%d'),interval -1 month),'%Y-%m')
+		AND ubill.dr = 0 AND ubill.bill_type = 'PREPAY'
+		 where bill.bill_id = #{billId}
+	</select>
+
+	<!-- 汇总账单详情2 -->
+	<select id="QUERY_BILL_DETAIL_STEP_SED" resultType="java.util.Map" parameterType="Object">
+		SELECT count(DISTINCT emp_id) as total,sum(fund_official_fee) AS fund_official_fee,sum(service_fee) as service_fee,SUM(insurance_official_fee) as insurance_official_fee FROM sps_bill bill INNER JOIN sps_bill_emp emp ON bill.bill_id = emp.bill_id AND bill.bill_id = #{billId} AND bill.cp_id = #{cpId}
+	</select>
+
+	<!-- 汇总账单详情3 -->
+	<select id="QUERY_BILL_DETAIL_STEP_THIRD" resultType="java.util.Map" parameterType="Object">
+		SELECT * FROM (
+		SELECT count(DISTINCT emp.emp_id) as empcount,emp.insured_month FROM sps_bill bill INNER JOIN sps_bill_emp emp ON bill.bill_id = emp.bill_id AND bill.bill_id = #{billId} AND bill.cp_id = #{cpId}
+		GROUP BY emp.insured_month ) t ORDER BY t.empcount DESC LIMIT 1
+	</select>
+	
+	<select id="findBillCount" resultType="java.util.Map" parameterType="Object">
+		select c.*,(c.corp+c.emp+c.service) as prepay
+		from (
+			select ifnull(sum(ifnull(bd.corp_payment,0)),0) as corp       
+			,ifnull(sum(ifnull(bd.emp_payment,0)),0) as emp      
+	 		,ifnull(be.service,0) as service    
+		   from(
+		     	select sum(b.service) as service, GROUP_CONCAT(b.id) as id
+				from(
+					select ifnull(b.bill_service_fee,0) as service,GROUP_CONCAT( be.id) as id,b.`bill_id`
+			     	from sps_bill b 
+			     	inner join sps_bill_emp be on b.bill_id=be.bill_id and b.period = #{period} AND b.bill_type = #{billType} AND b.cp_id = #{cpId} AND b.dr = 0
+			     	inner join sp_service s on b.sp_id=s.sp_id 
+			     	<if test="spsName != null and spsName != ''">
+						AND s.sp_name like '%${spsName}%'
+					</if>
+		     		<if test="authority != 'ALL'"> 
+						INNER JOIN sys_function_data da ON da.data_id = b.sp_id AND da.data_type = 'CM_CORP_SP' AND da.user_id = #{userId}
+					</if>
+					group by b.`bill_id`
+				)b
+		   ) be
+		   inner join sps_bill_detail bd on FIND_IN_SET(bd.bill_emp_id, be.id)
+		) c
+	</select>
+	
+	<select id="findBillDetailsCount" resultType="java.util.Map" parameterType="Object">
+		select c.*,(c.corp+c.emp+c.service) as prepay
+		from (
+			select ifnull(sum(ifnull(bd.corp_payment,0)),0) as corp       
+			,ifnull(sum(ifnull(bd.emp_payment,0)),0) as emp      
+	 		,ifnull(be.service,0) as service    
+		   	from(
+		     	select ifnull(sum(be.service_fee),0) as service,GROUP_CONCAT(be.id) as id
+		     	from sps_bill b 
+		     	inner join sps_bill_emp be on b.bill_id=be.bill_id and b.period = #{period} AND b.bill_type = #{billType} AND b.cp_id = #{cpId} AND b.dr = 0 and b.sp_id=#{spId}
+		     	<if test="source == 0">
+		     		left join cm_employee e on be.emp_id = e.emp_id
+					left join sps_scheme s on e.`scheme_id`=s.scheme_id AND s.dr=0
+				</if>
+				<if test="source == 1">
+		     		inner join cm_employee e on be.emp_id = e.emp_id
+					inner join sps_scheme s on e.`scheme_id`=s.scheme_id AND s.dr=0
+				</if>
+				<if test="authority != 'ALL'">
+					INNER JOIN sys_function_data da ON da.data_id = b.sp_id AND da.data_type = 'CM_CORP_SP' AND da.user_id = #{userId}
+				</if>
+				WHERE 1 = 1
+				<if test="empName != null and empName != ''">
+					AND be.name like '%${empName}%'
+				</if>
+				<if test="areaId != null and areaId != ''">
+					and s.area_id=#{areaId}
+				</if>
+		   	) be
+		    inner join sps_bill_detail bd where FIND_IN_SET (bd.bill_emp_id , be.id )
+		) c
+	</select>
+	<!-- 服务商对账详情数据列表总数 -->
+	<select id="findServiceBillDetailsListCount" resultType="java.lang.Integer">
+		select count(a.empId) as value
+		from(
+			select b.*
+			from(
+				SELECT ba.*
+				,CASE  WHEN (ifnull(bb.fund_official_fee, 0) + ifnull(bb.insurance_official_fee, 0))=0 THEN '未做'
+				 WHEN (ifnull(ba.fundFeePrepay, 0) + ifnull(ba.insFeePrepay, 0)) != (ifnull(bb.fund_official_fee, 0) + ifnull(bb.insurance_official_fee, 0)) THEN '异常'
+				 ELSE '正常' END AS businessStatus 
+				,ifnull(bb.fund_official_fee, 0) AS fundFeePaid, ifnull(bb.insurance_official_fee, 0) AS insFeePaid
+				,(ifnull(ba.service_fee_a,0)-ifnull(bb.service_fee_b,0)) as serviceFee
+				FROM (SELECT ba.empId, ba.name, ba.code, ba.branch
+					, ba.areaName, ba.month
+					,CASE GROUP_CONCAT(ba.insurance_fund_type) WHEN 'INSURANCE' THEN '社保' WHEN 'FUND' THEN '公积金' ELSE '全部' END AS insuranceType 
+					,CASE WHEN ba.pay_type = 'PATCH' THEN '补缴' WHEN ba.pay_type = 'MONTH'
+					AND (ba.insurance_is_new = 'Y'
+						OR ba.fund_is_new = 'Y') THEN '新增' ELSE '正常缴费' END AS payType, ifnull(ba.fund_official_fee, 0) as fundFeePrepay
+					, ifnull(ba.insurance_official_fee, 0) as insFeePrepay,ba.pay_type as pay_type,ba.service_fee_a
+					FROM (SELECT e.emp_id as empId, e.name, be.identity_code as code, ifnull(e.`branch`,'--') as branch
+						, a.name AS areaName, be.insured_month as month, bst.insurance_fund_type, be.pay_type, be.insurance_is_new
+						, be.fund_is_new, ifnull(be.fund_official_fee, 0) AS fund_official_fee, ifnull(be.insurance_official_fee, 0) AS insurance_official_fee
+						,ifnull(be.`service_fee`,0) as service_fee_a
+						FROM sps_bill_emp be
+						INNER JOIN sps_bill b ON be.bill_id = b.bill_id
+							AND b.sp_id = #{spId}
+							AND b.cp_id = #{cpId}
+							AND b.period = #{period}
+							AND b.bill_type = 'PREPAY'
+							AND be.emp_id IS NOT NULL
+		                    AND b.dr = 0
+						INNER JOIN cm_employee e ON be.emp_id = e.emp_id 
+						<if test="empName != null and empName != ''"> 
+							AND e.name like '%${empName}%'
+						</if>
+						INNER JOIN sps_scheme_emp se ON be.emp_id = se.emp_id
+						INNER JOIN sps_scheme s ON se.scheme_id = s.scheme_id
+						<if test="areaId != null and areaId != ''"> 
+							and s.area_id=#{areaId}
+						</if>
+						left JOIN bs_area a ON s.area_id = a.area_id
+						INNER JOIN sps_bill_detail bd ON be.id = bd.bill_emp_id
+						INNER JOIN bd_insurance bst ON bd.insurance_type = bst.insurance_id
+						GROUP BY e.name,be.pay_type, bst.insurance_fund_type
+						order by se.create_dt desc,empId desc
+					) ba
+					GROUP BY ba.name,ba.pay_type
+				) ba
+				LEFT JOIN 
+					(SELECT ba.id, ba.empId, ba.name, ba.identity_code, ba.branch
+						, ba.areaName, ba.insured_month, GROUP_CONCAT(ba.insurance_fund_type) AS insuranceType, CASE WHEN ba.pay_type = 'PATCH' THEN '补缴' WHEN ba.pay_type = 'MONTH'
+						AND (ba.insurance_is_new = 'Y'
+							OR ba.fund_is_new = 'Y') THEN '新增' ELSE '正常缴费' END AS payType, ifnull(ba.fund_official_fee, 0) AS fund_official_fee
+						, ifnull(ba.insurance_official_fee, 0) AS insurance_official_fee,ba.pay_type as pay_type,ba.service_fee_b
+						FROM (SELECT be.id, e.emp_id as empId, e.name, be.identity_code, ifnull(e.`branch`,'--') as branch
+							, a.name AS areaName, be.insured_month, bst.insurance_fund_type, be.pay_type, be.insurance_is_new
+							, be.fund_is_new, ifnull(be.fund_official_fee, 0) AS fund_official_fee, ifnull(be.insurance_official_fee, 0) AS insurance_official_fee
+							,ifnull(be.`service_fee`,0) as service_fee_b
+							FROM sps_bill_emp be
+							INNER JOIN sps_bill b ON be.bill_id = b.bill_id
+								AND b.sp_id = #{spId}
+								AND b.cp_id = #{cpId}
+								AND b.period = #{period}
+								AND b.bill_type = 'PAID'
+								AND be.emp_id IS NOT NULL
+		                        and b.dr = 0
+							INNER JOIN cm_employee e ON be.emp_id = e.emp_id
+							<if test="empName != null and empName != ''"> 
+								AND e.name like '%${empName}%'
+							</if>
+							INNER JOIN sps_scheme_emp se ON be.emp_id = se.emp_id
+							INNER JOIN sps_scheme s ON se.scheme_id = s.scheme_id
+							<if test="areaId != null and areaId != ''"> 
+								and s.area_id=#{areaId}
+							</if>
+							left JOIN bs_area a ON s.area_id = a.area_id
+							INNER JOIN sps_bill_detail bd ON be.id = bd.bill_emp_id
+							INNER JOIN bd_insurance bst ON bd.insurance_type = bst.insurance_id
+						GROUP BY e.name,be.pay_type, bst.insurance_fund_type
+						order by se.create_dt desc,empId desc
+					) ba
+					GROUP BY ba.name,ba.pay_type
+				) bb ON ba.empId = bb.empId AND ba.pay_type = bb.pay_type AND ba.`MONTH` = bb.insured_month
+			)b 
+			where 1=1 and b.empId is not null
+			<if test="insuranceType != null"> 
+				<if test="insuranceType == 0"> 
+					AND b.insuranceType='全部' 
+				</if>
+				<if test="insuranceType == 1"> 
+					AND b.insuranceType='公积金' 
+				</if>
+				<if test="insuranceType == 2"> 
+					AND b.insuranceType='社保' 
+				</if>
+			</if>
+			<if test="businessType != null"> 
+				<if test="businessType == 0"> 
+					and b.payType='正常缴费'
+				</if>
+				<if test="businessType == 1"> 
+					and b.payType='新增'
+				</if>
+				<if test="businessType == 2"> 
+					and b.payType='补缴'
+				</if>
+			</if>
+			<if test="businessStatus != null"> 
+				<if test="businessStatus == 0"> 
+					and b.businessStatus='正常'
+				</if>
+				<if test="businessStatus == 1"> 
+					and b.businessStatus='异常'
+				</if>
+				<if test="businessStatus == 2"> 
+					and b.businessStatus='未做'
+				</if>
+			</if>
+		)a
+	</select>
+	<!-- 服务商对账详情数据列表 -->
+	<select id="findServiceBillDetailsList" resultType="java.util.Map" parameterType="Object">
+		select b.*
+		from(
+			SELECT ba.*
+			,CASE  WHEN (ifnull(bb.fund_official_fee, 0) + ifnull(bb.insurance_official_fee, 0))=0 THEN '未做'
+			 WHEN (ifnull(ba.fundFeePrepay, 0) + ifnull(ba.insFeePrepay, 0)) != (ifnull(bb.fund_official_fee, 0) + ifnull(bb.insurance_official_fee, 0)) THEN '异常'
+			 ELSE '正常' END AS businessStatus 
+			,ifnull(bb.fund_official_fee, 0) AS fundFeePaid, ifnull(bb.insurance_official_fee, 0) AS insFeePaid
+			,(ifnull(ba.service_fee_a,0)-ifnull(bb.service_fee_b,0)) as serviceFee
+			FROM (SELECT ba.empId, ba.name, ba.code, ba.branch
+				, ba.areaName, ba.month
+				,CASE GROUP_CONCAT(ba.insurance_fund_type) WHEN 'INSURANCE' THEN '社保' WHEN 'FUND' THEN '公积金' ELSE '全部' END AS insuranceType 
+				,CASE WHEN ba.pay_type = 'PATCH' THEN '补缴' WHEN ba.pay_type = 'MONTH'
+				AND (ba.insurance_is_new = 'Y'
+					OR ba.fund_is_new = 'Y') THEN '新增' ELSE '正常缴费' END AS payType, ifnull(ba.fund_official_fee, 0) as fundFeePrepay
+				, ifnull(ba.insurance_official_fee, 0) as insFeePrepay,ba.pay_type as pay_type,ba.service_fee_a
+				FROM (SELECT e.emp_id as empId, e.name, be.identity_code as code, ifnull(e.`branch`,'--') as branch
+					, a.name AS areaName, be.insured_month as month, bst.insurance_fund_type, be.pay_type, be.insurance_is_new
+					, be.fund_is_new, ifnull(be.fund_official_fee, 0) AS fund_official_fee, ifnull(be.insurance_official_fee, 0) AS insurance_official_fee
+					,ifnull(be.`service_fee`,0) as service_fee_a
+					FROM sps_bill_emp be
+					INNER JOIN sps_bill b ON be.bill_id = b.bill_id
+						AND b.sp_id = #{spId}
+						AND b.cp_id = #{cpId}
+						AND b.period = #{period}
+						AND b.bill_type = 'PREPAY'
+						AND be.emp_id IS NOT NULL
+		                AND b.dr = 0
+					INNER JOIN cm_employee e ON be.emp_id = e.emp_id 
+					<if test="empName != null and empName != ''"> 
+						AND e.name like '%${empName}%'
+					</if>
+					INNER JOIN sps_scheme_emp se ON be.emp_id = se.emp_id
+					INNER JOIN sps_scheme s ON se.scheme_id = s.scheme_id
+					<if test="areaId != null and areaId != ''"> 
+						and s.area_id=#{areaId}
+					</if>
+					left JOIN bs_area a ON s.area_id = a.area_id
+					INNER JOIN sps_bill_detail bd ON be.id = bd.bill_emp_id
+					INNER JOIN bd_insurance bst ON bd.insurance_type = bst.insurance_id
+					GROUP BY e.name,be.pay_type, bst.insurance_fund_type
+					order by se.create_dt desc,empId desc
+				) ba
+				GROUP BY ba.name,ba.pay_type
+			) ba
+			LEFT JOIN 
+				(SELECT ba.id, ba.empId, ba.name, ba.identity_code, ba.branch
+					, ba.areaName, ba.insured_month, GROUP_CONCAT(ba.insurance_fund_type) AS insuranceType, CASE WHEN ba.pay_type = 'PATCH' THEN '补缴' WHEN ba.pay_type = 'MONTH'
+					AND (ba.insurance_is_new = 'Y'
+						OR ba.fund_is_new = 'Y') THEN '新增' ELSE '正常缴费' END AS payType, ifnull(ba.fund_official_fee, 0) AS fund_official_fee
+					, ifnull(ba.insurance_official_fee, 0) AS insurance_official_fee,ba.pay_type as pay_type,ba.service_fee_b
+					FROM (SELECT be.id, e.emp_id as empId, e.name, be.identity_code, ifnull(e.`branch`,'--') as branch
+						, a.name AS areaName, be.insured_month, bst.insurance_fund_type, be.pay_type, be.insurance_is_new
+						, be.fund_is_new, ifnull(be.fund_official_fee, 0) AS fund_official_fee, ifnull(be.insurance_official_fee, 0) AS insurance_official_fee
+						,ifnull(be.`service_fee`,0) as service_fee_b
+						FROM sps_bill_emp be
+						INNER JOIN sps_bill b ON be.bill_id = b.bill_id
+							AND b.sp_id = #{spId}
+							AND b.cp_id = #{cpId}
+							AND b.period = #{period}
+							AND b.bill_type = 'PAID'
+							AND be.emp_id IS NOT NULL
+							AND b.dr = 0
+						INNER JOIN cm_employee e ON be.emp_id = e.emp_id
+						<if test="empName != null and empName != ''"> 
+							AND e.name like '%${empName}%'
+						</if>
+						INNER JOIN sps_scheme_emp se ON be.emp_id = se.emp_id
+						INNER JOIN sps_scheme s ON se.scheme_id = s.scheme_id
+						<if test="areaId != null and areaId != ''"> 
+							and s.area_id=#{areaId}
+						</if>
+						left JOIN bs_area a ON s.area_id = a.area_id
+						INNER JOIN sps_bill_detail bd ON be.id = bd.bill_emp_id
+						INNER JOIN bd_insurance bst ON bd.insurance_type = bst.insurance_id
+					GROUP BY e.name,be.pay_type, bst.insurance_fund_type
+					order by se.create_dt desc,empId desc
+				) ba
+				GROUP BY ba.name,ba.pay_type
+			) bb ON ba.empId = bb.empId  AND ba.pay_type = bb.pay_type AND ba.`MONTH` = bb.insured_month
+		)b 
+		where 1=1 and b.empId is not null
+		<if test="insuranceType != null"> 
+			<if test="insuranceType == 0"> 
+				AND b.insuranceType='全部' 
+			</if>
+			<if test="insuranceType == 1"> 
+				AND b.insuranceType='公积金' 
+			</if>
+			<if test="insuranceType == 2"> 
+				AND b.insuranceType='社保' 
+			</if>
+		</if>
+		<if test="businessType != null"> 
+			<if test="businessType == 0"> 
+				and b.payType='正常缴费'
+			</if>
+			<if test="businessType == 1"> 
+				and b.payType='新增'
+			</if>
+			<if test="businessType == 2"> 
+				and b.payType='补缴'
+			</if>
+		</if>
+		<if test="businessStatus != null"> 
+			<if test="businessStatus == 0"> 
+				and b.businessStatus='正常'
+			</if>
+			<if test="businessStatus == 1"> 
+				and b.businessStatus='异常'
+			</if>
+			<if test="businessStatus == 2"> 
+				and b.businessStatus='未做'
+			</if>
+		</if>
+	</select>
+	
+	<!-- 服务商对账详情异常数据列表 -->
+	<select id="findServiceBillDetailsErrorList" resultType="java.util.Map" parameterType="Object">
+		SELECT ba.*
+		from(
+			SELECT ba.empId, ba.name, ba.code, ba.branch
+			, ba.areaName, ba.insured_month as month
+			, CASE GROUP_CONCAT(ba.insurance_fund_type) WHEN 'INSURANCE' THEN '社保' WHEN 'FUND' THEN '公积金' ELSE '全部' END AS insuranceType
+			,'异常' AS businessStatus 
+			, CASE WHEN ba.pay_type = 'PATCH' THEN '补缴' WHEN ba.pay_type = 'MONTH'
+			AND (ba.insurance_is_new = 'Y' OR ba.fund_is_new = 'Y') THEN '新增' ELSE '正常缴费' END AS payType
+			, ifnull(ba.fund_official_fee, 0)  AS fundFeePaid
+			, ifnull(ba.insurance_official_fee, 0) AS insFeePaid
+			FROM (SELECT be.emp_id as empId, be.name, be.identity_code as code, '--' as branch
+						, a.name AS areaName, be.insured_month, bst.insurance_fund_type, be.pay_type, be.insurance_is_new
+						, be.fund_is_new, ifnull(be.fund_official_fee, 0) AS fund_official_fee, ifnull(be.insurance_official_fee, 0) AS insurance_official_fee
+					FROM sps_bill_emp be
+					INNER JOIN sps_bill b ON be.bill_id = b.bill_id
+							AND b.sp_id = #{spId}
+							AND b.cp_id = #{cpId}
+							AND b.period = #{period}
+							AND b.bill_type = 'PAID'
+							AND be.emp_id IS NULL
+		                    AND b.dr = 0
+							<if test="empName != null and empName != ''"> 
+								AND be.name like '%${empName}%'
+							</if>
+							<if test="areaId != null and areaId != ''"> 
+								and be.insurance_area=#{areaId}
+							</if>
+					left JOIN bs_area a ON be.insurance_area = a.area_id
+					left JOIN sps_bill_detail bd ON be.id = bd.bill_emp_id
+					left JOIN bd_insurance bst ON bd.insurance_type = bst.insurance_id
+				GROUP BY be.name,be.pay_type, bst.insurance_fund_type
+				order by be.id desc
+			) ba
+			GROUP BY ba.name,ba.pay_type
+		) ba
+		where ba.name is not null
+		<if test="insuranceType != null"> 
+			<if test="insuranceType == 0"> 
+				AND ba.insuranceType='全部' 
+			</if>
+			<if test="insuranceType == 1"> 
+				AND ba.insuranceType='公积金' 
+			</if>
+			<if test="insuranceType == 2"> 
+				AND ba.insuranceType='社保' 
+			</if>
+		</if>
+		<if test="businessType != null"> 
+			<if test="businessType == 0"> 
+				and ba.payType='正常缴费'
+			</if>
+			<if test="businessType == 1"> 
+				and ba.payType='新增'
+			</if>
+			<if test="businessType == 2"> 
+				and ba.payType='补缴' 
+			</if>
+		</if>
+		<if test="businessStatus != null"> 
+			<if test="businessStatus == 0"> 
+				and ba.businessStatus='正常'
+			</if>
+			<if test="businessStatus == 1"> 
+				and ba.businessStatus='异常'
+			</if>
+			<if test="businessStatus == 2"> 
+				and ba.businessStatus='未做'
+			</if>
+		</if>
+	</select>
+
+	<!-- 服务商对账详情数据列表 -->
+	<select id="findEmpInsurance" resultType="java.util.Map" parameterType="Object">
+		SELECT * FROM (
+			(
+				select a.*,ifnull(b.servicecorp,0) as servicecorp,ifnull(b.serviceemp,0) as serviceemp,ifnull(b.servicecount,0) as servicecount
+						from(
+							select be.*,i.`insurance_id`,i.`name` as insName,bd.`corp_paybase`,bd.`emp_paybase`,bd.`corp_ratio`*100 as corpratio
+							,bd.`emp_ratio`*100 as empratio,bd.`corp_payment` as syscorp, bd.`emp_payment` as sysemp
+							,bd.`corp_payment`+bd.`emp_payment` as syscount       
+							from(
+								select e.emp_id, e.name,e.`identity_code` as code,ifnull(e.`branch`,'--') as branch,a.name as areaName,b.`period`,be.id,be.`insured_month` as month
+								from sps_bill_emp be
+								inner join sps_bill b on b.cp_id = #{cpId} AND b.dr = 0  and b.period = #{period} AND b.bill_type = 'PREPAY'
+									and be.`bill_id`=b.`bill_id` and be.`insured_month`=#{insuredMonth}
+								inner join cm_employee e on be.`emp_id`=e.`emp_id` and be.`emp_id`=#{empId}
+								inner join `sps_scheme` s on e.`scheme_id`=s.scheme_id
+								left join `bs_area` a on s.area_id=a.area_id
+							) be
+							inner join sps_bill_detail bd on be.id=bd.bill_emp_id
+							inner join bd_insurance i on bd.`insurance_type`=i.`insurance_id`
+						) a
+						left join
+						(
+							select be.*,i.`insurance_id`,i.`name` as insName,ifnull(bd.`corp_paybase`,0) as corp_paybase,ifnull(bd.`emp_paybase`,0) as emp_paybase
+							,ifnull(bd.`corp_ratio`*100,0) as corpratio,ifnull(bd.`emp_ratio`,0)*100 as empratio
+							,ifnull(bd.`corp_payment`,0) as servicecorp, ifnull(bd.`emp_payment`,0) as serviceemp
+							,ifnull(bd.`corp_payment`,0)+ifnull(bd.`emp_payment`,0) as servicecount
+							from(
+								select e.emp_id, e.name,e.`identity_code` as code,ifnull(e.`branch`,'--') as branch,a.name as areaName,b.`period`,be.id,be.`insured_month` as month
+								from sps_bill_emp be
+								inner join sps_bill b on b.cp_id = #{cpId} AND b.dr = 0  and b.period = #{period} AND b.bill_type = 'PAID'
+									and be.`bill_id`=b.`bill_id` and be.`insured_month`=#{insuredMonth}
+								inner join cm_employee e on be.`emp_id`=e.`emp_id` and be.`emp_id`=#{empId}
+								inner join `sps_scheme` s on e.`scheme_id`=s.scheme_id and s.dr=0
+								left join `bs_area` a on s.area_id=a.area_id
+							) be
+							inner join sps_bill_detail bd on be.id=bd.bill_emp_id
+							inner join bd_insurance i on bd.`insurance_type`=i.`insurance_id`
+						) b on a.insurance_id=b.insurance_id
+						group by a.month,a.insurance_id
+						order by a.month desc
+			)
+			UNION
+			(
+				select
+					b.emp_id,
+					b.name,
+					b.code,
+					a.branch,
+					b.areaName,
+					b.period,
+					a.id,
+					b.MONTH,
+					b.insurance_id,
+					b.insName,
+					IFNULL(a.corp_paybase,0) as corp_paybase,
+					IFNULL(a.emp_paybase,0) as emp_paybase,
+					IFNULL(a.corpratio,0) as corpratio,
+					IFNULL(a.empratio,0) as empratio,
+					IFNULL(a.syscorp,0) as syscorp,
+					IFNULL(a.sysemp,0) as sysemp,
+					IFNULL(a.syscount,0) as syscount,
+					IFNULL(b.servicecorp,0) as servicecorp,
+					IFNULL(b.serviceemp,0) as serviceemp,
+					IFNULL(b.servicecount,0) as servicecount
+						from
+						(
+							select be.*,i.`insurance_id`,i.`name` as insName,ifnull(bd.`corp_paybase`,0) as corp_paybase,ifnull(bd.`emp_paybase`,0) as emp_paybase
+							,ifnull(bd.`corp_ratio`*100,0) as corpratio,ifnull(bd.`emp_ratio`,0)*100 as empratio
+							,ifnull(bd.`corp_payment`,0) as servicecorp, ifnull(bd.`emp_payment`,0) as serviceemp
+							,ifnull(bd.`corp_payment`,0)+ifnull(bd.`emp_payment`,0) as servicecount
+							from(
+								select e.emp_id, e.name,e.`identity_code` as code,ifnull(e.`branch`,'--') as branch,a.name as areaName,b.`period`,be.id,be.`insured_month` as month
+								from sps_bill_emp be
+								inner join sps_bill b on b.cp_id = #{cpId} AND b.dr = 0  and b.period = #{period} AND b.bill_type = 'PAID'
+									and be.`bill_id`=b.`bill_id` and be.`insured_month`=#{insuredMonth}
+								inner join cm_employee e on be.`emp_id`=e.`emp_id` and be.`emp_id`=#{empId}
+								inner join `sps_scheme` s on e.`scheme_id`=s.scheme_id and s.dr=0
+								left join `bs_area` a on s.area_id=a.area_id
+							) be
+							inner join sps_bill_detail bd on be.id=bd.bill_emp_id
+							inner join bd_insurance i on bd.`insurance_type`=i.`insurance_id`
+						) b
+						left join
+						(
+							select be.*,i.`insurance_id`,i.`name` as insName,bd.`corp_paybase`,bd.`emp_paybase`,bd.`corp_ratio`*100 as corpratio
+							,bd.`emp_ratio`*100 as empratio,bd.`corp_payment` as syscorp, bd.`emp_payment` as sysemp
+							,bd.`corp_payment`+bd.`emp_payment` as syscount
+							from(
+								select e.emp_id, e.name,e.`identity_code` as code,ifnull(e.`branch`,'--') as branch,a.name as areaName,b.`period`,be.id,be.`insured_month` as month
+								from sps_bill_emp be
+								inner join sps_bill b on b.cp_id = #{cpId} AND b.dr = 0  and b.period = #{period} AND b.bill_type = 'PREPAY'
+									and be.`bill_id`=b.`bill_id` and be.`insured_month`=#{insuredMonth}
+								inner join cm_employee e on be.`emp_id`=e.`emp_id` and be.`emp_id`=#{empId}
+								inner join `sps_scheme` s on e.`scheme_id`=s.scheme_id
+								left join `bs_area` a on s.area_id=a.area_id
+							) be
+							inner join sps_bill_detail bd on be.id=bd.bill_emp_id
+							inner join bd_insurance i on bd.`insurance_type`=i.`insurance_id`
+						) a
+						 on a.insurance_id=b.insurance_id
+						group by b.month,b.insurance_id
+						order by b.month desc
+			)
+		) temp
+	</select>
+	
+</mapper>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BL_RECEIPT_INFO" >
+<!-- Result Map-->
+<resultMap id="result_map_BL_RECEIPT_INFO" type="com.xfs.finance.model.BlReceiptInfo" >
+	<result column="id" property="id"/>
+	<result column="trade_code" property="tradeCode"/>
+	<result column="amount" property="amount"/>
+	<result column="receipt_time" property="receiptTime"/>
+	<result column="account" property="account"/>
+	<result column="account_name" property="accountName"/>
+	<result column="deposit_bank" property="depositBank"/>
+	<result column="create_time" property="createTime"/>
+	<result column="import_file_id" property="importFileId"/>
+	<result column="create_by" property="createBy"/>
+	<result column="remain_amount" property="remainAmount"/>
+	<result column="already_amount" property="alreadyAmount"/>
+	<result column="dr" property="dr"/>
+	<result column="remark" property="remark"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="check_status" property="checkStatus"/>
+</resultMap>
+
+<!-- bl_receipt_info table all fields -->
+<sql id="Base_Column_List" >
+	id,trade_code,amount,receipt_time,account,account_name,deposit_bank,create_time,import_file_id,create_by,remain_amount,already_amount,dr,remark,modify_by,modify_dt,check_status
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	<trim prefix=" WHERE " prefixOverrides="AND ">
+		<if test="id != null" >and id = #{id}</if>
+		<if test="tradeCode != null" >and trade_code = #{tradeCode}</if>
+		<if test="amount != null" >and amount = #{amount}</if>
+		<if test="receiptTime != null" >and receipt_time = #{receiptTime}</if>
+		<if test="account != null" >and account = #{account}</if>
+		<if test="accountName != null" >and account_name = #{accountName}</if>
+		<if test="depositBank != null" >and deposit_bank = #{depositBank}</if>
+		<if test="createTime != null" >and create_time = #{createTime}</if>
+		<if test="importFileId != null" >and import_file_id = #{importFileId}</if>
+		<if test="createBy != null" >and create_by = #{createBy}</if>
+		<if test="remainAmount != null" >and remain_amount = #{remainAmount}</if>
+		<if test="alreadyAmount != null" >and already_amount = #{alreadyAmount}</if>
+		<if test="dr != null" >and dr = #{dr}</if>
+		<if test="remark != null" >and remark = #{remark}</if>
+		<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+		<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+		<if test="checkStatus != null" >and check_status = #{checkStatus}</if>
+	</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBL_RECEIPT_INFO" parameterType="Object" >
+	INSERT INTO BL_RECEIPT_INFO (
+	<trim prefix=" " prefixOverrides=",">
+		<if test="id != null ">,id</if>
+		<if test="tradeCode != null ">,trade_code</if>
+		<if test="amount != null ">,amount</if>
+		<if test="receiptTime != null ">,receipt_time</if>
+		<if test="account != null ">,account</if>
+		<if test="accountName != null ">,account_name</if>
+		<if test="depositBank != null ">,deposit_bank</if>
+		<if test="createTime != null ">,create_time</if>
+		<if test="importFileId != null ">,import_file_id</if>
+		<if test="createBy != null ">,create_by</if>
+		<if test="remainAmount != null ">,remain_amount</if>
+		<if test="alreadyAmount != null ">,already_amount</if>
+		<if test="dr != null ">,dr</if>
+		<if test="remark != null ">,remark</if>
+		<if test="modifyBy != null ">,modify_by</if>
+		<if test="modifyDt != null ">,modify_dt</if>
+		<if test="checkStatus != null ">,checkStatus</if>
+	</trim>
+	)  VALUES (
+	<trim prefix=" " prefixOverrides=",">
+		<if test="id != null ">,#{id}</if>
+		<if test="tradeCode != null ">,#{tradeCode}</if>
+		<if test="amount != null ">,#{amount}</if>
+		<if test="receiptTime != null ">,#{receiptTime}</if>
+		<if test="account != null ">,#{account}</if>
+		<if test="accountName != null ">,#{accountName}</if>
+		<if test="depositBank != null ">,#{depositBank}</if>
+		<if test="createTime != null ">,#{createTime}</if>
+		<if test="importFileId != null ">,#{importFileId}</if>
+		<if test="createBy != null ">,#{createBy}</if>
+		<if test="remainAmount != null ">,#{remainAmount}</if>
+		<if test="alreadyAmount != null ">,#{alreadyAmount}</if>
+		<if test="dr != null ">,#{dr}</if>
+		<if test="remark != null ">,#{remark}</if>
+		<if test="modifyBy != null ">,#{modifyBy}</if>
+		<if test="modifyDt != null ">,#{modifyDt}</if>
+		<if test="checkStatus != null ">,#{checkStatus}</if>
+	</trim>
+	)
+	<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS ID
+	</selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->
+<update id="UpdateBL_RECEIPT_INFO" parameterType="Object" >
+	UPDATE BL_RECEIPT_INFO
+	<trim prefix=" SET " prefixOverrides=",">
+		<if test="id != null ">,id=#{id}</if>
+		<if test="tradeCode != null ">,trade_code=#{tradeCode}</if>
+		<if test="amount != null ">,amount=#{amount}</if>
+		<if test="receiptTime != null ">,receipt_time=#{receiptTime}</if>
+		<if test="account != null ">,account=#{account}</if>
+		<if test="accountName != null ">,account_name=#{accountName}</if>
+		<if test="depositBank != null ">,deposit_bank=#{depositBank}</if>
+		<if test="createTime != null ">,create_time=#{createTime}</if>
+		<if test="importFileId != null ">,import_file_id=#{importFileId}</if>
+		<if test="createBy != null ">,create_by=#{createBy}</if>
+		<if test="remainAmount != null ">,remain_amount=#{remainAmount}</if>
+		<if test="alreadyAmount != null ">,already_amount=#{alreadyAmount}</if>
+		<if test="dr != null ">,dr=#{dr}</if>
+		<if test="remark != null ">,remark=#{remark}</if>
+		<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+		<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+		<if test="checkStatus != null ">,check_status=#{checkStatus}</if>
+	</trim>
+	WHERE ID=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="DeleteBL_RECEIPT_INFO">DELETE FROM BL_RECEIPT_INFO WHERE ID=#{id}</delete>
+<!-- 收款信息表 列表总数-->
+<select id="CountFindAllBL_RECEIPT_INFO" resultType="java.lang.Integer">SELECT count(1) as value FROM BL_RECEIPT_INFO</select>
+<select id="CountBL_RECEIPT_INFO" resultType="java.lang.Integer">SELECT count(1) as value FROM BL_RECEIPT_INFO WHERE ID=#{id}</select>
+<!-- 根据id查询 收款信息表 -->
+<select id="FindByPK" resultMap="result_map_BL_RECEIPT_INFO" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BL_RECEIPT_INFO WHERE ID=#{pk}</select>
+
+<!-- 根据各字段条件带查询  收款信息表 -->
+<select id="FreeFindBL_RECEIPT_INFO" resultMap="result_map_BL_RECEIPT_INFO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BL_RECEIPT_INFO
+	<include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带查询  收款信息表 记录数 -->
+<select id="CountFreeFindBL_RECEIPT_INFO" resultType="java.lang.Integer">
+	SELECT count(1) as value FROM BL_RECEIPT_INFO
+	<include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带排序  收款信息表 -->
+<select id="FreeFindBL_RECEIPT_INFOOrdered" resultMap="result_map_BL_RECEIPT_INFO" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BL_RECEIPT_INFO
+	<include refid="Example_Where_Clause" />
+	ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/12/27 14:51:15 ** -->
+<!-- ************************************************************************ -->
+
+<select id="findSerialsNoByVo" parameterType="com.xfs.finance.vo.BlReceiptFormRequest" resultMap="result_map_BL_RECEIPT_INFO">
+	SELECT<include refid="Base_Column_List"/>	FROM BL_RECEIPT_INFO
+    <trim prefix=" WHERE " prefixOverrides="AND ">
+        <if test="1 > 0">and dr = 0</if>
+        <if test="1 >0">and remain_amount >0 </if>
+        <if test="account != null and account !='' ">and account = #{account}</if>
+        <if test="amount != null and amount !='' ">and amount = #{amount}</if>
+        <if test="depositBank != null and depositBank !='' ">and deposit_bank = #{depositBank}</if>
+        <if test="checkStatus != null and checkStatus !='' ">and check_status = #{checkStatus}</if>
+        <if test="startTime != null and startTime !='' ">and receipt_time   <![CDATA[>=]]>    #{startTime}</if>
+        <if test="endTime != null and endTime !='' ">and receipt_time   <![CDATA[<=]]>    #{endTime}</if>
+        <if test="accountName != null and accountName !='' ">and account_name like #{accountName}</if>
+    </trim>
+</select>
+	<select id="findSerialsByIds" resultMap="result_map_BL_RECEIPT_INFO" parameterType="ArrayList">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM BL_RECEIPT_INFO
+		WHERE dr = 0 and  id in
+		<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+<insert id="batchInsert">
+	insert into bl_receipt_info(receipt_time, trade_code, amount, remark, account, account_name, deposit_bank,import_file_id, create_time, create_by, dr, remain_amount, already_amount,check_status)
+	values
+	<foreach collection="list" item="item" index="index" separator=",">
+		(#{item.receiptTime}, #{item.tradeCode}, #{item.amount}, #{item.remark},#{item.account},#{item.accountName},#{item.depositBank},#{item.importFileId}, #{item.createTime},
+		#{item.createBy},#{item.dr},#{item.remainAmount},#{item.alreadyAmount},#{item.checkStatus})
+	</foreach>
+</insert>
+<select id="findAccountIdsTotal" resultType="integer" parameterType="map">
+	SELECT count(DISTINCT bri.id) from bl_receipt_info as bri
+	LEFT JOIN bl_receipt_write_off_info as brwoi  on bri.id=brwoi.receipt_id and brwoi.dr=0
+	LEFT JOIN bl_pay_voucher as bpv  on brwoi.order_code = bpv.id and bpv.dr=0
+	WHERE bri.amount > 0
+	and bri.check_status
+	<if test="id!=null">
+		and bri.id = #{id}
+	</if>
+	<if test="amount != null">
+		and bri.amount = #{amount}
+	</if>
+	<if test="account !=null">
+		and bri.account = #{account}
+	</if>
+	<if test="accountName !=null">
+		and bri.account_name = #{accountName}
+	</if>
+	<if test="checkStatus!=null">
+		and bri.check_status = #{checkStatus}
+	</if>
+	<if test="receiptTimeBegin != null">
+		and DATE(bri.receipt_time) &gt;= #{receiptTimeBegin}
+	</if>
+	<if test="receiptTimeEnd != null">
+		and DATE(bri.receipt_time) &lt;= #{receiptTimeEnd}
+	</if>
+	<if test="busId != null">
+		and bpv.bus_id = #{busId}
+	</if>
+</select>
+<select id="findAccountIds" resultType="integer" parameterType="map">
+	SELECT DISTINCT bri.id from bl_receipt_info as bri
+	LEFT JOIN bl_receipt_write_off_info as brwoi  on bri.id=brwoi.receipt_id and brwoi.dr=0
+	LEFT JOIN bl_pay_voucher as bpv  on brwoi.order_code = bpv.id and bpv.dr=0
+	WHERE bri.amount > 0
+	and bri.check_status
+	<if test="id!=null">
+		and bri.id = #{id}
+	</if>
+	<if test="amount != null">
+		and bri.amount = #{amount}
+	</if>
+	<if test="account !=null">
+		and bri.account = #{account}
+	</if>
+	<if test="accountName !=null">
+		and bri.account_name = #{accountName}
+	</if>
+	<if test="checkStatus!=null">
+		and bri.check_status = #{checkStatus}
+	</if>
+	<if test="receiptTimeBegin != null">
+		and DATE(bri.receipt_time) &gt;= #{receiptTimeBegin}
+	</if>
+	<if test="receiptTimeEnd != null">
+		and DATE(bri.receipt_time) &lt;= #{receiptTimeEnd}
+	</if>
+	<if test="busId != null">
+		and bpv.bus_id = #{busId}
+	</if>
+	order by bri.create_time desc limit #{offset}, #{pageSize}
+</select>
+<select id="findAccountDetails" parameterType="map" resultType="com.xfs.finance.vo.BlReceiptDetailVo">
+	select bri.id, bri.trade_code, bri.amount, bri.receipt_time, bri.account, bri.account_name, bri.deposit_bank, bri.remain_amount,bri.create_time,su_.user_name write_off_create_by,
+		   bri.already_amount, bri.remark, bri.check_status, brwo.write_off_type, bpv.buyer_name, bpv.payee_name, bus.app_name, su.user_name,brwo.create_time write_off_create_time,
+		   bpv.order_id,bpv.amount bpvAmount, bpv.already_check alreadyCheck, bpv.create_dt bpvCreateDt, bpv.status bpvStatus, bpv.channel_fee, bb.amount balanceAmount, brwo.write_off_amount,
+		   bpv.outer_trade_no, bpv.product_intro
+		from bl_receipt_info bri
+		left join bl_receipt_write_off_info brwo on bri.id = brwo.receipt_id
+		left join bl_pay_voucher bpv on brwo.order_code = bpv.id
+        left join bl_pay_business bus on bpv.bus_id = bus.bus_id
+		left join sys_user su on bri.create_by = su.user_id
+		left join bl_balance bb on bb.owner = bpv.buyer_id and bb.owner_type = buyer_type
+		left join sys_user su_ on su_.user_id = brwo.create_by
+	where 1=1 and bri.amount > 0
+    <if test="busId != null">
+        and bus.bus_id = #{busId}
+    </if>
+	<if test="items != null">
+		and bri.id in
+		<foreach collection="items" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</if>
+    order by bri.create_time desc
+</select>
+<update id="UPDATERECEIPTINFBYCHECK" parameterType="com.xfs.finance.model.BlReceiptInfo">
+	UPDATE BL_RECEIPT_INFO
+	<trim prefix=" SET " prefixOverrides=",">
+		<if test="remainAmount != null ">,remain_amount=#{remainAmount}</if>
+		<if test="alreadyAmount != null ">,already_amount=#{alreadyAmount}</if>
+		<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+		<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+		<if test="checkStatus !=null">,check_status=#{checkStatus}</if>
+	</trim>
+	WHERE ID=#{id}
+	<if	 test="oldRemainAmount == null">and remain_amount is null </if>
+	<if	 test="oldRemainAmount != null">and remain_amount=#{oldRemainAmount} </if>
+	<if	 test="oldAlreadyAmount == null">and already_amount is null</if>
+	<if	 test="oldAlreadyAmount != null">and already_amount=#{oldAlreadyAmount}</if>
+	<if test="1 > 0">and dr = 0</if>
+</update>
+<select id="QUERY_TOTAL_AMOUNT" resultType="bigdecimal">
+	select sum(amount) from bl_receipt_info where dr=0;
+</select>
+<select id="QUERY_ALL_UNCHECKED" resultType="map">
+	select r.id rid, p.bus_id busId, p.outer_trade_no outerTradeNo
+		from bl_receipt_info r
+		inner JOIN bl_pay_voucher p on r.account_name = p.buyer_name
+	where p.dr=0
+		and r.already_amount = 0
+		and r.amount = p.amount
+		and p.pay_type = 'OFFLINE'
+		and (p.already_check = 0 or p.already_check is null)
+		and p.status &lt;&gt; 1
+</select>
+<select id="QUERY_AMOUNT_NO_MATCH" resultType="map">
+    select DISTINCT(r.id) rid from bl_receipt_info r
+    	inner JOIN bl_pay_voucher p on r.account_name = p.buyer_name
+    where p.dr=0
+		and p.pay_type = 'OFFLINE'
+		and p.status = 0
+		and (p.already_check = 0 or p.already_check is null)
+		and r.already_amount = 0 and r.amount &lt;&gt; p.amount
+</select>
+<select id="QUERY_ACCOUNT_NO_MATCH" resultType="map">
+    select DISTINCT(r.id) rid from bl_receipt_info r
+    	inner JOIN bl_pay_voucher p on r.amount = p.amount
+    where p.dr=0
+		and p.status = 0
+		and p.pay_type = 'OFFLINE'
+		and (p.already_check = 0 or p.already_check is null)
+		and r.already_amount = 0 and r.account_name &lt;&gt; p.buyer_name
+</select>
+<select id="QUERY_BY_TRADE_CODE" resultType="com.xfs.finance.model.BlReceiptInfo" parameterType="ArrayList">
+	select <include refid="Base_Column_List"/> FROM bl_receipt_info where trade_code in
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+</select>
+</mapper>

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_BILL_EMP" >
+	<!-- Result Map-->
+	<resultMap id="result_map_SPS_BILL_EMP" type="com.xfs.bill.model.SpsBillEmp" >
+		<result column="id" property="id"/>
+		<result column="bill_id" property="billId"/>
+		<result column="emp_id" property="empId"/>
+		<result column="name" property="name"/>
+		<result column="insured_month" property="insuredMonth"/>
+		<result column="pay_type" property="payType"/>
+		<result column="identity_type" property="identityType"/>
+		<result column="adjust_reason" property="adjustReason"/>
+		<result column="identity_code" property="identityCode"/>
+		<result column="fund_official_fee" property="fundOfficialFee"/>
+		<result column="insurance_official_fee" property="insuranceOfficialFee"/>
+		<result column="service_fee" property="serviceFee"/>
+		<result column="insurance_area" property="insuranceArea"/>
+		<result column="fund_area" property="fundArea"/>
+		<result column="living_type" property="livingType"/>
+		<result column="insuranceaccount_id" property="insuranceaccountId"/>
+		<result column="fundaccount_id" property="fundaccountId"/>
+		<result column="insurance_base" property="insuranceBase"/>
+		<result column="fund_base" property="fundBase"/>
+		<result column="insurance_is_new" property="insuranceIsNew"/>
+		<result column="fund_is_new" property="fundIsNew"/>
+	</resultMap>
+
+	<!-- sps_bill_emp table all fields -->
+	<sql id="Base_Column_List" >
+		id,bill_id,emp_id,name,insured_month,insurance_is_new,fund_is_new,pay_type,adjust_reason,identity_type,identity_code,fund_official_fee,insurance_official_fee,service_fee,insurance_area,fund_area,living_type,insuranceaccount_id,fundaccount_id,insurance_base,fund_base
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null" >and id = #{id}</if>
+			<if test="billId != null" >and bill_id = #{billId}</if>
+			<if test="empId != null" >and emp_id = #{empId}</if>
+			<if test="name != null" >and name = #{name}</if>
+			<if test="insuredMonth != null" >and insured_month = #{insuredMonth}</if>
+			<if test="payType != null" >and pay_type = #{payType}</if>
+			<if test="identityType != null" >and identity_type = #{identityType}</if>
+			<if test="identityCode != null" >and identity_code = #{identityCode}</if>
+			<if test="fundOfficialFee != null" >and fund_official_fee = #{fundOfficialFee}</if>
+			<if test="insuranceOfficialFee != null" >and insurance_official_fee = #{insuranceOfficialFee}</if>
+			<if test="serviceFee != null" >and service_fee = #{serviceFee}</if>
+			<if test="insuranceArea != null" >and insurance_area = #{insuranceArea}</if>
+			<if test="fundArea != null" >and fund_area = #{fundArea}</if>
+			<if test="livingType != null" >and living_type = #{livingType}</if>
+			<if test="insuranceaccountId != null" >and insuranceaccount_id = #{insuranceaccountId}</if>
+			<if test="fundaccountId != null" >and fundaccount_id = #{fundaccountId}</if>
+			<if test="insuranceBase != null" >and insurance_base = #{insuranceBase}</if>
+			<if test="fundBase != null" >and fund_base = #{fundBase}</if>
+			<if test="insuranceIsNew != null" >and insurance_is_new = #{insuranceIsNew}</if>
+			<if test="fundIsNew != null" >and fund_is_new = #{fundIsNew}</if>
+		</trim>
+	</sql>
+
+	<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+	<sql id="Example_Where_Clause2">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null">AND id = #{id}</if>
+			<if test="billId != null">AND bill_id = '${billId}'</if>
+			<if test="empId != null">AND emp_id = '${empId}'</if>
+			<if test="name != null">AND name = '${name}'</if>
+			<if test="insuredMonth != null">AND insured_month like '%${insuredMonth}%'</if>
+			<if test="insuredMonthEq != null">AND insured_month = #{insuredMonthEq}</if>
+			<if test="payType != null">AND pay_type like '%${payType}%'</if>
+			<if test="payTypeEq != null">AND pay_type = #{payTypeEq}</if>
+			<if test="identityType != null">AND identity_type like '%${identityType}%'</if>
+			<if test="identityTypeEq != null">AND identity_type = #{identityTypeEq}</if>
+			<if test="identityCode != null">AND identity_code like '%${identityCode}%'</if>
+			<if test="identityCodeEq != null">AND identity_code = #{identityCodeEq}</if>
+			<if test="fundOfficialFee != null">AND fund_official_fee like '%${fundOfficialFee}%'</if>
+			<if test="insuranceOfficialFee != null">AND insurance_official_fee like '%${insuranceOfficialFee}%'</if>
+			<if test="serviceFee != null">AND service_fee like '%${serviceFee}%'</if>
+			<if test="insuranceArea != null">AND insurance_area like '%${insuranceArea}%'</if>
+			<if test="fundArea != null">AND fund_area like '%${fundArea}%'</if>
+			<if test="livingType != null">AND living_type like '%${livingType}%'</if>
+			<if test="livingTypeEq != null">AND living_type = #{livingTypeEq}</if>
+			<if test="insuranceaccountId != null">AND insuranceaccount_id = '${insuranceaccountId}'</if>
+			<if test="fundaccountId != null">AND fundaccount_id = '${fundaccountId}'</if>
+			<if test="insuranceBase != null">AND insurance_base like '%${insuranceBase}%'</if>
+			<if test="fundBase != null">AND fund_base like '%${fundBase}%'</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertSPS_BILL_EMP" parameterType="Object" >
+		INSERT INTO SPS_BILL_EMP (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,id</if>
+			<if test="billId != null ">,bill_id</if>
+			<if test="empId != null ">,emp_id</if>
+			<if test="name != null ">,name</if>
+			<if test="insuredMonth != null ">,insured_month</if>
+			<if test="payType != null ">,pay_type</if>
+			<if test="identityType != null ">,identity_type</if>
+			<if test="identityCode != null ">,identity_code</if>
+			<if test="fundOfficialFee != null ">,fund_official_fee</if>
+			<if test="insuranceOfficialFee != null ">,insurance_official_fee</if>
+			<if test="serviceFee != null ">,service_fee</if>
+			<if test="insuranceArea != null ">,insurance_area</if>
+			<if test="fundArea != null ">,fund_area</if>
+			<if test="adjustReason != null ">,adjust_reason</if>
+			<if test="livingType != null ">,living_type</if>
+			<if test="insuranceaccountId != null ">,insuranceaccount_id</if>
+			<if test="fundaccountId != null ">,fundaccount_id</if>
+			<if test="insuranceBase != null ">,insurance_base</if>
+			<if test="fundBase != null ">,fund_base</if>
+			<if test="insuranceIsNew != null ">,insurance_is_new</if>
+			<if test="fundIsNew != null ">,fund_is_new</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,#{id}</if>
+			<if test="billId != null ">,#{billId}</if>
+			<if test="empId != null ">,#{empId}</if>
+			<if test="name != null ">,#{name}</if>
+			<if test="insuredMonth != null ">,#{insuredMonth}</if>
+			<if test="payType != null ">,#{payType}</if>
+			<if test="identityType != null ">,#{identityType}</if>
+			<if test="identityCode != null ">,#{identityCode}</if>
+			<if test="fundOfficialFee != null ">,#{fundOfficialFee}</if>
+			<if test="insuranceOfficialFee != null ">,#{insuranceOfficialFee}</if>
+			<if test="serviceFee != null ">,#{serviceFee}</if>
+			<if test="insuranceArea != null ">,#{insuranceArea}</if>
+			<if test="fundArea != null ">,#{fundArea}</if>
+			<if test="adjustReason != null ">,#{adjustReason}</if>
+			<if test="livingType != null ">,#{livingType}</if>
+			<if test="insuranceaccountId != null ">,#{insuranceaccountId}</if>
+			<if test="fundaccountId != null ">,#{fundaccountId}</if>
+			<if test="insuranceBase != null ">,#{insuranceBase}</if>
+			<if test="fundBase != null ">,#{fundBase}</if>
+			<if test="insuranceIsNew != null ">,#{insuranceIsNew}</if>
+			<if test="fundIsNew != null ">,#{fundIsNew}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateSPS_BILL_EMP" parameterType="Object" >
+		UPDATE SPS_BILL_EMP
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="id != null ">,id=#{id}</if>
+			<if test="billId != null ">,bill_id=#{billId}</if>
+			<if test="empId != null ">,emp_id=#{empId}</if>
+			<if test="insuredMonth != null ">,insured_month=#{insuredMonth}</if>
+			<if test="payType != null ">,pay_type=#{payType}</if>
+			<if test="identityType != null ">,identity_type=#{identityType}</if>
+			<if test="identityCode != null ">,identity_code=#{identityCode}</if>
+			<if test="fundOfficialFee != null ">,fund_official_fee=#{fundOfficialFee}</if>
+			<if test="insuranceOfficialFee != null ">,insurance_official_fee=#{insuranceOfficialFee}</if>
+			<if test="serviceFee != null ">,service_fee=#{serviceFee}</if>
+			<if test="insuranceArea != null ">,insurance_area=#{insuranceArea}</if>
+			<if test="fundArea != null ">,fund_area=#{fundArea}</if>
+			<if test="livingType != null ">,living_type=#{livingType}</if>
+			<if test="insuranceaccountId != null ">,insuranceaccount_id=#{insuranceaccountId}</if>
+			<if test="fundaccountId != null ">,fundaccount_id=#{fundaccountId}</if>
+			<if test="insuranceBase != null ">,insurance_base=#{insuranceBase}</if>
+			<if test="fundBase != null ">,fund_base=#{fundBase}</if>
+			<if test="insuranceIsNew != null ">,insurance_is_new=#{insuranceIsNew}</if>
+			<if test="fundIsNew != null ">,fund_is_new=#{fundIsNew}</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteSPS_BILL_EMP">DELETE FROM SPS_BILL_EMP WHERE ID=#{id}</delete>
+	<!-- 员工账单 列表总数-->
+	<select id="CountFindAllSPS_BILL_EMP" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL_EMP</select>
+	<select id="CountSPS_BILL_EMP" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_BILL_EMP WHERE ID=#{id}</select>
+	<!-- 根据id查询 员工账单 -->
+	<select id="FindByPK" resultMap="result_map_SPS_BILL_EMP" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_EMP WHERE ID=#{id}</select>
+
+	<!-- 根据各字段条件带模糊查询  员工账单 -->
+	<select id="FreeFindSPS_BILL_EMP" resultMap="result_map_SPS_BILL_EMP" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_EMP
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带模糊查询  员工账单 记录数 -->
+	<select id="CountFreeFindSPS_BILL_EMP" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM SPS_BILL_EMP
+		<include refid="Example_Where_Clause2" />
+	</select>
+	<!-- 根据各字段条件带排序  员工账单 -->
+	<select id="FreeFindSPS_BILL_EMPOrdered" resultMap="result_map_SPS_BILL_EMP" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_BILL_EMP
+		<include refid="Example_Where_Clause2" />
+		ORDER BY ${_orderBy}
+	</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/05/16 15:32:07 ** -->
+<!-- ************************************************************************ -->
+
+	<!--查询企业下员工账单信息详情-->
+	<select id="QUERY_CM_EM_BILL_DETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT em.id,c_em.`name`,c_em.identity_code,em.insured_month,area.fullname as fund_area,em.fund_official_fee,area_temp.fullname as insurance_area,em.insurance_official_fee,em.fund_base,em.insurance_base,em.service_fee,em.adjust_reason FROM sps_bill_emp em
+		INNER JOIN cm_employee c_em ON c_em.emp_id = em.emp_id AND c_em.cp_id = #{cmid} AND em.emp_id = #{emp_id} AND em.bill_id = #{bill_id} and em.id = #{id}
+		<if test="spid != null ">INNER JOIN sp_cm_relation re ON re.cp_id = c_em.cp_id AND re.sp_id = #{spid}</if>
+		LEFT JOIN bs_area area ON em.fund_area = area.area_id
+		LEFT JOIN bs_area area_temp ON area_temp.area_id = em.insurance_area
+	</select>
+
+	<!-- 实缴账单员工总数	-->
+	<select id="FIND_PAIDBILL_EMP_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) FROM sps_bill_emp be
+		INNER JOIN sps_bill b ON be.`bill_id` = b.`bill_id`
+		INNER JOIN cm_employee e ON be.`emp_id` = e.`emp_id`
+		WHERE be.`bill_id` = #{billId} AND b.`cp_id` = #{cpId} AND b.`dr` = 0
+		<if test="searchWord != null"> AND (e.`name` LIKE CONCAT('%','${searchWord}','%') OR e.`identity_code` LIKE CONCAT('%','${searchWord}','%'))</if>
+	</select>
+
+
+
+	<!-- 实缴账单员工列表	-->
+	<select id="FIND_PAIDBILL_EMP_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT be.id,be.`bill_id`, be.`emp_id`, be.`insured_month`, be.`pay_type`, be.`insurance_base`, be.`fund_base`, be.`identity_code`,
+		IFNULL(be.fund_official_fee, 0) AS fund_official_fee, IFNULL(be.insurance_official_fee, 0) AS insurance_official_fee,
+		IFNULL(be.`service_fee`, 0) AS service_fee, e.`name` AS emp_name, a.`fullname` AS area_name
+		FROM sps_bill_emp be
+		INNER JOIN sps_bill b ON be.`bill_id` = b.`bill_id`
+		INNER JOIN cm_employee e ON be.`emp_id` = e.`emp_id`
+		INNER JOIN bs_area a ON be.`insurance_area` = a.`area_id`
+		WHERE be.`bill_id` = #{billId} AND b.`cp_id` = #{cpId} AND b.`dr` = 0
+		<if test="searchWord != null"> AND (e.`name` LIKE CONCAT('%','${searchWord}','%') OR be.`identity_code` LIKE CONCAT('%','${searchWord}','%'))</if>
+		ORDER BY e.name ASC,be.insured_month DESC
+	</select>
+
+	<!--财务处理 实缴账单列表 差额详情列表个数 -->
+	<select id="queryMarginDetailListCount" resultType="java.lang.Integer" parameterType="Object">
+		select count(1)
+		from (
+		select tab2.emp_id,tab2.name,tab2.identity_code
+		,tab2.insured_month
+		,tab2.p_bill_id
+		,(tab2.p_insurance_official_fee+tab2.p_fund_official_fee) p_official_fee
+		,tab2.p_service_fee
+		,tab2.bill_id
+		,(tab2.insurance_official_fee+tab2.fund_official_fee) official_fee
+		,tab2.service_fee
+		,tab2.pay_type
+		from (
+		select ce.emp_id,ce.name,ce.identity_code
+		,tab1.insured_month
+		,ifnull(tab1.p_bill_id,0) as p_bill_id
+		,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+		,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+		,ifnull(tab1.p_service_fee,0) as p_service_fee
+		,ifnull(tab1.bill_id,0) as bill_id
+		,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+		,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+		,ifnull(tab1.service_fee,0) as service_fee
+		,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+		from (
+		select
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee
+		,prebillemp.insured_month,paidbillemp.service_fee
+		from sps_bill_emp prebillemp
+		left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id and paidbill.dr = 0 AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type
+		where prebillemp.bill_id = #{prepay_bill_id}
+		union
+		select
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee
+		,paidbillemp.insured_month,paidbillemp.service_fee
+		from sps_bill_emp paidbillemp
+		left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id and paidbill.dr = 0  AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type
+		where paidbillemp.bill_id = #{bill_id}
+		)tab1
+		inner join cm_employee ce
+		on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+		<if test="searchWord != null ">
+			AND (ce.name LIKE CONCAT('%',#{searchWord},'%') OR ce.identity_code LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		)tab2
+		where (
+		(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+		or
+		(tab2.p_service_fee-tab2.service_fee)!=0
+		)
+		)tab3
+	</select>
+
+	<!--财务处理 实缴账单列表 差额详情列表 -->
+	<select id="queryMarginDetailList" resultType="java.util.Map" parameterType="Object">
+		select tab2.emp_id,tab2.name,tab2.identity_code
+		,tab2.insured_month
+		,tab2.p_bill_id
+		,tab2.p_insurance_official_fee
+		,tab2.p_fund_official_fee
+		,tab2.p_service_fee
+		,tab2.bill_id
+		,tab2.insurance_official_fee
+		,tab2.fund_official_fee
+		,tab2.service_fee
+		,tab2.pay_type
+		,tab2.insurance_is_new
+		,tab2.fund_is_new
+		from (
+		select ce.emp_id,ce.name,ce.identity_code
+		,tab1.insured_month
+		,ifnull(tab1.p_bill_id,0) as p_bill_id
+		,ifnull(tab1.p_insurance_official_fee,0) as p_insurance_official_fee
+		,ifnull(tab1.p_fund_official_fee,0) as p_fund_official_fee
+		,ifnull(tab1.p_service_fee,0) as p_service_fee
+		,ifnull(tab1.bill_id,0) as bill_id
+		,ifnull(tab1.insurance_official_fee,0) as insurance_official_fee
+		,ifnull(tab1.fund_official_fee,0) as fund_official_fee
+		,ifnull(tab1.service_fee,0) as service_fee
+		,(case when tab1.p_pay_type is null then pay_type else p_pay_type end) as pay_type
+		,tab1.insurance_is_new
+		,tab1.fund_is_new
+		from (
+		select
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee
+		,prebillemp.insured_month,paidbillemp.service_fee,prebillemp.insurance_is_new,prebillemp.fund_is_new
+		from sps_bill_emp prebillemp
+		left join sps_bill paidbill on paidbill.rel_bill_id = prebillemp.bill_id and paidbill.dr = 0 AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp paidbillemp on paidbill.bill_id = paidbillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type
+		where prebillemp.bill_id = #{prepay_bill_id}
+		union
+		select
+		prebillemp.id as p_id,prebillemp.bill_id as p_bill_id,prebillemp.emp_id as p_emp_id,prebillemp.pay_type as p_pay_type
+		,prebillemp.insurance_official_fee as p_insurance_official_fee,prebillemp.fund_official_fee as p_fund_official_fee,prebillemp.service_fee as p_service_fee
+		,paidbillemp.id,paidbillemp.bill_id,paidbillemp.emp_id,paidbillemp.pay_type,paidbillemp.insurance_official_fee,paidbillemp.fund_official_fee
+		,paidbillemp.insured_month,paidbillemp.service_fee,paidbillemp.insurance_is_new,paidbillemp.fund_is_new
+		from sps_bill_emp paidbillemp
+		left join sps_bill paidbill on paidbill.bill_id = paidbillemp.bill_id and paidbill.dr = 0  AND paidbill.sp_id = #{spId} AND paidbill.cp_id = #{cpId}
+		left join sps_bill_emp prebillemp on paidbill.rel_bill_id = prebillemp.bill_id and prebillemp.emp_id = paidbillemp.emp_id and prebillemp.insured_month=paidbillemp.insured_month and prebillemp.pay_type = paidbillemp.pay_type
+		where paidbillemp.bill_id = #{bill_id}
+		)tab1
+		inner join cm_employee ce
+		on (tab1.p_emp_id=ce.emp_id or tab1.emp_id=ce.emp_id)
+		<if test="searchWord != null ">
+			AND (ce.name LIKE CONCAT('%',#{searchWord},'%') OR ce.identity_code LIKE CONCAT('%',#{searchWord},'%'))
+		</if>
+		)tab2
+		where (
+		(tab2.p_insurance_official_fee+tab2.p_fund_official_fee-tab2.insurance_official_fee-tab2.fund_official_fee)!=0
+		or
+		(tab2.p_service_fee-tab2.service_fee)!=0
+		)
+	</select>
+
+	<!-- 账单员工列表信息 -->
+	<select id="QUERY_BILL_EMP_COUNT" resultType="java.lang.Integer" parameterType="Object">
+		SELECT COUNT(1) AS count_ FROM sps_bill bill INNER JOIN sps_bill_emp emp ON bill.bill_id = emp.bill_id
+		<if test="null != spid">
+			AND bill.sp_id = #{spid}
+		</if>
+		<if test="null == spid">
+			AND bill.bill_state = 'SEND'
+		</if>
+		AND bill.bill_type = 'PREPAY'
+		<if test="null != depute_type">
+			AND bill.depute_type = #{depute_type}
+		</if>
+		AND bill.dr = 0 AND bill.bill_id = #{bill_id} AND bill.cp_id = #{cpid}
+		INNER JOIN cm_employee employee on emp.emp_id = employee.emp_id
+		<if test="null != searchWord">
+			AND (employee.`name` like CONCAT('%','${searchWord}','%') OR employee.identity_code LIKE CONCAT('%','${searchWord}','%'))
+		</if>
+		INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+		INNER JOIN sps_scheme scheme ON semp.scheme_id = scheme.scheme_id and scheme.cp_id = #{cpid}
+		<if test="null != spid">
+			AND scheme.sp_id = #{spid}
+		</if>
+		<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+	</select>
+
+	<select id="QUERY_BILL_EMP_LIST" resultType="java.util.Map" parameterType="Object">
+		SELECT emp.id,emp.pay_type,employee.emp_id,employee.`name` as empname,emp.identity_code,emp.insured_month,bs_area.`fullname` as areaname,emp.fund_base,emp.insurance_base,emp.fund_official_fee,emp.insurance_official_fee,emp.service_fee,emp.adjust_reason,emp.insurance_is_new,emp.fund_is_new FROM sps_bill bill INNER JOIN sps_bill_emp emp ON bill.bill_id = emp.bill_id
+		<if test="null != spid">
+			AND bill.sp_id = #{spid}
+		</if>
+		<if test="null == spid">
+			AND bill.bill_state = 'SEND'
+		</if>
+		<if test="null != bill_type">
+			AND bill.bill_type = #{bill_type}
+		</if>
+		<if test="null != depute_type">
+			AND bill.depute_type =  #{depute_type} 
+		</if>
+		AND bill.dr = 0 AND bill.bill_id = #{bill_id} AND bill.cp_id = #{cpid}
+		INNER JOIN cm_employee employee on emp.emp_id = employee.emp_id
+		<if test="null != searchWord">
+			AND (employee.`name` like CONCAT('%','${searchWord}','%') OR employee.identity_code LIKE CONCAT('%','${searchWord}','%'))
+		</if>
+		INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+		INNER JOIN sps_scheme scheme ON semp.scheme_id = scheme.scheme_id and scheme.cp_id = #{cpid}
+		<if test="null != spid">
+		AND scheme.sp_id = #{spid}
+		</if>
+		<if test="scheme_id != null "> AND scheme.scheme_id = #{scheme_id}</if>
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+	</select>
+
+
+
+	<select id="QUERY_BILL_EMP_LIST_BY_INSDETAIL" resultType="java.util.Map" parameterType="Object">
+		SELECT
+		emp.emp_id as id,
+		emp.emp_id,
+		emp.`name` AS empname,
+		emp.identity_code,
+		#{period} AS insured_month,
+		bs_area.`fullname` AS areaname,
+		MAX(
+		(
+		CASE
+		WHEN bins.insurance_fund_type = 'FUND' THEN
+		ins.corp_paybase
+		ELSE
+		0
+		END
+		)
+		) AS fund_base,
+
+		(
+		CASE
+		WHEN bins.insurance_fund_type = 'INSURANCE' THEN
+		MIN(ins.corp_paybase)
+		ELSE
+		0
+		END
+		)
+		AS insurance_base,
+		MAX(
+		(
+		CASE
+		WHEN bins.insurance_fund_type = 'FUND' THEN
+		ins.corp_payment
+		ELSE
+		0
+		END
+		)
+		) AS fund_official_fee,
+		(
+		CASE
+		WHEN bins.insurance_fund_type = 'INSURANCE' THEN
+		SUM(ins.corp_payment)
+		ELSE
+		0
+		END
+		)
+		AS insurance_official_fee,
+		ins.insurance_id, 0 as service_fee
+		FROM
+		cm_employee_insurance ins
+		INNER JOIN cm_employee emp ON ins.emp_id = emp.emp_id
+		AND ins.dr = 0
+		AND emp.dr = 0
+		AND emp.cp_id = #{cpid} and ins.pay_type = 'MONTH'
+		<if test="null != period">
+			AND #{period} BETWEEN ins.begin_period
+			AND IFNULL(ins.end_period, '2099-09')
+		</if>
+		<if test="null != searchWord">
+			AND (emp.`name` like CONCAT('%','${searchWord}','%') OR emp.identity_code LIKE CONCAT('%','${searchWord}','%'))
+		</if>
+		INNER JOIN sps_scheme_emp semp ON semp.emp_id = emp.emp_id
+		INNER JOIN sps_scheme scheme ON semp.scheme_id = scheme.scheme_id AND scheme.cp_id = #{cpid}
+		<if test="authority != 'ALL'"> 
+			AND scheme.scheme_id in (${authority})
+		</if>
+		INNER JOIN bs_area area ON area.area_id = scheme.area_id
+		INNER JOIN bs_area bs_area ON bs_area.area_id = area.belong_city
+		<if test="area_id != null "> AND bs_area.area_id = #{area_id}</if>
+		INNER JOIN bd_insurance bins ON bins.insurance_id = ins.insurance_id
+		GROUP BY
+		emp.emp_id
+	</select>
+
+
+	<delete id="DEL_EMP_BILL_BY_BILLID">DELETE FROM SPS_BILL_EMP WHERE bill_id=#{bill_id} AND emp_id = #{emp_id}</delete>
+
+
+    <resultMap id="result_map_SPS_BILL_EMP_With_Detail" type="com.xfs.bill.model.SpsBillEmp" >
+		<result column="id" property="id"/>
+		<result column="bill_id" property="billId"/>
+		<result column="emp_id" property="empId"/>
+		<result column="insured_month" property="insuredMonth"/>
+		<result column="pay_type" property="payType"/>
+		<result column="identity_type" property="identityType"/>
+		<result column="adjust_reason" property="adjustReason"/>
+		<result column="identity_code" property="identityCode"/>
+		<result column="fund_official_fee" property="fundOfficialFee"/>
+		<result column="insurance_official_fee" property="insuranceOfficialFee"/>
+		<result column="service_fee" property="serviceFee"/>
+		<result column="insurance_area" property="insuranceArea"/>
+		<result column="fund_area" property="fundArea"/>
+		<result column="living_type" property="livingType"/>
+		<result column="insuranceaccount_id" property="insuranceaccountId"/>
+		<result column="fundaccount_id" property="fundaccountId"/>
+		<result column="insurance_base" property="insuranceBase"/>
+		<result column="fund_base" property="fundBase"/>
+        <collection property="spsBillDetails" javaType="List" ofType="com.xfs.bill.model.SpsBillDetail" column="detail_id">
+            <result column="detail_id" property="id"/>
+            <result column="bill_emp_id" property="billEmpId"/>
+			<result column="insurance_type" property="insuranceType"/>
+			<result column="corp_paybase" property="corpPaybase"/>
+			<result column="emp_paybase" property="empPaybase"/>
+			<result column="emp_ratio" property="empRatio"/>
+			<result column="corp_ratio" property="corpRatio"/>
+			<result column="emp_payment" property="empPayment"/>
+			<result column="corp_payment" property="corpPayment"/>
+        </collection>
+    </resultMap>
+
+    <select id="find_CM_EMPLIST_WithDetail_BY_EMPIDS" resultMap="result_map_SPS_BILL_EMP_With_Detail" parameterType="Object">
+        SELECT emp.id,bill_id,emp_id,insured_month,pay_type,adjust_reason,identity_type,identity_code,fund_official_fee,insurance_official_fee,service_fee,insurance_area,fund_area,living_type,insuranceaccount_id,fundaccount_id,insurance_base,fund_base,
+        detail.id detail_id,bill_emp_id,insurance_type,corp_paybase,emp_paybase,emp_ratio,corp_ratio,emp_payment,corp_payment
+        FROM SPS_BILL_EMP emp
+        left join sps_bill_detail detail on emp.id = detail.bill_emp_id
+        where bill_id = #{billId} and pay_type = 'MONTH'
+
+    </select>
+
+
+
+	<resultMap id="result_map_SPS_BILL_EMP_With_Detail_HR" type="com.xfs.bill.dto.EmpDetail" >
+		<result column="emp_id" property="empId"/>
+		<result column="name" property="name"/>
+		<result column="insured_month" property="insuredMonth"/>
+		<result column="service_fee" property="serviceFee"/>
+		<result column="adjust_reason" property="adjustReason"/>
+		<result column="corp_payment" property="corpPayment"/>
+		<result column="emp_payment" property="empPayment"/>
+		<result column="amount" property="amount"/>
+		<result column="adjust_reason" property="adjustReason"/>
+		<collection property="insureEmpDetails" javaType="List" ofType="com.xfs.bill.dto.InsureEmpDetail" column="detail_id">
+			<result column="detail_id" property="id"/>
+			<result column="areaName" property="areaName"/>
+			<result column="insureName" property="insureName"/>
+			<result column="corp_paybase" property="corpPaybase"/>
+			<result column="emp_corp_payment" property="corpPayment"/>
+			<result column="corp_ratio" property="corpRatio"/>
+			<result column="emp_paybase" property="empPaybase"/>
+			<result column="emp_ratio" property="empRatio"/>
+			<result column="emp_emp_payment" property="empPayment"/>
+			<result column="totalPayment" property="totalPayment"/>
+		</collection>
+	</resultMap>
+
+
+	<select id="find_CM_EMPLIST_WithDetail_BY_HREMPS_COUNT" resultType="java.lang.Integer">
+		SELECT COUNT(1) as value
+		FROM (
+		SELECT emp.emp_id FROM SPS_BILL_EMP emp
+		INNER JOIN cm_employee cmemp ON cmemp.emp_id = emp.emp_id
+		<if test="searchWords != null ">
+			AND CONCAT(cmemp.`name`,cmemp.identity_code) LIKE CONCAT('%',#{searchWords},'%')
+		</if>
+		INNER join sps_bill_detail detail on emp.id = detail.bill_emp_id
+		INNER JOIN bs_area ins_area ON ins_area.area_id = emp.insurance_area
+		INNER JOIN bs_area ins_bs_area ON ins_bs_area.area_id = ins_area.belong_city
+		INNER JOIN bs_area fund_area ON fund_area.area_id = emp.fund_area
+		INNER JOIN bs_area fund_bs_area ON fund_bs_area.area_id = fund_area.belong_city
+		where bill_id = #{billId} GROUP BY cmemp.emp_id
+		) t
+	</select>
+
+	<select id="find_CM_EMPLIST_WithDetail_BY_HREMPS" resultMap="result_map_SPS_BILL_EMP_With_Detail_HR" parameterType="Object">
+		SELECT t.detail_id,t.emp_id,t.`name`,t.insured_month,(CASE WHEN ins.insurance_fund_type = 'FUND' THEN t.fundAreaName ELSE t.insAreaName END) as areaName,ins.`name` as insureName,sbd.corp_paybase,sbd.corp_ratio,sbd.corp_payment as emp_corp_payment,sbd.emp_paybase,sbd.emp_ratio,sbd.emp_payment as emp_emp_payment,(sbd.corp_payment + sbd.emp_payment) as totalPayment,
+		t.service_fee,t.corp_payment,t.emp_payment,t.amount,t.adjust_reason
+		FROM (
+		SELECT emp.bill_id,detail.id as detail_id,cmemp.emp_id,cmemp.`name`,emp.insured_month,ins_bs_area.`name` as insAreaName,fund_bs_area.`name` as fundAreaName,emp.service_fee,(sum(DISTINCT detail.corp_payment)) as corp_payment,(sum(DISTINCT detail.emp_payment)) as emp_payment,(emp.fund_official_fee + emp.insurance_official_fee + emp.service_fee) as amount,emp.adjust_reason FROM SPS_BILL_EMP emp
+		INNER JOIN cm_employee cmemp ON cmemp.emp_id = emp.emp_id AND emp.emp_id in
+		<foreach item="emp" index="index" collection="empIds" open="(" separator="," close=")">
+			#{emp}
+		</foreach>
+		<if test="searchWords != null ">
+			AND CONCAT(cmemp.`name`,cmemp.identity_code) LIKE CONCAT('%',#{searchWords},'%')
+		</if>
+		INNER join sps_bill_detail detail on emp.id = detail.bill_emp_id
+		INNER JOIN bs_area ins_area ON ins_area.area_id = emp.insurance_area
+		INNER JOIN bs_area ins_bs_area ON ins_bs_area.area_id = ins_area.belong_city
+
+		INNER JOIN bs_area fund_area ON fund_area.area_id = emp.fund_area
+		INNER JOIN bs_area fund_bs_area ON fund_bs_area.area_id = fund_area.belong_city
+
+		where bill_id = #{billId} GROUP BY cmemp.emp_id
+		) t INNER JOIN SPS_BILL_EMP sbe ON sbe.emp_id = t.emp_id AND sbe.bill_id = t.bill_id AND sbe.pay_type = 'MONTH' INNER JOIN sps_bill_detail sbd ON sbd.bill_emp_id = sbe.id
+		INNER JOIN bd_insurance ins ON ins.insurance_id = sbd.insurance_type
+		ORDER BY t.emp_id DESC,ins.insurance_fund_type DESC,ins.insurance_id ASC
+	</select>
+
+
+	<select id="find_CM_EMPLIST_WithDetail_BY_HREMPIDS" resultType="java.lang.Integer" parameterType="Object">
+		SELECT t.emp_id
+		FROM (
+		SELECT emp.bill_id,detail.id as detail_id,cmemp.emp_id,cmemp.`name`,emp.insured_month,ins_bs_area.`name` as insAreaName,fund_bs_area.`name` as fundAreaName,emp.service_fee,(sum(detail.corp_payment)) as corp_payment,(sum(detail.emp_payment)) as emp_payment,(emp.fund_official_fee + emp.insurance_official_fee + emp.service_fee) as amount,emp.adjust_reason FROM SPS_BILL_EMP emp
+		INNER JOIN cm_employee cmemp ON cmemp.emp_id = emp.emp_id
+		<if test="searchWords != null ">
+			AND CONCAT(cmemp.`name`,cmemp.identity_code) LIKE CONCAT('%',#{searchWords},'%')
+		</if>
+		INNER join sps_bill_detail detail on emp.id = detail.bill_emp_id
+		INNER JOIN bs_area ins_area ON ins_area.area_id = emp.insurance_area
+		INNER JOIN bs_area ins_bs_area ON ins_bs_area.area_id = ins_area.belong_city
+		INNER JOIN bs_area fund_area ON fund_area.area_id = emp.fund_area
+		INNER JOIN bs_area fund_bs_area ON fund_bs_area.area_id = fund_area.belong_city
+		where bill_id = #{billId} GROUP BY cmemp.emp_id
+		) t INNER JOIN SPS_BILL_EMP sbe ON sbe.emp_id = t.emp_id AND sbe.bill_id = t.bill_id INNER JOIN sps_bill_detail sbd ON sbd.bill_emp_id = sbe.id
+		INNER JOIN bd_insurance ins ON ins.insurance_id = sbd.insurance_type
+		GROUP BY t.emp_id
+		ORDER BY t.emp_id DESC,ins.insurance_fund_type DESC,ins.insurance_id ASC
+	</select>
+
+
+	<select id="find_CM_EMPLIST_WithDetail_INSNAME" resultType="java.util.Map" parameterType="Object">
+		SELECT sbd.insurance_type,ins.`name` FROM SPS_BILL_EMP sbe INNER JOIN sps_bill_detail sbd ON sbe.id = sbd.bill_emp_id AND sbe.bill_id = #{billId}
+		INNER JOIN bd_insurance ins ON ins.insurance_id = sbd.insurance_type
+		GROUP BY sbd.insurance_type
+		ORDER BY ins.insurance_fund_type DESC,ins.insurance_id ASC
+	</select>
+
+</mapper>   

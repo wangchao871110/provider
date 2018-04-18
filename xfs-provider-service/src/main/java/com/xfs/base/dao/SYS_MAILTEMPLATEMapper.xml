@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SYS_MAILTEMPLATE" > 
+<!-- Result Map-->
+<resultMap id="result_map_SYS_MAILTEMPLATE" type="com.xfs.base.model.SysMailtemplate" >
+	<result column="id" property="id"/>
+	<result column="cid" property="cid"/>
+	<result column="templatetype" property="templatetype"/>
+	<result column="templatecode" property="templatecode"/>
+	<result column="templatename" property="templatename"/>
+	<result column="toaddress" property="toaddress"/>
+	<result column="ccaddress" property="ccaddress"/>
+	<result column="bccaddress" property="bccaddress"/>
+	<result column="mailtitle" property="mailtitle"/>
+	<result column="mailcontent" property="mailcontent"/>
+	<result column="attachment" property="attachment"/>
+	<result column="para" property="para"/>
+	<result column="issys" property="issys"/>
+	<result column="memo" property="memo"/>
+	<result column="createts" property="createts"/>
+	<result column="createuser" property="createuser"/>
+	<result column="updatets" property="updatets"/>
+	<result column="updateuser" property="updateuser"/>
+	<result column="processtype" property="processtype"/>
+</resultMap>
+       
+<!-- sys_mailtemplate table all fields -->
+<sql id="Base_Column_List" >
+	 id,cid,templatetype,templatecode,templatename,toaddress,ccaddress,bccaddress,mailtitle,mailcontent,attachment,para,issys,memo,createts,createuser,updatets,updateuser,processtype
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="cid != null" >and cid = #{cid}</if>
+	<if test="templatetype != null" >and templatetype = #{templatetype}</if>
+	<if test="templatecode != null" >and templatecode = #{templatecode}</if>
+	<if test="templatename != null" >and templatename = #{templatename}</if>
+	<if test="toaddress != null" >and toaddress = #{toaddress}</if>
+	<if test="ccaddress != null" >and ccaddress = #{ccaddress}</if>
+	<if test="bccaddress != null" >and bccaddress = #{bccaddress}</if>
+	<if test="mailtitle != null" >and mailtitle = #{mailtitle}</if>
+	<if test="mailcontent != null" >and mailcontent = #{mailcontent}</if>
+	<if test="attachment != null" >and attachment = #{attachment}</if>
+	<if test="para != null" >and para = #{para}</if>
+	<if test="issys != null" >and issys = #{issys}</if>
+	<if test="memo != null" >and memo = #{memo}</if>
+	<if test="createts != null" >and createts = #{createts}</if>
+	<if test="createuser != null" >and createuser = #{createuser}</if>
+	<if test="updatets != null" >and updatets = #{updatets}</if>
+	<if test="updateuser != null" >and updateuser = #{updateuser}</if>
+	<if test="processtype != null" >and processtype = #{processtype}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="cid != null">AND cid = '${cId}'</if>
+    <if test="templatetype != null">AND templatetype like '%${templatetype}%'</if>
+    <if test="templatetypeEq != null">AND templatetype = #{templatetypeEq}</if>
+    <if test="templatecode != null">AND templatecode like '%${templatecode}%'</if>
+    <if test="templatecodeEq != null">AND templatecode = #{templatecodeEq}</if>
+    <if test="templatename != null">AND templatename like '%${templatename}%'</if>
+    <if test="templatenameEq != null">AND templatename = #{templatenameEq}</if>
+    <if test="toaddress != null">AND toaddress like '%${toaddress}%'</if>
+    <if test="toaddressEq != null">AND toaddress = #{toaddressEq}</if>
+    <if test="ccaddress != null">AND ccaddress like '%${ccaddress}%'</if>
+    <if test="ccaddressEq != null">AND ccaddress = #{ccaddressEq}</if>
+    <if test="bccaddress != null">AND bccaddress like '%${bccaddress}%'</if>
+    <if test="bccaddressEq != null">AND bccaddress = #{bccaddressEq}</if>
+    <if test="mailtitle != null">AND mailtitle like '%${mailtitle}%'</if>
+    <if test="mailtitleEq != null">AND mailtitle = #{mailtitleEq}</if>
+    <if test="mailcontent != null">AND mailcontent like '%${mailcontent}%'</if>
+    <if test="mailcontentEq != null">AND mailcontent = #{mailcontentEq}</if>
+    <if test="attachment != null">AND attachment like '%${attachment}%'</if>
+    <if test="attachmentEq != null">AND attachment = #{attachmentEq}</if>
+    <if test="para != null">AND para like '%${para}%'</if>
+    <if test="paraEq != null">AND para = #{paraEq}</if>
+    <if test="issys != null">AND issys like '%${issys}%'</if>
+    <if test="memo != null">AND memo like '%${memo}%'</if>
+    <if test="memoEq != null">AND memo = #{memoEq}</if>
+    <if test="createts != null">AND createts = #{createts}</if>
+    <if test="createtsFrom != null">AND createts&gt;=#{createtsFrom}</if>
+	<if test="createtsTo != null">AND createts&lt;=#{createtsTo}</if>
+    <if test="createuser != null">AND createuser like '%${createuser}%'</if>
+    <if test="updatets != null">AND updatets = #{updatets}</if>
+    <if test="updatetsFrom != null">AND updatets&gt;=#{updatetsFrom}</if>
+	<if test="updatetsTo != null">AND updatets&lt;=#{updatetsTo}</if>
+    <if test="updateuser != null">AND updateuser like '%${updateuser}%'</if>
+    <if test="processtype != null">AND processtype like '%${processtype}%'</if>
+    <if test="processtypeEq != null">AND processtype = #{processtypeEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSYS_MAILTEMPLATE" parameterType="Object" >
+  INSERT INTO SYS_MAILTEMPLATE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="cid != null ">,cid</if>
+	<if test="templatetype != null ">,templatetype</if>
+	<if test="templatecode != null ">,templatecode</if>
+	<if test="templatename != null ">,templatename</if>
+	<if test="toaddress != null ">,toaddress</if>
+	<if test="ccaddress != null ">,ccaddress</if>
+	<if test="bccaddress != null ">,bccaddress</if>
+	<if test="mailtitle != null ">,mailtitle</if>
+	<if test="mailcontent != null ">,mailcontent</if>
+	<if test="attachment != null ">,attachment</if>
+	<if test="para != null ">,para</if>
+	<if test="issys != null ">,issys</if>
+	<if test="memo != null ">,memo</if>
+	<if test="createts != null ">,createts</if>
+	<if test="createuser != null ">,createuser</if>
+	<if test="updatets != null ">,updatets</if>
+	<if test="updateuser != null ">,updateuser</if>
+	<if test="processtype != null ">,processtype</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="cid != null ">,#{cid}</if>
+	<if test="templatetype != null ">,#{templatetype}</if>
+	<if test="templatecode != null ">,#{templatecode}</if>
+	<if test="templatename != null ">,#{templatename}</if>
+	<if test="toaddress != null ">,#{toaddress}</if>
+	<if test="ccaddress != null ">,#{ccaddress}</if>
+	<if test="bccaddress != null ">,#{bccaddress}</if>
+	<if test="mailtitle != null ">,#{mailtitle}</if>
+	<if test="mailcontent != null ">,#{mailcontent}</if>
+	<if test="attachment != null ">,#{attachment}</if>
+	<if test="para != null ">,#{para}</if>
+	<if test="issys != null ">,#{issys}</if>
+	<if test="memo != null ">,#{memo}</if>
+	<if test="createts != null ">,#{createts}</if>
+	<if test="createuser != null ">,#{createuser}</if>
+	<if test="updatets != null ">,#{updatets}</if>
+	<if test="updateuser != null ">,#{updateuser}</if>
+	<if test="processtype != null ">,#{processtype}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSYS_MAILTEMPLATE" parameterType="Object" >
+UPDATE SYS_MAILTEMPLATE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="cid != null ">,cid=#{cid}</if>
+	<if test="templatetype != null ">,templatetype=#{templatetype}</if>
+	<if test="templatecode != null ">,templatecode=#{templatecode}</if>
+	<if test="templatename != null ">,templatename=#{templatename}</if>
+	<if test="toaddress != null ">,toaddress=#{toaddress}</if>
+	<if test="ccaddress != null ">,ccaddress=#{ccaddress}</if>
+	<if test="bccaddress != null ">,bccaddress=#{bccaddress}</if>
+	<if test="mailtitle != null ">,mailtitle=#{mailtitle}</if>
+	<if test="mailcontent != null ">,mailcontent=#{mailcontent}</if>
+	<if test="attachment != null ">,attachment=#{attachment}</if>
+	<if test="para != null ">,para=#{para}</if>
+	<if test="issys != null ">,issys=#{issys}</if>
+	<if test="memo != null ">,memo=#{memo}</if>
+	<if test="createts != null ">,createts=#{createts}</if>
+	<if test="createuser != null ">,createuser=#{createuser}</if>
+	<if test="updatets != null ">,updatets=#{updatets}</if>
+	<if test="updateuser != null ">,updateuser=#{updateuser}</if>
+	<if test="processtype != null ">,processtype=#{processtype}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSYS_MAILTEMPLATE">DELETE FROM SYS_MAILTEMPLATE WHERE ID=#{id}</delete>
+<!-- 代码类型表 列表总数-->
+<select id="CountFindAllSYS_MAILTEMPLATE" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_MAILTEMPLATE</select>
+<select id="CountSYS_MAILTEMPLATE" resultType="java.lang.Integer">SELECT count(1) as value FROM SYS_MAILTEMPLATE WHERE ID=#{id}</select>
+<!-- 根据id查询 代码类型表 -->
+<select id="FindByPK" resultMap="result_map_SYS_MAILTEMPLATE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SYS_MAILTEMPLATE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  代码类型表 -->
+<select id="FreeFindSYS_MAILTEMPLATE" resultMap="result_map_SYS_MAILTEMPLATE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SYS_MAILTEMPLATE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  代码类型表 记录数 -->
+<select id="CountFreeFindSYS_MAILTEMPLATE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SYS_MAILTEMPLATE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  代码类型表 -->
+<select id="FreeFindSYS_MAILTEMPLATEOrdered" resultMap="result_map_SYS_MAILTEMPLATE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SYS_MAILTEMPLATE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                  ** quanjiahua,2015/12/08 17:21:48 ** -->
+<!-- ************************************************************************ -->
+
+<!-- ** begin 新sql标签 ** -->
+
+
+<!-- ** end 新sql标签 ** -->
+
+</mapper>   

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SPS_TS_OPRESULT" > 
+<!-- Result Map-->
+<resultMap id="result_map_SPS_TS_OPRESULT" type="com.xfs.ts.model.SpsTsOpresult" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="cid" property="cid"/>
+	<result column="scheme_id" property="schemeId"/>
+	<result column="id_code" property="idCode"/>
+	<result column="psn_name" property="psnName"/>
+	<result column="op_status" property="opStatus"/>
+	<result column="salary" property="salary"/>
+	<result column="op_type" property="opType"/>
+	<result column="live_type" property="liveType"/>
+	<result column="other" property="other"/>
+	<result column="img_id" property="imgId"/>
+	<result column="month" property="month"/>
+	<result column="last_flag" property="lastFlag"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="update_dt" property="updateDt"/>
+	<result column="json" property="json"/>
+</resultMap>
+       
+<!-- sps_ts_opresult table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,cid,scheme_id,id_code,psn_name,op_status,salary,op_type,live_type,other,img_id,month,last_flag,create_dt,update_dt,json
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="cid != null" >and cid = #{cid}</if>
+	<if test="schemeId != null" >and scheme_id = #{schemeId}</if>
+	<if test="idCode != null" >and id_code = #{idCode}</if>
+	<if test="psnName != null" >and psn_name = #{psnName}</if>
+	<if test="opStatus != null" >and op_status = #{opStatus}</if>
+	<if test="salary != null" >and salary = #{salary}</if>
+	<if test="opType != null" >and op_type = #{opType}</if>
+	<if test="liveType != null" >and live_type = #{liveType}</if>
+	<if test="other != null" >and other = #{other}</if>
+	<if test="imgId != null" >and img_id = #{imgId}</if>
+	<if test="month != null" >and month = #{month}</if>
+	<if test="lastFlag != null" >and last_flag = #{lastFlag}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="updateDt != null" >and update_dt = #{updateDt}</if>
+	<if test="json != null" >and json = #{json}</if>
+</trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertSPS_TS_OPRESULT" parameterType="Object" >
+  INSERT INTO SPS_TS_OPRESULT (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="cid != null ">,cid</if>
+	<if test="schemeId != null ">,scheme_id</if>
+	<if test="idCode != null ">,id_code</if>
+	<if test="psnName != null ">,psn_name</if>
+	<if test="opStatus != null ">,op_status</if>
+	<if test="salary != null ">,salary</if>
+	<if test="opType != null ">,op_type</if>
+	<if test="liveType != null ">,live_type</if>
+	<if test="other != null ">,other</if>
+	<if test="imgId != null ">,img_id</if>
+	<if test="month != null ">,month</if>
+	<if test="lastFlag != null ">,last_flag</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="updateDt != null ">,update_dt</if>
+	<if test="json != null ">,json</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="cid != null ">,#{cid}</if>
+	<if test="schemeId != null ">,#{schemeId}</if>
+	<if test="idCode != null ">,#{idCode}</if>
+	<if test="psnName != null ">,#{psnName}</if>
+	<if test="opStatus != null ">,#{opStatus}</if>
+	<if test="salary != null ">,#{salary}</if>
+	<if test="opType != null ">,#{opType}</if>
+	<if test="liveType != null ">,#{liveType}</if>
+	<if test="other != null ">,#{other}</if>
+	<if test="imgId != null ">,#{imgId}</if>
+	<if test="month != null ">,#{month}</if>
+	<if test="lastFlag != null ">,#{lastFlag}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="updateDt != null ">,#{updateDt}</if>
+	<if test="json != null ">,#{json}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateSPS_TS_OPRESULT" parameterType="Object" >
+UPDATE SPS_TS_OPRESULT 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="cid != null ">,cid=#{cid}</if>
+	<if test="schemeId != null ">,scheme_id=#{schemeId}</if>
+	<if test="idCode != null ">,id_code=#{idCode}</if>
+	<if test="psnName != null ">,psn_name=#{psnName}</if>
+	<if test="opStatus != null ">,op_status=#{opStatus}</if>
+	<if test="salary != null ">,salary=#{salary}</if>
+	<if test="opType != null ">,op_type=#{opType}</if>
+	<if test="liveType != null ">,live_type=#{liveType}</if>
+	<if test="other != null ">,other=#{other}</if>
+	<if test="imgId != null ">,img_id=#{imgId}</if>
+	<if test="month != null ">,month=#{month}</if>
+	<if test="lastFlag != null ">,last_flag=#{lastFlag}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="updateDt != null ">,update_dt=#{updateDt}</if>
+	<if test="json != null ">,json=#{json}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteSPS_TS_OPRESULT">DELETE FROM SPS_TS_OPRESULT WHERE ID=#{id}</delete>
+<!-- 网申数据表 列表总数-->
+<select id="CountFindAllSPS_TS_OPRESULT" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_OPRESULT</select>
+<select id="CountSPS_TS_OPRESULT" resultType="java.lang.Integer">SELECT count(1) as value FROM SPS_TS_OPRESULT WHERE ID=#{id}</select>
+<!-- 根据id查询 网申数据表 -->
+<select id="FindByPK" resultMap="result_map_SPS_TS_OPRESULT" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM SPS_TS_OPRESULT WHERE ID=#{pk}</select>
+
+<!-- 根据各字段条件带查询  网申数据表 -->
+<select id="FreeFindSPS_TS_OPRESULT" resultMap="result_map_SPS_TS_OPRESULT" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_OPRESULT 
+	 <include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带查询  网申数据表 记录数 -->
+<select id="CountFreeFindSPS_TS_OPRESULT" resultType="java.lang.Integer">
+SELECT count(1) as value FROM SPS_TS_OPRESULT 
+ <include refid="Example_Where_Clause" />
+</select>
+<!-- 根据各字段条件带排序  网申数据表 -->
+<select id="FreeFindSPS_TS_OPRESULTOrdered" resultMap="result_map_SPS_TS_OPRESULT" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM SPS_TS_OPRESULT 
+	 <include refid="Example_Where_Clause" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/11/04 16:10:19 ** -->
+<!-- ************************************************************************ -->
+
+	<!-- 根据方案ID查询 网申数据表 -->
+	<select id="FindBySchemeId" resultType="java.util.HashMap" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM SPS_TS_OPRESULT WHERE scheme_id=#{schemeId}
+	</select>
+
+
+
+</mapper>   

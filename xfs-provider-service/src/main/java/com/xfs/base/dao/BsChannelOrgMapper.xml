@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_CHANNEL_ORG" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_CHANNEL_ORG" type="com.xfs.base.model.BsChannelOrg" >
+	<result column="id" property="id"/>
+	<result column="name" property="name"/>
+	<result column="parent_id" property="parentId"/>
+	<result column="type" property="type"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+</resultMap>
+       
+<!-- bs_channel_org table all fields -->
+<sql id="Base_Column_List" >
+	 id,name,parent_id,type,create_by,create_dt,modify_by,modify_dt
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="name != null" >and name = #{name}</if>
+	<if test="parentId != null" >and parent_id = #{parentId}</if>
+	<if test="type != null" >and type = #{type}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="name != null">AND name like '%${name}%'</if>
+    <if test="nameEq != null">AND name = #{nameEq}</if>
+    <if test="parentId != null">AND parent_id = '${parentId}'</if>
+    <if test="type != null">AND type like '%${type}%'</if>
+    <if test="typeEq != null">AND type = #{typeEq}</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_CHANNEL_ORG" parameterType="Object" >
+  INSERT INTO BS_CHANNEL_ORG (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="name != null ">,name</if>
+	<if test="parentId != null ">,parent_id</if>
+	<if test="type != null ">,type</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="name != null ">,#{name}</if>
+	<if test="parentId != null ">,#{parentId}</if>
+	<if test="type != null ">,#{type}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_CHANNEL_ORG" parameterType="Object" >
+UPDATE BS_CHANNEL_ORG 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="name != null ">,name=#{name}</if>
+	<if test="parentId != null ">,parent_id=#{parentId}</if>
+	<if test="type != null ">,type=#{type}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_CHANNEL_ORG">DELETE FROM BS_CHANNEL_ORG WHERE ID=#{id}</delete>
+<!-- 渠道组织 列表总数-->
+<select id="CountFindAllBS_CHANNEL_ORG" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CHANNEL_ORG</select>
+<select id="CountBS_CHANNEL_ORG" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_CHANNEL_ORG WHERE ID=#{id}</select>
+<!-- 根据id查询 渠道组织 -->
+<select id="FindByPK" resultMap="result_map_BS_CHANNEL_ORG" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_CHANNEL_ORG WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  渠道组织 -->
+<select id="FreeFindBS_CHANNEL_ORG" resultMap="result_map_BS_CHANNEL_ORG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CHANNEL_ORG 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  渠道组织 记录数 -->
+<select id="CountFreeFindBS_CHANNEL_ORG" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_CHANNEL_ORG 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  渠道组织 -->
+<select id="FreeFindBS_CHANNEL_ORGOrdered" resultMap="result_map_BS_CHANNEL_ORG" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_CHANNEL_ORG 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/07/29 10:55:28 ** -->
+<!-- ************************************************************************ -->
+
+
+
+
+</mapper>   

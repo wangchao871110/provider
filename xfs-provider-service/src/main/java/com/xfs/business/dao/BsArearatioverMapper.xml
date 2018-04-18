@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_AREARATIOVER" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_AREARATIOVER" type="com.xfs.business.model.BsArearatiover" >
+	<result column="id" property="id"/>
+	<result column="ratio_id" property="ratioId"/>
+	<result column="begin_period" property="beginPeriod"/>
+	<result column="end_period" property="endPeriod"/>
+	<result column="corp_base_lower" property="corpBaseLower"/>
+	<result column="corp_base_upper" property="corpBaseUpper"/>
+	<result column="psn_base_lower" property="psnBaseLower"/>
+	<result column="psn_base_upper" property="psnBaseUpper"/>
+	<result column="corp_ratio" property="corpRatio"/>
+	<result column="psn_ratio" property="psnRatio"/>
+	<result column="corp_addition" property="corpAddition"/>
+	<result column="psn_addition" property="psnAddition"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- bs_arearatiover table all fields -->
+<sql id="Base_Column_List" >
+	 id,ratio_id,begin_period,end_period,corp_base_lower,corp_base_upper,psn_base_lower,psn_base_upper,corp_ratio,psn_ratio,corp_addition,psn_addition,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="ratioId != null" >and ratio_id = #{ratioId}</if>
+	<if test="beginPeriod != null" >and begin_period = #{beginPeriod}</if>
+	<if test="endPeriod != null" >and end_period = #{endPeriod}</if>
+	<if test="corpBaseLower != null" >and corp_base_lower = #{corpBaseLower}</if>
+	<if test="corpBaseUpper != null" >and corp_base_upper = #{corpBaseUpper}</if>
+	<if test="psnBaseLower != null" >and psn_base_lower = #{psnBaseLower}</if>
+	<if test="psnBaseUpper != null" >and psn_base_upper = #{psnBaseUpper}</if>
+	<if test="corpRatio != null" >and corp_ratio = #{corpRatio}</if>
+	<if test="psnRatio != null" >and psn_ratio = #{psnRatio}</if>
+	<if test="corpAddition != null" >and corp_addition = #{corpAddition}</if>
+	<if test="psnAddition != null" >and psn_addition = #{psnAddition}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="ratioId != null">AND ratio_id = #{ratioId}</if>
+    <if test="beginPeriod != null">AND begin_period like '%${beginPeriod}%'</if>
+    <if test="beginPeriodEq != null">AND begin_period = #{beginPeriodEq}</if>
+    <if test="beginPeriodFrom != null">AND begin_period&gt;=#{beginPeriodFrom}</if>
+    <if test="beginPeriodTo != null">AND begin_period&lt;=#{beginPeriodTo}</if>
+    <if test="endPeriod != null">AND end_period like '%${endPeriod}%'</if>
+    <if test="endPeriodEq != null">AND end_period = #{endPeriodEq}</if>
+    <if test="endPeriodFrom != null">AND end_period&gt;=#{endPeriodFrom}</if>
+    <if test="endPeriodTo != null">AND end_period&lt;=#{endPeriodTo}</if>
+    <if test="corpBaseLower != null">AND corp_base_lower like '%${corpBaseLower}%'</if>
+    <if test="corpBaseUpper != null">AND corp_base_upper like '%${corpBaseUpper}%'</if>
+    <if test="psnBaseLower != null">AND psn_base_lower like '%${psnBaseLower}%'</if>
+    <if test="psnBaseUpper != null">AND psn_base_upper like '%${psnBaseUpper}%'</if>
+    <if test="corpRatio != null">AND corp_ratio like '%${corpRatio}%'</if>
+    <if test="psnRatio != null">AND psn_ratio like '%${psnRatio}%'</if>
+    <if test="corpAddition != null">AND corp_addition like '%${corpAddition}%'</if>
+    <if test="psnAddition != null">AND psn_addition like '%${psnAddition}%'</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_AREARATIOVER" parameterType="Object" >
+  INSERT INTO BS_AREARATIOVER (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="ratioId != null ">,ratio_id</if>
+	<if test="beginPeriod != null ">,begin_period</if>
+	<if test="endPeriod != null ">,end_period</if>
+	<if test="corpBaseLower != null ">,corp_base_lower</if>
+	<if test="corpBaseUpper != null ">,corp_base_upper</if>
+	<if test="psnBaseLower != null ">,psn_base_lower</if>
+	<if test="psnBaseUpper != null ">,psn_base_upper</if>
+	<if test="corpRatio != null ">,corp_ratio</if>
+	<if test="psnRatio != null ">,psn_ratio</if>
+	<if test="corpAddition != null ">,corp_addition</if>
+	<if test="psnAddition != null ">,psn_addition</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="ratioId != null ">,#{ratioId}</if>
+	<if test="beginPeriod != null ">,#{beginPeriod}</if>
+	<if test="endPeriod != null ">,#{endPeriod}</if>
+	<if test="corpBaseLower != null ">,#{corpBaseLower}</if>
+	<if test="corpBaseUpper != null ">,#{corpBaseUpper}</if>
+	<if test="psnBaseLower != null ">,#{psnBaseLower}</if>
+	<if test="psnBaseUpper != null ">,#{psnBaseUpper}</if>
+	<if test="corpRatio != null ">,#{corpRatio}</if>
+	<if test="psnRatio != null ">,#{psnRatio}</if>
+	<if test="corpAddition != null ">,#{corpAddition}</if>
+	<if test="psnAddition != null ">,#{psnAddition}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_AREARATIOVER" parameterType="Object" >
+UPDATE BS_AREARATIOVER 
+  <trim prefix=" SET " prefixOverrides=",">
+	id=#{id}
+	,ratio_id=#{ratioId}
+	,begin_period=#{beginPeriod}
+	,end_period=#{endPeriod}
+	,corp_base_lower=#{corpBaseLower}
+	,corp_base_upper=#{corpBaseUpper}
+	,psn_base_lower=#{psnBaseLower}
+	,psn_base_upper=#{psnBaseUpper}
+	,corp_ratio=#{corpRatio}
+	,psn_ratio=#{psnRatio}
+	,corp_addition=#{corpAddition}
+	,psn_addition=#{psnAddition}
+	,create_by=#{createBy}
+	,create_dt=#{createDt}
+	,modify_by=#{modifyBy}
+	,modify_dt=#{modifyDt}
+	,dr=#{dr}
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_AREARATIOVER">DELETE FROM BS_AREARATIOVER WHERE ID=#{id}</delete>
+<!-- 地区险种比例版本 列表总数-->
+<select id="CountFindAllBS_AREARATIOVER" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREARATIOVER</select>
+<select id="CountBS_AREARATIOVER" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_AREARATIOVER WHERE ID=#{id}</select>
+<!-- 根据id查询 地区险种比例版本 -->
+<select id="FindByPK" resultMap="result_map_BS_AREARATIOVER" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIOVER WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  地区险种比例版本 -->
+<select id="FreeFindBS_AREARATIOVER" resultMap="result_map_BS_AREARATIOVER" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIOVER 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  地区险种比例版本 记录数 -->
+<select id="CountFreeFindBS_AREARATIOVER" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_AREARATIOVER 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  地区险种比例版本 -->
+<select id="FreeFindBS_AREARATIOVEROrdered" resultMap="result_map_BS_AREARATIOVER" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIOVER 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/21 20:04:09 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 根据各字段条件带排序  地区险种比例版本 根据时间排序 -->
+<select id="FindVersions" resultMap="result_map_BS_AREARATIOVER" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_AREARATIOVER
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY begin_period
+</select>
+
+
+</mapper>   

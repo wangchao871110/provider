@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_BSAREATYPE_PROCESS">
+    <!-- Result Map-->
+    <!-- Result Map-->
+    <resultMap id="result_map_BD_BSAREATYPE_PROCESS" type="com.xfs.business.model.BdBsareatypeProcess">
+        <result column="id" property="id"/>
+        <result column="bd_bsareatype_id" property="bdBsareatypeId"/>
+        <result column="sys_dictitem_id" property="sysDictitemId"/>
+        <result column="step" property="step"/>
+        <result column="task_status" property="taskStatus"/>
+        <result column="role_group_code" property="roleGroupCode"/>
+        <result column="action_name" property="actionName"/>
+        <result column="action_code" property="actionCode"/>
+        <result column="company_type" property="companyType"/>
+
+        <result column="org_type" property="orgType"/>
+        <result column="sysdName" property="sysdName"/>
+    </resultMap>
+
+    <!-- bd_bsareatype table all fields -->
+    <sql id="Base_Column_List">
+        id,bd_bsareatype_id,sys_dictitem_id,step,org_type,task_status,role_group_code,action_name,action_code,company_type
+</sql>
+
+    <!-- 查询条件 -->
+    <sql id="Example_Where_Clause">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">and id = #{id}</if>
+            <if test="bdBsareatypeId != null">and bd_bsareatype_id = #{bdBsareatypeId}</if>
+            <if test="sysDictitemId != null">and sys_dictitem_id = #{sysDictitemId}</if>
+            <if test="step != null">and step = #{step}</if>
+            <if test="orgType != null">and org_type = #{orgType}</if>
+            <if test="taskStatus != null">and org_type = #{taskStatus}</if>
+            <if test="roleGroupCode != null">and org_type = #{roleGroupCode}</if>
+            <if test="actionName != null">and org_type = #{actionName}</if>
+            <if test="actionCode != null">and org_type = #{actionCode}</if>
+            <if test="companyType != null">and company_type = #{companyType}</if>
+        </trim>
+    </sql>
+
+    <!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+    <sql id="Example_Where_Clause2">
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = #{id}</if>
+            <if test="bdBsareatypeId != null">and bd_bsareatype_id = #{bdBsareatypeId}</if>
+            <if test="sysDictitemId != null">and sys_dictitem_id = #{sysDictitemId}</if>
+            <if test="step != null">and step = #{step}</if>
+            <if test="orgType != null">and org_type = #{orgType}</if>
+            <if test="taskStatus != null">and task_status = #{taskStatus}</if>
+            <if test="roleGroupCode != null">and role_group_code = #{roleGroupCode}</if>
+            <if test="actionName != null">and action_name = #{actionName}</if>
+            <if test="actionCode != null">and action_code = #{actionCode}</if>
+            <if test="companyType != null">and company_type = #{companyType}</if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="InsertBD_BSAREATYPE_PROCESS" parameterType="Object">
+        INSERT INTO BD_BSAREATYPE_PROCESS (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,id</if>
+            <if test="bdBsareatypeId != null ">,bd_bsareatype_id</if>
+            <if test="sysDictitemId != null ">,sys_dictitem_id</if>
+            <if test="step != null ">,step</if>
+            <if test="taskStatus != null ">,task_status</if>
+            <if test="roleGroupCode != null ">,role_group_code</if>
+            <if test="actionName != null ">,action_name</if>
+            <if test="actionCode != null ">,action_code</if>
+            <if test="companyType != null ">,company_type</if>
+
+            <if test="orgType != null ">,org_type</if>
+        </trim>
+        ) VALUES (
+        <trim prefix=" " prefixOverrides=",">
+            <if test="id != null ">,#{id}</if>
+            <if test="bdBsareatypeId != null ">,#{bdBsareatypeId}</if>
+            <if test="sysDictitemId != null ">,#{sysDictitemId}</if>
+            <if test="step != null ">,#{step}</if>
+            <if test="taskStatus != null ">,#{taskStatus}</if>
+            <if test="roleGroupCode != null ">,#{roleGroupCode}</if>
+            <if test="actionName != null ">,#{actionName}</if>
+            <if test="actionCode != null ">,#{actionCode}</if>
+            <if test="companyType != null ">,#{companyType}</if>
+
+            <if test="orgType != null ">,#{orgType}</if>
+        </trim>
+        )
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="UpdateBD_BSAREATYPE_PROCESS" parameterType="Object">
+        UPDATE BD_BSAREATYPE_PROCESS
+        <trim prefix=" SET " prefixOverrides=",">
+            <if test="id != null ">,id=#{id}</if>
+            <if test="bdBsareatypeId != null ">,bd_bsareatype_id=#{bdBsareatypeId}</if>
+            <if test="sysDictitemId != null ">,sys_dictitem_id=#{sysDictitemId}</if>
+            <if test="step != null ">,step=#{step}</if>
+            <if test="taskStatus != null ">,task_status=#{taskStatus}</if>
+            <if test="roleGroupCode != null ">,role_group_code=#{roleGroupCode}</if>
+            <if test="actionName != null ">,action_name=#{actionName}</if>
+            <if test="actionCode != null ">,action_code=#{actionCode}</if>
+            <if test="companyType != null ">,company_type=#{companyType}</if>
+
+            <if test="orgType != null ">,org_type=#{orgType}</if>
+        </trim>
+        WHERE ID=#{id}
+    </update>
+
+    <!-- 删除记录 -->
+    <delete id="DeleteBD_BSAREATYPE_PROCESS">DELETE FROM BD_BSAREATYPE_PROCESS WHERE ID=#{id}</delete>
+
+    <select id="CountBD_BSAREATYPE_PROCESS"
+            resultType="java.lang.Integer">SELECT count(1) as value FROM BD_BSAREATYPE_PROCESS WHERE ID=#{id}</select>
+
+    <select id="findBsareatypeprocess" resultMap="result_map_BD_BSAREATYPE_PROCESS" parameterType="Object">
+        SELECT id,bd_bsareatype_id,sys_dictitem_id,step,task_status,role_group_code, action_name,action_code,company_type FROM bd_bsareatype_process
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = ${id}</if>
+            <if test="bdBsareatypeId != null">AND bd_bsareatype_id = ${bdBsareatypeId}</if>
+            <if test="sysDictitemId != null">AND sys_dictitem_id = ${sysDictitemId}</if>
+            <if test="step != null">AND step = ${step}</if>
+            <if test="orgType != null">AND org_type = ${orgType}</if>
+            <if test="companyType != null">AND company_type = ${companyType}</if>
+        </trim>
+        ORDER BY step ASC
+    </select>
+
+    <select id="CountFreeFindBD_BSAREATYPE_PROCESS" resultType="java.lang.Integer">
+        SELECT count(1) as value FROM bd_bsareatype_process
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = ${id}</if>
+            <if test="bdBsareatypeId != null">AND bd_bsareatype_id = ${bdBsareatypeId}</if>
+            <if test="sysDictitemId != null">AND sys_dictitem_id = ${sysDictitemId}</if>
+            <if test="step != null">AND step = ${step}</if>
+            <if test="orgType != null">AND org_type = ${orgType}</if>
+            <if test="companyType != null">AND company_type = ${companyType}</if>
+        </trim>
+    </select>
+
+    <select id="findAlWithDictitem" resultMap="result_map_BD_BSAREATYPE_PROCESS" parameterType="Object">
+       SELECT
+	bbp.*, sd.`name` AS sysdName
+FROM
+	bd_bsareatype_process AS bbp
+LEFT JOIN sys_dictitem AS sd ON bbp.sys_dictitem_id = sd.id
+        <trim prefix=" WHERE " prefixOverrides="AND ">
+            <if test="id != null">AND id = ${id}</if>
+            <if test="bdBsareatypeId != null">AND bd_bsareatype_id = ${bdBsareatypeId}</if>
+            <if test="sysDictitemId != null">AND sys_dictitem_id = ${sysDictitemId}</if>
+            <if test="step != null">AND step = ${step}</if>
+            <if test="orgType != null">AND org_type = ${orgType}</if>
+            <if test="companyType != null">AND company_type = ${companyType}</if>
+        </trim>
+GROUP BY
+	bbp.step ASC
+    </select>
+
+</mapper>

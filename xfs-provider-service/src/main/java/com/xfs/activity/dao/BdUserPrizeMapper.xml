@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BD_USER_PRIZE" >
+	<!-- Result Map-->
+	<resultMap id="result_map_BD_USER_PRIZE" type="com.xfs.activity.model.BdUserPrize" >
+		<result column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="user_type" property="userType"/>
+		<result column="org_id" property="orgId"/>
+		<result column="lottery_id" property="lotteryId"/>
+		<result column="prize_id" property="prizeId"/>
+		<result column="prize_code" property="prizeCode"/>
+		<result column="prize_price" property="prizePrice"/>
+		<result column="begintime" property="begintime"/>
+		<result column="endtime" property="endtime"/>
+		<result column="state" property="state"/>
+		<result column="user_mobile" property="userMobile"/>
+		<result column="user_name" property="userName"/>
+		<result column="user_address" property="userAddress"/>
+		<result column="create_by" property="createBy"/>
+		<result column="create_dt" property="createDt"/>
+		<result column="modify_by" property="modifyBy"/>
+		<result column="modify_dt" property="modifyDt"/>
+		<result column="dr" property="dr"/>
+	</resultMap>
+
+	<!-- bd_user_prize table all fields -->
+	<sql id="Base_Column_List" >
+		id,user_id,user_type,org_id,lottery_id,prize_id,prize_code,prize_price,begintime,endtime,state,user_mobile,user_name,user_address,create_by,create_dt,modify_by,modify_dt,dr
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		<trim prefix=" WHERE " prefixOverrides="AND ">
+			<if test="id != null" >and id = #{id}</if>
+			<if test="userId != null" >and user_id = #{userId}</if>
+			<if test="userType != null" >and user_type = #{userType}</if>
+			<if test="orgId != null" >and org_id = #{orgId}</if>
+			<if test="lotteryId != null" >and lottery_id = #{lotteryId}</if>
+			<if test="prizeId != null" >and prize_id = #{prizeId}</if>
+			<if test="prizeCode != null" >and prize_code = #{prizeCode}</if>
+			<if test="prizePrice != null" >and prize_price = #{prizePrice}</if>
+			<if test="begintime != null" >and begintime = #{begintime}</if>
+			<if test="endtime != null" >and endtime = #{endtime}</if>
+			<if test="state != null" >and state = #{state}</if>
+			<if test="userMobile != null" >and user_mobile = #{userMobile}</if>
+			<if test="userName != null" >and user_name = #{userName}</if>
+			<if test="userAddress != null" >and user_address = #{userAddress}</if>
+			<if test="createBy != null" >and create_by = #{createBy}</if>
+			<if test="createDt != null" >and create_dt = #{createDt}</if>
+			<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+			<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+			<if test="dr != null" >and dr = #{dr}</if>
+		</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="InsertBD_USER_PRIZE" parameterType="Object" >
+		INSERT INTO BD_USER_PRIZE (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,id</if>
+			<if test="userId != null ">,user_id</if>
+			<if test="userType != null ">,user_type</if>
+			<if test="orgId != null ">,org_id</if>
+			<if test="lotteryId != null ">,lottery_id</if>
+			<if test="prizeId != null ">,prize_id</if>
+			<if test="prizeCode != null ">,prize_code</if>
+			<if test="prizePrice != null ">,prize_price</if>
+			<if test="begintime != null ">,begintime</if>
+			<if test="endtime != null ">,endtime</if>
+			<if test="state != null ">,state</if>
+			<if test="userMobile != null ">,user_mobile</if>
+			<if test="userName != null ">,user_name</if>
+			<if test="userAddress != null ">,user_address</if>
+			<if test="createBy != null ">,create_by</if>
+			<if test="createDt != null ">,create_dt</if>
+			<if test="modifyBy != null ">,modify_by</if>
+			<if test="modifyDt != null ">,modify_dt</if>
+			<if test="dr != null ">,dr</if>
+		</trim>
+		)  VALUES (
+		<trim prefix=" " prefixOverrides=",">
+			<if test="id != null ">,#{id}</if>
+			<if test="userId != null ">,#{userId}</if>
+			<if test="userType != null ">,#{userType}</if>
+			<if test="orgId != null ">,#{orgId}</if>
+			<if test="lotteryId != null ">,#{lotteryId}</if>
+			<if test="prizeId != null ">,#{prizeId}</if>
+			<if test="prizeCode != null ">,#{prizeCode}</if>
+			<if test="prizePrice != null ">,#{prizePrice}</if>
+			<if test="begintime != null ">,#{begintime}</if>
+			<if test="endtime != null ">,#{endtime}</if>
+			<if test="state != null ">,#{state}</if>
+			<if test="userMobile != null ">,#{userMobile}</if>
+			<if test="userName != null ">,#{userName}</if>
+			<if test="userAddress != null ">,#{userAddress}</if>
+			<if test="createBy != null ">,#{createBy}</if>
+			<if test="createDt != null ">,#{createDt}</if>
+			<if test="modifyBy != null ">,#{modifyBy}</if>
+			<if test="modifyDt != null ">,#{modifyDt}</if>
+			<if test="dr != null ">,#{dr}</if>
+		</trim>
+		)
+		<selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<!-- 根据id，修改记录-->
+	<update id="UpdateBD_USER_PRIZE" parameterType="Object" >
+		UPDATE BD_USER_PRIZE
+		<trim prefix=" SET " prefixOverrides=",">
+			<if test="id != null ">,id=#{id}</if>
+			<if test="userId != null ">,user_id=#{userId}</if>
+			<if test="userType != null ">,user_type=#{userType}</if>
+			<if test="orgId != null ">,org_id=#{orgId}</if>
+			<if test="lotteryId != null ">,lottery_id=#{lotteryId}</if>
+			<if test="prizeId != null ">,prize_id=#{prizeId}</if>
+			<if test="prizeCode != null ">,prize_code=#{prizeCode}</if>
+			<if test="prizePrice != null ">,prize_price=#{prizePrice}</if>
+			<if test="begintime != null ">,begintime=#{begintime}</if>
+			<if test="endtime != null ">,endtime=#{endtime}</if>
+			<if test="state != null ">,state=#{state}</if>
+			<if test="userMobile != null ">,user_mobile=#{userMobile}</if>
+			<if test="userName != null ">,user_name=#{userName}</if>
+			<if test="userAddress != null ">,user_address=#{userAddress}</if>
+			<if test="createBy != null ">,create_by=#{createBy}</if>
+			<if test="createDt != null ">,create_dt=#{createDt}</if>
+			<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+			<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+			<if test="dr != null ">,dr=#{dr}</if>
+		</trim>
+		WHERE ID=#{id}
+	</update>
+
+	<!-- 删除记录 -->
+	<delete id="DeleteBD_USER_PRIZE">DELETE FROM BD_USER_PRIZE WHERE ID=#{id}</delete>
+	<!-- bd_user_prize 列表总数-->
+	<select id="CountFindAllBD_USER_PRIZE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_USER_PRIZE</select>
+	<select id="CountBD_USER_PRIZE" resultType="java.lang.Integer">SELECT count(1) as value FROM BD_USER_PRIZE WHERE ID=#{id}</select>
+	<!-- 根据id查询 bd_user_prize -->
+	<select id="FindByPK" resultMap="result_map_BD_USER_PRIZE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BD_USER_PRIZE WHERE ID=#{pk}</select>
+
+	<!-- 根据各字段条件带查询  bd_user_prize -->
+	<select id="FreeFindBD_USER_PRIZE" resultMap="result_map_BD_USER_PRIZE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BD_USER_PRIZE
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带查询  bd_user_prize 记录数 -->
+	<select id="CountFreeFindBD_USER_PRIZE" resultType="java.lang.Integer">
+		SELECT count(1) as value FROM BD_USER_PRIZE
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 根据各字段条件带排序  bd_user_prize -->
+	<select id="FreeFindBD_USER_PRIZEOrdered" resultMap="result_map_BD_USER_PRIZE" parameterType="Object">
+		SELECT <include refid="Base_Column_List" /> FROM BD_USER_PRIZE
+		<include refid="Example_Where_Clause" />
+		ORDER BY ${_orderBy}
+	</select>
+
+	<!-- *****************************  温馨提示：  ***************************** -->
+	<!-- **                                                                    ** -->
+	<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+	<!-- **                                             ** 2016/10/18 16:48:20 ** -->
+	<!-- ************************************************************************ -->
+
+	<select id="queryUserPriceByType" parameterType="Object" resultType="map">
+		select bup.id, bup.prize_code, bp.prize_name, bup.prize_price, bp.prize_id,bup.endtime
+		from bd_user_prize bup
+		inner join bd_prize bp on bup.prize_id = bp.prize_id  and bp.dr = 0 and bp.prize_type = #{prizeType}
+		where bup.org_id = #{orgId} and bup.user_type = #{userType} and bup.dr = 0 and bup.state = 'UNUSE' and bup.begintime &lt; now() and bup.endtime &gt; now()
+		<if test="id != null ">and bup.id= #{id}</if>
+	</select>
+	<update id="updateUserPriceStateByType" parameterType="Object">
+		update bd_user_prize bup
+		set bup.state = 'USED'
+		where bup.id = #{id} and bup.org_id = #{orgId} and bup.state = 'UNUSE' and bup.dr = 0 and bup.begintime &lt; now() and bup.endtime &gt; now()
+	</update>
+
+	<select id="queryUserPrizeList" resultType="java.util.Map" parameterType="Object">
+	SELECT bup.*, bp.prize_img, bp.prize_name, bp.prize_type, bp.prize_desc FROM
+	 bd_user_prize bup  JOIN bd_prize bp ON bup.prize_id = bp.prize_id WHERE bup.org_id = #{orgId} AND bup.user_type = #{userType} AND bup.dr = 0 ORDER BY bup.id DESC
+	</select>
+
+	<select id="queryUserPrize" parameterType="Object" resultType="map">
+		SELECT bup.*, bp.prize_img, bp.prize_desc, bp.prize_type, bp.prize_name FROM bd_user_prize bup
+			JOIN bd_prize bp ON bup.prize_id = bp.prize_id
+			WHERE bup.dr = 0 AND bup.id = #{id} AND bup.user_type = #{userType} AND bup.org_id = #{orgId}
+	</select>
+
+	<select id="queryUserPriceByBUP" parameterType="Object" resultType="map">
+		select bup.*,  bp.prize_img, bp.prize_desc, bp.prize_type, bp.prize_name
+		from bd_user_prize bup
+		inner join bd_prize bp on bup.prize_id = bp.prize_id  and bp.dr = 0
+		where bup.user_id = #{userId} and bup.org_id = #{orgId} and bup.dr = 0
+		<if test="state != null and state != ''"> and bup.state = #{state}</if>
+		<if test="begintime != null"> and bup.begintime &lt; #{begintime}</if>
+		<if test="endtime != null"> and bup.endtime &gt; #{endtime}</if>
+	</select>
+
+</mapper>

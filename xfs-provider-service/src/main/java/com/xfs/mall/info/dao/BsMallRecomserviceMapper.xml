@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BS_MALL_RECOMSERVICE" > 
+<!-- Result Map-->
+<resultMap id="result_map_BS_MALL_RECOMSERVICE" type="com.xfs.mall.info.model.BsMallRecomservice" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="begintime" property="begintime"/>
+	<result column="endtime" property="endtime"/>
+	<result column="orderby" property="orderby"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+</resultMap>
+       
+<!-- bs_mall_recomservice table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,begintime,endtime,orderby,create_by,create_dt,modify_by,modify_dt,dr
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="begintime != null" >and begintime = #{begintime}</if>
+	<if test="endtime != null" >and endtime = #{endtime}</if>
+	<if test="orderby != null" >and orderby = #{orderby}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = '${spId}'</if>
+    <if test="begintime != null">AND begintime = #{begintime}</if>
+    <if test="begintimeFrom != null">AND begintime&gt;=#{begintimeFrom}</if>
+	<if test="begintimeTo != null">AND begintime&lt;=#{begintimeTo}</if>
+    <if test="endtime != null">AND endtime = #{endtime}</if>
+    <if test="endtimeFrom != null">AND endtime&gt;=#{endtimeFrom}</if>
+	<if test="endtimeTo != null">AND endtime&lt;=#{endtimeTo}</if>
+    <if test="orderby != null">AND orderby like '%${orderby}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertBS_MALL_RECOMSERVICE" parameterType="Object" >
+  INSERT INTO BS_MALL_RECOMSERVICE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="begintime != null ">,begintime</if>
+	<if test="endtime != null ">,endtime</if>
+	<if test="orderby != null ">,orderby</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="begintime != null ">,#{begintime}</if>
+	<if test="endtime != null ">,#{endtime}</if>
+	<if test="orderby != null ">,#{orderby}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateBS_MALL_RECOMSERVICE" parameterType="Object" >
+UPDATE BS_MALL_RECOMSERVICE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="begintime != null ">,begintime=#{begintime}</if>
+	<if test="endtime != null ">,endtime=#{endtime}</if>
+	<if test="orderby != null ">,orderby=#{orderby}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteBS_MALL_RECOMSERVICE">DELETE FROM BS_MALL_RECOMSERVICE WHERE ID=#{id}</delete>
+<!-- bs_mall_recomservice 列表总数-->
+<select id="CountFindAllBS_MALL_RECOMSERVICE" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_RECOMSERVICE</select>
+<select id="CountBS_MALL_RECOMSERVICE" resultType="java.lang.Integer">SELECT count(1) as value FROM BS_MALL_RECOMSERVICE WHERE ID=#{id}</select>
+<!-- 根据id查询 bs_mall_recomservice -->
+<select id="FindByPK" resultMap="result_map_BS_MALL_RECOMSERVICE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM BS_MALL_RECOMSERVICE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  bs_mall_recomservice -->
+<select id="FreeFindBS_MALL_RECOMSERVICE" resultMap="result_map_BS_MALL_RECOMSERVICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_RECOMSERVICE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  bs_mall_recomservice 记录数 -->
+<select id="CountFreeFindBS_MALL_RECOMSERVICE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM BS_MALL_RECOMSERVICE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  bs_mall_recomservice -->
+<select id="FreeFindBS_MALL_RECOMSERVICEOrdered" resultMap="result_map_BS_MALL_RECOMSERVICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM BS_MALL_RECOMSERVICE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/06/07 11:08:12 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 商城首页推荐的服务商列表 -->
+<select id="FindBS_MALL_RECOMSERVICE" resultType="java.util.Map" parameterType="Object">
+	SELECT ss.sp_id, ss.`sp_name`, ss.`short_name`, ss.`logo`, ss.`company_level`, TIMESTAMPDIFF(YEAR, ss.established_time, NOW()) AS age,
+			i.`is_bus_certification`, i.`is_onsite_audit`, i.`is_fund_supervision`, i.`risk_margin`, i.risk_margin_star, sc.score,ss.service_state
+		FROM `bs_mall_recomservice` rm
+		INNER JOIN sp_service ss ON rm.sp_id = ss.`sp_id`
+		INNER JOIN sps_mall_info i ON ss.sp_id = i.sp_id
+		LEFT JOIN bd_score_collection sc ON sc.score_target_type = 'SERVICE' AND ss.sp_id = sc.score_target_id AND sc.dr = 0
+		WHERE rm.dr = 0 AND i.dr = 0 AND ss.enabled_mall = 'SIGNED' AND NOW() BETWEEN rm.begintime AND rm.endtime
+		ORDER BY rm.orderby DESC, rm.id DESC
+</select>
+
+
+	<select id="findservicedata" resultType="java.util.HashMap" parameterType="Object">
+		SELECT
+		b.id,
+		s.sp_name spName,
+		s.short_name shortName,
+		b.begintime,
+		b.endtime,
+		b.orderby,
+		b.dr
+		FROM
+		bs_mall_recomservice b
+		LEFT JOIN sp_service s ON b.sp_id = s.sp_id
+		WHERE s.enabled_mall = 'SIGNED'
+	</select>
+
+	<!-- 根据推荐服务机构id得到该服务机构的信息 -->
+	<select id="findRecomByPK" resultType="java.util.HashMap"
+			parameterType="Object">
+		SELECT
+		ss.sp_name spName,bb.id,bb.begintime,bb.endtime,bb.orderby,bb.dr
+		FROM bs_mall_recomservice bb
+		LEFT JOIN sp_service ss on bb.sp_id = ss.sp_id
+		where 1=1
+		AND bb.id = #{id}
+	</select>
+</mapper>   

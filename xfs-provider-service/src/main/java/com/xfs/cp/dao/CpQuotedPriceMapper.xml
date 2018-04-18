@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_QUOTED_PRICE" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_QUOTED_PRICE" type="com.xfs.cp.model.CpQuotedPrice" >
+	<result column="id" property="id"/>
+	<result column="send_spid" property="sendSpid"/>
+	<result column="package_id" property="packageId"/>
+	<result column="quoted_spid" property="quotedSpid"/>
+	<result column="price" property="price"/>
+	<result column="quoted_time" property="quotedTime"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="status" property="status"/>
+
+	<result column="package_num" property="packageNum"/>
+	<result column="project" property="project"/>
+	<result column="num" property="num"/>
+	<result column="package_price" property="packagePrice"/>
+	<result column="send_sp_name" property="sendSpName"/>
+	<result column="quoted_sp_name" property="quotedSpName"/>
+	<result column="begin_time" property="beginTime"/>
+	<result column="end_time" property="endTime"/>
+	<result column="package_status" property="packageStatus"/>
+	<result column="established_time" property="establishedTime"/>
+	<result column="registered_capital" property="registeredCapital"/>
+	
+	<result column="dev_index" property="devIndex"/>
+	<result column="isca" property="isca"/>
+	<result column="risk_margin" property="riskMargin"/>
+	<result column="mobile" property="mobile"/>
+	
+</resultMap>
+       
+<!-- cp_quoted_price table all fields -->
+<sql id="Base_Column_List" >
+	 id,send_spid,package_id,quoted_spid,price,quoted_time,create_by,create_dt,modify_by,modify_dt,dr,status
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="sendSpid != null" >and send_spid = #{sendSpid}</if>
+	<if test="packageId != null" >and package_id = #{packageId}</if>
+	<if test="quotedSpid != null" >and quoted_spid = #{quotedSpid}</if>
+	<if test="price != null" >and price = #{price}</if>
+	<if test="quotedTime != null" >and quoted_time = #{quotedTime}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="status != null" >and status = #{status}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="sendSpid != null">AND send_spid = #{sendSpid}</if>
+    <if test="packageId != null">AND package_id = #{packageId}</if>
+    <if test="quotedSpid != null">AND quoted_spid = #{quotedSpid}</if>
+    <if test="price != null">AND price like '%${price}%'</if>
+    <if test="quotedTime != null">AND quoted_time = #{quotedTime}</if>
+    <if test="quotedTimeFrom != null">AND quoted_time&gt;=#{quotedTimeFrom}</if>
+	<if test="quotedTimeTo != null">AND quoted_time&lt;=#{quotedTimeTo}</if>
+    <if test="createBy != null">AND create_by = #{createBy}</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = #{modifyBy}</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr = #{dr}</if>
+    <if test="status != null">AND status = #{status}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_QUOTED_PRICE" parameterType="Object" >
+  INSERT INTO CP_QUOTED_PRICE (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="sendSpid != null ">,send_spid</if>
+	<if test="packageId != null ">,package_id</if>
+	<if test="quotedSpid != null ">,quoted_spid</if>
+	<if test="price != null ">,price</if>
+	<if test="quotedTime != null ">,quoted_time</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="status != null ">,status</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="sendSpid != null ">,#{sendSpid}</if>
+	<if test="packageId != null ">,#{packageId}</if>
+	<if test="quotedSpid != null ">,#{quotedSpid}</if>
+	<if test="price != null ">,#{price}</if>
+	<if test="quotedTime != null ">,#{quotedTime}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="status != null ">,#{status}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_QUOTED_PRICE" parameterType="Object" >
+UPDATE CP_QUOTED_PRICE 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="sendSpid != null ">,send_spid=#{sendSpid}</if>
+	<if test="packageId != null ">,package_id=#{packageId}</if>
+	<if test="quotedSpid != null ">,quoted_spid=#{quotedSpid}</if>
+	<if test="price != null ">,price=#{price}</if>
+	<if test="quotedTime != null ">,quoted_time=#{quotedTime}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="status != null ">,status=#{status}</if>
+	<if test="isRead != null ">,is_read=#{isRead}</if>
+	<if test="dataDr != null ">,data_dr=#{dataDr}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_QUOTED_PRICE">DELETE FROM CP_QUOTED_PRICE WHERE ID=#{id}</delete>
+<!-- 报价表 列表总数-->
+<select id="CountFindAllCP_QUOTED_PRICE" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_QUOTED_PRICE</select>
+<select id="CountCP_QUOTED_PRICE" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_QUOTED_PRICE WHERE ID=#{id}</select>
+<!-- 根据id查询 报价表 -->
+<select id="FindByPK" resultMap="result_map_CP_QUOTED_PRICE" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_QUOTED_PRICE WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  报价表 -->
+<select id="FreeFindCP_QUOTED_PRICE" resultMap="result_map_CP_QUOTED_PRICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_QUOTED_PRICE 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  报价表 记录数 -->
+<select id="CountFreeFindCP_QUOTED_PRICE" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_QUOTED_PRICE 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  报价表 -->
+<select id="FreeFindCP_QUOTED_PRICEOrdered" resultMap="result_map_CP_QUOTED_PRICE" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_QUOTED_PRICE 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/09/20 09:49:54 ** -->
+<!-- ************************************************************************ -->
+
+<!-- 获取抢包成功的服务商 -->
+<select id="findQuotedSp" resultType="Map">
+	select cqp.quoted_spid,cs.name
+	from cp_quoted_price cqp,cp_service cs
+	where cqp.quoted_spid=cs.id
+	and  cqp.send_spid=#{sendSpid}
+	and package_id=#{packageId} 
+	and status=#{status}
+</select>
+
+<!--我的抢包 获取列表总数 -->
+<select id="findPageListCount" resultType="java.lang.Integer">
+	SELECT count(1) as value from (
+	SELECT<include refid="Base_Column_List"/>
+	FROM CP_QUOTED_PRICE
+	<where>
+		<if test="dr != null">and dr=#{dr}</if>
+		<if test="packageId != null">and package_id =#{packageId} and send_spid = #{sendSpid} and status != 2</if>
+		<if test="quotedSpid != null">and quoted_spid =#{quotedSpid}</if>
+		<if test="createDtFrom != null">AND DATE(create_dt)&gt;=#{createDtFrom}</if>
+		<if test="createDtTo != null">AND DATE(create_dt)&lt;=#{createDtTo}</if>
+		<if test="statusQuery != null" > and status in (${statusQuery}) </if>
+		<if test="isRead != null" > and is_read = '0' </if>
+		<if test="dataDr != null" > and data_dr = 0 </if>
+		<if test="status != null">AND status=#{status}</if>
+	</where>
+	) o left join CP_PACKAGE p on o.package_id = p.id
+	left join CP_SERVICE s on s.id = o.send_spid
+	left join CP_SERVICE s1 on s1.id = o.quoted_spid
+	where 1=1
+	<if test="packageNum != null" > and p.package_num like '%${packageNum}%'</if>
+</select>
+
+<!--我的抢包 获取列表 -->
+<select id="findPageList" resultMap="result_map_CP_QUOTED_PRICE" parameterType="Object">
+	select o.* ,s.name as send_sp_name ,s1.name as quoted_sp_name,s1.established_time,s1.registered_capital,p.package_num as package_num ,p.project as project ,
+	p.num as num ,p.price as package_price ,p.status as package_status ,p.begin_time as begin_time,p.end_time as end_time,s1.dev_index,s1.isca,mi.risk_margin,s1.mobile
+	from (
+		SELECT<include refid="Base_Column_List"/>
+		FROM CP_QUOTED_PRICE
+		<where>
+			<if test="dr != null">and dr=#{dr}</if>
+			<if test="packageId != null">and package_id =#{packageId} and send_spid = #{sendSpid} and status != 2</if>
+			<if test="quotedSpid != null">and quoted_spid =#{quotedSpid}</if>
+			<if test="createDtFrom != null">AND DATE(create_dt)&gt;=#{createDtFrom}</if>
+			<if test="createDtTo != null">AND DATE(create_dt)&lt;=#{createDtTo}</if>
+			<if test="statusQuery != null" > and status in (${statusQuery}) </if>
+			<if test="dataDr != null" > and data_dr = 0 </if>
+			<if test="status != null">AND status=#{status}</if>
+		</where>
+	) o left join CP_PACKAGE p on o.package_id = p.id
+	left join CP_SERVICE s on s.id = o.send_spid
+	left join CP_SERVICE s1 on s1.id = o.quoted_spid
+	left join sps_mall_info mi on s1.id = mi.sp_id
+	where 1=1
+	<if test="packageNum != null" > and p.package_num like '%${packageNum}%'</if>
+	order by o.create_dt desc
+</select>
+    <!--批量更新状态-->
+<update id="updateStatus" parameterType="Object" >
+	UPDATE CP_QUOTED_PRICE
+	set status=#{status}
+	where package_id=#{packageId}
+</update>
+<!--批量更新被发包方关注的状态-->
+<update id="updateIsRead" parameterType="Object" >
+	UPDATE CP_QUOTED_PRICE
+    set is_read=#{isRead}
+	where package_id=#{packageId}
+</update>
+
+<select id="findQuotedPriceCp" parameterType="java.lang.Integer" resultType="Map">
+	select s.id,s.mobile, s.name,s.dev_index,s.isca,IFNULL( s.registered_capital,'') as registered_capital
+	,IFNULL(s.service_logo,'') as service_logo,IFNULL(i.risk_margin,'') as risk_margin,p.price,r.status
+	,r.id as relationId,p.id as cqp_id,p.status as cqp_status,p.quoted_time,s.established_time
+	from CP_QUOTED_PRICE p
+    left join cp_service s on p.quoted_spid = s.id
+    left join sps_mall_info i on p.quoted_spid = i.sp_id
+    left join cp_relation r on p.send_spid=r.a_sp_id and p.quoted_spid=r.b_sp_id and r.status=1
+	where package_id=#{packageId}
+</select>
+
+
+	<select id="findQuotedPriceCpCount" resultType="java.lang.Integer" parameterType="Object">
+		select COUNT(1) AS count
+		from CP_QUOTED_PRICE p
+		left join cp_service s on p.quoted_spid = s.id
+		left join sps_mall_info i on p.quoted_spid = i.sp_id
+		left join cp_relation r on p.send_spid=r.a_sp_id and p.quoted_spid=r.b_sp_id and r.status=1
+		where package_id=#{packageId}
+	</select>
+
+<select id="getQuotedPriceCpInfo" parameterType="Map" resultType="Map">
+	select s.id,s.mobile, s.name,s.dev_index,s.isca,IFNULL( s.registered_capital,'') as registered_capital
+	,IFNULL(s.service_logo,'') as service_logo,IFNULL(i.risk_margin,'') as risk_margin,p.price,r.status
+	from CP_QUOTED_PRICE p
+    left join cp_service s on p.quoted_spid = s.id
+    left join sps_mall_info i on p.quoted_spid = i.sp_id
+    left join cp_relation r on p.send_spid=r.a_sp_id and p.quoted_spid=r.b_sp_id and r.status=1
+	where p.id=#{cqp_id}
+</select>
+
+<select id="updateByIdAndSpId" parameterType="Object">
+	update cp_quoted_price cqp
+	set cqp.data_dr=1
+	where cqp.send_spid=#{sendSpid}
+	and cqp.package_id=#{packageId}
+</select>
+
+	<select id="findPackageNumber" resultType="java.lang.Integer">
+		SELECT  count(1)
+		from cp_quoted_price p
+		where 
+		p.quoted_spid = #{quotedSpid}
+		and p.status = 1
+	</select>
+
+
+</mapper>   

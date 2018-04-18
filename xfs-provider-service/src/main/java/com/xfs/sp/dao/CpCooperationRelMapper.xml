@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CP_COOPERATION_REL" > 
+<!-- Result Map-->
+<resultMap id="result_map_CP_COOPERATION_REL" type="com.xfs.sp.model.CpCooperationRel" >
+	<result column="id" property="id"/>
+	<result column="sp_id" property="spId"/>
+	<result column="cp_cooperation_id" property="cpCooperationId"/>
+	<result column="item_id" property="itemId"/>
+	<result column="bill" property="bill"/>
+	<result column="create_by" property="createBy"/>
+	<result column="create_dt" property="createDt"/>
+	<result column="modify_by" property="modifyBy"/>
+	<result column="modify_dt" property="modifyDt"/>
+	<result column="dr" property="dr"/>
+	<result column="type" property="type"/>
+</resultMap>
+       
+<!-- cp_cooperation_rel table all fields -->
+<sql id="Base_Column_List" >
+	 id,sp_id,cp_cooperation_id,item_id,bill,create_by,create_dt,modify_by,modify_dt,dr,type
+</sql>
+
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+	<if test="id != null" >and id = #{id}</if>
+	<if test="spId != null" >and sp_id = #{spId}</if>
+	<if test="cpCooperationId != null" >and cp_cooperation_id = #{cpCooperationId}</if>
+	<if test="itemId != null" >and item_id = #{itemId}</if>
+	<if test="bill != null" >and bill = #{bill}</if>
+	<if test="createBy != null" >and create_by = #{createBy}</if>
+	<if test="createDt != null" >and create_dt = #{createDt}</if>
+	<if test="modifyBy != null" >and modify_by = #{modifyBy}</if>
+	<if test="modifyDt != null" >and modify_dt = #{modifyDt}</if>
+	<if test="dr != null" >and dr = #{dr}</if>
+	<if test="type != null" >and type = #{type}</if>
+</trim>
+</sql>
+
+<!-- 查询条件 带模糊查询 以及 时间起始查询 -->
+<sql id="Example_Where_Clause2">
+  <trim prefix=" WHERE " prefixOverrides="AND ">
+    <if test="id != null">AND id = #{id}</if>
+    <if test="spId != null">AND sp_id = '${spId}'</if>
+    <if test="cpCooperationId != null">AND cp_cooperation_id = '${cpCooperationId}'</if>
+    <if test="itemId != null">AND item_id = '${itemId}'</if>
+    <if test="bill != null">AND bill like '%${bill}%'</if>
+    <if test="createBy != null">AND create_by = '%${createBy}%'</if>
+    <if test="createDt != null">AND create_dt = #{createDt}</if>
+    <if test="createDtFrom != null">AND create_dt&gt;=#{createDtFrom}</if>
+	<if test="createDtTo != null">AND create_dt&lt;=#{createDtTo}</if>
+    <if test="modifyBy != null">AND modify_by = '%${modifyBy}%'</if>
+    <if test="modifyDt != null">AND modify_dt = #{modifyDt}</if>
+    <if test="modifyDtFrom != null">AND modify_dt&gt;=#{modifyDtFrom}</if>
+	<if test="modifyDtTo != null">AND modify_dt&lt;=#{modifyDtTo}</if>
+    <if test="dr != null">AND dr like '%${dr}%'</if>
+    <if test="type != null">AND type like '%${type}%'</if>
+    <if test="typeEq != null">AND type = #{typeEq}</if>
+  </trim>
+</sql>
+
+<!-- 插入记录 -->
+<insert id="InsertCP_COOPERATION_REL" parameterType="Object" >
+  INSERT INTO CP_COOPERATION_REL (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,id</if>
+	<if test="spId != null ">,sp_id</if>
+	<if test="cpCooperationId != null ">,cp_cooperation_id</if>
+	<if test="itemId != null ">,item_id</if>
+	<if test="bill != null ">,bill</if>
+	<if test="createBy != null ">,create_by</if>
+	<if test="createDt != null ">,create_dt</if>
+	<if test="modifyBy != null ">,modify_by</if>
+	<if test="modifyDt != null ">,modify_dt</if>
+	<if test="dr != null ">,dr</if>
+	<if test="type != null ">,type</if>
+  </trim>
+  )  VALUES (
+  <trim prefix=" " prefixOverrides=",">
+	<if test="id != null ">,#{id}</if>
+	<if test="spId != null ">,#{spId}</if>
+	<if test="cpCooperationId != null ">,#{cpCooperationId}</if>
+	<if test="itemId != null ">,#{itemId}</if>
+	<if test="bill != null ">,#{bill}</if>
+	<if test="createBy != null ">,#{createBy}</if>
+	<if test="createDt != null ">,#{createDt}</if>
+	<if test="modifyBy != null ">,#{modifyBy}</if>
+	<if test="modifyDt != null ">,#{modifyDt}</if>
+	<if test="dr != null ">,#{dr}</if>
+	<if test="type != null ">,#{type}</if>
+  </trim>
+  )
+  <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS ID
+  </selectKey>
+</insert>
+
+<!-- 根据id，修改记录-->  
+<update id="UpdateCP_COOPERATION_REL" parameterType="Object" >
+UPDATE CP_COOPERATION_REL 
+  <trim prefix=" SET " prefixOverrides=",">
+	<if test="id != null ">,id=#{id}</if>
+	<if test="spId != null ">,sp_id=#{spId}</if>
+	<if test="cpCooperationId != null ">,cp_cooperation_id=#{cpCooperationId}</if>
+	<if test="itemId != null ">,item_id=#{itemId}</if>
+	<if test="bill != null ">,bill=#{bill}</if>
+	<if test="createBy != null ">,create_by=#{createBy}</if>
+	<if test="createDt != null ">,create_dt=#{createDt}</if>
+	<if test="modifyBy != null ">,modify_by=#{modifyBy}</if>
+	<if test="modifyDt != null ">,modify_dt=#{modifyDt}</if>
+	<if test="dr != null ">,dr=#{dr}</if>
+	<if test="type != null ">,type=#{type}</if>
+  </trim>
+WHERE ID=#{id}
+</update>
+ 
+<!-- 删除记录 -->
+<delete id="DeleteCP_COOPERATION_REL">DELETE FROM CP_COOPERATION_REL WHERE ID=#{id}</delete>
+<!-- 协同项目关联表 列表总数-->
+<select id="CountFindAllCP_COOPERATION_REL" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_COOPERATION_REL</select>
+<select id="CountCP_COOPERATION_REL" resultType="java.lang.Integer">SELECT count(1) as value FROM CP_COOPERATION_REL WHERE ID=#{id}</select>
+<!-- 根据id查询 协同项目关联表 -->
+<select id="FindByPK" resultMap="result_map_CP_COOPERATION_REL" parameterType="Object">SELECT <include refid="Base_Column_List" /> FROM CP_COOPERATION_REL WHERE ID=#{id}</select>
+
+<!-- 根据各字段条件带模糊查询  协同项目关联表 -->
+<select id="FreeFindCP_COOPERATION_REL" resultMap="result_map_CP_COOPERATION_REL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_COOPERATION_REL 
+	 <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带模糊查询  协同项目关联表 记录数 -->
+<select id="CountFreeFindCP_COOPERATION_REL" resultType="java.lang.Integer">
+SELECT count(1) as value FROM CP_COOPERATION_REL 
+ <include refid="Example_Where_Clause2" />
+</select>
+<!-- 根据各字段条件带排序  协同项目关联表 -->
+<select id="FreeFindCP_COOPERATION_RELOrdered" resultMap="result_map_CP_COOPERATION_REL" parameterType="Object">
+	SELECT <include refid="Base_Column_List" /> FROM CP_COOPERATION_REL 
+	 <include refid="Example_Where_Clause2" />
+	 ORDER BY ${_orderBy}
+</select>
+
+<!-- *****************************  温馨提示：  ***************************** -->
+<!-- **                                                                    ** -->
+<!-- ** 以上为自动生成代码，请勿改动或删除。如有新sql添加请在下方区域内填写** -->
+<!-- **                                             ** 2016/07/27 15:51:51 ** -->
+<!-- ************************************************************************ -->
+
+	<resultMap id="mapType" type="java.util.Map">
+	</resultMap>
+    <!--  根据方案id 查询 险种信息 -->
+    <select id="findItems" resultMap="mapType" parameterType="Object">
+       select i.item_id,i.item_name,t.bill from cp_cooperation_rel t,bs_mall_item i 
+       where t.item_id=i.item_id and t.cp_cooperation_id = #{cp_cooperation_id}
+    </select>
+
+
+</mapper>   
